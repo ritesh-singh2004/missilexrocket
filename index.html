@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MissileX Rocket Space Research</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loader-content">
+            <div class="orbit-loader">
+                <div class="orbit"></div>
+                <div class="orbit"></div>
+                <div class="orbit"></div>
+                <div class="core"></div>
+            </div>
+            <h2 class="loading-text">MISSILEX</h2>
+            <p class="loading-sub">Initializing Defense Research Portal</p>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="space-canvas"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-logo">
+            <span class="logo-text">MISSILEX</span>
+            <span class="logo-sub">ROCKET SPACE RESEARCH</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="nav-link active" data-section="0">HOME</a>
+            <a href="#about" class="nav-link has-dropdown" data-section="1">ABOUT
+                <div class="nav-dropdown">
+                    <a href="#about-mission" class="nav-dropdown-link">
+                        <span class="dropdown-title">Mission & Vision</span>
+                        <span class="dropdown-desc">Objectives, research goals and the team behind MissileX.</span>
+                    </a>
+                    <a href="#about-isro-leadership" class="nav-dropdown-link">
+                        <span class="dropdown-title">ISRO Leadership</span>
+                        <span class="dropdown-desc">Leadership driving India's space research programs.</span>
+                    </a>
+                    <a href="#about-drdo-leadership" class="nav-dropdown-link">
+                        <span class="dropdown-title">DRDO Leadership</span>
+                        <span class="dropdown-desc">Defence research and missile system development leaders.</span>
+                    </a>
+                    <a href="#about-iaf" class="nav-dropdown-link">
+                        <span class="dropdown-title">Indian Air Force</span>
+                        <span class="dropdown-desc">Guardians of the Indian skies since 1932.</span>
+                    </a>
+                    <a href="#about-navy" class="nav-dropdown-link">
+                        <span class="dropdown-title">Indian Navy</span>
+                        <span class="dropdown-desc">Protecting India's maritime interests across oceans.</span>
+                    </a>
+                    <a href="#about-army" class="nav-dropdown-link">
+                        <span class="dropdown-title">Indian Army</span>
+                        <span class="dropdown-desc">India's land warfare force, world's largest volunteer army.</span>
+                    </a>
+                    <a href="#about-kalam" class="nav-dropdown-link">
+                        <span class="dropdown-title">APJ Abdul Kalam</span>
+                        <span class="dropdown-desc">Legacy of India's missile scientist and visionary leader.</span>
+                    </a>
+                </div>
+            </a>
+            <a href="#isro-section" class="nav-link">ISRO</a>
+            <a href="#drdo-section" class="nav-link">DRDO</a>
+            <a href="#iaf-section" class="nav-link">AIR FORCE</a>
+            <a href="#army-section" class="nav-link">ARMY</a>
+            <a href="#navy-section" class="nav-link">NAVY</a>
+            <a href="#contact" class="nav-link">CONTACT</a>
+        </div>
+        <div class="nav-actions">
+            <button class="nav-login-btn" id="loginBtn">LOGIN</button>
+            <button class="nav-register-btn" id="registerBtnNav">CREATE ACCOUNT</button>
+        </div>
+        <div class="nav-hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div id="content-wrapper">
+        <section id="home" class="section">
+            <div class="section-content">
+                <div class="hero-badge">GOVERNMENT OF INDIA INSPIRED DEFENCE RESEARCH PORTAL</div>
+                <h1 class="hero-title">
+                    <span class="title-line" data-delay="0">MISSILEX</span>
+                    <span class="title-line" data-delay="0.2">ROCKET</span>
+                    <span class="title-line accent" data-delay="0.4">SPACE</span>
+                </h1>
+                <p class="hero-description">Advanced Defence, Missile, Artificial Intelligence & Space Research Organization. Building India's next generation intelligent missile and space technologies.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" data-target="102">0</span>
+                        <span class="stat-label">MISSIONS</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="45">0</span>
+                        <span class="stat-label">LAUNCHES</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="2024">0</span>
+                        <span class="stat-label">ESTABLISHED</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <button class="cta-button primary">
+                        <span>EXPLORE RESEARCH</span>
+                        <div class="button-glow"></div>
+                    </button>
+                    <button class="cta-button secondary">
+                        <span>WATCH LAUNCH</span>
+                    </button>
+                </div>
+                <div class="hero-links">
+                    <a href="#projects" class="hero-link"><span class="link-icon">&#9672;</span> NASA/ISRO PROJECTS</a>
+                    <a href="#missiles" class="hero-link"><span class="link-icon">&#9672;</span> MISSILE SYSTEMS</a>
+                    <a href="#programs" class="hero-link"><span class="link-icon">&#9672;</span> RESEARCH PORTAL</a>
+                </div>
+                <div class="mission-status">
+                    <span class="status-dot"></span>
+                    <span class="status-text">MISSION STATUS</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="section-content">
+                <div class="section-label">ABOUT MISSILEX</div>
+                <h2 class="section-title">A sovereign research platform for <span class="accent">defence</span> and <span class="accent">space</span> missions.</h2>
+                <p class="section-subtitle">MissileX Rocket Space connects researchers, engineers, and mission planners with secure collaboration tools, advanced modelling, and verified analytics.</p>
+
+                <div id="about-mission" class="about-subsection">
+                    <div class="about-vision-mission">
+                        <div class="about-vm-card">
+                            <div class="section-label">VISION</div>
+                            <h3>Design India's next generation of intelligent missile and space technologies.</h3>
+                            <p>We work towards a future where research on guidance systems, launch vehicles, and mission-critical software is conducted with precision, transparency, and national self-reliance.</p>
+                        </div>
+                        <div class="about-vm-card">
+                            <div class="section-label">MISSION</div>
+                            <h3>Enable strategic aerospace research through collaboration.</h3>
+                            <p>MissileX brings together modern simulation, conceptual AI research, and collaborative mission systems to support researchers, students, and institutional partners across India.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="about-kalam" class="about-subsection">
+                    <div class="section-label">DR. APJ ABDUL KALAM</div>
+                    <h3 class="about-subsection-title">The Missile Man of India</h3>
+                    <div class="kalam-card">
+                        <div class="kalam-quote">
+                            <blockquote>"If a country is to be corruption-free and become a nation of beautiful minds, I strongly feel there are three key societal members who can make a difference. They are the father, the mother, and the teacher."</blockquote>
+                            <cite>- Dr. APJ Abdul Kalam</cite>
+                        </div>
+                        <div class="kalam-info">
+                            <p>Dr. Avul Pakir Jainulabdeen Abdul Kalam (1931-2015), known as the <strong>"Missile Man of India"</strong>, was the 11th President of India and a legendary aerospace scientist. He played a pivotal role in developing India's ballistic missile and launch vehicle technology.</p>
+                            <div class="kalam-highlights">
+                                <div class="kalam-highlight">
+                                    <span class="kalam-num">SLV-III</span>
+                                    <span class="kalam-desc">Project Director - India's first satellite launch vehicle</span>
+                                </div>
+                                <div class="kalam-highlight">
+                                    <span class="kalam-num">IGMDP</span>
+                                    <span class="kalam-desc">Director - Integrated Guided Missile Development Programme</span>
+                                </div>
+                                <div class="kalam-highlight">
+                                    <span class="kalam-num">Agni & Prithvi</span>
+                                    <span class="kalam-desc">Key architect of India's strategic missile programme</span>
+                                </div>
+                                <div class="kalam-highlight">
+                                    <span class="kalam-num">11th President</span>
+                                    <span class="kalam-desc">People's President of India (2002-2007)</span>
+                                </div>
+                            </div>
+                            <p class="kalam-legacy">His legacy continues to inspire MissileX's mission to advance India's defence and space research capabilities.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="about-isro-leadership" class="about-subsection">
+                    <div class="section-label">ISRO LEADERSHIP</div>
+                    <h3 class="about-subsection-title">Leadership driving India's space research programs</h3>
+                    <div class="leadership-grid">
+                        <div class="leadership-card-sm">
+                            <div class="leadership-avatar-sm">S</div>
+                            <h4>S. Somanath</h4>
+                            <p class="leadership-role-sm">Chairman, ISRO</p>
+                            <p class="leadership-desc-sm">Leading India's space programme including Gaganyaan and Chandrayaan missions.</p>
+                        </div>
+                        <div class="leadership-card-sm">
+                            <div class="leadership-avatar-sm">P</div>
+                            <h4>P. Veeramuthuvel</h4>
+                            <p class="leadership-role-sm">Project Director, Chandrayaan-3</p>
+                            <p class="leadership-desc-sm">Led the successful lunar south pole landing mission.</p>
+                        </div>
+                        <div class="leadership-card-sm">
+                            <div class="leadership-avatar-sm">R</div>
+                            <h4>Ritu Karidhal</h4>
+                            <p class="leadership-role-sm">Deputy Operations Director, MOM</p>
+                            <p class="leadership-desc-sm">Key scientist behind India's Mars Orbiter Mission navigation.</p>
+                        </div>
+                        <div class="leadership-card-sm">
+                            <div class="leadership-avatar-sm">N</div>
+                            <h4>Nandini Harinath</h4>
+                            <p class="leadership-role-sm">Deputy Operations Director, MOM</p>
+                            <p class="leadership-desc-sm">Contributed to trajectory design for Mars Orbiter Mission.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="about-drdo-leadership" class="about-subsection">
+                    <div class="section-label">DRDO LEADERSHIP</div>
+                    <h3 class="about-subsection-title">Driving India's defence research and development</h3>
+                    <div class="leadership-grid">
+                        <div class="leadership-card-sm">
+                            <div class="leadership-avatar-sm">D</div>
+                            <h4>Dr. Samir V. Kamat</h4>
+                            <p class="leadership-role-sm">Secretary, DDR&D & Chairman, DRDO</p>
+                            <p class="leadership-desc-sm">Leading India's premier defence research organization across missile, aeronautics, and naval systems.</p>
+                        </div>
+                        <div class="leadership-card-sm">
+                            <div class="leadership-avatar-sm">D</div>
+                            <h4>Director Dr. Imran Khan</h4>
+                            <p class="leadership-role-sm">Director, Mission Systems</p>
+                            <p class="leadership-desc-sm">Strategic aerospace research and integration.</p>
+                        </div>
+                        <div class="leadership-card-sm">
+                            <div class="leadership-avatar-sm">B</div>
+                            <h4>BrahMos Leadership</h4>
+                            <p class="leadership-role-sm">BrahMos Aerospace</p>
+                            <p class="leadership-desc-sm">Supersonic cruise missile programme - jointly developed by India and Russia.</p>
+                        </div>
+                        <div class="leadership-card-sm">
+                            <div class="leadership-avatar-sm">A</div>
+                            <h4>Agni Programme</h4>
+                            <p class="leadership-role-sm">Strategic Systems Division</p>
+                            <p class="leadership-desc-sm">Development of India's intercontinental ballistic missile family.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="about-iaf" class="about-subsection">
+                    <div class="section-label">INDIAN AIR FORCE</div>
+                    <h3 class="about-subsection-title">Guardians of the Indian skies</h3>
+                    <p class="section-subtitle">The Indian Air Force (IAF) is the air arm of the Indian Armed Forces. Established on 8 October 1932, it provides air superiority, strategic strike, and air defence capabilities.</p>
+                    <div class="org-quick-stats">
+                        <div class="org-stat-item"><span class="org-stat-num">1,700+</span><span class="org-stat-label">AIRCRAFT</span></div>
+                        <div class="org-stat-item"><span class="org-stat-num">140,000</span><span class="org-stat-label">PERSONNEL</span></div>
+                        <div class="org-stat-item"><span class="org-stat-num">94</span><span class="org-stat-label">YEARS OF SERVICE</span></div>
+                        <div class="org-stat-item"><span class="org-stat-num">31</span><span class="org-stat-label">SQUADRONS</span></div>
+                    </div>
+                </div>
+
+                <div id="about-navy" class="about-subsection">
+                    <div class="section-label">INDIAN NAVY</div>
+                    <h3 class="about-subsection-title">Protecting India's maritime interests</h3>
+                    <p class="section-subtitle">The Indian Navy is the maritime branch of the Indian Armed Forces. With aircraft carriers, nuclear submarines, and guided missile destroyers, it ensures maritime security across the Indian Ocean Region.</p>
+                    <div class="org-quick-stats">
+                        <div class="org-stat-item"><span class="org-stat-num">150+</span><span class="org-stat-label">WARSHIPS</span></div>
+                        <div class="org-stat-item"><span class="org-stat-num">67,000</span><span class="org-stat-label">PERSONNEL</span></div>
+                        <div class="org-stat-item"><span class="org-stat-num">2</span><span class="org-stat-label">AIRCRAFT CARRIERS</span></div>
+                        <div class="org-stat-item"><span class="org-stat-num">18</span><span class="org-stat-label">SUBMARINES</span></div>
+                    </div>
+                </div>
+
+                <div id="about-army" class="about-subsection">
+                    <div class="section-label">INDIAN ARMY</div>
+                    <h3 class="about-subsection-title">India's land warfare force</h3>
+                    <p class="section-subtitle">The Indian Army is the land warfare branch of the Indian Armed Forces. It is the world's largest volunteer army, responsible for national security along land borders and internal security operations.</p>
+                    <div class="org-quick-stats">
+                        <div class="org-stat-item"><span class="org-stat-num">1.2M</span><span class="org-stat-label">ACTIVE PERSONNEL</span></div>
+                        <div class="org-stat-item"><span class="org-stat-num">4,000+</span><span class="org-stat-label">TANKS & ARMOURED</span></div>
+                        <div class="org-stat-item"><span class="org-stat-num">130</span><span class="org-stat-label">YEARS OF SERVICE</span></div>
+                        <div class="org-stat-item"><span class="org-stat-num">37</span><span class="org-stat-label">DIVISIONS</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="leadership-section" class="section">
+            <div class="section-content">
+                <div class="section-label">LEADERSHIP</div>
+                <h2 class="section-title">Leaders driving <span class="accent">intelligent defence</span> innovation.</h2>
+                <p class="section-subtitle">A cross-disciplinary team of aerospace engineers, AI experts, and systems architects.</p>
+                <div class="leadership-list">
+                    <div class="leadership-card">
+                        <div class="leadership-avatar">D</div>
+                        <div class="leadership-info">
+                            <h3>Director Dr. Imran Khan</h3>
+                            <p class="leadership-role">DIRECTOR, MISSION SYSTEMS</p>
+                        </div>
+                        <div class="leadership-desc">
+                            <p>Strategic aerospace research and integration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="isro-section" class="section org-section">
+            <div class="section-content">
+                <div class="org-header">
+                    <div class="org-info">
+                        <div class="section-label">INDIAN SPACE RESEARCH ORGANISATION</div>
+                        <h2 class="section-title">ISRO</h2>
+                        <p class="org-founded">Founded: 15 August 1969 | Headquarters: Bangalore, India</p>
+                        <p class="org-desc">Indian Space Research Organisation is the national space agency of India, responsible for space exploration, satellite development, and launch vehicle programs. Since its establishment, ISRO has achieved numerous milestones including Chandrayaan missions, Mangalyaan (Mars Orbiter Mission), and the development of indigenous launch vehicles.</p>
+                        <div class="org-stats-row">
+                            <div class="org-stat"><span class="org-stat-num">100+</span><span class="org-stat-label">MISSIONS</span></div>
+                            <div class="org-stat"><span class="org-stat-num">50+</span><span class="org-stat-label">LAUNCHES</span></div>
+                            <div class="org-stat"><span class="org-stat-num">55+</span><span class="org-stat-label">YEARS</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="org-gallery">
+                    <div class="org-gallery-scroll" id="isro-gallery">
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#0a1628 0%,#1a3a5f 50%,#0d2137 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/GSLV_Mk_III_Lift_Off_1.jpg" alt="GSLV Mk III Launch" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">LVM3 (GSLV Mk III)</div><div class="org-img-sub">Launch Vehicle Mark-3 | 4,000 kg to GTO</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#1a0a2e 0%,#3d1a6e 50%,#1a0a2e 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/5/54/PSLV-C54%2C_EOS-6_%28aka_Oceansat-3%29_-_Launch_vehicle_on_First_Launch_Pad_with_MST_retracted_02.webp" alt="PSLV Launch" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">PSLV-C37</div><div class="org-img-sub">Polar Satellite Launch Vehicle | 104 Satellites</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#0a2e1a 0%,#1a5f3a 50%,#0a2e1a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/GSLV_Mk_III_M1%2C_Chandrayaan-2_-_GSLV_Mk_III_M1_vehicle_mounted_on_Mobile_Launch_Pedestal_moving_towards_the_Second_Launch_Pad.jpg" alt="LVM3 Chandrayaan-2" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">LVM3-M1</div><div class="org-img-sub">Chandrayaan-2 Mission Vehicle</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#2e0a0a 0%,#5f1a1a 50%,#2e0a0a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Chandrayaan-3_Lander_5.webp" alt="Chandrayaan-3 Vikram Lander" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">Chandrayaan-3</div><div class="org-img-sub">Vikram Lander | Moon South Pole</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#1a1a0a 0%,#3d3a1a 50%,#1a1a0a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Mars_Orbiter_Mission_Spacecraft.jpg" alt="Mangalyaan Mars Orbiter" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">Mangalyaan</div><div class="org-img-sub">Mars Orbiter Mission | $74 Million</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#0a1a2e 0%,#1a3a5f 50%,#0a1a2e 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/8/88/SSLV_D2_launch_vehicle.jpg" alt="SSLV Launch" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">SSLV-D3</div><div class="org-img-sub">Small Satellite Launch Vehicle</div></div></div></div>
+                    </div>
+                </div>
+                <h3 class="org-table-title">LAUNCH VEHICLES & SATELLITES</h3>
+                <div class="org-table-wrapper">
+                    <table class="org-table">
+                        <thead>
+                            <tr><th>VEHICLE</th><th>CATEGORY</th><th>PAYLOAD</th><th>STAGES</th><th>STATUS</th><th></th></tr>
+                        </thead>
+                        <tbody id="isro-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="drdo-section" class="section org-section">
+            <div class="section-content">
+                <div class="org-header">
+                    <div class="org-info">
+                        <div class="section-label">DEFENCE RESEARCH AND DEVELOPMENT ORGANISATION</div>
+                        <h2 class="section-title">DRDO</h2>
+                        <p class="org-founded">Founded: 1958 | Headquarters: New Delhi, India</p>
+                        <p class="org-desc">DRDO is the R&D wing of Ministry of Defence, Government of India. It manages a vast network of laboratories and is responsible for developing defense technologies including missiles, weapons, electronics, and advanced systems for the Indian Armed Forces.</p>
+                        <div class="org-stats-row">
+                            <div class="org-stat"><span class="org-stat-num">50+</span><span class="org-stat-label">MISSILES</span></div>
+                            <div class="org-stat"><span class="org-stat-num">30+</span><span class="org-stat-label">WEAPONS</span></div>
+                            <div class="org-stat"><span class="org-stat-num">65+</span><span class="org-stat-label">YEARS</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="org-gallery">
+                    <div class="org-gallery-scroll" id="drdo-gallery">
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#2e1a0a 0%,#5f3a1a 50%,#2e1a0a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Agni_V_Ballistic_missile_successfully_launched_on_December_10%2C_2018.jpg" alt="Agni-V ICBM Launch" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">Agni-V</div><div class="org-img-sub">Intercontinental Ballistic Missile | 5,000+ km</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#0a2e2e 0%,#1a5f5f 50%,#0a2e2e 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/DRDO_Brahmos_Missile_02.jpg" alt="BrahMos Missile" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">BrahMos</div><div class="org-img-sub">Supersonic Cruise Missile | Mach 3.0</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#1a0a2e 0%,#3d1a6e 50%,#1a0a2e 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Agni-IV_missile_at_rehearsal_of_Republic_Day_Parade_2012.jpg" alt="Agni-IV Missile" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">Agni-IV</div><div class="org-img-sub">IRBM | 4,000 km Range</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#2e0a1a 0%,#5f1a3a 50%,#2e0a1a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Prithvi_Missile_at_DRDO_Pune_Dighi.jpg" alt="Prithvi-II Missile" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">Prithvi-II</div><div class="org-img-sub">Short-Range Ballistic Missile | 350 km</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#0a1a2e 0%,#1a3a5f 50%,#0a1a2e 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Brahmos_imds.jpg" alt="BrahMos Display" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">Agni-P</div><div class="org-img-sub">Next-Gen MRBM | Canisterized</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#1a2e0a 0%,#3a5f1a 50%,#1a2e0a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/D.R.D.O_NAG_Anti_Tank_Guided_Missile%2C_National_Military_Memorial%2C_Bengaluru%2C_India_%28Ank_Kumar%2C_Infosys_Limited%29_01.jpg" alt="Nag ATGM" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">Nag ATGM</div><div class="org-img-sub">Fire-and-Forget Anti-Tank Missile</div></div></div></div>
+                    </div>
+                </div>
+                <h3 class="org-table-title">MISSILE & WEAPON SYSTEMS</h3>
+                <div class="org-table-wrapper">
+                    <table class="org-table">
+                        <thead>
+                            <tr><th>SYSTEM</th><th>TYPE</th><th>RANGE</th><th>PAYLOAD</th><th>STATUS</th><th></th></tr>
+                        </thead>
+                        <tbody id="drdo-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="iaf-section" class="section org-section">
+            <div class="section-content">
+                <div class="org-header">
+                    <div class="org-info">
+                        <div class="section-label">INDIAN AIR FORCE</div>
+                        <h2 class="section-title">IAF</h2>
+                        <p class="org-founded">Founded: 8 October 1932 | Headquarters: New Delhi, India</p>
+                        <p class="org-desc">The Indian Air Force is the aerial warfare branch of the Indian Armed Forces. It provides air superiority, strategic strike, and air defense capabilities. The IAF operates a diverse fleet of indigenous and imported aircraft including Tejas, Sukhoi, Rafale, and MiG variants.</p>
+                        <div class="org-stats-row">
+                            <div class="org-stat"><span class="org-stat-num">900+</span><span class="org-stat-label">AIRCRAFT</span></div>
+                            <div class="org-stat"><span class="org-stat-num">140K+</span><span class="org-stat-label">PERSONNEL</span></div>
+                            <div class="org-stat"><span class="org-stat-num">90+</span><span class="org-stat-label">YEARS</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="org-gallery">
+                    <div class="org-gallery-scroll" id="iaf-gallery">
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#0a1628 0%,#1a3a5f 50%,#0d2137 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Indian_Air_Force_Sukhoi_Su-30MKI_Lofting-3.jpg" alt="Sukhoi Su-30MKI" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">Sukhoi Su-30MKI</div><div class="org-img-sub">Multi-Role Air Superiority Fighter</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#1a0a2e 0%,#3d1a6e 50%,#1a0a2e 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/President_Droupadi_Murmu_standing_in_front_of_a_Rafale_fighter_jet_2.jpg" alt="Dassault Rafale" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">Dassault Rafale</div><div class="org-img-sub">Omni-Role Fighter | Meteor BVR</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#0a2e1a 0%,#1a5f3a 50%,#0a2e1a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Two_HAL_Tejas_flying_in_formation.jpg" alt="HAL Tejas" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">HAL Tejas MK1</div><div class="org-img-sub">Light Combat Aircraft | Indigenous</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#2e0a0a 0%,#5f1a1a 50%,#2e0a0a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Mikoyan-Gurevich_MiG-29UPG_Fulcrum%2C_India_-_Air_Force_JP7677166.jpg" alt="MiG-29" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">MiG-29UPG</div><div class="org-img-sub">Air Superiority Fighter</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#1a2e0a 0%,#3a5f1a 50%,#1a2e0a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/An_Indian_air_force_M-2000_Mirage_taxis_into_position_following_a_Cope_India_%2704.JPG" alt="Mirage 2000" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">Mirage 2000</div><div class="org-img-sub">Precision Strike Fighter</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#0a1a2e 0%,#1a3a5f 50%,#0a1a2e 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Induction_Of_AH-64E_Apache_Attack_Helicopter_in_Indian_Air_Force_%282%29.jpg" alt="AH-64E Apache" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">AH-64E Apache</div><div class="org-img-sub">Attack Helicopter | Hellfire Missiles</div></div></div></div>
+                    </div>
+                </div>
+                <h3 class="org-table-title">AIRCRAFT & SYSTEMS</h3>
+                <div class="org-table-wrapper">
+                    <table class="org-table">
+                        <thead>
+                            <tr><th>AIRCRAFT</th><th>TYPE</th><th>ORIGIN</th><th>ROLE</th><th>STATUS</th><th></th></tr>
+                        </thead>
+                        <tbody id="iaf-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="army-section" class="section org-section">
+            <div class="section-content">
+                <div class="org-header">
+                    <div class="org-info">
+                        <div class="section-label">INDIAN ARMY</div>
+                        <h2 class="section-title">ARMY</h2>
+                        <p class="org-founded">Founded: 1 April 1895 | Headquarters: New Delhi, India</p>
+                        <p class="org-desc">The Indian Army is the land warfare branch of the Indian Armed Forces. It operates a wide range of armored vehicles, artillery systems, infantry combat vehicles, and weapons systems. The army is one of the largest standing armies in the world.</p>
+                        <div class="org-stats-row">
+                            <div class="org-stat"><span class="org-stat-num">4000+</span><span class="org-stat-label">TANKS</span></div>
+                            <div class="org-stat"><span class="org-stat-num">1.2M+</span><span class="org-stat-label">PERSONNEL</span></div>
+                            <div class="org-stat"><span class="org-stat-num">130+</span><span class="org-stat-label">YEARS</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="org-gallery">
+                    <div class="org-gallery-scroll" id="army-gallery">
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#2e1a0a 0%,#5f3a1a 50%,#2e1a0a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Indian_Army_T-90.jpg" alt="T-90S Bhishma" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">T-90S Bhishma</div><div class="org-img-sub">Main Battle Tank | 125mm Smoothbore</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#0a2e1a 0%,#1a5f3a 50%,#0a2e1a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Arjun_Tank.jpg" alt="Arjun MK1" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">Arjun MK1</div><div class="org-img-sub">Indigenous MBT | Kanchan Armor</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#1a0a2e 0%,#3d1a6e 50%,#1a0a2e 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Indian_Army_Armoured_Corps_T-72_battle_tank.jpg" alt="T-72 Ajeya" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">T-72 Ajeya</div><div class="org-img-sub">Main Battle Tank | Upgraded Fleet</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#0a1a2e 0%,#1a3a5f 50%,#0a1a2e 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Yudh_Abhyas-09_BMP.JPG" alt="BMP-2 Sarath" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">BMP-2 Sarath</div><div class="org-img-sub">Infantry Combat Vehicle | 30mm Cannon</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#2e0a1a 0%,#5f1a3a 50%,#2e0a1a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/K9_Vajra-T_in_2022.jpg" alt="K9 Vajra" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">K9 Vajra-T</div><div class="org-img-sub">Self-Propelled Howitzer | 155mm/52cal</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#1a2e0a 0%,#3a5f1a 50%,#1a2e0a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Pinaka_Multi_Launcher_Rocket_System_passes_through_the_Rajpath%2C_at_the_72nd_Republic_Day_Celebrations%2C_in_New_Delhi_on_January_26%2C_2021.jpg" alt="Pinaka MBRL" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">Pinaka MBRL</div><div class="org-img-sub">Multi-Barrel Rocket Launcher | 75km</div></div></div></div>
+                    </div>
+                </div>
+                <h3 class="org-table-title">ARMORED VEHICLES & WEAPONS</h3>
+                <div class="org-table-wrapper">
+                    <table class="org-table">
+                        <thead>
+                            <tr><th>VEHICLE</th><th>TYPE</th><th>ORIGIN</th><th>ROLE</th><th>STATUS</th><th></th></tr>
+                        </thead>
+                        <tbody id="army-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="navy-section" class="section org-section">
+            <div class="section-content">
+                <div class="org-header">
+                    <div class="org-info">
+                        <div class="section-label">INDIAN NAVY</div>
+                        <h2 class="section-title">NAVY</h2>
+                        <p class="org-founded">Founded: 26 January 1950 | Headquarters: New Delhi, India</p>
+                        <p class="org-desc">The Indian Navy is the maritime warfare branch of the Indian Armed Forces. It operates aircraft carriers, destroyers, frigates, submarines, and patrol vessels. The navy plays a crucial role in India's maritime security and power projection capabilities.</p>
+                        <div class="org-stats-row">
+                            <div class="org-stat"><span class="org-stat-num">150+</span><span class="org-stat-label">VESSELS</span></div>
+                            <div class="org-stat"><span class="org-stat-num">67K+</span><span class="org-stat-label">PERSONNEL</span></div>
+                            <div class="org-stat"><span class="org-stat-num">75+</span><span class="org-stat-label">YEARS</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="org-gallery">
+                    <div class="org-gallery-scroll" id="navy-gallery">
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#0a1628 0%,#1a3a5f 50%,#0d2137 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/INS_Vikrant_berthed_at_Visakhapatnam_for_Milan_2024.jpg" alt="INS Vikrant" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">INS Vikrant</div><div class="org-img-sub">Indigenous Aircraft Carrier | 45,000 tonnes</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#1a0a2e 0%,#3d1a6e 50%,#1a0a2e 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Aircraft_Carrier_INS_Vikramaditya_%28cropped%29.jpg" alt="INS Vikramaditya" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">INS Vikramaditya</div><div class="org-img-sub">Fleet Carrier | MiG-29K Operations</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#0a2e2e 0%,#1a5f5f 50%,#0a2e2e 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/0/02/INS_Arihant_at_sea_%28cropped%29.jpg" alt="INS Arihant" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">INS Arihant</div><div class="org-img-sub">Nuclear Submarine (SSBN) | K-4 SLBM</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#2e0a1a 0%,#5f1a3a 50%,#2e0a1a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Sideview_of_INS_Kolkata_%28D63%29.jpg" alt="INS Kolkata" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">INS Kolkata</div><div class="org-img-sub">Guided Missile Destroyer | BrahMos</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#1a2e0a 0%,#3a5f1a 50%,#1a2e0a 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Foxtrot-class_submarine_of_the_Indian_Navy.jpg" alt="INS Kalvari" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">Kalvari Class</div><div class="org-img-sub">Scorpene Attack Submarine</div></div></div></div>
+                        <div class="org-img-card"><div class="org-img" style="background:linear-gradient(135deg,#0a1a2e 0%,#1a3a5f 50%,#0a1a2e 100%);"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/INS_Visakhapatnam_%28D66%29.jpg" alt="INS Visakhapatnam" loading="lazy"><div class="org-img-overlay"><div class="org-img-label">INS Visakhapatnam</div><div class="org-img-sub">Project 15B Destroyer</div></div></div></div>
+                    </div>
+                </div>
+                <h3 class="org-table-title">NAVAL VESSELS & SUBMARINES</h3>
+                <div class="org-table-wrapper">
+                    <table class="org-table">
+                        <thead>
+                            <tr><th>VESSEL</th><th>TYPE</th><th>ORIGIN</th><th>ROLE</th><th>STATUS</th><th></th></tr>
+                        </thead>
+                        <tbody id="navy-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="programs" class="section">
+            <div class="section-content">
+                <div class="section-label">RESEARCH PROGRAMS</div>
+                <h2 class="section-title">Structured pathways for <span class="accent">researchers</span></h2>
+                <div class="programs-container">
+                    <div class="program-item">
+                        <h3>Research Fellowship</h3>
+                        <p>A year-round program for advanced studies in guidance systems, satellite analytics, and mission architecture.</p>
+                    </div>
+                    <div class="program-item">
+                        <h3>Student Internship</h3>
+                        <p>Hands-on internship tracks for undergraduate and postgraduate students in aerospace technology and AI research.</p>
+                    </div>
+                    <div class="program-item">
+                        <h3>Innovation Challenge</h3>
+                        <p>A national research challenge focused on rapid prototyping of intelligent navigation and sensor fusion systems.</p>
+                    </div>
+                    <div class="program-item">
+                        <h3>Space Research Program</h3>
+                        <p>An immersive program for payload design, orbital data analysis, and launch vehicle interface studies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="section-content">
+                <div class="section-label">NASA / ISRO PROJECTS</div>
+                <h2 class="section-title">Explore & Build <span class="accent">Research Projects</span></h2>
+                <div class="projects-header">
+                    <div class="projects-filters">
+                        <button class="filter-btn active" data-filter="all">ALL</button>
+                        <button class="filter-btn" data-filter="nasa">NASA</button>
+                        <button class="filter-btn" data-filter="isro">ISRO</button>
+                        <button class="filter-btn" data-filter="iaf">AIR FORCE</button>
+                        <button class="filter-btn" data-filter="navy">NAVY</button>
+                        <button class="filter-btn" data-filter="army">ARMY</button>
+                        <button class="filter-btn" data-filter="ai">AI & ML</button>
+                        <button class="filter-btn" data-filter="missile">MISSILE</button>
+                    </div>
+                    <button class="submit-project-btn" id="submitProjectBtn">+ SUBMIT YOUR PROJECT</button>
+                </div>
+                <div class="projects-grid" id="projectsGrid">
+                    <div class="project-card" data-category="nasa" data-id="p1">
+                        <div class="project-badge">NASA</div>
+                        <h3>Mars Rover Navigation AI</h3>
+                        <p>Develop autonomous navigation algorithms for Mars surface exploration using computer vision and sensor fusion.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Advanced</span>
+                            <span class="project-duration">12 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p1')">VIEW PROJECT</button>
+                    </div>
+                    <div class="project-card" data-category="isro" data-id="p2">
+                        <div class="project-badge isro">ISRO</div>
+                        <h3>Chandrayaan Landing Simulation</h3>
+                        <p>Build a real-time simulation of the soft landing sequence using physics-based modeling and control systems.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Intermediate</span>
+                            <span class="project-duration">8 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p2')">VIEW PROJECT</button>
+                    </div>
+                    <div class="project-card" data-category="iaf" data-id="p3">
+                        <div class="project-badge iaf">AIR FORCE</div>
+                        <h3>Tejas MK2 Flight Sim</h3>
+                        <p>Build a real-time flight simulator for the indigenous Tejas MK2 fighter jet with aerodynamic modeling.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Advanced</span>
+                            <span class="project-duration">10 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p3')">VIEW PROJECT</button>
+                    </div>
+                    <div class="project-card" data-category="navy" data-id="p4">
+                        <div class="project-badge navy">NAVY</div>
+                        <h3>Submarine Sonar Analysis</h3>
+                        <p>Analyze sonar data patterns for underwater object detection and classification using machine learning.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Intermediate</span>
+                            <span class="project-duration">8 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p4')">VIEW PROJECT</button>
+                    </div>
+                    <div class="project-card" data-category="army" data-id="p5">
+                        <div class="project-badge army">ARMY</div>
+                        <h3>Tank Target Tracking AI</h3>
+                        <p>Develop real-time target acquisition and tracking algorithms for Arjun MK1A armored systems.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Intermediate</span>
+                            <span class="project-duration">6 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p5')">VIEW PROJECT</button>
+                    </div>
+                    <div class="project-card" data-category="ai" data-id="p6">
+                        <div class="project-badge ai">AI</div>
+                        <h3>Satellite Image Classification</h3>
+                        <p>Train deep learning models to classify satellite imagery for terrain analysis and disaster response.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Intermediate</span>
+                            <span class="project-duration">6 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p6')">VIEW PROJECT</button>
+                    </div>
+                    <div class="project-card" data-category="missile" data-id="p7">
+                        <div class="project-badge missile">MISSILE</div>
+                        <h3>Guidance System Prototype</h3>
+                        <p>Design and simulate inertial guidance systems for precision missile trajectory computation.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Advanced</span>
+                            <span class="project-duration">10 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p7')">VIEW PROJECT</button>
+                    </div>
+                    <div class="project-card" data-category="nasa" data-id="p8">
+                        <div class="project-badge">NASA</div>
+                        <h3>Exoplanet Habitability Analysis</h3>
+                        <p>Analyze telescope data to identify potentially habitable exoplanets using spectroscopic analysis.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Beginner</span>
+                            <span class="project-duration">4 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p8')">VIEW PROJECT</button>
+                    </div>
+                    <div class="project-card" data-category="isro" data-id="p9">
+                        <div class="project-badge isro">ISRO</div>
+                        <h3>PSLV Launch Data Analytics</h3>
+                        <p>Analyze historical launch data to optimize future mission parameters and fuel efficiency.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Beginner</span>
+                            <span class="project-duration">4 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p9')">VIEW PROJECT</button>
+                    </div>
+                    <div class="project-card" data-category="iaf" data-id="p10">
+                        <div class="project-badge iaf">AIR FORCE</div>
+                        <h3>AEW&C Radar Processing</h3>
+                        <p>Process and analyze radar data from AWACS aircraft for threat detection and tracking systems.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Advanced</span>
+                            <span class="project-duration">12 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p10')">VIEW PROJECT</button>
+                    </div>
+                    <div class="project-card" data-category="navy" data-id="p11">
+                        <div class="project-badge navy">NAVY</div>
+                        <h3>INS Vikrant Deck Ops</h3>
+                        <p>Simulate aircraft carrier deck operations including launch, recovery, and maintenance scheduling.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Advanced</span>
+                            <span class="project-duration">10 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p11')">VIEW PROJECT</button>
+                    </div>
+                    <div class="project-card" data-category="army" data-id="p12">
+                        <div class="project-badge army">ARMY</div>
+                        <h3>Battlefield Drone Swarm</h3>
+                        <p>Design autonomous drone swarm coordination for battlefield reconnaissance and surveillance.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Advanced</span>
+                            <span class="project-duration">12 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p12')">VIEW PROJECT</button>
+                    </div>
+                    <div class="project-card" data-category="nasa" data-id="p13">
+                        <div class="project-badge">NASA</div>
+                        <h3>ISS Experiment Designer</h3>
+                        <p>Design microgravity experiments for the International Space Station using physics simulation tools.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Beginner</span>
+                            <span class="project-duration">5 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p13')">VIEW PROJECT</button>
+                    </div>
+                    <div class="project-card" data-category="ai" data-id="p14">
+                        <div class="project-badge ai">AI</div>
+                        <h3>Autonomous Drone Navigation</h3>
+                        <p>Build GPS-denied navigation for drones using visual SLAM and reinforcement learning.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Advanced</span>
+                            <span class="project-duration">10 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p14')">VIEW PROJECT</button>
+                    </div>
+                    <div class="project-card" data-category="missile" data-id="p15">
+                        <div class="project-badge missile">MISSILE</div>
+                        <h3>Missile Trajectory Optimizer</h3>
+                        <p>Optimize multi-stage rocket trajectories using genetic algorithms and numerical methods.</p>
+                        <div class="project-meta">
+                            <span class="project-difficulty">Advanced</span>
+                            <span class="project-duration">8 weeks</span>
+                        </div>
+                        <button class="project-start-btn" onclick="viewProject('p15')">VIEW PROJECT</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="missiles" class="section">
+            <div class="section-content">
+                <div class="section-label">MISSILE SYSTEMS</div>
+                <h2 class="section-title">India's <span class="accent">Strategic</span> Missile Arsenal</h2>
+                <div class="missiles-showcase">
+                    <div class="missile-display">
+                        <div class="missile-3d" id="missile-container"></div>
+                        <div class="missile-specs">
+                            <h3 id="missile-name">Agni-V</h3>
+                            <div class="spec-grid">
+                                <div class="spec">
+                                    <span class="spec-label">RANGE</span>
+                                    <span class="spec-value" id="spec-range">5,000+ km</span>
+                                </div>
+                                <div class="spec">
+                                    <span class="spec-label">TYPE</span>
+                                    <span class="spec-value" id="spec-type">ICBM</span>
+                                </div>
+                                <div class="spec">
+                                    <span class="spec-label">PAYLOAD</span>
+                                    <span class="spec-value" id="spec-payload">1,000 kg</span>
+                                </div>
+                                <div class="spec">
+                                    <span class="spec-label">STAGES</span>
+                                    <span class="spec-value" id="spec-missile-stages">3</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="missile-selector">
+                        <button class="missile-btn active" data-missile="agni5">Agni-V</button>
+                        <button class="missile-btn" data-missile="agni4">Agni-IV</button>
+                        <button class="missile-btn" data-missile="prithvi">Prithvi</button>
+                        <button class="missile-btn" data-missile="brahmos">BrahMos</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section">
+            <div class="section-content">
+                <div class="section-label">IMAGE GALLERY</div>
+                <h2 class="section-title">Launches, <span class="accent">spacecraft</span>, and facilities</h2>
+                <div class="gallery-container">
+                    <div class="gallery-item large">
+                        <div class="gallery-bg" style="background: linear-gradient(135deg, #1a0a2e 0%, #16213e 50%, #0f3460 100%)"></div>
+                        <div class="gallery-overlay">
+                            <h3>LAUNCH COMPLEX</h3>
+                            <p>Satish Dhawan Space Centre</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-bg" style="background: linear-gradient(135deg, #2d1b69 0%, #11998e 100%)"></div>
+                        <div class="gallery-overlay">
+                            <h3>MISSILE TESTING</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-bg" style="background: linear-gradient(135deg, #0c0c1d 0%, #1e3a5f 100%)"></div>
+                        <div class="gallery-overlay">
+                            <h3>SATELLITE ARRAY</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item tall">
+                        <div class="gallery-bg" style="background: linear-gradient(135deg, #1a1a2e 0%, #e94560 100%)"></div>
+                        <div class="gallery-overlay">
+                            <h3>ROCKET ASSEMBLY</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-bg" style="background: linear-gradient(135deg, #0d1117 0%, #21262d 50%, #58a6ff 100%)"></div>
+                        <div class="gallery-overlay">
+                            <h3>EARTH OBSERVATION</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="milestones" class="section">
+            <div class="section-content">
+                <div class="section-label">ACHIEVEMENTS</div>
+                <h2 class="section-title">Milestones in <span class="accent">strategic research</span> history</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1975</div>
+                        <div class="timeline-content">
+                            <h3>Aryabhata</h3>
+                            <p>India's first satellite launched, marking the beginning of the national space programme.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1980</div>
+                        <div class="timeline-content">
+                            <h3>First indigenous orbital launch</h3>
+                            <p>SLV successfully placed Rohini into orbit using an all-Indian launch vehicle.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1998</div>
+                        <div class="timeline-content">
+                            <h3>Strategic missile deterrence established</h3>
+                            <p>Agni and Prithvi programmes reached operational maturity, establishing indigenous strategic capability.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2013</div>
+                        <div class="timeline-content">
+                            <h3>Mars Orbiter Mission</h3>
+                            <p>India became the first nation to reach Mars orbit on its maiden attempt.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-content">
+                            <h3>Chandrayaan-3 Lunar Landing</h3>
+                            <p>Successful soft landing on Moon's south pole, demonstrating advanced guidance systems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="deploy" class="section">
+            <div class="section-content">
+                <div class="section-label">PROJECT DEPLOYMENT</div>
+                <h2 class="section-title">Deploy Your <span class="accent">Research Project</span></h2>
+                <p style="color:var(--gray);max-width:700px;margin-bottom:40px;font-size:1.1rem;">Submit your completed project for review and deployment. Authenticate with your development tools to verify your work.</p>
+                <div class="deploy-grid">
+                    <div class="deploy-card">
+                        <div class="deploy-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        </div>
+                        <h3>GitHub</h3>
+                        <p>Connect your GitHub repository to verify your project code and contributions.</p>
+                        <button class="deploy-btn" onclick="authenticateGitHub()">
+                            <span>CONNECT GITHUB</span>
+                        </button>
+                        <div class="deploy-status" id="githubStatus">Not Connected</div>
+                    </div>
+                    <div class="deploy-card">
+                        <div class="deploy-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        </div>
+                        <h3>Vercel</h3>
+                        <p>Deploy your project live on Vercel for instant preview and sharing.</p>
+                        <button class="deploy-btn" onclick="authenticateVercel()">
+                            <span>CONNECT VERCEL</span>
+                        </button>
+                        <div class="deploy-status" id="vercelStatus">Not Connected</div>
+                    </div>
+                    <div class="deploy-card">
+                        <div class="deploy-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        </div>
+                        <h3>VS Code / Claude</h3>
+                        <p>Verify your development environment and AI-assisted coding tools.</p>
+                        <button class="deploy-btn" onclick="authenticateVSCode()">
+                            <span>CONNECT VS CODE</span>
+                        </button>
+                        <div class="deploy-status" id="vscodeStatus">Not Connected</div>
+                    </div>
+                </div>
+                <div class="deploy-submit-section" id="deploySubmitSection" style="display:none;margin-top:40px;text-align:center;">
+                    <p style="color:var(--secondary);margin-bottom:20px;">All tools authenticated! Ready to submit your project.</p>
+                    <button class="submit-project-btn" onclick="submitForReview()">SUBMIT PROJECT FOR REVIEW</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="pitch" class="section">
+            <div class="section-content">
+                <div class="section-label">STARTUP PITCH</div>
+                <h2 class="section-title">Pitch Your <span class="accent">AI/Space Startup</span></h2>
+                <p style="color:var(--gray);max-width:700px;margin-bottom:40px;font-size:1.1rem;">Have an AI or Space startup idea? Submit your pitch to MissileX and receive an official agreement + certificate of participation.</p>
+                <div class="pitch-container">
+                    <div class="pitch-form-wrapper">
+                        <form id="pitchForm" onsubmit="handlePitchSubmit(event)">
+                            <div class="pitch-field">
+                                <label>STARTUP NAME</label>
+                                <input type="text" class="modal-input" id="pitchStartupName" placeholder="e.g., AeroSense AI" required>
+                            </div>
+                            <div class="pitch-field">
+                                <label>FOUNDER NAME</label>
+                                <input type="text" class="modal-input" id="pitchFounderName" placeholder="Your full name" required>
+                            </div>
+                            <div class="pitch-field">
+                                <label>EMAIL</label>
+                                <input type="email" class="modal-input" id="pitchEmail" placeholder="founder@startup.com" required>
+                            </div>
+                            <div class="pitch-field">
+                                <label>DOMAIN</label>
+                                <select class="modal-input" id="pitchDomain" required>
+                                    <option value="">SELECT DOMAIN</option>
+                                    <option value="ai-defense">AI for Defence</option>
+                                    <option value="space-tech">Space Technology</option>
+                                    <option value="drone-systems">Drone Systems</option>
+                                    <option value="cyber-security">Cyber Security</option>
+                                    <option value="satellite-comms">Satellite Communications</option>
+                                    <option value="rocket-propulsion">Rocket Propulsion</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="pitch-field">
+                                <label>PITCH DESCRIPTION</label>
+                                <textarea class="modal-textarea" id="pitchDescription" placeholder="Describe your startup idea, problem you're solving, and your solution..." required></textarea>
+                            </div>
+                            <div class="pitch-field">
+                                <label>FUNDING STAGE</label>
+                                <select class="modal-input" id="pitchStage" required>
+                                    <option value="">SELECT STAGE</option>
+                                    <option value="idea">Idea Stage</option>
+                                    <option value="mvp">MVP Ready</option>
+                                    <option value="seed">Seed Funded</option>
+                                    <option value="series-a">Series A</option>
+                                </select>
+                            </div>
+                            <div class="pitch-agreement">
+                                <label class="pitch-checkbox-label">
+                                    <input type="checkbox" id="pitchAgree" required>
+                                    <span class="pitch-checkmark"></span>
+                                    <span>I agree to the MissileX Startup Pitch Terms & Conditions and Data Usage Policy</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="submit-btn pitch-submit">SUBMIT PITCH</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="news-section" class="section">
+            <div class="section-content">
+                <div class="news-header">
+                    <div>
+                        <div class="section-label">PRESS & INSIGHTS</div>
+                        <h2 class="section-title">Latest News</h2>
+                    </div>
+                    <a href="news.html" class="news-view-all">View all news &#8599;</a>
+                </div>
+                <div class="news-list">
+                    <a href="news-1.html" class="news-item">
+                        <div class="news-meta">
+                            <span class="news-category">PROGRAMME</span>
+                            <span class="news-date">28 Jul 2026</span>
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">AI Mission Planning Lab reaches full operational capacity &#8599;</h3>
+                            <p class="news-desc">The lab now supports concurrent simulation runs for mission scheduling and payload-priority research, marking the completion of its second expansion phase since 2024.</p>
+                        </div>
+                    </a>
+                    <a href="news-2.html" class="news-item">
+                        <div class="news-meta">
+                            <span class="news-category">TECHNOLOGY</span>
+                            <span class="news-date">14 Jul 2026</span>
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">Launch Vehicle Simulation Network expanded to twelve nodes &#8599;</h3>
+                            <p class="news-desc">New compute nodes extend trajectory-modelling capacity for the Space Research Programme.</p>
+                        </div>
+                    </a>
+                    <a href="news-3.html" class="news-item">
+                        <div class="news-meta">
+                            <span class="news-category">ANNOUNCEMENT</span>
+                            <span class="news-date">02 Jul 2026</span>
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">Research Fellowship 2026 cohort announced &#8599;</h3>
+                            <p class="news-desc">Twenty-two fellows join structured research tracks in guidance systems and satellite analytics.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="section-content">
+                <div class="section-label">CONTACT US</div>
+                <h2 class="section-title">Connect <span class="accent">With Us</span></h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <div class="info-icon">&#128205;</div>
+                            <div class="info-text">
+                                <h4>HEADQUARTERS</h4>
+                                <p>Missile Research and Aerospace Campus, Missile X Space, Noida, India</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">&#128231;</div>
+                            <div class="info-text">
+                                <h4>EMAIL</h4>
+                                <p>missilexrocketspace@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">&#128222;</div>
+                            <div class="info-text">
+                                <h4>PHONE</h4>
+                                <p>+91 9199326333</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <input type="text" placeholder="YOUR NAME" class="form-input">
+                        <input type="email" placeholder="YOUR EMAIL" class="form-input">
+                        <textarea placeholder="YOUR MESSAGE" class="form-textarea"></textarea>
+                        <button class="submit-btn">
+                            <span>SEND MESSAGE</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboard" class="section" style="display:none;">
+            <div class="section-content">
+                <div class="dashboard-header">
+                    <div class="dashboard-user">
+                        <div class="user-avatar" id="userAvatar">S</div>
+                        <div class="user-info">
+                            <h2 id="dashboardName">Student Name</h2>
+                            <p id="dashboardEmail">student@email.com</p>
+                        </div>
+                    </div>
+                    <button class="logout-btn" id="logoutBtn">LOGOUT</button>
+                </div>
+                <div class="dashboard-stats">
+                    <div class="dash-stat">
+                        <span class="dash-stat-num" id="projectsStarted">0</span>
+                        <span class="dash-stat-label">PROJECTS STARTED</span>
+                    </div>
+                    <div class="dash-stat">
+                        <span class="dash-stat-num" id="projectsCompleted">0</span>
+                        <span class="dash-stat-label">COMPLETED</span>
+                    </div>
+                    <div class="dash-stat">
+                        <span class="dash-stat-num" id="certificatesEarned">0</span>
+                        <span class="dash-stat-label">CERTIFICATES</span>
+                    </div>
+                </div>
+                <h3 class="dashboard-subtitle">MY PROJECTS</h3>
+                <div class="my-projects" id="myProjects">
+                    <p class="no-projects">No projects started yet. Go to Projects section to begin!</p>
+                </div>
+                <h3 class="dashboard-subtitle">MY CERTIFICATES</h3>
+                <div class="my-certificates" id="myCertificates">
+                    <p class="no-projects">No certificates earned yet. Complete a project to earn one!</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            <h2>LOGIN TO MISSILEX</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <input type="email" placeholder="EMAIL ADDRESS" class="modal-input" id="loginEmail" required>
+                <input type="password" placeholder="PASSWORD" class="modal-input" id="loginPassword" required>
+                <button type="submit" class="modal-btn">LOGIN</button>
+            </form>
+            <p class="modal-switch">Don't have an account? <a href="#" onclick="switchToRegister()">Create Account</a></p>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('registerModal')">&times;</button>
+            <h2>CREATE ACCOUNT</h2>
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <input type="text" placeholder="FULL NAME" class="modal-input" id="regName" required>
+                <input type="email" placeholder="EMAIL ADDRESS" class="modal-input" id="regEmail" required>
+                <input type="password" placeholder="PASSWORD" class="modal-input" id="regPassword" required>
+                <select class="modal-input" id="regRole" required>
+                    <option value="">SELECT ROLE</option>
+                    <option value="student">Student</option>
+                    <option value="researcher">Researcher</option>
+                    <option value="engineer">Engineer</option>
+                </select>
+                <button type="submit" class="modal-btn">CREATE ACCOUNT</button>
+            </form>
+            <p class="modal-switch">Already have an account? <a href="#" onclick="switchToLogin()">Login</a></p>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal modal-large">
+            <button class="modal-close" onclick="closeModal('projectModal')">&times;</button>
+            <div id="projectModalContent"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="submitProjectModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('submitProjectModal')">&times;</button>
+            <h2>SUBMIT YOUR PROJECT</h2>
+            <form id="submitProjectForm" onsubmit="handleSubmitProject(event)">
+                <input type="text" placeholder="PROJECT TITLE" class="modal-input" id="newProjectTitle" required>
+                <select class="modal-input" id="newProjectCategory" required>
+                    <option value="">SELECT CATEGORY</option>
+                    <option value="nasa">NASA</option>
+                    <option value="isro">ISRO</option>
+                    <option value="iaf">AIR FORCE (IAF)</option>
+                    <option value="navy">NAVY</option>
+                    <option value="army">ARMY</option>
+                    <option value="ai">AI & ML</option>
+                    <option value="missile">MISSILE</option>
+                </select>
+                <textarea placeholder="PROJECT DESCRIPTION" class="modal-textarea" id="newProjectDesc" required></textarea>
+                <input type="text" placeholder="DURATION (e.g., 6 weeks)" class="modal-input" id="newProjectDuration" required>
+                <select class="modal-input" id="newProjectDifficulty" required>
+                    <option value="">DIFFICULTY LEVEL</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+                <button type="submit" class="modal-btn">SUBMIT PROJECT</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="certificateModal">
+        <div class="modal modal-certificate">
+            <button class="modal-close" onclick="closeModal('certificateModal')">&times;</button>
+            <div class="certificate" id="certificateContent">
+                <div class="cert-border">
+                    <div class="cert-header">
+                        <div class="cert-logo">&#128640;</div>
+                        <h1>MISSILEX ROCKET SPACE</h1>
+                        <p>DEFENCE RESEARCH ORGANIZATION</p>
+                    </div>
+                    <div class="cert-body">
+                        <h2>CERTIFICATE OF COMPLETION</h2>
+                        <p class="cert-presented">This is to certify that</p>
+                        <p class="cert-name" id="certStudentName">Student Name</p>
+                        <p class="cert-text">has successfully completed the research project</p>
+                        <p class="cert-project" id="certProjectName">Project Name</p>
+                        <p class="cert-date" id="certDate">Date: 01 Jan 2026</p>
+                    </div>
+                    <div class="cert-footer">
+                        <div class="cert-sign">
+                            <div class="cert-signature" style="font-family:'Dancing Script',cursive;font-size:1.8rem;color:var(--primary);">Aniket Singh</div>
+                            <div class="cert-sign-line"></div>
+                            <p>Program Director</p>
+                        </div>
+                        <div class="cert-id" id="certId">CERT-2026-001</div>
+                        <div class="cert-sign">
+                            <div class="cert-signature" style="font-family:'Dancing Script',cursive;font-size:1.8rem;color:var(--primary);">Ritesh Singh</div>
+                            <div class="cert-sign-line"></div>
+                            <p>Chief Research Officer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="download-cert-btn" onclick="downloadCertificate()">DOWNLOAD CERTIFICATE</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="pitchAgreementModal">
+        <div class="modal modal-large">
+            <button class="modal-close" onclick="closeModal('pitchAgreementModal')">&times;</button>
+            <div class="pitch-agreement-content">
+                <div class="cert-border" style="border-color: var(--secondary);">
+                    <div class="cert-header">
+                        <div class="cert-logo">&#128640;</div>
+                        <h1 style="color: var(--secondary);">MISSILEX STARTUP PITCH</h1>
+                        <p>AGREEMENT & CERTIFICATE</p>
+                    </div>
+                    <div class="cert-body">
+                        <h2>PITCH SUBMISSION AGREEMENT</h2>
+                        <div class="pitch-agreement-text">
+                            <p>This agreement confirms that <strong id="pitchAgreeName" style="color:var(--secondary);">Founder Name</strong> has submitted a startup pitch idea titled <strong id="pitchAgreeStartup" style="color:var(--secondary);">Startup Name</strong> to MissileX Rocket Space Research Organization.</p>
+                            <br>
+                            <p>By submitting this pitch, the founder acknowledges that MissileX may review, discuss, and potentially collaborate on the submitted idea. All intellectual property rights remain with the original founder.</p>
+                            <br>
+                            <p>This document serves as an official certificate of pitch submission and participation in the MissileX Startup Accelerator Program.</p>
+                        </div>
+                        <p class="cert-date" id="pitchAgreeDate">Date: 01 Jan 2026</p>
+                    </div>
+                    <div class="cert-footer">
+                        <div class="cert-sign">
+                            <div class="cert-signature" style="font-family:'Dancing Script',cursive;font-size:1.8rem;color:var(--secondary);">Aniket Singh</div>
+                            <div class="cert-sign-line" style="background:var(--secondary);"></div>
+                            <p>Program Director</p>
+                        </div>
+                        <div class="cert-id" id="pitchAgreeId">PITCH-2026-001</div>
+                        <div class="cert-sign">
+                            <div class="cert-signature" style="font-family:'Dancing Script',cursive;font-size:1.8rem;color:var(--secondary);">Ritesh Singh</div>
+                            <div class="cert-sign-line" style="background:var(--secondary);"></div>
+                            <p>Chief Research Officer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="download-cert-btn" onclick="downloadPitchCertificate()" style="background:var(--secondary);">DOWNLOAD CERTIFICATE</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="orgDetailModal">
+        <div class="modal modal-large">
+            <button class="modal-close" onclick="closeModal('orgDetailModal')">&times;</button>
+            <div id="orgDetailContent"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>MISSILEX ROCKET SPACE</h3>
+                <p>Building India's next generation intelligent missile and space technologies with secure research, mission-grade analytics, and a future-ready platform.</p>
+                <p class="copyright">&copy; 2026 MISSILEX. ALL RIGHTS RESERVED.</p>
+            </div>
+            <div class="footer-links">
+                <h4>QUICK LINKS</h4>
+                <a href="#programs">Programs</a>
+                <a href="#projects">Projects</a>
+                <a href="#missiles">Research</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-resources">
+                <h4>RESOURCES</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Careers</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-contact">
+                <h4>CONTACT</h4>
+                <p>missilexrocketspace@gmail.com</p>
+                <p>+91 9199326333</p>
+                <p>Missile Research and Aerospace Campus, Noida, India</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="scroll-indicator">
+        <div class="mouse">
+            <div class="wheel"></div>
+        </div>
+        <p>SCROLL TO EXPLORE</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
