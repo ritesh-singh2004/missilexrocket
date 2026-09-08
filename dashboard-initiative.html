@@ -231,7 +231,7 @@
                 await loadSubmissions();
                 await loadAnnouncements();
                 await loadWinners();
-            }catch(e){document.getElementById('infoBanner').textContent='Initiative not found.';}
+            }catch(e){console.error('Dashboard load error:',e);}
         }
 
         function renderRoadmap(){
