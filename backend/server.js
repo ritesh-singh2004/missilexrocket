@@ -6,6 +6,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const Datastore = require('nedb-promises');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = 5000;
@@ -769,10 +770,81 @@ app.delete('/api/winners/:id', auth, async (req, res) => {
 
 // ========== EMAIL (Simple log-based) ==========
 
+// ========== EMAIL SERVICE ==========
+
+const emailTransporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'missilexrocketspace@gmail.com',
+    pass: 'YOUR_APP_PASSWORD'
+  }
+});
+
+async function sendEmail(to, subject, htmlBody) {
+  try {
+    await emailTransporter.sendMail({
+      from: '"MissileX RocketSpace" <missilexrocketspace@gmail.com>',
+      to, subject,
+      html: htmlBody
+    });
+    console.log(`📧 Email sent to ${to}: ${subject}`);
+    return true;
+  } catch (err) {
+    console.log(`📧 Email (log): To=${to} | Subject=${subject}`);
+    return false;
+  }
+}
+
 app.post('/api/send-email', async (req, res) => {
   const { to, subject, body } = req.body;
-  console.log(`\n📧 EMAIL SENT TO: ${to}\n   SUBJECT: ${subject}\n   BODY: ${body}\n`);
+  const html = `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;"><div style="background:#0a0a0f;padding:30px;border-radius:10px;"><h1 style="color:#00d4ff;font-size:1.5rem;">MISSILEX ROCKETSPACE</h1><p style="color:#888;font-size:0.9rem;">${subject}</p><hr style="border:1px solid #333;"><p style="color:#ccc;font-size:0.9rem;line-height:1.6;">${body}</p><hr style="border:1px solid #333;"><p style="color:#555;font-size:0.75rem;">This is an automated email from MissileX RocketSpace. Do not reply.</p></div></div>`;
+  await sendEmail(to, subject, html);
   res.json({ message: 'Email sent', to, subject });
+});
+
+// ========== ADMIN APIs ==========
+
+app.post('/api/admin/initiatives/:id/announcements', auth, async (req, res) => {
+  try {
+    const ann = await announcements.insert({
+      initiativeId: req.params.id,
+      title: req.body.title,
+      content: req.body.content,
+      type: req.body.type || 'general',
+      createdBy: req.userId,
+      createdAt: new Date().toISOString()
+    });
+    res.json(ann);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/admin/initiatives/:id/winners', auth, async (req, res) => {
+  try {
+    const win = await winners.insert({
+      initiativeId: req.params.id,
+      rank: req.body.rank,
+      teamName: req.body.teamName,
+      memberNames: req.body.memberNames || [],
+      projectTitle: req.body.projectTitle,
+      prize: req.body.prize,
+      createdAt: new Date().toISOString()
+    });
+    res.json(win);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.delete('/api/admin/winners/:id', auth, async (req, res) => {
+  try {
+    await winners.remove({ _id: req.params.id });
+    res.json({ message: 'Deleted' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/admin/initiatives/:id/submissions', auth, async (req, res) => {
+  try {
+    const subs = await submissions.find({ initiativeId: req.params.id });
+    res.json(subs);
+  } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 // ========== SEED DATA ==========

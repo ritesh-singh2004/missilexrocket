@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel — MissileXRocketSpace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{background:#0a0a0f;color:#fff;margin:0;font-family:'Rajdhani',sans-serif;}
+        .admin-wrap{max-width:1200px;margin:0 auto;padding:100px 20px 60px;}
+        .admin-header{margin-bottom:40px;}
+        .admin-header h1{font-family:'Orbitron',monospace;font-size:1.8rem;color:var(--primary);margin-bottom:8px;}
+        .admin-header p{color:var(--gray);font-size:0.9rem;}
+        .admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+        .admin-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:24px;}
+        .admin-card h3{font-family:'Orbitron',monospace;font-size:0.9rem;color:var(--primary);margin-bottom:16px;letter-spacing:0.08em;}
+        .form-group{margin-bottom:14px;}
+        .form-group label{display:block;font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--gray);margin-bottom:5px;}
+        .form-group input,.form-group textarea,.form-group select{width:100%;padding:10px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:0.9rem;box-sizing:border-box;}
+        .form-group textarea{min-height:80px;resize:vertical;}
+        .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);}
+        .admin-btn{font-family:'Orbitron',monospace;font-size:0.7rem;letter-spacing:0.1em;padding:10px 24px;border:none;border-radius:6px;cursor:pointer;font-weight:700;transition:all 0.3s;background:var(--primary);color:#000;}
+        .admin-btn:hover{background:#fff;}
+        .admin-btn.danger{background:rgba(255,50,50,0.2);color:#ff5050;border:1px solid rgba(255,50,50,0.3);}
+        .list-item{display:flex;align-items:center;justify-content:space-between;padding:12px;background:rgba(255,255,255,0.02);border-radius:6px;margin-bottom:8px;border-left:3px solid var(--primary);}
+        .list-item .info{flex:1;}
+        .list-item .info h4{font-family:'Orbitron',monospace;font-size:0.8rem;color:#fff;margin-bottom:2px;}
+        .list-item .info p{font-size:0.75rem;color:var(--gray);}
+        .winner-row{display:flex;gap:12px;align-items:center;}
+        .winner-row input{width:60px;}
+        .empty-msg{text-align:center;padding:30px;color:var(--gray);font-size:0.85rem;}
+        @media(max-width:768px){.admin-grid{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon"><span>MX</span></div>
+                <div class="logo-text"><span class="logo-main">MISSILEX</span><span class="logo-sub">ROCKETSPACE</span></div>
+            </a>
+            <div class="nav-links"><a href="index.html#home">Home</a><a href="index.html#initiatives">Initiatives</a></div>
+            <div class="nav-actions" id="navActions"></div>
+        </div>
+    </nav>
+
+    <div class="admin-wrap">
+        <div class="admin-header">
+            <div class="section-label">ADMIN PANEL</div>
+            <h1>Manage Initiatives</h1>
+            <p>Post announcements, winners, and manage submissions.</p>
+        </div>
+
+        <div style="margin-bottom:24px;">
+            <label style="font-family:'Orbitron',monospace;font-size:0.7rem;color:var(--gray);letter-spacing:0.1em;">SELECT INITIATIVE</label>
+            <select id="adminInitSelect" onchange="loadAdminData()" style="width:100%;max-width:400px;padding:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:0.9rem;margin-top:8px;"></select>
+        </div>
+
+        <div class="admin-grid">
+            <div class="admin-card">
+                <h3>POST ANNOUNCEMENT</h3>
+                <div class="form-group"><label>TYPE</label>
+                    <select id="annType"><option value="general">General</option><option value="important">Important</option><option value="winner">Winner</option></select>
+                </div>
+                <div class="form-group"><label>TITLE</label><input type="text" id="annTitle" placeholder="Announcement title"></div>
+                <div class="form-group"><label>CONTENT</label><textarea id="annContent" placeholder="Announcement details..."></textarea></div>
+                <button class="admin-btn" onclick="postAnnouncement()">POST ANNOUNCEMENT</button>
+                <div id="annList" style="margin-top:20px;"></div>
+            </div>
+
+            <div class="admin-card">
+                <h3>ADD WINNER / TOP 10</h3>
+                <div class="winner-row">
+                    <div class="form-group" style="flex:0 0 60px;"><label>RANK</label><input type="number" id="winRank" min="1" max="10" value="1"></div>
+                    <div class="form-group" style="flex:1;"><label>TEAM NAME</label><input type="text" id="winTeam" placeholder="Team name"></div>
+                </div>
+                <div class="form-group"><label>MEMBER NAMES (comma separated)</label><input type="text" id="winMembers" placeholder="Name1, Name2, Name3"></div>
+                <div class="form-group"><label>PROJECT TITLE</label><input type="text" id="winProject" placeholder="Project name"></div>
+                <div class="form-group"><label>PRIZE</label><input type="text" id="winPrize" placeholder="e.g., ₹50,000 + Internship"></div>
+                <button class="admin-btn" onclick="postWinner()">ADD WINNER</button>
+                <div id="winnerList" style="margin-top:20px;"></div>
+            </div>
+
+            <div class="admin-card" style="grid-column:1/-1;">
+                <h3>SUBMISSIONS</h3>
+                <div id="subList"><div class="empty-msg">Select an initiative to view submissions.</div></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer"><div class="footer-content"><div class="footer-brand"><h3>MISSILEX ROCKET SPACE</h3><p class="copyright">&copy; 2026 MISSILEX. ALL RIGHTS RESERVED.</p></div></div></footer>
+
+    <script>
+        const API=window.location.port?'http://localhost:5000/api':'/api';
+        let authToken=localStorage.getItem('missilex_token')||null;
+        let currentUser=null,allInits=[],selectedInit=null;
+
+        async function apiFetch(p,o={}){const h={'Content-Type':'application/json',...o.headers};if(authToken)h['Authorization']='Bearer '+authToken;const r=await fetch(API+p,{...o,headers:h});const d=await r.json();if(!r.ok)throw new Error(d.error||'Failed');return d;}
+        function showNotification(m){const n=document.createElement('div');n.style.cssText='position:fixed;top:20px;right:20px;padding:15px 30px;background:#ff6b35;color:white;font-family:Orbitron,monospace;font-size:0.8rem;letter-spacing:0.1em;border-radius:5px;z-index:100000;box-shadow:0 5px 20px rgba(255,107,53,0.4);';n.textContent=m;document.body.appendChild(n);setTimeout(()=>{n.style.opacity='0';n.style.transition='opacity 0.3s';setTimeout(()=>n.remove(),300);},3000);}
+
+        async function initAdmin(){
+            if(!authToken){window.location.href='index.html';return;}
+            try{currentUser=await apiFetch('/auth/profile');}catch{authToken=null;localStorage.removeItem('missilex_token');window.location.href='index.html';return;}
+            document.getElementById('navActions').innerHTML='<span style="font-family:Orbitron,monospace;font-size:0.7rem;color:var(--primary);">'+currentUser.name.split(' ')[0]+'</span>';
+            try{
+                allInits=await apiFetch('/initiatives');
+                const sel=document.getElementById('adminInitSelect');
+                sel.innerHTML=allInits.map(i=>'<option value="'+i._id+'">'+i.title+'</option>').join('');
+                if(allInits.length>0){selectedInit=allInits[0];loadAdminData();}
+            }catch(e){console.error(e);}
+        }
+
+        async function loadAdminData(){
+            const id=document.getElementById('adminInitSelect').value;
+            selectedInit=allInits.find(i=>i._id===id);
+            if(!selectedInit)return;
+            try{
+                const anns=await apiFetch('/initiatives/'+id+'/announcements');
+                document.getElementById('annList').innerHTML=anns.length?anns.map(a=>'<div class="list-item"><div class="info"><h4>'+a.title+'</h4><p>'+a.content.substring(0,80)+'...</p></div><span style="font-size:0.65rem;color:var(--gray);">'+a.type.toUpperCase()+'</span></div>').join(''):'<div class="empty-msg">No announcements yet.</div>';
+            }catch(e){}
+            try{
+                const wins=await apiFetch('/initiatives/'+id+'/winners');
+                document.getElementById('winnerList').innerHTML=wins.length?wins.map(w=>'<div class="list-item"><div class="info"><h4>#'+w.rank+' '+w.teamName+'</h4><p>'+w.memberNames.join(', ')+' — '+w.projectTitle+' <span style="color:#ffd700;">'+w.prize+'</span></p></div><button class="admin-btn danger" onclick="deleteWinner(\''+w._id+'\')" style="font-size:0.6rem;padding:4px 10px;">DEL</button></div>').join(''):'<div class="empty-msg">No winners added yet.</div>';
+            }catch(e){}
+            try{
+                const subs=await apiFetch('/initiatives/'+id+'/submissions');
+                document.getElementById('subList').innerHTML=subs.length?subs.map(s=>'<div class="list-item"><div class="info"><h4>'+s.title+'</h4><p>'+s.userName+' ('+s.userEmail+') | '+s.teamName+'</p><p style="margin-top:4px;">'+s.description.substring(0,100)+'...</p></div><span class="sub-status submitted" style="font-size:0.6rem;">'+s.status.toUpperCase()+'</span></div>').join(''):'<div class="empty-msg">No submissions yet.</div>';
+            }catch(e){}
+        }
+
+        async function postAnnouncement(){
+            const title=document.getElementById('annTitle').value.trim();
+            const content=document.getElementById('annContent').value.trim();
+            const type=document.getElementById('annType').value;
+            if(!title||!content||!selectedInit){showNotification('Fill all fields');return;}
+            try{
+                await apiFetch('/initiatives/'+selectedInit._id+'/announcements',{method:'POST',body:JSON.stringify({title,content,type})});
+                document.getElementById('annTitle').value='';document.getElementById('annContent').value='';
+                showNotification('Announcement posted!');loadAdminData();
+            }catch(e){showNotification(e.message);}
+        }
+
+        async function postWinner(){
+            const rank=parseInt(document.getElementById('winRank').value);
+            const team=document.getElementById('winTeam').value.trim();
+            const members=document.getElementById('winMembers').value.split(',').map(m=>m.trim()).filter(Boolean);
+            const project=document.getElementById('winProject').value.trim();
+            const prize=document.getElementById('winPrize').value.trim();
+            if(!team||!project||!selectedInit){showNotification('Fill all fields');return;}
+            try{
+                await apiFetch('/initiatives/'+selectedInit._id+'/winners',{method:'POST',body:JSON.stringify({rank,teamName:team,memberNames:members,projectTitle:project,prize})});
+                document.getElementById('winTeam').value='';document.getElementById('winMembers').value='';document.getElementById('winProject').value='';document.getElementById('winPrize').value='';
+                showNotification('Winner added!');loadAdminData();
+            }catch(e){showNotification(e.message);}
+        }
+
+        async function deleteWinner(id){
+            try{await apiFetch('/admin/winners/'+id,{method:'DELETE'});showNotification('Deleted');loadAdminData();}catch(e){showNotification(e.message);}
+        }
+
+        document.addEventListener('DOMContentLoaded',initAdmin);
+    </script>
+</body>
+</html>
