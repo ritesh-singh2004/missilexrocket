@@ -1,6 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 
-const API = window.location.port ? 'http://localhost:5000/api' : '/api';
+const API = 'http://localhost:5000/api';
 let authToken = localStorage.getItem('missilex_token') || null;
 
 async function apiFetch(path, opts = {}) {
