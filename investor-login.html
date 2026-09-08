@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Login — MissileX Invest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#00d4ff;--dark:#0a0a0f;--gray:#888;--border:rgba(255,255,255,0.06);}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--dark);color:#fff;font-family:'Rajdhani',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+        .auth-card{background:#0d0d14;border:1px solid var(--border);border-radius:16px;padding:40px;width:100%;max-width:450px;}
+        .auth-card h1{font-family:'Orbitron',monospace;font-size:1.3rem;margin-bottom:8px;}
+        .auth-card h1 span{color:var(--primary);}
+        .auth-card .subtitle{font-size:0.85rem;color:var(--gray);margin-bottom:30px;}
+        .form-group{margin-bottom:16px;}
+        .form-group label{display:block;font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--gray);margin-bottom:6px;}
+        .form-group input{width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:0.9rem;}
+        .form-group input:focus{outline:none;border-color:var(--primary);}
+        .btn{width:100%;padding:14px;font-family:'Orbitron',monospace;font-size:0.8rem;letter-spacing:0.1em;border:none;border-radius:6px;cursor:pointer;font-weight:700;background:linear-gradient(135deg,var(--primary),#0099cc);color:#000;transition:all 0.3s;}
+        .btn:hover{box-shadow:0 5px 20px rgba(0,212,255,0.3);}
+        .switch{text-align:center;margin-top:20px;font-size:0.85rem;color:var(--gray);}
+        .switch a{color:var(--primary);}
+        .error{background:rgba(255,50,50,0.1);border:1px solid rgba(255,50,50,0.3);border-radius:6px;padding:10px;margin-bottom:16px;font-size:0.8rem;color:#ff5050;display:none;}
+    </style>
+</head>
+<body>
+    <div class="auth-card">
+        <h1>INVESTOR <span>LOGIN</span></h1>
+        <p class="subtitle">Access your investment dashboard.</p>
+        <div class="error" id="errMsg"></div>
+        <form id="loginForm">
+            <div class="form-group"><label>EMAIL *</label><input type="email" id="email" placeholder="john@investor.com" required></div>
+            <div class="form-group"><label>PASSWORD *</label><input type="password" id="password" placeholder="Your password" required></div>
+            <button type="submit" class="btn">LOGIN</button>
+        </form>
+        <div class="switch">New investor? <a href="investor-signup.html">Create account</a></div>
+        <div class="switch" style="margin-top:10px;"><a href="invest.html">← Back to Home</a></div>
+    </div>
+    <script>
+        const API='http://localhost:5000/api';
+        const token=localStorage.getItem('missilex_investor_token');
+        if(token)window.location.href='investor-dashboard.html';
+        document.getElementById('loginForm').addEventListener('submit',async(e)=>{
+            e.preventDefault();
+            const errEl=document.getElementById('errMsg');errEl.style.display='none';
+            try{
+                const res=await fetch(API+'/investor/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:document.getElementById('email').value.trim(),password:document.getElementById('password').value})});
+                const json=await res.json();
+                if(!res.ok){errEl.textContent=json.error;errEl.style.display='block';return;}
+                localStorage.setItem('missilex_investor_token',json.token);
+                localStorage.setItem('missilex_investor',JSON.stringify(json.user));
+                window.location.href='investor-dashboard.html';
+            }catch(e){errEl.textContent='Connection failed';errEl.style.display='block';}
+        });
+    </script>
+</body>
+</html>

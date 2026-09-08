@@ -28,6 +28,9 @@ const submissions = Datastore.create({ filename: path.join(dbPath, 'submissions.
 const announcements = Datastore.create({ filename: path.join(dbPath, 'announcements.db'), autoload: true });
 const winners = Datastore.create({ filename: path.join(dbPath, 'winners.db'), autoload: true });
 const teamInvites = Datastore.create({ filename: path.join(dbPath, 'teamInvites.db'), autoload: true });
+const investors = Datastore.create({ filename: path.join(dbPath, 'investors.db'), autoload: true });
+const startups = Datastore.create({ filename: path.join(dbPath, 'startups.db'), autoload: true });
+const connections = Datastore.create({ filename: path.join(dbPath, 'connections.db'), autoload: true });
 
 // Middleware
 app.use(cors());
@@ -928,6 +931,234 @@ app.delete('/api/winners/:id', auth, async (req, res) => {
   try {
     await winners.remove({ _id: req.params.id });
     res.json({ message: 'Deleted' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// ========== INVESTOR-STARTUP PLATFORM ==========
+
+const investorAuth = async (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.status(401).json({ error: 'No token provided' });
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.userId = decoded.id;
+    req.userType = decoded.type || 'student';
+    next();
+  } catch { res.status(401).json({ error: 'Invalid token' }); }
+};
+
+// Investor Signup
+app.post('/api/investor/signup', async (req, res) => {
+  try {
+    const { name, email, password, phone } = req.body;
+    if (!name || !email || !password) return res.status(400).json({ error: 'All fields required' });
+    const existing = await investors.findOne({ email });
+    if (existing) return res.status(400).json({ error: 'Email already registered' });
+    const hashed = await bcrypt.hash(password, 10);
+    const investor = await investors.insert({
+      name, email, password: hashed, phone: phone || '',
+      investorType: '', sectors: [], investmentRange: { min: 0, max: 0 },
+      pastInvestments: '', kycDocuments: '', linkedin: '', website: '',
+      firmName: '', avatar: name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2),
+      verified: false, createdAt: new Date().toISOString()
+    });
+    const token = jwt.sign({ id: investor._id, type: 'investor' }, JWT_SECRET, { expiresIn: '7d' });
+    const { password: _, ...data } = investor;
+    res.json({ token, user: data, type: 'investor' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// Investor Login
+app.post('/api/investor/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const investor = await investors.findOne({ email });
+    if (!investor) return res.status(400).json({ error: 'Investor not found' });
+    const valid = await bcrypt.compare(password, investor.password);
+    if (!valid) return res.status(400).json({ error: 'Invalid password' });
+    const token = jwt.sign({ id: investor._id, type: 'investor' }, JWT_SECRET, { expiresIn: '7d' });
+    const { password: _, ...data } = investor;
+    res.json({ token, user: data, type: 'investor' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// Investor Profile
+app.get('/api/investor/profile', investorAuth, async (req, res) => {
+  try {
+    const inv = await investors.findOne({ _id: req.userId });
+    if (!inv) return res.status(404).json({ error: 'Not found' });
+    const { password: _, ...data } = inv;
+    res.json(data);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.put('/api/investor/profile', investorAuth, async (req, res) => {
+  try {
+    const updates = { ...req.body };
+    delete updates.password; delete updates._id;
+    await investors.update({ _id: req.userId }, { $set: updates });
+    const inv = await investors.findOne({ _id: req.userId });
+    const { password: _, ...data } = inv;
+    res.json(data);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// Browse Startups (Investor)
+app.get('/api/investor/startups', investorAuth, async (req, res) => {
+  try {
+    const { sector, stage, search } = req.query;
+    let query = {};
+    if (sector) query.sector = sector;
+    if (stage) query.fundingStage = stage;
+    let all = await startups.find(query).sort({ createdAt: -1 });
+    if (search) {
+      const s = search.toLowerCase();
+      all = all.filter(st => st.startupName.toLowerCase().includes(s) || st.sector.toLowerCase().includes(s) || st.description.toLowerCase().includes(s));
+    }
+    const safe = all.map(({ password, ...rest }) => rest);
+    res.json(safe);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// Express Interest
+app.post('/api/investor/interest', investorAuth, async (req, res) => {
+  try {
+    const { startupId, message } = req.body;
+    const startup = await startups.findOne({ _id: startupId });
+    if (!startup) return res.status(404).json({ error: 'Startup not found' });
+    const inv = await investors.findOne({ _id: req.userId });
+    const existing = await connections.findOne({ investorId: req.userId, startupId });
+    if (existing && existing.status !== 'rejected') return res.status(400).json({ error: 'Already expressed interest' });
+    if (existing) {
+      await connections.update({ _id: existing._id }, { $set: { status: 'pending', message: message || '', updatedAt: new Date().toISOString() } });
+    } else {
+      await connections.insert({
+        investorId: req.userId, investorName: inv.name, investorEmail: inv.email,
+        investorFirm: inv.firmName || '', investorType: inv.investorType || '',
+        startupId, startupName: startup.startupName, founderEmail: startup.email,
+        founderId: startup.userId, message: message || '',
+        status: 'pending', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString()
+      });
+    }
+    await sendEmail(startup.email, `New Investor Interest — ${inv.name}`, `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0f;color:#fff;padding:20px;"><h2 style="color:#00d4ff;">New Investor Interest!</h2><p><strong>${inv.name}</strong> (${inv.firmName || 'Individual'}) is interested in your startup <strong>"${startup.startupName}"</strong>.</p><p style="color:#888;">${message || ''}</p><p style="margin-top:20px;"><a href="http://localhost:5000/startup-dashboard.html" style="background:#00d4ff;color:#000;padding:10px 20px;text-decoration:none;border-radius:5px;">View in Dashboard</a></p></div>`);
+    res.json({ message: 'Interest expressed! Founder will be notified.' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// Investor Connections
+app.get('/api/investor/connections', investorAuth, async (req, res) => {
+  try {
+    const conns = await connections.find({ investorId: req.userId }).sort({ createdAt: -1 });
+    res.json(conns);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// Startup Signup
+app.post('/api/startup/signup', async (req, res) => {
+  try {
+    const { name, email, password, phone, startupName } = req.body;
+    if (!name || !email || !password || !startupName) return res.status(400).json({ error: 'All fields required' });
+    const existing = await startups.findOne({ email });
+    if (existing) return res.status(400).json({ error: 'Email already registered' });
+    const hashed = await bcrypt.hash(password, 10);
+    const startup = await startups.insert({
+      founderName: name, email, password: hashed, phone: phone || '',
+      startupName, sector: '', logo: '', description: '', website: '',
+      pitchVideo: '', pitchDeck: '', fundingStage: '', fundingAmount: 0,
+      useOfFunds: '', govtBenefits: '', societyBenefits: '',
+      teamDetails: '', traction: '', nature: '',
+      avatar: name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2),
+      verified: false, createdAt: new Date().toISOString()
+    });
+    const token = jwt.sign({ id: startup._id, type: 'startup' }, JWT_SECRET, { expiresIn: '7d' });
+    const { password: _, ...data } = startup;
+    res.json({ token, user: data, type: 'startup' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// Startup Login
+app.post('/api/startup/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const startup = await startups.findOne({ email });
+    if (!startup) return res.status(400).json({ error: 'Startup not found' });
+    const valid = await bcrypt.compare(password, startup.password);
+    if (!valid) return res.status(400).json({ error: 'Invalid password' });
+    const token = jwt.sign({ id: startup._id, type: 'startup' }, JWT_SECRET, { expiresIn: '7d' });
+    const { password: _, ...data } = startup;
+    res.json({ token, user: data, type: 'startup' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// Startup Profile
+app.get('/api/startup/profile', investorAuth, async (req, res) => {
+  try {
+    const st = await startups.findOne({ _id: req.userId });
+    if (!st) return res.status(404).json({ error: 'Not found' });
+    const { password: _, ...data } = st;
+    res.json(data);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.put('/api/startup/profile', investorAuth, async (req, res) => {
+  try {
+    const updates = { ...req.body };
+    delete updates.password; delete updates._id;
+    await startups.update({ _id: req.userId }, { $set: updates });
+    const st = await startups.findOne({ _id: req.userId });
+    const { password: _, ...data } = st;
+    res.json(data);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// All Startups (public listing)
+app.get('/api/startups', async (req, res) => {
+  try {
+    const { sector, stage, search } = req.query;
+    let query = {};
+    if (sector) query.sector = sector;
+    if (stage) query.fundingStage = stage;
+    let all = await startups.find(query).sort({ createdAt: -1 });
+    if (search) {
+      const s = search.toLowerCase();
+      all = all.filter(st => st.startupName.toLowerCase().includes(s) || st.sector.toLowerCase().includes(s) || (st.description||'').toLowerCase().includes(s));
+    }
+    const safe = all.map(({ password, ...rest }) => rest);
+    res.json(safe);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// Single Startup (public)
+app.get('/api/startups/:id', async (req, res) => {
+  try {
+    const st = await startups.findOne({ _id: req.params.id });
+    if (!st) return res.status(404).json({ error: 'Not found' });
+    const { password, ...data } = st;
+    res.json(data);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// Startup Connections (investors interested)
+app.get('/api/startup/connections', investorAuth, async (req, res) => {
+  try {
+    const conns = await connections.find({ startupId: req.userId }).sort({ createdAt: -1 });
+    res.json(conns);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// Accept/Reject Connection
+app.post('/api/startup/connections/:id/respond', investorAuth, async (req, res) => {
+  try {
+    const { status } = req.body; // accepted or rejected
+    const conn = await connections.findOne({ _id: req.params.id });
+    if (!conn) return res.status(404).json({ error: 'Connection not found' });
+    if (conn.startupId !== req.userId) return res.status(403).json({ error: 'Unauthorized' });
+    await connections.update({ _id: req.params.id }, { $set: { status, updatedAt: new Date().toISOString() } });
+    const inv = await investors.findOne({ _id: conn.investorId });
+    if (status === 'accepted' && inv) {
+      await sendEmail(inv.email, `Connection Accepted — ${conn.startupName}`, `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0f;color:#fff;padding:20px;"><h2 style="color:#00ff88;">Connection Accepted!</h2><p>Great news! <strong>${conn.startupName}</strong> has accepted your interest request.</p><p>Founder Email: <strong>${conn.founderEmail}</strong></p><p style="margin-top:20px;"><a href="http://localhost:5000/investor-dashboard.html" style="background:#00d4ff;color:#000;padding:10px 20px;text-decoration:none;border-radius:5px;">View in Dashboard</a></p></div>`);
+    }
+    res.json({ message: 'Connection ' + status });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 

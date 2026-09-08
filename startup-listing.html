@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Startups — MissileX Invest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#00d4ff;--secondary:#ff6b35;--accent:#00ff88;--dark:#0a0a0f;--gray:#888;--card:#0d0d14;--border:rgba(255,255,255,0.06);}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--dark);color:#fff;font-family:'Rajdhani',sans-serif;}
+        a{text-decoration:none;color:inherit;}
+        .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 30px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,15,0.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+        .nav-logo{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;}
+        .nav-logo span{color:var(--primary);}
+        .nav-links{display:flex;gap:20px;align-items:center;}
+        .nav-links a{font-family:'Orbitron',monospace;font-size:0.65rem;color:var(--gray);transition:color 0.3s;}
+        .nav-links a:hover{color:var(--primary);}
+
+        .hero-section{padding:100px 20px 40px;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(0,212,255,0.06),transparent 60%);}
+        .hero-section h1{font-family:'Orbitron',monospace;font-size:1.8rem;margin-bottom:8px;}
+        .hero-section h1 span{color:var(--primary);}
+        .hero-section p{color:var(--gray);max-width:500px;margin:0 auto;}
+
+        .container{max-width:1200px;margin:0 auto;padding:0 20px 60px;}
+        .filter-bar{display:flex;gap:12px;margin-bottom:30px;flex-wrap:wrap;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:12px;}
+        .filter-bar select,.filter-bar input{padding:10px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:0.85rem;}
+        .filter-bar select option{background:#111;color:#fff;}
+        .result-count{font-family:'Orbitron',monospace;font-size:0.7rem;color:var(--gray);margin-bottom:20px;}
+
+        .startup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;}
+        .startup-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:all 0.3s;cursor:pointer;}
+        .startup-card:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+        .startup-card .top{display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;}
+        .startup-card .sector-tag{display:inline-block;font-size:0.55rem;padding:3px 10px;border-radius:4px;background:rgba(0,212,255,0.1);color:var(--primary);font-family:'Orbitron',monospace;letter-spacing:0.05em;}
+        .startup-card .stage-tag{font-size:0.55rem;padding:3px 8px;border-radius:4px;background:rgba(255,107,53,0.1);color:var(--secondary);font-family:'Orbitron',monospace;}
+        .startup-card h3{font-family:'Orbitron',monospace;font-size:0.95rem;margin-bottom:4px;}
+        .startup-card .founder{font-size:0.8rem;color:var(--gray);margin-bottom:10px;}
+        .startup-card .desc{font-size:0.8rem;color:var(--gray);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;}
+        .startup-card .funding-row{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--border);}
+        .startup-card .amount{font-family:'Orbitron',monospace;font-size:1rem;color:var(--accent);font-weight:700;}
+        .startup-card .view-btn{font-family:'Orbitron',monospace;font-size:0.6rem;padding:6px 14px;border:1px solid var(--primary);background:rgba(0,212,255,0.05);color:var(--primary);border-radius:4px;cursor:pointer;transition:all 0.2s;text-decoration:none;}
+        .startup-card .view-btn:hover{background:var(--primary);color:#000;}
+
+        .empty{text-align:center;padding:60px 20px;color:var(--gray);}
+        .empty .icon{font-size:3rem;margin-bottom:16px;opacity:0.3;}
+
+        @media(max-width:768px){.startup-grid{grid-template-columns:1fr;}.filter-bar{flex-direction:column;}}
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="invest.html" class="nav-logo"><span>MISSILEX</span> INVEST</a>
+        <div class="nav-links">
+            <a href="startup-listing.html" style="color:var(--primary);">STARTUPS</a>
+            <a href="investor-login.html">INVESTOR LOGIN</a>
+            <a href="startup-login.html">STARTUP LOGIN</a>
+            <a href="invest.html">HOME</a>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <h1>BROWSE <span>STARTUPS</span></h1>
+        <p>Discover AI, Aerospace, Drone, and Defence startups looking for funding and partnerships.</p>
+    </div>
+
+    <div class="container">
+        <div class="filter-bar">
+            <select id="filterSector" onchange="filterStartups()">
+                <option value="">All Sectors</option>
+                <option value="AI">AI / ML</option>
+                <option value="Aerospace">Aerospace</option>
+                <option value="Drone">Drone / UAV</option>
+                <option value="Defence">Defence Tech</option>
+                <option value="Deep Tech">Deep Tech</option>
+                <option value="Cyber Security">Cyber Security</option>
+                <option value="Space Tech">Space Tech</option>
+                <option value="Other">Other</option>
+            </select>
+            <select id="filterStage" onchange="filterStartups()">
+                <option value="">All Stages</option>
+                <option value="Idea">Idea</option>
+                <option value="Pre-Seed">Pre-Seed</option>
+                <option value="Seed">Seed</option>
+                <option value="Series A">Series A</option>
+                <option value="Series B">Series B</option>
+                <option value="Growth">Growth</option>
+            </select>
+            <input type="text" id="filterSearch" placeholder="Search startups..." oninput="filterStartups()" style="flex:1;min-width:200px;">
+        </div>
+        <div class="result-count" id="resultCount"></div>
+        <div class="startup-grid" id="startupGrid"></div>
+    </div>
+
+    <script>
+        const API='http://localhost:5000/api';
+        let allStartups=[];
+
+        async function loadStartups(){
+            try{
+                const res=await fetch(API+'/startups');
+                allStartups=await res.json();
+                renderStartups(allStartups);
+            }catch(e){}
+        }
+
+        function renderStartups(list){
+            const grid=document.getElementById('startupGrid');
+            document.getElementById('resultCount').textContent=list.length+' STARTUP'+(list.length!==1?'S':'')+' FOUND';
+            if(list.length===0){grid.innerHTML='<div class="empty" style="grid-column:1/-1;"><div class="icon">🚀</div><p>No startups found. Try different filters.</p></div>';return;}
+            grid.innerHTML=list.map(s=>`<div class="startup-card">
+                <div class="top"><span class="sector-tag">${(s.sector||'N/A').toUpperCase()}</span><span class="stage-tag">${s.fundingStage||'N/A'}</span></div>
+                <h3>${s.startupName}</h3>
+                <div class="founder">by ${s.founderName} ${s.nature?'· '+s.nature:''}</div>
+                <div class="desc">${s.description||'No description available.'}</div>
+                <div class="funding-row"><span class="amount">₹${s.fundingAmount||'TBD'}L</span><a href="startup-detail.html?id=${s._id}" class="view-btn">VIEW DETAILS →</a></div>
+            </div>`).join('');
+        }
+
+        function filterStartups(){
+            const sector=document.getElementById('filterSector').value;
+            const stage=document.getElementById('filterStage').value;
+            const search=document.getElementById('filterSearch').value.toLowerCase();
+            let filtered=allStartups;
+            if(sector)filtered=filtered.filter(s=>s.sector===sector);
+            if(stage)filtered=filtered.filter(s=>s.fundingStage===stage);
+            if(search)filtered=filtered.filter(s=>s.startupName.toLowerCase().includes(search)||(s.description||'').toLowerCase().includes(search)||(s.founderName||'').toLowerCase().includes(search));
+            renderStartups(filtered);
+        }
+
+        loadStartups();
+    </script>
+</body>
+</html>

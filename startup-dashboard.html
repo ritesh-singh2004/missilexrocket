@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Dashboard — MissileX Invest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#00d4ff;--secondary:#ff6b35;--accent:#00ff88;--dark:#0a0a0f;--gray:#888;--card:#0d0d14;--border:rgba(255,255,255,0.06);}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--dark);color:#fff;font-family:'Rajdhani',sans-serif;}
+        a{text-decoration:none;color:inherit;}
+        .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 30px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,15,0.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+        .nav-logo{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;}
+        .nav-logo span{color:var(--secondary);}
+        .nav-links{display:flex;gap:20px;align-items:center;}
+        .nav-links a{font-family:'Orbitron',monospace;font-size:0.65rem;color:var(--gray);transition:color 0.3s;}
+        .nav-links a:hover,.nav-links a.active{color:var(--secondary);}
+
+        .container{max-width:1100px;margin:0 auto;padding:90px 20px 40px;}
+        .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:30px;overflow-x:auto;}
+        .tab{font-family:'Orbitron',monospace;font-size:0.65rem;letter-spacing:0.08em;padding:12px 20px;background:none;border:none;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.3s;}
+        .tab.active{color:var(--secondary);border-bottom-color:var(--secondary);}
+        .tab:hover{color:#fff;}
+        .panel{display:none;animation:fadeIn 0.3s ease;}
+        .panel.active{display:block;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+        .section-title{font-family:'Orbitron',monospace;font-size:1rem;color:var(--secondary);margin-bottom:20px;}
+        .section-sub{font-size:0.85rem;color:var(--gray);margin-bottom:24px;}
+
+        .profile-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px;}
+        .profile-header{display:flex;gap:20px;align-items:center;margin-bottom:20px;}
+        .profile-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--secondary),#cc5522);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;color:#000;}
+        .profile-name{font-family:'Orbitron',monospace;font-size:1.1rem;}
+        .profile-sector{font-size:0.8rem;color:var(--gray);}
+
+        .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+        .form-group{margin-bottom:16px;}
+        .form-group label{display:block;font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--gray);margin-bottom:6px;}
+        .form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:0.9rem;}
+        .form-group textarea{min-height:100px;resize:vertical;}
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--secondary);}
+        .form-group select option{background:#111;color:#fff;}
+        .form-group.full{grid-column:1/-1;}
+        .section-divider{grid-column:1/-1;font-family:'Orbitron',monospace;font-size:0.7rem;color:var(--secondary);margin:20px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--border);letter-spacing:0.1em;}
+        .btn{font-family:'Orbitron',monospace;font-size:0.75rem;letter-spacing:0.1em;padding:12px 28px;border:none;border-radius:6px;cursor:pointer;font-weight:700;transition:all 0.3s;}
+        .btn-primary{background:var(--secondary);color:#fff;}
+        .btn-primary:hover{background:#ff8855;}
+        .btn-sm{font-size:0.65rem;padding:8px 16px;}
+
+        .conn-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:16px;align-items:center;}
+        .conn-card .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#0099cc);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;color:#000;flex-shrink:0;}
+        .conn-card .info{flex:1;}
+        .conn-card .info h4{font-family:'Orbitron',monospace;font-size:0.85rem;margin-bottom:4px;}
+        .conn-card .info p{font-size:0.75rem;color:var(--gray);}
+        .conn-actions{display:flex;gap:8px;}
+        .conn-actions button{font-size:0.6rem;padding:6px 14px;border:none;border-radius:4px;cursor:pointer;font-family:'Orbitron',monospace;font-weight:700;}
+        .btn-accept{background:var(--accent);color:#000;}
+        .btn-reject{background:rgba(255,50,50,0.2);color:#ff5050;border:1px solid rgba(255,50,50,0.3);}
+        .conn-status{font-size:0.6rem;padding:4px 10px;border-radius:4px;font-family:'Orbitron',monospace;}
+        .conn-status.pending{background:rgba(255,215,0,0.1);color:#ffd700;}
+        .conn-status.accepted{background:rgba(0,255,136,0.1);color:var(--accent);}
+
+        .empty{text-align:center;padding:60px 20px;color:var(--gray);}
+        .empty .icon{font-size:3rem;margin-bottom:16px;opacity:0.3;}
+
+        @media(max-width:768px){.form-grid{grid-template-columns:1fr;}.conn-card{flex-direction:column;text-align:center;}}
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="invest.html" class="nav-logo"><span>MISSILEX</span> INVEST</a>
+        <div class="nav-links">
+            <a href="startup-dashboard.html" class="active">DASHBOARD</a>
+            <a href="startup-listing.html">VIEW ALL STARTUPS</a>
+            <a href="#" onclick="logout()">LOGOUT</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('profile',this)">Startup Profile</button>
+            <button class="tab" onclick="switchTab('investors',this)">Interested Investors</button>
+            <button class="tab" onclick="switchTab('preview',this)">Public Preview</button>
+        </div>
+
+        <div class="panel active" id="panel-profile">
+            <h3 class="section-title">STARTUP PROFILE</h3>
+            <p class="section-sub">Fill in all details. This is what investors will see.</p>
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar" id="profAvatar">-</div>
+                    <div><div class="profile-name" id="profName">-</div><div class="profile-sector" id="profSector">-</div></div>
+                </div>
+                <form id="profileForm">
+                    <div class="form-grid">
+                        <div class="section-divider">STARTUP INFO</div>
+                        <div class="form-group"><label>STARTUP NAME *</label><input type="text" id="pStartupName"></div>
+                        <div class="form-group"><label>SECTOR *</label>
+                            <select id="pSector"><option value="">Select</option><option>AI</option><option>Aerospace</option><option>Drone</option><option>Defence</option><option>Deep Tech</option><option>Cyber Security</option><option>Space Tech</option><option>Other</option></select>
+                        </div>
+                        <div class="form-group"><label>STARTUP NATURE</label><input type="text" id="pNature" placeholder="e.g. SaaS, Hardware, Service"></div>
+                        <div class="form-group"><label>WEBSITE</label><input type="url" id="pWebsite" placeholder="https://..."></div>
+                        <div class="form-group full"><label>DESCRIPTION *</label><textarea id="pDesc" placeholder="What does your startup do? How does it work?"></textarea></div>
+
+                        <div class="section-divider">PITCH MATERIALS</div>
+                        <div class="form-group"><label>PITCH VIDEO (YouTube/Vimeo URL)</label><input type="url" id="pVideo" placeholder="https://youtube.com/watch?v=..."></div>
+                        <div class="form-group"><label>PITCH DECK (Google Drive / PDF URL)</label><input type="url" id="pDeck" placeholder="https://drive.google.com/..."></div>
+
+                        <div class="section-divider">FUNDING</div>
+                        <div class="form-group"><label>FUNDING STAGE</label>
+                            <select id="pStage"><option value="">Select</option><option>Idea</option><option>Pre-Seed</option><option>Seed</option><option>Series A</option><option>Series B</option><option>Growth</option></select>
+                        </div>
+                        <div class="form-group"><label>FUNDING AMOUNT (₹ Lakhs)</label><input type="number" id="pAmount" placeholder="e.g. 50"></div>
+                        <div class="form-group full"><label>USE OF FUNDS</label><textarea id="pUseOfFunds" placeholder="How will you use the funding?"></textarea></div>
+
+                        <div class="section-divider">BENEFITS & IMPACT</div>
+                        <div class="form-group full"><label>GOVERNMENT BENEFITS (Strategic value, Make in India, defence self-reliance, employment, exports)</label><textarea id="pGovt" placeholder="How does this startup benefit the government?"></textarea></div>
+                        <div class="form-group full"><label>SOCIETY / INDUSTRY BENEFITS</label><textarea id="pSociety" placeholder="How does this help society and industry?"></textarea></div>
+
+                        <div class="section-divider">TEAM & TRACTION</div>
+                        <div class="form-group full"><label>TEAM DETAILS</label><textarea id="pTeam" placeholder="Team members, backgrounds, roles..."></textarea></div>
+                        <div class="form-group full"><label>CURRENT TRACTION</label><textarea id="pTraction" placeholder="Revenue, users, patents, govt contracts..."></textarea></div>
+
+                        <div class="section-divider">CONTACT</div>
+                        <div class="form-group"><label>PHONE</label><input type="tel" id="pPhone"></div>
+                        <div class="form-group"><label>EMAIL</label><input type="email" id="pEmail" readonly style="opacity:0.6;"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-top:16px;">SAVE PROFILE</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="panel" id="panel-investors">
+            <h3 class="section-title">INTERESTED INVESTORS</h3>
+            <p class="section-sub">Investors who have expressed interest in your startup.</p>
+            <div id="investorsList"></div>
+        </div>
+
+        <div class="panel" id="panel-preview">
+            <h3 class="section-title">PUBLIC PREVIEW</h3>
+            <p class="section-sub">This is how investors see your startup listing.</p>
+            <div id="previewContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const API='http://localhost:5000/api';
+        let token=localStorage.getItem('missilex_startup_token');
+        let startup=JSON.parse(localStorage.getItem('missilex_startup')||'null');
+        if(!token){window.location.href='startup-login.html';}
+
+        async function apiFetch(p,o={}){const h={'Content-Type':'application/json',...o.headers};if(token)h['Authorization']='Bearer '+token;const r=await fetch(API+p,{...o,headers:h});const d=await r.json();if(!r.ok)throw new Error(d.error||'Failed');return d;}
+        function switchTab(name,btn){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('panel-'+name).classList.add('active');}
+        function showNotif(m){const n=document.createElement('div');n.style.cssText='position:fixed;top:20px;right:20px;padding:15px 30px;background:var(--secondary);color:#fff;font-family:Orbitron,monospace;font-size:0.75rem;letter-spacing:0.1em;border-radius:6px;z-index:10000;';n.textContent=m;document.body.appendChild(n);setTimeout(()=>{n.style.opacity='0';n.style.transition='opacity 0.3s';setTimeout(()=>n.remove(),300);},3000);}
+        function logout(){localStorage.removeItem('missilex_startup_token');localStorage.removeItem('missilex_startup');window.location.href='startup-login.html';}
+
+        async function loadProfile(){
+            try{
+                startup=await apiFetch('/startup/profile');
+                localStorage.setItem('missilex_startup',JSON.stringify(startup));
+                document.getElementById('profAvatar').textContent=startup.avatar||startup.founderName.charAt(0);
+                document.getElementById('profName').textContent=startup.startupName;
+                document.getElementById('profSector').textContent=startup.sector||'Not set';
+                document.getElementById('pStartupName').value=startup.startupName||'';
+                document.getElementById('pSector').value=startup.sector||'';
+                document.getElementById('pNature').value=startup.nature||'';
+                document.getElementById('pWebsite').value=startup.website||'';
+                document.getElementById('pDesc').value=startup.description||'';
+                document.getElementById('pVideo').value=startup.pitchVideo||'';
+                document.getElementById('pDeck').value=startup.pitchDeck||'';
+                document.getElementById('pStage').value=startup.fundingStage||'';
+                document.getElementById('pAmount').value=startup.fundingAmount||'';
+                document.getElementById('pUseOfFunds').value=startup.useOfFunds||'';
+                document.getElementById('pGovt').value=startup.govtBenefits||'';
+                document.getElementById('pSociety').value=startup.societyBenefits||'';
+                document.getElementById('pTeam').value=startup.teamDetails||'';
+                document.getElementById('pTraction').value=startup.traction||'';
+                document.getElementById('pPhone').value=startup.phone||'';
+                document.getElementById('pEmail').value=startup.email||'';
+            }catch(e){logout();}
+        }
+
+        document.getElementById('profileForm').addEventListener('submit',async(e)=>{
+            e.preventDefault();
+            try{
+                await apiFetch('/startup/profile',{method:'PUT',body:JSON.stringify({
+                    startupName:document.getElementById('pStartupName').value.trim(),
+                    sector:document.getElementById('pSector').value,
+                    nature:document.getElementById('pNature').value.trim(),
+                    website:document.getElementById('pWebsite').value.trim(),
+                    description:document.getElementById('pDesc').value.trim(),
+                    pitchVideo:document.getElementById('pVideo').value.trim(),
+                    pitchDeck:document.getElementById('pDeck').value.trim(),
+                    fundingStage:document.getElementById('pStage').value,
+                    fundingAmount:parseInt(document.getElementById('pAmount').value)||0,
+                    useOfFunds:document.getElementById('pUseOfFunds').value.trim(),
+                    govtBenefits:document.getElementById('pGovt').value.trim(),
+                    societyBenefits:document.getElementById('pSociety').value.trim(),
+                    teamDetails:document.getElementById('pTeam').value.trim(),
+                    traction:document.getElementById('pTraction').value.trim(),
+                    phone:document.getElementById('pPhone').value.trim()
+                })});
+                showNotif('Profile saved!');await loadProfile();
+            }catch(e){showNotif('Error: '+e.message);}
+        });
+
+        async function loadInvestors(){
+            try{
+                const conns=await apiFetch('/startup/connections');
+                const list=document.getElementById('investorsList');
+                if(conns.length===0){list.innerHTML='<div class="empty"><div class="icon">💰</div><p>No investor interest yet. Complete your profile to attract investors.</p></div>';return;}
+                list.innerHTML=conns.map(c=>`<div class="conn-card">
+                    <div class="avatar">${c.investorName.charAt(0)}</div>
+                    <div class="info"><h4>${c.investorName}${c.investorFirm?' — '+c.investorFirm:''}</h4><p>${c.investorType||'Investor'} · ${c.investorEmail}</p><p style="margin-top:4px;color:rgba(255,255,255,0.6);">"${c.message||'No message'}"</p></div>
+                    ${c.status==='pending'?`<div class="conn-actions"><button class="btn-accept" onclick="respondConn('${c._id}','accepted')">ACCEPT</button><button class="btn-reject" onclick="respondConn('${c._id}','rejected')">REJECT</button></div>`:`<span class="conn-status ${c.status}">${c.status.toUpperCase()}</span>`}
+                </div>`).join('');
+            }catch(e){}
+        }
+
+        async function respondConn(id,status){
+            try{await apiFetch('/startup/connections/'+id+'/respond',{method:'POST',body:JSON.stringify({status})});showNotif('Connection '+status);await loadInvestors();}catch(e){showNotif(e.message);}
+        }
+
+        function renderPreview(){
+            const s=startup;
+            const videoId=s.pitchVideo?.match(/(?:v=|\/)([\w-]+)/)?.[1]||'';
+            document.getElementById('previewContent').innerHTML=`
+                <div class="profile-card">
+                    <div class="profile-header"><div class="profile-avatar">${s.avatar||'?'}</div><div><div class="profile-name">${s.startupName||'Not set'}</div><div class="profile-sector">${s.sector||'N/A'} · ${s.nature||''}</div></div></div>
+                    <div style="margin-bottom:16px;"><strong style="color:var(--secondary);">Description:</strong><p style="color:var(--gray);margin-top:4px;line-height:1.6;">${s.description||'Not filled yet.'}</p></div>
+                    ${s.pitchVideo?`<div style="margin-bottom:16px;"><strong style="color:var(--secondary);">Pitch Video:</strong><div style="margin-top:8px;border-radius:8px;overflow:hidden;"><iframe width="100%" height="300" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe></div></div>`:''}
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+                        <div><strong style="color:var(--secondary);">Funding Stage:</strong> ${s.fundingStage||'N/A'}</div>
+                        <div><strong style="color:var(--secondary);">Amount Needed:</strong> ₹${s.fundingAmount||0}L</div>
+                        <div><strong style="color:var(--secondary);">Website:</strong> ${s.website?'<a href="'+s.website+'" target="_blank" style="color:var(--primary);">'+s.website+'</a>':'N/A'}</div>
+                        <div><strong style="color:var(--secondary);">Founder:</strong> ${s.founderName||'N/A'}</div>
+                    </div>
+                    ${s.useOfFunds?`<div style="margin-bottom:16px;"><strong style="color:var(--secondary);">Use of Funds:</strong><p style="color:var(--gray);margin-top:4px;">${s.useOfFunds}</p></div>`:''}
+                    ${s.govtBenefits?`<div style="margin-bottom:16px;background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.15);border-radius:8px;padding:16px;"><strong style="color:var(--primary);">Government Benefits:</strong><p style="color:var(--gray);margin-top:4px;line-height:1.6;">${s.govtBenefits}</p></div>`:''}
+                    ${s.societyBenefits?`<div style="margin-bottom:16px;"><strong style="color:var(--secondary);">Society Benefits:</strong><p style="color:var(--gray);margin-top:4px;">${s.societyBenefits}</p></div>`:''}
+                    ${s.teamDetails?`<div style="margin-bottom:16px;"><strong style="color:var(--secondary);">Team:</strong><p style="color:var(--gray);margin-top:4px;">${s.teamDetails}</p></div>`:''}
+                    ${s.traction?`<div style="margin-bottom:16px;"><strong style="color:var(--secondary);">Traction:</strong><p style="color:var(--gray);margin-top:4px;">${s.traction}</p></div>`:''}
+                    ${s.pitchDeck?`<div><a href="${s.pitchDeck}" target="_blank" class="btn btn-primary" style="display:inline-block;">VIEW PITCH DECK</a></div>`:''}
+                </div>`;
+        }
+
+        document.addEventListener('DOMContentLoaded',()=>{loadProfile();loadInvestors();setTimeout(renderPreview,1000);});
+    </script>
+</body>
+</html>

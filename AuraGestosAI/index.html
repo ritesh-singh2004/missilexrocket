@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraGestosAI - Gesture Recognition System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loader-content">
+            <div class="orbit-loader">
+                <div class="orbit"></div>
+                <div class="orbit"></div>
+                <div class="orbit"></div>
+                <div class="core"></div>
+            </div>
+            <h2 class="loading-text">AURAGESTOS</h2>
+            <p class="loading-sub">Initializing Gesture Recognition System</p>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="space-canvas"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-logo">
+            <span class="logo-text">AURA</span>
+            <span class="logo-sub">GESTOS AI</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="nav-link active">HOME</a>
+            <a href="#about" class="nav-link">ABOUT</a>
+            <a href="#features" class="nav-link">FEATURES</a>
+            <a href="#demo" class="nav-link">DEMO</a>
+            <a href="#tech" class="nav-link">TECH</a>
+            <a href="#contact" class="nav-link">CONTACT</a>
+        </div>
+        <div class="nav-hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div id="content-wrapper">
+        <section id="home" class="section">
+            <div class="section-content">
+                <div class="hero-badge">AI-POWERED GESTURE RECOGNITION</div>
+                <h1 class="hero-title">
+                    <span class="title-line" data-delay="0">AURA</span>
+                    <span class="title-line accent" data-delay="0.2">GESTOS</span>
+                    <span class="title-line" data-delay="0.4">AI</span>
+                </h1>
+                <p class="hero-description">Revolutionary real-time hand gesture recognition powered by deep learning. Control digital environments with natural movements.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" data-target="98">0</span>
+                        <span class="stat-label">ACCURACY %</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="30">0</span>
+                        <span class="stat-label">GESTURES</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="16">0</span>
+                        <span class="stat-label">MS LATENCY</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <button class="cta-button primary">
+                        <span>TRY DEMO</span>
+                        <div class="button-glow"></div>
+                    </button>
+                    <button class="cta-button secondary">
+                        <span>VIEW DOCS</span>
+                    </button>
+                </div>
+                <div class="mission-status">
+                    <span class="status-dot"></span>
+                    <span class="status-text">SYSTEM ONLINE</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="section-content">
+                <div class="section-label">ABOUT AURAGESTOS</div>
+                <h2 class="section-title">Natural <span class="accent">gesture</span> control for the digital world.</h2>
+                <p class="section-subtitle">AuraGestosAI uses advanced computer vision and deep learning to recognize hand gestures in real-time, enabling intuitive human-computer interaction.</p>
+
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="about-icon">HAND</div>
+                        <h3>Hand Tracking</h3>
+                        <p>Precise 21-point hand landmark detection with sub-pixel accuracy for natural gesture interpretation.</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">AI</div>
+                        <h3>Deep Learning</h3>
+                        <p>Custom CNN architecture trained on millions of gesture samples for robust recognition across diverse users.</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">REAL</div>
+                        <h3>Real-Time</h3>
+                        <p>Optimized inference pipeline achieving 60+ FPS on standard hardware with minimal latency.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section">
+            <div class="section-content">
+                <div class="section-label">FEATURES</div>
+                <h2 class="section-title">Powerful <span class="accent">gesture</span> recognition capabilities.</h2>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-number">01</div>
+                        <h3>Multi-Gesture Support</h3>
+                        <p>Recognizes 30+ distinct gestures including swipes, pinches, pointing, and complex hand shapes.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-number">02</div>
+                        <h3>Cross-Platform</h3>
+                        <p>Works on web, mobile, and desktop. Deploy anywhere with our lightweight runtime.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-number">03</div>
+                        <h3>Custom Training</h3>
+                        <p>Train custom gestures with just 5 samples using our few-shot learning pipeline.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-number">04</div>
+                        <h3>No Hardware Required</h3>
+                        <p>Uses standard webcams. No special sensors or depth cameras needed.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-number">05</div>
+                        <h3>Privacy First</h3>
+                        <p>All processing happens locally. No video data ever leaves your device.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-number">06</div>
+                        <h3>Developer API</h3>
+                        <p>Simple JavaScript API for quick integration into any web application.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo" class="section">
+            <div class="section-content">
+                <div class="section-label">LIVE DEMO</div>
+                <h2 class="section-title">Try <span class="accent">gesture</span> recognition now.</h2>
+                <p class="section-subtitle">Allow camera access and perform gestures to see AuraGestosAI in action.</p>
+
+                <div class="demo-container">
+                    <div class="demo-viewer">
+                        <video id="demo-video" autoplay playsinline></video>
+                        <canvas id="demo-canvas"></canvas>
+                        <div class="demo-overlay">
+                            <div class="demo-status">
+                                <span class="status-dot"></span>
+                                <span>CAMERA ACTIVE</span>
+                            </div>
+                        </div>
+                        <div class="gesture-result" id="gesture-result">
+                            <span class="gesture-label">Detected Gesture:</span>
+                            <span class="gesture-name" id="gesture-name">None</span>
+                        </div>
+                    </div>
+                    <div class="demo-controls">
+                        <button class="demo-btn" id="startDemo">START CAMERA</button>
+                        <button class="demo-btn secondary" id="stopDemo">STOP</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech" class="section">
+            <div class="section-content">
+                <div class="section-label">TECHNOLOGY</div>
+                <h2 class="section-title">Built with <span class="accent">cutting-edge</span> AI stack.</h2>
+
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <div class="tech-icon">TF</div>
+                        <h3>TensorFlow.js</h3>
+                        <p>Browser-optimized ML inference for real-time gesture detection.</p>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">MP</div>
+                        <h3>MediaPipe</h3>
+                        <p>Google's hand landmark detection for precise finger tracking.</p>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">ON</div>
+                        <h3>ONNX Runtime</h3>
+                        <p>Cross-platform model inference with hardware acceleration.</p>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">WASM</div>
+                        <h3>WebAssembly</h3>
+                        <p>Native-speed computation in the browser for smooth performance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="section-content">
+                <div class="section-label">CONTACT</div>
+                <h2 class="section-title">Get in <span class="accent">touch</span>.</h2>
+
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <div class="info-icon">MAIL</div>
+                            <div class="info-text">
+                                <h4>Email</h4>
+                                <p>hello@auragestos.ai</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">WEB</div>
+                            <div class="info-text">
+                                <h4>Website</h4>
+                                <p>auragestos.ai</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">GITHUB</div>
+                            <div class="info-text">
+                                <h4>Open Source</h4>
+                                <p>github.com/auragestos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <input type="text" class="form-input" placeholder="Your Name" required>
+                        <input type="email" class="form-input" placeholder="Your Email" required>
+                        <textarea class="form-textarea" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="submit-btn">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>AURAGESTOS AI</h3>
+                <p>Revolutionizing human-computer interaction through AI-powered gesture recognition.</p>
+                <p class="copyright">&copy; 2024 AuraGestosAI. All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">Documentation</a>
+                <a href="#">API Reference</a>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <a href="#">Blog</a>
+                <a href="#">Careers</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>Community</h4>
+                <a href="#">GitHub</a>
+                <a href="#">Discord</a>
+                <a href="#">Twitter</a>
+                <a href="#">Stack Overflow</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

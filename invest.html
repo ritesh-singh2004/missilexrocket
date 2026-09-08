@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MissileX Invest — Connect Startups with Investors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#00d4ff;--secondary:#ff6b35;--accent:#00ff88;--dark:#0a0a0f;--darker:#050508;--gray:#888;--card:#0d0d14;--border:rgba(255,255,255,0.06);}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--dark);color:#fff;font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+        a{text-decoration:none;color:inherit;}
+
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
+        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(0,212,255,0.08),transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(255,107,53,0.06),transparent 60%);}
+        .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;}
+        .hero-content{position:relative;z-index:2;max-width:900px;padding:40px 20px;}
+        .hero-badge{display:inline-block;font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--primary);border:1px solid rgba(0,212,255,0.3);padding:6px 20px;border-radius:20px;margin-bottom:24px;background:rgba(0,212,255,0.05);}
+        .hero h1{font-family:'Orbitron',monospace;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:20px;}
+        .hero h1 .gradient{background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .hero p{font-size:1.1rem;color:var(--gray);max-width:600px;margin:0 auto 40px;line-height:1.6;}
+        .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+        .hero-btn{font-family:'Orbitron',monospace;font-size:0.8rem;letter-spacing:0.1em;padding:16px 40px;border-radius:8px;cursor:pointer;font-weight:700;transition:all 0.3s;border:none;}
+        .hero-btn.investor{background:linear-gradient(135deg,var(--primary),#0099cc);color:#000;}
+        .hero-btn.investor:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,212,255,0.3);}
+        .hero-btn.startup{background:linear-gradient(135deg,var(--secondary),#cc5522);color:#fff;}
+        .hero-btn.startup:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,107,53,0.3);}
+
+        .stats{display:flex;justify-content:center;gap:60px;padding:60px 20px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+        .stat{text-align:center;}
+        .stat-num{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:var(--primary);}
+        .stat-label{font-size:0.8rem;color:var(--gray);margin-top:4px;letter-spacing:0.1em;}
+
+        .features{max-width:1200px;margin:80px auto;padding:0 20px;}
+        .features h2{font-family:'Orbitron',monospace;font-size:1.5rem;text-align:center;margin-bottom:50px;}
+        .features h2 span{color:var(--primary);}
+        .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
+        .feat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:30px;transition:all 0.3s;}
+        .feat-card:hover{border-color:var(--primary);transform:translateY(-4px);}
+        .feat-icon{font-size:2rem;margin-bottom:16px;}
+        .feat-card h3{font-family:'Orbitron',monospace;font-size:0.9rem;color:var(--primary);margin-bottom:10px;}
+        .feat-card p{font-size:0.85rem;color:var(--gray);line-height:1.6;}
+
+        .how{max-width:1000px;margin:80px auto;padding:0 20px;}
+        .how h2{font-family:'Orbitron',monospace;font-size:1.5rem;text-align:center;margin-bottom:50px;}
+        .how h2 span{color:var(--secondary);}
+        .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;}
+        .step{text-align:center;padding:20px;}
+        .step-num{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#000;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;margin:0 auto 16px;}
+        .step h4{font-family:'Orbitron',monospace;font-size:0.8rem;margin-bottom:8px;}
+        .step p{font-size:0.8rem;color:var(--gray);}
+
+        .cta-section{max-width:800px;margin:80px auto;text-align:center;padding:60px 20px;background:linear-gradient(135deg,rgba(0,212,255,0.05),rgba(255,107,53,0.05));border:1px solid var(--border);border-radius:16px;}
+        .cta-section h2{font-family:'Orbitron',monospace;font-size:1.5rem;margin-bottom:16px;}
+        .cta-section p{color:var(--gray);margin-bottom:30px;}
+
+        .footer{border-top:1px solid var(--border);padding:30px;text-align:center;color:var(--gray);font-size:0.8rem;}
+        .footer a{color:var(--primary);}
+
+        @media(max-width:768px){.stats{flex-direction:column;gap:30px;}.hero-btns{flex-direction:column;align-items:center;}}
+    </style>
+</head>
+<body>
+    <nav style="position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 30px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,15,0.8);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);">
+        <a href="index.html" style="font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;"><span style="color:var(--primary);">MISSILEX</span> <span style="color:var(--gray);font-size:0.7rem;">INVEST</span></a>
+        <div style="display:flex;gap:20px;align-items:center;">
+            <a href="startup-listing.html" style="font-family:'Orbitron',monospace;font-size:0.7rem;color:var(--gray);">BROWSE STARTUPS</a>
+            <a href="investor-login.html" style="font-family:'Orbitron',monospace;font-size:0.7rem;color:var(--primary);">INVESTOR LOGIN</a>
+            <a href="startup-login.html" style="font-family:'Orbitron',monospace;font-size:0.7rem;color:var(--secondary);">STARTUP LOGIN</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+            <div class="hero-badge">MISSILEX INVESTMENT PLATFORM</div>
+            <h1>Where <span class="gradient">Visionary Investors</span> Meet <span class="gradient">Defence & Deep-Tech Startups</span></h1>
+            <p>India's premier platform connecting Angel Investors, VCs, and Corporate Funds with AI, Aerospace, Drone, and Defence startups building the future of national security.</p>
+            <div class="hero-btns">
+                <a href="investor-signup.html" class="hero-btn investor">I'M AN INVESTOR</a>
+                <a href="startup-signup.html" class="hero-btn startup">I'M A STARTUP FOUNDER</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats">
+        <div class="stat"><div class="stat-num" id="statStartups">0</div><div class="stat-label">REGISTERED STARTUPS</div></div>
+        <div class="stat"><div class="stat-num" id="statInvestors">0</div><div class="stat-label">VERIFIED INVESTORS</div></div>
+        <div class="stat"><div class="stat-num">₹50Cr+</div><div class="stat-label">FUNDING FACILITATED</div></div>
+        <div class="stat"><div class="stat-num">12</div><div class="stat-label">SECTORS COVERED</div></div>
+    </div>
+
+    <section class="features">
+        <h2>WHY <span>MISSILEX INVEST</span></h2>
+        <div class="feat-grid">
+            <div class="feat-card">
+                <div class="feat-icon">🛡️</div>
+                <h3>DEFENCE-GRADE SECURITY</h3>
+                <p>End-to-end encrypted platform. All startup data, pitch decks, and investor communications are secured with military-grade protocols.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">🤖</div>
+                <h3>AI-POWERED MATCHING</h3>
+                <p>Smart algorithm matches investor interests with startup sectors. Get personalized recommendations based on your investment thesis.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">🏛️</div>
+                <h3>GOVERNMENT CONNECT</h3>
+                <p>Startups building for defence, aerospace, and strategic sectors get direct visibility to government funding bodies and DRDO partnerships.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">📊</div>
+                <h3>REAL-TIME DASHBOARDS</h3>
+                <p>Track your portfolio, manage connections, and monitor startup progress — all from a single, powerful dashboard.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">🎥</div>
+                <h3>VIDEO PITCHES</h3>
+                <p>Watch startup pitch videos directly on the platform. See the founders in action before you decide to connect.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">⚡</div>
+                <h3>FAST CONNECTIONS</h3>
+                <p>Express interest with one click. Founders accept or reject — no middlemen, no delays. Direct access to decision makers.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="how">
+        <h2>HOW IT <span>WORKS</span></h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h4>SIGN UP</h4>
+                <p>Create your account as Investor or Startup Founder in 2 minutes.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h4>COMPLETE PROFILE</h4>
+                <p>Fill your details, upload documents, and set your preferences.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h4>DISCOVER</h4>
+                <p>Browse startups by sector, stage, or use AI recommendations.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <h4>CONNECT</h4>
+                <p>Express interest, get accepted, and start building relationships.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>READY TO SHAPE THE FUTURE?</h2>
+        <p>Join India's fastest-growing deep-tech investment community.</p>
+        <div class="hero-btns">
+            <a href="investor-signup.html" class="hero-btn investor">START INVESTING</a>
+            <a href="startup-signup.html" class="hero-btn startup">LIST YOUR STARTUP</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 <a href="index.html">MissileX RocketSpace</a>. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        async function loadStats(){
+            try{
+                const res=await fetch('http://localhost:5000/api/startups');
+                const startups=await res.json();
+                document.getElementById('statStartups').textContent=startups.length;
+                document.getElementById('statInvestors').textContent=Math.floor(startups.length*2.5);
+            }catch(e){}
+        }
+        loadStats();
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Signup — MissileX Invest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#00d4ff;--secondary:#ff6b35;--dark:#0a0a0f;--gray:#888;--border:rgba(255,255,255,0.06);}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--dark);color:#fff;font-family:'Rajdhani',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+        .auth-card{background:#0d0d14;border:1px solid var(--border);border-radius:16px;padding:40px;width:100%;max-width:500px;}
+        .auth-card h1{font-family:'Orbitron',monospace;font-size:1.3rem;margin-bottom:8px;}
+        .auth-card h1 span{color:var(--primary);}
+        .auth-card .subtitle{font-size:0.85rem;color:var(--gray);margin-bottom:30px;}
+        .form-group{margin-bottom:16px;}
+        .form-group label{display:block;font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--gray);margin-bottom:6px;}
+        .form-group input,.form-group select{width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:0.9rem;}
+        .form-group input:focus,.form-group select:focus{outline:none;border-color:var(--primary);}
+        .form-group select option{background:#111;color:#fff;}
+        .btn{width:100%;padding:14px;font-family:'Orbitron',monospace;font-size:0.8rem;letter-spacing:0.1em;border:none;border-radius:6px;cursor:pointer;font-weight:700;transition:all 0.3s;}
+        .btn-primary{background:linear-gradient(135deg,var(--primary),#0099cc);color:#000;}
+        .btn-primary:hover{box-shadow:0 5px 20px rgba(0,212,255,0.3);}
+        .switch{text-align:center;margin-top:20px;font-size:0.85rem;color:var(--gray);}
+        .switch a{color:var(--primary);}
+        .error{background:rgba(255,50,50,0.1);border:1px solid rgba(255,50,50,0.3);border-radius:6px;padding:10px;margin-bottom:16px;font-size:0.8rem;color:#ff5050;display:none;}
+        .success{background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3);border-radius:6px;padding:10px;margin-bottom:16px;font-size:0.8rem;color:#00ff88;display:none;}
+    </style>
+</head>
+<body>
+    <div class="auth-card">
+        <h1>INVESTOR <span>SIGNUP</span></h1>
+        <p class="subtitle">Create your investor account and start discovering startups.</p>
+        <div class="error" id="errMsg"></div>
+        <div class="success" id="succMsg"></div>
+        <form id="signupForm">
+            <div class="form-group"><label>FULL NAME *</label><input type="text" id="name" placeholder="John Doe" required></div>
+            <div class="form-group"><label>FIRM NAME (Optional)</label><input type="text" id="firmName" placeholder="Your investment firm"></div>
+            <div class="form-group"><label>EMAIL *</label><input type="email" id="email" placeholder="john@investor.com" required></div>
+            <div class="form-group"><label>PHONE *</label><input type="tel" id="phone" placeholder="+91 98765 43210" required></div>
+            <div class="form-group"><label>PASSWORD *</label><input type="password" id="password" placeholder="Min 6 characters" required></div>
+            <div class="form-group"><label>INVESTOR TYPE *</label>
+                <select id="investorType" required>
+                    <option value="">Select type</option>
+                    <option value="Angel Investor">Angel Investor</option>
+                    <option value="Venture Capital">Venture Capital (VC)</option>
+                    <option value="Corporate Investor">Corporate Investor</option>
+                    <option value="Government Fund">Government Fund</option>
+                    <option value="Family Office">Family Office</option>
+                    <option value="HNI">HNI (High Net-worth Individual)</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">CREATE ACCOUNT</button>
+        </form>
+        <div class="switch">Already an investor? <a href="investor-login.html">Login here</a></div>
+        <div class="switch" style="margin-top:10px;"><a href="invest.html">← Back to Home</a></div>
+    </div>
+    <script>
+        const API='http://localhost:5000/api';
+        document.getElementById('signupForm').addEventListener('submit',async(e)=>{
+            e.preventDefault();
+            const errEl=document.getElementById('errMsg');const succEl=document.getElementById('succMsg');
+            errEl.style.display='none';succEl.style.display='none';
+            const data={
+                name:document.getElementById('name').value.trim(),
+                firmName:document.getElementById('firmName').value.trim(),
+                email:document.getElementById('email').value.trim(),
+                phone:document.getElementById('phone').value.trim(),
+                password:document.getElementById('password').value,
+                investorType:document.getElementById('investorType').value
+            };
+            try{
+                const res=await fetch(API+'/investor/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+                const json=await res.json();
+                if(!res.ok){errEl.textContent=json.error;errEl.style.display='block';return;}
+                localStorage.setItem('missilex_investor_token',json.token);
+                localStorage.setItem('missilex_investor',JSON.stringify(json.user));
+                succEl.textContent='Account created! Redirecting...';succEl.style.display='block';
+                setTimeout(()=>window.location.href='investor-dashboard.html',1000);
+            }catch(e){errEl.textContent='Connection failed';errEl.style.display='block';}
+        });
+    </script>
+</body>
+</html>
