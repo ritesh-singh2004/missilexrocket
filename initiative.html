@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initiative — MissileXRocketSpace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #0a0a0f; color: #fff; margin: 0; }
+        .init-back { display: inline-flex; align-items: center; gap: 8px; font-family: 'Orbitron', monospace; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--primary); text-decoration: none; margin-bottom: 20px; transition: color 0.3s; }
+        .init-back:hover { color: #fff; }
+        .init-loading { text-align: center; padding: 200px 20px; color: var(--gray); font-family: 'Orbitron', monospace; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon"><span>MX</span></div>
+                <div class="logo-text">
+                    <span class="logo-main">MISSILEX</span>
+                    <span class="logo-sub">ROCKETSPACE</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#initiatives">Initiatives</a>
+                <a href="index.html#programs">Programs</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <div class="nav-actions" id="navActions"></div>
+        </div>
+    </nav>
+
+    <div id="initiativeContent">
+        <div class="init-loading">Loading initiative...</div>
+    </div>
+
+    <div class="modal-overlay" id="regModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('regModal')">&times;</button>
+            <h2>REGISTER NOW</h2>
+            <p style="color:var(--gray);margin-bottom:20px;font-size:0.9rem;">Registering for: <strong id="modalInitTitle" style="color:var(--primary);">Event</strong></p>
+            <input type="hidden" id="modalInitId">
+            <div id="regFormSection">
+                <div class="reg-form-group" id="regTeamGroup">
+                    <label>TEAM NAME</label>
+                    <input type="text" id="regTeamNameInput" placeholder="Enter your team name">
+                </div>
+                <div class="reg-form-group">
+                    <label>YOUR NAME</label>
+                    <input type="text" id="regNameInput" disabled>
+                </div>
+                <div class="reg-form-group">
+                    <label>EMAIL</label>
+                    <input type="email" id="regEmailInput" disabled>
+                </div>
+                <button class="sidebar-register-btn" onclick="submitRegistration()">CONFIRM REGISTRATION</button>
+            </div>
+            <div id="regSuccessSection" style="display:none;">
+                <div class="reg-success">
+                    <div class="reg-success-icon">✓</div>
+                    <h3>REGISTRATION SUCCESSFUL!</h3>
+                    <p>You have been registered. Check your email for details.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>MISSILEX ROCKET SPACE</h3>
+                <p class="copyright">&copy; 2026 MISSILEX. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API = window.location.port ? 'http://localhost:5000/api' : '/api';
+        let authToken = localStorage.getItem('missilex_token') || null;
+        let currentUser = null;
+        let initiativeData = null;
+
+        async function apiFetch(path, opts = {}) {
+            const headers = { 'Content-Type': 'application/json', ...opts.headers };
+            if (authToken) headers['Authorization'] = 'Bearer ' + authToken;
+            const res = await fetch(API + path, { ...opts, headers });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || 'Request failed');
+            return data;
+        }
+
+        function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow = ''; }
+
+        function showNotification(msg) {
+            const n = document.createElement('div');
+            n.style.cssText = 'position:fixed;top:20px;right:20px;padding:15px 30px;background:#ff6b35;color:white;font-family:Orbitron,monospace;font-size:0.8rem;letter-spacing:0.1em;border-radius:5px;z-index:100000;box-shadow:0 5px 20px rgba(255,107,53,0.4);';
+            n.textContent = msg; document.body.appendChild(n);
+            setTimeout(() => { n.style.opacity = '0'; n.style.transition = 'opacity 0.3s ease'; setTimeout(() => n.remove(), 300); }, 3000);
+        }
+
+        function updateNav() {
+            const na = document.getElementById('navActions');
+            if (currentUser) {
+                na.innerHTML = `<a href="index.html#dashboard" style="font-family:Orbitron,monospace;font-size:0.7rem;color:var(--primary);text-decoration:none;">${currentUser.name.split(' ')[0]}</a>`;
+            } else {
+                na.innerHTML = `<a href="index.html" style="font-family:Orbitron,monospace;font-size:0.7rem;color:var(--primary);text-decoration:none;">LOGIN</a>`;
+            }
+        }
+
+        function renderInitiativePage(data) {
+            initiativeData = data;
+            const isReg = false;
+            document.title = data.title + ' — MissileXRocketSpace';
+            document.getElementById('initiativeContent').innerHTML = `
+                <img class="initiative-hero" src="${data.banner}" alt="${data.title}" onerror="this.style.background='linear-gradient(135deg,#1a0a2e,#0f3460)';this.style.height='400px';">
+                <div style="max-width:1200px;margin:0 auto;padding:0 20px;">
+                    <a href="index.html#initiatives" class="init-back">&#8592; BACK TO INITIATIVES</a>
+                </div>
+                <div class="initiative-detail-header" style="max-width:1200px;margin:0 auto;padding:0 20px;">
+                    <div class="initiative-detail-meta">
+                        <span class="initiative-type-badge ${data.type}">${data.type}</span>
+                        <span class="initiative-mode">${data.mode}</span>
+                        <span class="initiative-fee">${data.fee}</span>
+                    </div>
+                    <h1 class="initiative-detail-title">${data.title}</h1>
+                    <p class="initiative-detail-desc">${data.description}</p>
+                </div>
+                <div class="initiative-detail-grid">
+                    <div class="initiative-detail-main">
+                        <div class="initiative-tabs">
+                            <button class="initiative-tab active" onclick="showTab('overview', this)">OVERVIEW</button>
+                            <button class="initiative-tab" onclick="showTab('challenges', this)">CHALLENGES</button>
+                            <button class="initiative-tab" onclick="showTab('timeline', this)">TIMELINE</button>
+                            <button class="initiative-tab" onclick="showTab('faqs', this)">FAQs</button>
+                        </div>
+                        <div class="initiative-tab-content active" id="tab-overview">
+                            <h3>ABOUT THIS EVENT</h3>
+                            <p>${data.description}</p>
+                            <br>
+                            <h3>PRIZES</h3>
+                            <p style="color:var(--primary);font-weight:700;">${data.prizes}</p>
+                            <br>
+                            <h3>TEAM SIZE</h3>
+                            <p>${data.teamSize}</p>
+                        </div>
+                        <div class="initiative-tab-content" id="tab-challenges">
+                            <h3>CHALLENGE TRACKS</h3>
+                            <div class="challenge-tags">
+                                ${(data.challenges || []).map(c => `<span class="challenge-tag">${c}</span>`).join('')}
+                            </div>
+                        </div>
+                        <div class="initiative-tab-content" id="tab-timeline">
+                            <h3>EVENT TIMELINE</h3>
+                            <div class="initiative-timeline">
+                                ${(data.timeline || []).map(t => `
+                                    <div class="timeline-step ${t.status === 'active' ? 'active' : ''}">
+                                        <span class="timeline-step-date">${t.date}</span>
+                                        <span class="timeline-step-event">${t.event}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="initiative-tab-content" id="tab-faqs">
+                            <h3>FREQUENTLY ASKED QUESTIONS</h3>
+                            ${(data.faqs || []).map(f => `
+                                <div class="faq-item">
+                                    <div class="faq-q">${f.q}</div>
+                                    <div class="faq-a">${f.a}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="initiative-sidebar">
+                        <div class="sidebar-card">
+                            <h4>EVENT DETAILS</h4>
+                            <div class="sidebar-info-row"><span class="label">Organizer</span><span class="value">${data.organizer}</span></div>
+                            <div class="sidebar-info-row"><span class="label">Mode</span><span class="value">${data.mode}</span></div>
+                            <div class="sidebar-info-row"><span class="label">Fee</span><span class="value">${data.fee}</span></div>
+                            <div class="sidebar-info-row"><span class="label">Team Size</span><span class="value">${data.teamSize}</span></div>
+                            <div class="sidebar-info-row"><span class="label">Start Date</span><span class="value">${new Date(data.startDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span></div>
+                            <div class="sidebar-info-row"><span class="label">End Date</span><span class="value">${new Date(data.endDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span></div>
+                            <div class="sidebar-info-row"><span class="label">Reg Deadline</span><span class="value" style="color:var(--secondary);">${new Date(data.regDeadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span></div>
+                            <div class="sidebar-info-row"><span class="label">Registered</span><span class="value">${data.registrations || 0}</span></div>
+                            <button class="sidebar-register-btn" id="sidebarRegBtn" onclick="openRegModal()">REGISTER NOW</button>
+                        </div>
+                        <div class="sidebar-card">
+                            <h4>VENUE</h4>
+                            <p style="font-size:0.85rem;color:rgba(255,255,255,0.7);">${data.venue}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showTab(name, btn) {
+            document.querySelectorAll('.initiative-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.initiative-tab-content').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('tab-' + name).classList.add('active');
+        }
+
+        function openRegModal() {
+            if (!currentUser) { window.location.href = 'index.html'; return; }
+            document.getElementById('modalInitTitle').textContent = initiativeData.title;
+            document.getElementById('modalInitId').value = initiativeData._id;
+            document.getElementById('regNameInput').value = currentUser.name;
+            document.getElementById('regEmailInput').value = currentUser.email;
+            document.getElementById('regTeamGroup').style.display = initiativeData.teamSize === 'Individual' ? 'none' : 'block';
+            document.getElementById('regFormSection').style.display = 'block';
+            document.getElementById('regSuccessSection').style.display = 'none';
+            openModal('regModal');
+        }
+
+        async function submitRegistration() {
+            const id = document.getElementById('modalInitId').value;
+            try {
+                await apiFetch('/initiatives/' + id + '/register', {
+                    method: 'POST',
+                    body: JSON.stringify({ teamName: document.getElementById('regTeamNameInput')?.value || '' })
+                });
+                document.getElementById('regFormSection').style.display = 'none';
+                document.getElementById('regSuccessSection').style.display = 'block';
+                document.getElementById('sidebarRegBtn').textContent = 'REGISTERED ✓';
+                document.getElementById('sidebarRegBtn').classList.add('registered');
+                initiativeData.registrations = (initiativeData.registrations || 0) + 1;
+                showNotification('Registration successful!');
+            } catch (err) {
+                showNotification(err.message || 'Registration failed');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            if (!id) { document.getElementById('initiativeContent').innerHTML = '<div class="init-loading">No initiative specified.</div>'; return; }
+
+            if (authToken) {
+                try {
+                    const profile = await apiFetch('/auth/profile');
+                    currentUser = profile;
+                } catch { authToken = null; localStorage.removeItem('missilex_token'); }
+            }
+            updateNav();
+
+            try {
+                const data = await apiFetch('/initiatives/' + id);
+                renderInitiativePage(data);
+            } catch (err) {
+                document.getElementById('initiativeContent').innerHTML = '<div class="init-loading">Initiative not found.</div>';
+            }
+        });
+    </script>
+</body>
+</html>

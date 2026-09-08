@@ -3369,6 +3369,460 @@ nav.scrolled {
     color: #fff;
 }
 
+/* Initiatives / Hackathons */
+.initiative-filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.initiatives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.initiative-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+
+.initiative-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+}
+
+.initiative-banner {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.initiative-body {
+    padding: 20px;
+}
+
+.initiative-meta {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.initiative-type-badge {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.initiative-type-badge.hackathon {
+    background: rgba(0,212,255,0.1);
+    color: var(--primary);
+    border: 1px solid rgba(0,212,255,0.3);
+}
+
+.initiative-type-badge.internship {
+    background: rgba(255,107,53,0.1);
+    color: var(--secondary);
+    border: 1px solid rgba(255,107,53,0.3);
+}
+
+.initiative-type-badge.project {
+    background: rgba(0,255,136,0.1);
+    color: #00ff88;
+    border: 1px solid rgba(0,255,136,0.3);
+}
+
+.initiative-mode {
+    font-size: 0.65rem;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+}
+
+.initiative-fee {
+    font-size: 0.65rem;
+    color: #00ff88;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border: 1px solid rgba(0,255,136,0.3);
+    border-radius: 4px;
+}
+
+.initiative-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.initiative-desc {
+    font-size: 0.85rem;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.initiative-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.initiative-info-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.6);
+}
+
+.initiative-info-row .label {
+    color: var(--gray);
+    min-width: 80px;
+}
+
+.initiative-info-row .value {
+    color: #fff;
+}
+
+.initiative-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.initiative-reg-count {
+    font-size: 0.7rem;
+    color: var(--gray);
+}
+
+.initiative-register-btn {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    padding: 8px 20px;
+    background: var(--primary);
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.3s;
+}
+
+.initiative-register-btn:hover {
+    background: #fff;
+}
+
+.initiative-register-btn.registered {
+    background: rgba(0,255,136,0.2);
+    color: #00ff88;
+    border: 1px solid rgba(0,255,136,0.3);
+    cursor: default;
+}
+
+/* Initiative Detail Page */
+.initiative-hero {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.initiative-detail-header {
+    padding: 40px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.initiative-detail-meta {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.initiative-detail-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.initiative-detail-desc {
+    font-size: 1.1rem;
+    color: var(--gray);
+    line-height: 1.7;
+    max-width: 800px;
+}
+
+.initiative-detail-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+}
+
+.initiative-detail-main h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    color: var(--primary);
+    margin-bottom: 16px;
+    letter-spacing: 0.1em;
+}
+
+.initiative-detail-main p {
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.initiative-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.initiative-tab {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.initiative-tab.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
+.initiative-tab:hover {
+    color: #fff;
+}
+
+.initiative-tab-content {
+    display: none;
+}
+
+.initiative-tab-content.active {
+    display: block;
+}
+
+.initiative-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.timeline-step {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    border-left: 3px solid rgba(255,255,255,0.1);
+}
+
+.timeline-step.active {
+    border-left-color: var(--primary);
+    background: rgba(0,212,255,0.05);
+}
+
+.timeline-step-date {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.7rem;
+    color: var(--primary);
+    min-width: 60px;
+}
+
+.timeline-step-event {
+    font-size: 0.85rem;
+    color: #fff;
+}
+
+.challenge-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.challenge-tag {
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    background: rgba(255,107,53,0.1);
+    border: 1px solid rgba(255,107,53,0.3);
+    border-radius: 20px;
+    color: var(--secondary);
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    padding: 16px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+}
+
+.faq-q {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.85rem;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.faq-a {
+    font-size: 0.85rem;
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* Initiative Sidebar */
+.initiative-sidebar {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+}
+
+.sidebar-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.sidebar-card h4 {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.8rem;
+    color: var(--primary);
+    margin-bottom: 16px;
+    letter-spacing: 0.1em;
+}
+
+.sidebar-info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.8rem;
+}
+
+.sidebar-info-row .label {
+    color: var(--gray);
+}
+
+.sidebar-info-row .value {
+    color: #fff;
+    font-weight: 600;
+}
+
+.sidebar-register-btn {
+    width: 100%;
+    padding: 14px;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    background: var(--primary);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.3s;
+    margin-top: 16px;
+}
+
+.sidebar-register-btn:hover {
+    background: #fff;
+}
+
+.sidebar-register-btn.registered {
+    background: rgba(0,255,136,0.2);
+    color: #00ff88;
+    border: 1px solid rgba(0,255,136,0.3);
+    cursor: default;
+}
+
+/* Registration Modal */
+.reg-form-group {
+    margin-bottom: 16px;
+}
+
+.reg-form-group label {
+    display: block;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--gray);
+    margin-bottom: 6px;
+}
+
+.reg-form-group input,
+.reg-form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+}
+
+.reg-form-group input:focus,
+.reg-form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.reg-success {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.reg-success-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+}
+
+.reg-success h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.2rem;
+    color: #00ff88;
+    margin-bottom: 8px;
+}
+
+.reg-success p {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
 @media (max-width: 768px) {
     .about-vision-mission { grid-template-columns: 1fr; }
     .kalam-highlights { grid-template-columns: 1fr; }
@@ -3376,4 +3830,7 @@ nav.scrolled {
     .org-quick-stats { grid-template-columns: 1fr 1fr; }
     .news-item { flex-direction: column; gap: 8px; }
     .news-detail-title { font-size: 1.4rem; }
+    .initiatives-grid { grid-template-columns: 1fr; }
+    .initiative-detail-grid { grid-template-columns: 1fr; }
+    .initiative-detail-title { font-size: 1.4rem; }
 }

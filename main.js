@@ -747,6 +747,115 @@ const orgData = {
     ]
 };
 
+// ========== INITIATIVES ==========
+let allInitiatives = [];
+let userRegistrations = [];
+
+async function loadInitiatives() {
+    try {
+        allInitiatives = await apiFetch('/initiatives');
+        renderInitiatives(allInitiatives);
+    } catch (err) { console.error('Failed to load initiatives:', err); }
+}
+
+function renderInitiatives(list) {
+    const grid = document.getElementById('initiativesGrid');
+    if (!grid) return;
+    if (list.length === 0) {
+        grid.innerHTML = '<p style="color:var(--gray);text-align:center;grid-column:1/-1;">No initiatives found.</p>';
+        return;
+    }
+    grid.innerHTML = list.map(init => {
+        const isRegistered = userRegistrations.some(r => r.initiativeId === init._id);
+        const spotsLeft = init.teamSize === 'Individual' ? '' : ` | ${init.registrations || 0} teams joined`;
+        return `
+        <div class="initiative-card" onclick="openInitiative('${init._id}')">
+            <img class="initiative-banner" src="${init.banner}" alt="${init.title}" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#1a0a2e,#0f3460)';this.alt='Banner';">
+            <div class="initiative-body">
+                <div class="initiative-meta">
+                    <span class="initiative-type-badge ${init.type}">${init.type}</span>
+                    <span class="initiative-mode">${init.mode}</span>
+                    <span class="initiative-fee">${init.fee}</span>
+                </div>
+                <h3 class="initiative-title">${init.title}</h3>
+                <p class="initiative-desc">${init.description}</p>
+                <div class="initiative-info">
+                    <div class="initiative-info-row"><span class="label">Organizer</span><span class="value">${init.organizer}</span></div>
+                    <div class="initiative-info-row"><span class="label">Deadline</span><span class="value">${new Date(init.regDeadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span></div>
+                    <div class="initiative-info-row"><span class="label">Team Size</span><span class="value">${init.teamSize}</span></div>
+                    <div class="initiative-info-row"><span class="label">Prizes</span><span class="value">${init.prizes}</span></div>
+                </div>
+                <div class="initiative-footer">
+                    <span class="initiative-reg-count">${init.registrations || 0} registered${spotsLeft}</span>
+                    <button class="initiative-register-btn ${isRegistered ? 'registered' : ''}" onclick="event.stopPropagation();${isRegistered ? '' : `registerForInitiative('${init._id}')`}">
+                        ${isRegistered ? 'REGISTERED ✓' : 'REGISTER NOW'}
+                    </button>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function openInitiative(id) {
+    window.location.href = 'initiative.html?id=' + id;
+}
+
+async function registerForInitiative(id) {
+    if (!currentUser) { openModal('loginModal'); return; }
+    const init = allInitiatives.find(i => i._id === id);
+    if (!init) return;
+
+    const modal = document.getElementById('initiativeRegModal');
+    document.getElementById('regInitTitle').textContent = init.title;
+    document.getElementById('regInitId').value = id;
+    document.getElementById('regInitTeamSize').textContent = init.teamSize;
+
+    const teamSection = document.getElementById('regTeamSection');
+    teamSection.style.display = init.teamSize === 'Individual' ? 'none' : 'block';
+
+    document.getElementById('initiativeRegForm').style.display = 'block';
+    document.getElementById('initiativeRegSuccess').style.display = 'none';
+    openModal('initiativeRegModal');
+}
+
+async function handleInitiativeRegistration(e) {
+    e.preventDefault();
+    const id = document.getElementById('regInitId').value;
+    try {
+        await apiFetch('/initiatives/' + id + '/register', {
+            method: 'POST',
+            body: JSON.stringify({
+                teamName: document.getElementById('regTeamName')?.value || ''
+            })
+        });
+        document.getElementById('initiativeRegForm').style.display = 'none';
+        document.getElementById('initiativeRegSuccess').style.display = 'block';
+        await loadUserRegistrations();
+        renderInitiatives(allInitiatives);
+    } catch (err) {
+        showNotification(err.message || 'Registration failed');
+    }
+}
+
+async function loadUserRegistrations() {
+    if (!currentUser || !authToken) { userRegistrations = []; return; }
+    try {
+        userRegistrations = await apiFetch('/user/initiatives');
+    } catch (err) { userRegistrations = []; }
+}
+
+function initInitiativeFilters() {
+    document.querySelectorAll('[data-ifilter]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('[data-ifilter]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.dataset.ifilter;
+            if (filter === 'all') renderInitiatives(allInitiatives);
+            else renderInitiatives(allInitiatives.filter(i => i.type === filter));
+        });
+    });
+}
+
 function initOrgSections() {
     Object.keys(orgData).forEach(org => {
         const tbody = document.getElementById(org + '-table-body');
@@ -922,7 +1031,8 @@ async function downloadPitchCertificate() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    init(); initNavigation(); initScrollProgress(); initEventListeners(); initOrgSections();
+    init(); initNavigation(); initScrollProgress(); initEventListeners(); initOrgSections(); initInitiativeFilters();
+    loadInitiatives();
     document.querySelectorAll('.org-img img').forEach(img => {
         img.onerror = function() { this.classList.add('broken'); };
         if (img.complete && img.naturalWidth === 0) img.classList.add('broken');
@@ -934,7 +1044,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             updateUserUI();
             document.getElementById('dashboard').style.display = 'block';
             await loadUserData();
+            await loadUserRegistrations();
+            renderInitiatives(allInitiatives);
             updateDashboard();
+            if (document.getElementById('regParticipantName')) {
+                document.getElementById('regParticipantName').value = currentUser.name;
+                document.getElementById('regParticipantEmail').value = currentUser.email;
+            }
         } catch (err) {
             authToken = null;
             localStorage.removeItem('missilex_token');

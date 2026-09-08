@@ -20,6 +20,8 @@ const projects = Datastore.create({ filename: path.join(dbPath, 'projects.db'), 
 const pitches = Datastore.create({ filename: path.join(dbPath, 'pitches.db'), autoload: true });
 const certificates = Datastore.create({ filename: path.join(dbPath, 'certificates.db'), autoload: true });
 const progress = Datastore.create({ filename: path.join(dbPath, 'progress.db'), autoload: true });
+const initiatives = Datastore.create({ filename: path.join(dbPath, 'initiatives.db'), autoload: true });
+const registrations = Datastore.create({ filename: path.join(dbPath, 'registrations.db'), autoload: true });
 
 // Middleware
 app.use(cors());
@@ -380,6 +382,202 @@ app.post('/api/contact', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+
+// ========== INITIATIVES (Hackathons / Internships / Projects) ==========
+
+const defaultInitiatives = [
+  {
+    title: 'AI Builder Cup 2026',
+    type: 'hackathon',
+    mode: 'Hybrid',
+    fee: 'Free',
+    banner: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800',
+    description: 'Build AI-powered solutions for real-world problems. Open to students and developers across India.',
+    organizer: 'MissileX × Google Cloud',
+    startDate: '2026-10-01',
+    endDate: '2026-10-04',
+    regDeadline: '2026-09-30',
+    venue: 'Online + Noida Campus',
+    teamSize: '2-4 members',
+    prizes: '₹2,00,000 total prize pool',
+    challenges: ['AI for Defence', 'Space Tech', 'Cyber Security', 'Drone Systems'],
+    timeline: [
+      { date: 'Oct 01', event: 'Registration Opens', status: 'upcoming' },
+      { date: 'Oct 04', event: 'Hackathon Starts', status: 'upcoming' },
+      { date: 'Oct 05', event: 'Mid-check Review', status: 'upcoming' },
+      { date: 'Oct 06', event: 'Submission Deadline', status: 'upcoming' },
+      { date: 'Oct 08', event: 'Results Announcement', status: 'upcoming' }
+    ],
+    faqs: [
+      { q: 'Who can participate?', a: 'Any student or developer currently enrolled in or graduated from an Indian institution.' },
+      { q: 'Is it free?', a: 'Yes, registration is completely free.' },
+      { q: 'Can I participate solo?', a: 'Teams of 2-4 members are required. You can find teammates on our Discord.' }
+    ],
+    status: 'upcoming',
+    registrations: 0
+  },
+  {
+    title: 'Space Research Internship',
+    type: 'internship',
+    mode: 'Remote',
+    fee: 'Free',
+    banner: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800',
+    description: '3-month research internship in satellite data analysis, orbital mechanics, and mission planning under ISRO-guided mentors.',
+    organizer: 'MissileX Research Lab',
+    startDate: '2026-11-01',
+    endDate: '2027-01-31',
+    regDeadline: '2026-10-25',
+    venue: 'Remote',
+    teamSize: 'Individual',
+    prizes: 'Certificate + Letter of Recommendation',
+    challenges: ['Satellite Image Processing', 'Orbital Mechanics', 'Mission Planning'],
+    timeline: [
+      { date: 'Oct 15', event: 'Applications Open', status: 'upcoming' },
+      { date: 'Oct 25', event: 'Application Deadline', status: 'upcoming' },
+      { date: 'Oct 28', event: 'Shortlist Announcement', status: 'upcoming' },
+      { date: 'Nov 01', event: 'Internship Begins', status: 'upcoming' },
+      { date: 'Jan 31', event: 'Internship Ends', status: 'upcoming' }
+    ],
+    faqs: [
+      { q: 'What is the stipend?', a: 'This is a research internship with certificate and LOR. Stipend may be offered based on performance.' },
+      { q: 'What skills are required?', a: 'Python, MATLAB, and basic understanding of aerospace concepts.' },
+      { q: 'How many hours per week?', a: '15-20 hours per week, flexible schedule.' }
+    ],
+    status: 'upcoming',
+    registrations: 0
+  },
+  {
+    title: 'Missile Guidance Challenge',
+    type: 'hackathon',
+    mode: 'Virtual',
+    fee: 'Free',
+    banner: 'https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=800',
+    description: 'Design and simulate inertial guidance algorithms for precision strike. Open to engineering students and defence enthusiasts.',
+    organizer: 'MissileX × DRDO',
+    startDate: '2026-09-15',
+    endDate: '2026-09-20',
+    regDeadline: '2026-09-12',
+    venue: 'Online',
+    teamSize: '1-3 members',
+    prizes: '₹1,00,000 + Internship Offer',
+    challenges: ['Inertial Navigation', 'Trajectory Optimization', 'Control Systems'],
+    timeline: [
+      { date: 'Sep 01', event: 'Registration Opens', status: 'active' },
+      { date: 'Sep 12', event: 'Registration Closes', status: 'upcoming' },
+      { date: 'Sep 15', event: 'Challenge Starts', status: 'upcoming' },
+      { date: 'Sep 20', event: 'Submission Deadline', status: 'upcoming' },
+      { date: 'Sep 22', event: 'Results', status: 'upcoming' }
+    ],
+    faqs: [
+      { q: 'What tools can I use?', a: 'Python, C++, MATLAB, or any simulation tool of your choice.' },
+      { q: 'Do I need prior defence knowledge?', a: 'Basic understanding of physics and control systems is helpful but not mandatory.' }
+    ],
+    status: 'active',
+    registrations: 47
+  },
+  {
+    title: 'Drone Tech Project Sprint',
+    type: 'project',
+    mode: 'Hybrid',
+    fee: 'Free',
+    banner: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800',
+    description: 'Build autonomous drone navigation systems using computer vision and reinforcement learning in a 4-week project sprint.',
+    organizer: 'MissileX × IAF',
+    startDate: '2026-10-10',
+    endDate: '2026-11-07',
+    regDeadline: '2026-10-08',
+    venue: 'Remote + Noida Lab',
+    teamSize: '2-3 members',
+    prizes: '₹50,000 + Drone Kit',
+    challenges: ['Visual SLAM', 'Path Planning', 'Obstacle Avoidance'],
+    timeline: [
+      { date: 'Oct 01', event: 'Registration Opens', status: 'upcoming' },
+      { date: 'Oct 08', event: 'Registration Closes', status: 'upcoming' },
+      { date: 'Oct 10', event: 'Sprint Starts', status: 'upcoming' },
+      { date: 'Oct 24', event: 'Mid-review', status: 'upcoming' },
+      { date: 'Nov 07', event: 'Final Demo', status: 'upcoming' }
+    ],
+    faqs: [
+      { q: 'Do I need a drone?', a: 'No, simulation environments will be provided. Hardware access available at Noida lab.' },
+      { q: 'What programming language?', a: 'Python primarily, with ROS2 integration.' }
+    ],
+    status: 'upcoming',
+    registrations: 23
+  }
+];
+
+app.get('/api/initiatives', async (req, res) => {
+  try {
+    let all = await initiatives.find({}).sort({ createdAt: -1 });
+    if (all.length === 0) {
+      for (const init of defaultInitiatives) {
+        await initiatives.insert({ ...init, createdAt: new Date().toISOString() });
+      }
+      all = await initiatives.find({}).sort({ createdAt: -1 });
+    }
+    res.json(all);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/initiatives/:id', async (req, res) => {
+  try {
+    const item = await initiatives.findOne({ _id: req.params.id });
+    if (!item) return res.status(404).json({ error: 'Not found' });
+    res.json(item);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/initiatives', async (req, res) => {
+  try {
+    const item = await initiatives.insert({ ...req.body, registrations: 0, createdAt: new Date().toISOString() });
+    res.json(item);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/initiatives/:id/register', auth, async (req, res) => {
+  try {
+    const item = await initiatives.findOne({ _id: req.params.id });
+    if (!item) return res.status(404).json({ error: 'Initiative not found' });
+
+    const existing = await registrations.findOne({ initiativeId: req.params.id, userId: req.userId });
+    if (existing) return res.status(400).json({ error: 'Already registered' });
+
+    const user = await users.findOne({ _id: req.userId });
+    await registrations.insert({
+      initiativeId: req.params.id,
+      userId: req.userId,
+      userName: user.name,
+      userEmail: user.email,
+      teamName: req.body.teamName || '',
+      teamMembers: req.body.teamMembers || [],
+      registeredAt: new Date().toISOString(),
+      status: 'registered'
+    });
+
+    await initiatives.update({ _id: req.params.id }, { $inc: { registrations: 1 } });
+    res.json({ message: 'Registered successfully' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/initiatives/:id/registrations', auth, async (req, res) => {
+  try {
+    const regs = await registrations.find({ initiativeId: req.params.id });
+    res.json(regs);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/user/initiatives', auth, async (req, res) => {
+  try {
+    const regs = await registrations.find({ userId: req.userId });
+    const initiativeIds = regs.map(r => r.initiativeId);
+    const inits = await initiatives.find({ _id: { $in: initiativeIds } });
+    const result = regs.map(r => ({
+      ...r,
+      initiative: inits.find(i => i._id === r.initiativeId)
+    }));
+    res.json(result);
+  } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 // ========== SEED DATA ==========

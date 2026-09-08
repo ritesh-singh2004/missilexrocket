@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initiatives — MissileXRocketSpace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #0a0a0f; color: #fff; margin: 0; }
+        .init-page-header { padding: 120px 20px 40px; max-width: 1200px; margin: 0 auto; }
+        .init-page-title { font-family: 'Orbitron', monospace; font-size: 2.5rem; font-weight: 900; margin-bottom: 12px; }
+        .init-page-desc { color: var(--gray); font-size: 1.1rem; max-width: 700px; }
+        .init-page-grid { max-width: 1200px; margin: 0 auto; padding: 0 20px 80px; }
+        .init-loading { text-align: center; padding: 100px 20px; color: var(--gray); font-family: 'Orbitron', monospace; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon"><span>MX</span></div>
+                <div class="logo-text">
+                    <span class="logo-main">MISSILEX</span>
+                    <span class="logo-sub">ROCKETSPACE</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#initiatives">Initiatives</a>
+                <a href="index.html#programs">Programs</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <div class="nav-actions" id="navActions"></div>
+        </div>
+    </nav>
+
+    <div class="init-page-header">
+        <div class="section-label">INITIATIVES</div>
+        <h1 class="init-page-title">Hackathons, Internships & Projects</h1>
+        <p class="init-page-desc">Participate in exciting hackathons, research internships, and project sprints. Register, build, and win prizes.</p>
+    </div>
+
+    <div style="max-width:1200px;margin:0 auto;padding:0 20px;">
+        <div class="initiative-filters" id="filtersContainer">
+            <button class="filter-btn active" data-ifilter="all">ALL</button>
+            <button class="filter-btn" data-ifilter="hackathon">HACKATHONS</button>
+            <button class="filter-btn" data-ifilter="internship">INTERNSHIPS</button>
+            <button class="filter-btn" data-ifilter="project">PROJECTS</button>
+        </div>
+    </div>
+
+    <div class="init-page-grid">
+        <div class="initiatives-grid" id="initiativesGrid">
+            <div class="init-loading">Loading initiatives...</div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="regModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('regModal')">&times;</button>
+            <h2>REGISTER NOW</h2>
+            <p style="color:var(--gray);margin-bottom:20px;font-size:0.9rem;">Registering for: <strong id="modalInitTitle" style="color:var(--primary);">Event</strong></p>
+            <input type="hidden" id="modalInitId">
+            <div id="regFormSection">
+                <div class="reg-form-group" id="regTeamGroup">
+                    <label>TEAM NAME</label>
+                    <input type="text" id="regTeamNameInput" placeholder="Enter your team name">
+                </div>
+                <div class="reg-form-group">
+                    <label>YOUR NAME</label>
+                    <input type="text" id="regNameInput" disabled>
+                </div>
+                <div class="reg-form-group">
+                    <label>EMAIL</label>
+                    <input type="email" id="regEmailInput" disabled>
+                </div>
+                <button class="sidebar-register-btn" onclick="submitRegistration()">CONFIRM REGISTRATION</button>
+            </div>
+            <div id="regSuccessSection" style="display:none;">
+                <div class="reg-success">
+                    <div class="reg-success-icon">✓</div>
+                    <h3>REGISTRATION SUCCESSFUL!</h3>
+                    <p>You have been registered. Check your email for details.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>MISSILEX ROCKET SPACE</h3>
+                <p class="copyright">&copy; 2026 MISSILEX. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API = window.location.port ? 'http://localhost:5000/api' : '/api';
+        let authToken = localStorage.getItem('missilex_token') || null;
+        let currentUser = null;
+        let allInitiatives = [];
+        let currentInitiative = null;
+
+        async function apiFetch(path, opts = {}) {
+            const headers = { 'Content-Type': 'application/json', ...opts.headers };
+            if (authToken) headers['Authorization'] = 'Bearer ' + authToken;
+            const res = await fetch(API + path, { ...opts, headers });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || 'Request failed');
+            return data;
+        }
+
+        function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow = ''; }
+
+        function showNotification(msg) {
+            const n = document.createElement('div');
+            n.style.cssText = 'position:fixed;top:20px;right:20px;padding:15px 30px;background:#ff6b35;color:white;font-family:Orbitron,monospace;font-size:0.8rem;letter-spacing:0.1em;border-radius:5px;z-index:100000;box-shadow:0 5px 20px rgba(255,107,53,0.4);';
+            n.textContent = msg; document.body.appendChild(n);
+            setTimeout(() => { n.style.opacity = '0'; n.style.transition = 'opacity 0.3s ease'; setTimeout(() => n.remove(), 300); }, 3000);
+        }
+
+        function updateNav() {
+            const na = document.getElementById('navActions');
+            if (currentUser) {
+                na.innerHTML = `<a href="index.html#dashboard" style="font-family:Orbitron,monospace;font-size:0.7rem;color:var(--primary);text-decoration:none;">${currentUser.name.split(' ')[0]}</a>`;
+            } else {
+                na.innerHTML = `<a href="index.html" style="font-family:Orbitron,monospace;font-size:0.7rem;color:var(--primary);text-decoration:none;">LOGIN</a>`;
+            }
+        }
+
+        function renderInitiatives(list) {
+            const grid = document.getElementById('initiativesGrid');
+            if (list.length === 0) {
+                grid.innerHTML = '<p style="color:var(--gray);text-align:center;grid-column:1/-1;">No initiatives found.</p>';
+                return;
+            }
+            grid.innerHTML = list.map(init => `
+                <div class="initiative-card" onclick="window.location.href='initiative.html?id=${init._id}'">
+                    <img class="initiative-banner" src="${init.banner}" alt="${init.title}" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#1a0a2e,#0f3460)';this.style.height='180px';">
+                    <div class="initiative-body">
+                        <div class="initiative-meta">
+                            <span class="initiative-type-badge ${init.type}">${init.type}</span>
+                            <span class="initiative-mode">${init.mode}</span>
+                            <span class="initiative-fee">${init.fee}</span>
+                        </div>
+                        <h3 class="initiative-title">${init.title}</h3>
+                        <p class="initiative-desc">${init.description}</p>
+                        <div class="initiative-info">
+                            <div class="initiative-info-row"><span class="label">Organizer</span><span class="value">${init.organizer}</span></div>
+                            <div class="initiative-info-row"><span class="label">Deadline</span><span class="value">${new Date(init.regDeadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span></div>
+                            <div class="initiative-info-row"><span class="label">Team Size</span><span class="value">${init.teamSize}</span></div>
+                            <div class="initiative-info-row"><span class="label">Prizes</span><span class="value">${init.prizes}</span></div>
+                        </div>
+                        <div class="initiative-footer">
+                            <span class="initiative-reg-count">${init.registrations || 0} registered</span>
+                            <button class="initiative-register-btn" onclick="event.stopPropagation();openRegModal('${init._id}','${init.title.replace(/'/g, "\\'")}','${init.teamSize}')">REGISTER NOW</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openRegModal(id, title, teamSize) {
+            if (!currentUser) { window.location.href = 'index.html'; return; }
+            currentInitiative = allInitiatives.find(i => i._id === id);
+            document.getElementById('modalInitTitle').textContent = title;
+            document.getElementById('modalInitId').value = id;
+            document.getElementById('regNameInput').value = currentUser.name;
+            document.getElementById('regEmailInput').value = currentUser.email;
+            document.getElementById('regTeamGroup').style.display = teamSize === 'Individual' ? 'none' : 'block';
+            document.getElementById('regFormSection').style.display = 'block';
+            document.getElementById('regSuccessSection').style.display = 'none';
+            openModal('regModal');
+        }
+
+        async function submitRegistration() {
+            const id = document.getElementById('modalInitId').value;
+            try {
+                await apiFetch('/initiatives/' + id + '/register', {
+                    method: 'POST',
+                    body: JSON.stringify({ teamName: document.getElementById('regTeamNameInput')?.value || '' })
+                });
+                document.getElementById('regFormSection').style.display = 'none';
+                document.getElementById('regSuccessSection').style.display = 'block';
+                showNotification('Registration successful!');
+            } catch (err) {
+                showNotification(err.message || 'Registration failed');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (authToken) {
+                try {
+                    const profile = await apiFetch('/auth/profile');
+                    currentUser = profile;
+                } catch { authToken = null; localStorage.removeItem('missilex_token'); }
+            }
+            updateNav();
+
+            try {
+                allInitiatives = await apiFetch('/initiatives');
+                renderInitiatives(allInitiatives);
+            } catch (err) {
+                document.getElementById('initiativesGrid').innerHTML = '<div class="init-loading">Failed to load initiatives.</div>';
+            }
+
+            document.querySelectorAll('[data-ifilter]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('[data-ifilter]').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const filter = btn.dataset.ifilter;
+                    if (filter === 'all') renderInitiatives(allInitiatives);
+                    else renderInitiatives(allInitiatives.filter(i => i.type === filter));
+                });
+            });
+        });
+    </script>
+</body>
+</html>

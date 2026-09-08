@@ -513,6 +513,24 @@
             </div>
         </section>
 
+        <section id="initiatives" class="section">
+            <div class="section-content">
+                <div class="section-label">INITIATIVES</div>
+                <h2 class="section-title">Hackathons, <span class="accent">Internships</span> & Projects</h2>
+                <p style="color:var(--gray);max-width:700px;margin-bottom:40px;font-size:1.1rem;">Participate in exciting hackathons, research internships, and project sprints. Register, build, and win prizes.</p>
+                <div class="initiative-filters">
+                    <button class="filter-btn active" data-ifilter="all">ALL</button>
+                    <button class="filter-btn" data-ifilter="hackathon">HACKATHONS</button>
+                    <button class="filter-btn" data-ifilter="internship">INTERNSHIPS</button>
+                    <button class="filter-btn" data-ifilter="project">PROJECTS</button>
+                </div>
+                <div class="initiatives-grid" id="initiativesGrid"></div>
+                <div style="text-align:center;margin-top:40px;">
+                    <a href="initiatives.html" class="news-view-all">View all initiatives &#8599;</a>
+                </div>
+            </div>
+        </section>
+
         <section id="projects" class="section">
             <div class="section-content">
                 <div class="section-label">NASA / ISRO PROJECTS</div>
@@ -1181,6 +1199,38 @@
                 </div>
             </div>
             <button class="download-cert-btn" onclick="downloadPitchCertificate()" style="background:var(--secondary);">DOWNLOAD CERTIFICATE</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="initiativeRegModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('initiativeRegModal')">&times;</button>
+            <h2>REGISTER FOR EVENT</h2>
+            <p style="color:var(--gray);margin-bottom:20px;font-size:0.9rem;">Registering for: <strong id="regInitTitle" style="color:var(--primary);">Event Name</strong></p>
+            <input type="hidden" id="regInitId">
+            <div id="initiativeRegForm">
+                <div class="reg-form-group" id="regTeamSection">
+                    <label>TEAM NAME</label>
+                    <input type="text" id="regTeamName" placeholder="Enter your team name">
+                    <p style="font-size:0.7rem;color:var(--gray);margin-top:4px;">Team size: <span id="regInitTeamSize">2-4</span></p>
+                </div>
+                <div class="reg-form-group">
+                    <label>YOUR NAME</label>
+                    <input type="text" id="regParticipantName" placeholder="Full name" value="" disabled>
+                </div>
+                <div class="reg-form-group">
+                    <label>EMAIL</label>
+                    <input type="email" id="regParticipantEmail" placeholder="Email" value="" disabled>
+                </div>
+                <button class="modal-btn" onclick="handleInitiativeRegistration(event)">CONFIRM REGISTRATION</button>
+            </div>
+            <div id="initiativeRegSuccess" style="display:none;">
+                <div class="reg-success">
+                    <div class="reg-success-icon">✓</div>
+                    <h3>REGISTRATION SUCCESSFUL!</h3>
+                    <p>You have been registered for this event. Check your email for confirmation.</p>
+                </div>
+            </div>
         </div>
     </div>
 
