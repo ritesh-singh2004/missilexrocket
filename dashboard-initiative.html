@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — MissileXRocketSpace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{background:#0a0a0f;color:#fff;margin:0;font-family:'Rajdhani',sans-serif;}
+        .dash-wrap{display:grid;grid-template-columns:1fr 320px;gap:30px;max-width:1400px;margin:0 auto;padding:100px 20px 60px;}
+        .dash-main{min-width:0;}
+        .dash-sidebar{position:sticky;top:100px;align-self:start;}
+        .dash-tabs{display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:30px;overflow-x:auto;}
+        .dash-tab{font-family:'Orbitron',monospace;font-size:0.7rem;letter-spacing:0.08em;padding:12px 20px;background:none;border:none;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.3s;}
+        .dash-tab.active{color:var(--primary);border-bottom-color:var(--primary);}
+        .dash-tab:hover{color:#fff;}
+        .tab-panel{display:none;}
+        .tab-panel.active{display:block;}
+        .info-banner{background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.15);border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:0.85rem;color:rgba(255,255,255,0.7);}
+        .info-banner strong{color:var(--primary);}
+        .roadmap-step{display:flex;align-items:flex-start;gap:16px;padding:16px;background:rgba(255,255,255,0.02);border-radius:8px;margin-bottom:8px;border-left:3px solid rgba(255,255,255,0.08);transition:all 0.3s;}
+        .roadmap-step.completed{border-left-color:#00ff88;background:rgba(0,255,136,0.03);}
+        .roadmap-step.active{border-left-color:var(--primary);background:rgba(0,212,255,0.05);}
+        .roadmap-step.upcoming{opacity:0.6;}
+        .step-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;flex-shrink:0;margin-top:2px;}
+        .step-icon.done{background:#00ff88;color:#000;}
+        .step-icon.current{background:var(--primary);color:#000;}
+        .step-icon.pending{background:rgba(255,255,255,0.1);color:var(--gray);}
+        .step-content{flex:1;}
+        .step-title{font-family:'Orbitron',monospace;font-size:0.85rem;color:#fff;margin-bottom:4px;}
+        .step-title .badge{font-size:0.6rem;padding:2px 8px;border-radius:4px;margin-left:8px;font-weight:600;}
+        .badge-live{background:#00ff88;color:#000;}
+        .badge-done{background:rgba(0,255,136,0.2);color:#00ff88;}
+        .step-date{font-size:0.75rem;color:var(--gray);}
+        .team-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:20px;margin-bottom:16px;}
+        .team-card h4{font-family:'Orbitron',monospace;font-size:0.85rem;color:var(--primary);margin-bottom:12px;}
+        .member-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+        .member-avatar{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#000;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:0.75rem;font-weight:700;}
+        .member-name{font-size:0.85rem;color:#fff;}
+        .member-role{font-size:0.7rem;color:var(--gray);}
+        .sub-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:20px;margin-bottom:16px;}
+        .sub-card h4{font-family:'Orbitron',monospace;font-size:0.9rem;color:#fff;margin-bottom:8px;}
+        .sub-card p{font-size:0.85rem;color:var(--gray);line-height:1.5;}
+        .sub-status{display:inline-block;font-size:0.65rem;padding:4px 10px;border-radius:4px;font-family:'Orbitron',monospace;letter-spacing:0.1em;margin-top:8px;}
+        .sub-status.submitted{background:rgba(0,212,255,0.15);color:var(--primary);}
+        .sub-status.reviewed{background:rgba(0,255,136,0.15);color:#00ff88;}
+        .ann-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:20px;margin-bottom:12px;}
+        .ann-card h4{font-family:'Orbitron',monospace;font-size:0.85rem;color:#fff;margin-bottom:6px;}
+        .ann-card p{font-size:0.85rem;color:var(--gray);line-height:1.5;}
+        .ann-card .ann-date{font-size:0.7rem;color:var(--gray);margin-top:8px;}
+        .ann-type{display:inline-block;font-size:0.6rem;padding:2px 8px;border-radius:4px;margin-bottom:8px;font-family:'Orbitron',monospace;letter-spacing:0.1em;}
+        .ann-type.general{background:rgba(0,212,255,0.15);color:var(--primary);}
+        .ann-type.winner{background:rgba(255,215,0,0.15);color:#ffd700;}
+        .ann-type.important{background:rgba(255,107,53,0.15);color:var(--secondary);}
+        .winner-card{background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,107,53,0.05));border:1px solid rgba(255,215,0,0.2);border-radius:10px;padding:20px;margin-bottom:12px;display:flex;gap:16px;align-items:center;}
+        .winner-rank{font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;min-width:60px;text-align:center;}
+        .winner-rank.gold{color:#ffd700;}
+        .winner-rank.silver{color:#c0c0c0;}
+        .winner-rank.bronze{color:#cd7f32;}
+        .winner-info h4{font-family:'Orbitron',monospace;font-size:0.9rem;color:#fff;margin-bottom:4px;}
+        .winner-info p{font-size:0.8rem;color:var(--gray);}
+        .winner-info .prize{color:#ffd700;font-weight:700;}
+        .challenge-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:20px;margin-bottom:12px;cursor:pointer;transition:border-color 0.3s;}
+        .challenge-card:hover{border-color:var(--primary);}
+        .challenge-card h4{font-family:'Orbitron',monospace;font-size:0.85rem;color:var(--primary);margin-bottom:6px;}
+        .challenge-card p{font-size:0.8rem;color:var(--gray);}
+        .form-group{margin-bottom:16px;}
+        .form-group label{display:block;font-family:'Orbitron',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--gray);margin-bottom:6px;}
+        .form-group input,.form-group textarea,.form-group select{width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:0.9rem;box-sizing:border-box;}
+        .form-group textarea{min-height:100px;resize:vertical;}
+        .form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--primary);}
+        .dash-btn{font-family:'Orbitron',monospace;font-size:0.75rem;letter-spacing:0.1em;padding:12px 28px;border:none;border-radius:6px;cursor:pointer;font-weight:700;transition:all 0.3s;}
+        .dash-btn.primary{background:var(--primary);color:#000;}
+        .dash-btn.primary:hover{background:#fff;}
+        .dash-btn.secondary{background:rgba(255,255,255,0.05);color:#fff;border:1px solid rgba(255,255,255,0.1);}
+        .dash-btn.danger{background:rgba(255,50,50,0.2);color:#ff5050;border:1px solid rgba(255,50,50,0.3);}
+        .countdown-box{text-align:center;padding:16px;background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);border-radius:8px;margin-bottom:16px;}
+        .countdown-label{font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--gray);margin-bottom:8px;}
+        .countdown-time{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;color:var(--secondary);}
+        .user-card{text-align:center;padding:20px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;margin-bottom:16px;}
+        .user-card .avatar{width:60px;height:60px;border-radius:50%;background:var(--primary);color:#000;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;margin:0 auto 12px;}
+        .user-card h4{font-family:'Orbitron',monospace;font-size:0.9rem;color:#fff;margin-bottom:4px;}
+        .user-card p{font-size:0.8rem;color:var(--gray);}
+        .empty-state{text-align:center;padding:60px 20px;color:var(--gray);}
+        .empty-state .icon{font-size:3rem;margin-bottom:16px;opacity:0.3;}
+        .invite-row{display:flex;gap:8px;margin-bottom:16px;}
+        .invite-row input{flex:1;}
+        @media(max-width:900px){.dash-wrap{grid-template-columns:1fr;}.dash-sidebar{position:static;}}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon"><span>MX</span></div>
+                <div class="logo-text"><span class="logo-main">MISSILEX</span><span class="logo-sub">ROCKETSPACE</span></div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#initiatives">Initiatives</a>
+                <a href="index.html#projects">Projects</a>
+            </div>
+            <div class="nav-actions" id="navActions"></div>
+        </div>
+    </nav>
+
+    <div class="dash-wrap">
+        <div class="dash-main">
+            <div class="info-banner" id="infoBanner">Loading...</div>
+            <div class="dash-tabs" id="dashTabs">
+                <button class="dash-tab active" onclick="switchTab('roadmap',this)">Roadmap</button>
+                <button class="dash-tab" onclick="switchTab('team',this)">Team Management</button>
+                <button class="dash-tab" onclick="switchTab('submissions',this)">Submissions</button>
+                <button class="dash-tab" onclick="switchTab('challenges',this)">Challenges</button>
+                <button class="dash-tab" onclick="switchTab('announcements',this)">Announcements</button>
+                <button class="dash-tab" onclick="switchTab('winners',this)">Winners</button>
+            </div>
+
+            <div class="tab-panel active" id="panel-roadmap">
+                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:16px;">ROADMAP</h3>
+                <p style="color:var(--gray);font-size:0.85rem;margin-bottom:24px;">Follow each step carefully, complete all tasks, and achieve the desired outcome.</p>
+                <div id="roadmapSteps"></div>
+            </div>
+
+            <div class="tab-panel" id="panel-team">
+                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:16px;">TEAM MANAGEMENT</h3>
+                <p style="color:var(--gray);font-size:0.85rem;margin-bottom:24px;">Build your dream team! Onboard like-minded individuals.</p>
+                <div id="teamContent"></div>
+            </div>
+
+            <div class="tab-panel" id="panel-submissions">
+                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:16px;">SUBMISSIONS</h3>
+                <p style="color:var(--gray);font-size:0.85rem;margin-bottom:24px;">Submit your project for evaluation.</p>
+                <div id="submissionsContent"></div>
+            </div>
+
+            <div class="tab-panel" id="panel-challenges">
+                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:16px;">CHALLENGES</h3>
+                <p style="color:var(--gray);font-size:0.85rem;margin-bottom:24px;">View the detailed listing of all assigned challenges.</p>
+                <div id="challengesContent"></div>
+            </div>
+
+            <div class="tab-panel" id="panel-announcements">
+                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:16px;">ANNOUNCEMENTS</h3>
+                <p style="color:var(--gray);font-size:0.85rem;margin-bottom:24px;">Stay informed with all the latest announcements and updates.</p>
+                <div id="announcementsContent"></div>
+            </div>
+
+            <div class="tab-panel" id="panel-winners">
+                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:#ffd700;margin-bottom:16px;">WINNERS & TOP 10</h3>
+                <p style="color:var(--gray);font-size:0.85rem;margin-bottom:24px;">Congratulations to the selected participants!</p>
+                <div id="winnersContent"></div>
+            </div>
+        </div>
+
+        <div class="dash-sidebar">
+            <div class="user-card" id="userCard">
+                <div class="avatar" id="userAvatarDash">-</div>
+                <h4 id="userNameDash">-</h4>
+                <p id="userEmailDash">-</p>
+            </div>
+            <div class="countdown-box" id="countdownBox">
+                <div class="countdown-label">SUBMISSION CLOSING IN</div>
+                <div class="countdown-time" id="countdownTime">--d : --h : --m</div>
+            </div>
+            <div class="team-card" id="myTeamCard" style="display:none;">
+                <h4>MY TEAM</h4>
+                <div id="myTeamInfo"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="createTeamModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('createTeamModal')">&times;</button>
+            <h2>CREATE TEAM</h2>
+            <div class="form-group"><label>TEAM NAME</label><input type="text" id="newTeamName" placeholder="Enter team name"></div>
+            <button class="dash-btn primary" onclick="createTeam()" style="width:100%;">CREATE TEAM</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="submitProjectModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('submitProjectModal')">&times;</button>
+            <h2>SUBMIT PROJECT</h2>
+            <div class="form-group"><label>PROJECT TITLE</label><input type="text" id="subTitle" placeholder="Your project title"></div>
+            <div class="form-group"><label>DESCRIPTION</label><textarea id="subDesc" placeholder="Describe your project..."></textarea></div>
+            <div class="form-group"><label>GITHUB / REPO URL</label><input type="url" id="subRepo" placeholder="https://github.com/..."></div>
+            <div class="form-group"><label>DEMO URL</label><input type="url" id="subDemo" placeholder="https://..."></div>
+            <div class="form-group"><label>PRESENTATION URL</label><input type="url" id="subPres" placeholder="https://docs.google.com/..."></div>
+            <button class="dash-btn primary" onclick="submitProject()" style="width:100%;">SUBMIT PROJECT</button>
+        </div>
+    </div>
+
+    <footer class="footer"><div class="footer-content"><div class="footer-brand"><h3>MISSILEX ROCKET SPACE</h3><p class="copyright">&copy; 2026 MISSILEX. ALL RIGHTS RESERVED.</p></div></div></footer>
+
+    <script>
+        const API=window.location.port?'http://localhost:5000/api':'/api';
+        let authToken=localStorage.getItem('missilex_token')||null;
+        let currentUser=null,initiativeData=null,myTeam=null,userSubmissions=[],allAnnouncements=[],allWinners=[];
+
+        async function apiFetch(p,o={}){const h={'Content-Type':'application/json',...o.headers};if(authToken)h['Authorization']='Bearer '+authToken;const r=await fetch(API+p,{...o,headers:h});const d=await r.json();if(!r.ok)throw new Error(d.error||'Failed');return d;}
+        function openModal(id){document.getElementById(id).classList.add('active');document.body.style.overflow='hidden';}
+        function closeModal(id){document.getElementById(id).classList.remove('active');document.body.style.overflow='';}
+        function showNotification(m){const n=document.createElement('div');n.style.cssText='position:fixed;top:20px;right:20px;padding:15px 30px;background:#ff6b35;color:white;font-family:Orbitron,monospace;font-size:0.8rem;letter-spacing:0.1em;border-radius:5px;z-index:100000;box-shadow:0 5px 20px rgba(255,107,53,0.4);';n.textContent=m;document.body.appendChild(n);setTimeout(()=>{n.style.opacity='0';n.style.transition='opacity 0.3s';setTimeout(()=>n.remove(),300);},3000);}
+
+        function switchTab(name,btn){document.querySelectorAll('.dash-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('panel-'+name).classList.add('active');}
+
+        function startCountdown(deadline){const el=document.getElementById('countdownTime');function update(){const diff=new Date(deadline)-Date.now();if(diff<=0){el.textContent='CLOSED';return;}const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);el.textContent=d+'d : '+h+'h : '+m+'m : '+s+'s';}update();setInterval(update,1000);}
+
+        async function loadDashboard(){
+            const params=new URLSearchParams(window.location.search);
+            const id=params.get('id');
+            if(!id){document.getElementById('infoBanner').textContent='No initiative specified. Go to Initiatives page.';return;}
+            if(!authToken){window.location.href='index.html';return;}
+            try{currentUser=await apiFetch('/auth/profile');}catch{authToken=null;localStorage.removeItem('missilex_token');window.location.href='index.html';return;}
+            document.getElementById('navActions').innerHTML='<a href="index.html" style="font-family:Orbitron,monospace;font-size:0.7rem;color:var(--primary);text-decoration:none;">HOME</a>';
+            document.getElementById('userAvatarDash').textContent=currentUser.name.charAt(0).toUpperCase();
+            document.getElementById('userNameDash').textContent=currentUser.name;
+            document.getElementById('userEmailDash').textContent=currentUser.email;
+
+            try{
+                initiativeData=await apiFetch('/initiatives/'+id);
+                document.title=initiativeData.title+' — Dashboard';
+                document.getElementById('infoBanner').innerHTML='<strong>'+initiativeData.title+'</strong> — '+initiativeData.mode+' | '+initiativeData.fee;
+                startCountdown(initiativeData.regDeadline);
+                renderRoadmap();
+                renderChallenges();
+                await loadTeam();
+                await loadSubmissions();
+                await loadAnnouncements();
+                await loadWinners();
+            }catch(e){document.getElementById('infoBanner').textContent='Initiative not found.';}
+        }
+
+        function renderRoadmap(){
+            const steps=initiativeData.timeline||[];
+            const now=new Date();
+            document.getElementById('roadmapSteps').innerHTML=steps.map((s,i)=>{
+                const stepDate=new Date(initiativeData.startDate);
+                stepDate.setDate(stepDate.getDate()+i*2);
+                const isPast=stepDate<now;
+                const isCurrent=i===Math.min(Math.floor((now-new Date(initiativeData.startDate))/((new Date(initiativeData.endDate)-new Date(initiativeData.startDate))/steps.length)),steps.length-1);
+                const statusClass=isPast?'completed':isCurrent?'active':'upcoming';
+                const iconClass=isPast?'done':isCurrent?'current':'pending';
+                const badge=isPast?'<span class="badge badge-done">DONE</span>':isCurrent?'<span class="badge badge-live">LIVE NOW</span>':'';
+                return '<div class="roadmap-step '+statusClass+'"><div class="step-icon '+iconClass+'">'+(isPast?'✓':(isCurrent?'●':(i+1)))+'</div><div class="step-content"><div class="step-title">'+s.event+badge+'</div><div class="step-date">'+s.date+'</div></div></div>';
+            }).join('');
+        }
+
+        async function loadTeam(){
+            try{
+                const teams=await apiFetch('/initiatives/'+initiativeData._id+'/teams');
+                myTeam=teams.find(t=>t.leaderId===currentUser._id||t.members.some(m=>m.userId===currentUser._id));
+                const reg=await apiFetch('/user/initiatives');
+                const myReg=reg.find(r=>r.initiativeId===initiativeData._id);
+                let html='';
+                if(myTeam){
+                    html+='<div class="team-card"><h4>'+myTeam.name+'</h4>';
+                    myTeam.members.forEach(m=>{html+='<div class="member-row"><div class="member-avatar">'+m.name.charAt(0)+'</div><div><div class="member-name">'+m.name+'</div><div class="member-role">'+m.role.toUpperCase()+'</div></div></div>';});
+                    html+='</div>';
+                    if(myTeam.leaderId===currentUser._id){
+                        html+='<div class="team-card"><h4>INVITE MEMBER</h4><div class="invite-row"><input type="email" id="inviteEmail" placeholder="Enter email address"><button class="dash-btn primary" onclick="inviteMember()">INVITE</button></div><div id="inviteList"></div></div>';
+                    }
+                }else{
+                    if(initiativeData.teamSize==='Individual'){
+                        html+='<div class="info-banner">This is an individual participation event. No team needed.</div>';
+                    }else{
+                        html+='<div class="empty-state"><div class="icon">👥</div><p>No team yet. Create one or accept an invitation.</p>';
+                        html+='<button class="dash-btn primary" onclick="openModal(\'createTeamModal\')" style="margin-top:16px;">CREATE TEAM</button></div>';
+                    }
+                }
+                document.getElementById('teamContent').innerHTML=html;
+                if(myTeam){document.getElementById('myTeamCard').style.display='block';document.getElementById('myTeamInfo').innerHTML='<p style="font-size:0.85rem;color:#fff;">'+myTeam.name+'</p><p style="font-size:0.75rem;color:var(--gray);">'+myTeam.members.length+' member(s)</p>';}
+                try{const invites=await apiFetch('/user/invites');if(invites.length>0){let invHtml='<div class="team-card"><h4>PENDING INVITATIONS</h4>';invites.filter(i=>i.status==='pending').forEach(inv=>{invHtml+='<div class="member-row"><div class="member-avatar">'+inv.teamName.charAt(0)+'</div><div style="flex:1"><div class="member-name">'+inv.teamName+'</div><div class="member-role">Invited by '+inv.inviterName+'</div></div><button class="dash-btn primary" onclick="acceptInvite(\''+inv._id+'\')" style="font-size:0.6rem;padding:6px 12px;">ACCEPT</button><button class="dash-btn danger" onclick="rejectInvite(\''+inv._id+'\')" style="font-size:0.6rem;padding:6px 12px;margin-left:6px;">REJECT</button></div>';});invHtml+='</div>';document.getElementById('teamContent').innerHTML+=invHtml;}}catch(e){}
+            }catch(e){document.getElementById('teamContent').innerHTML='<div class="empty-state"><p>Failed to load team data.</p></div>';}
+        }
+
+        async function createTeam(){
+            const name=document.getElementById('newTeamName').value.trim();
+            if(!name){showNotification('Enter team name');return;}
+            try{await apiFetch('/initiatives/'+initiativeData._id+'/teams',{method:'POST',body:JSON.stringify({teamName:name})});closeModal('createTeamModal');showNotification('Team created!');await loadTeam();}catch(e){showNotification(e.message);}
+        }
+
+        async function inviteMember(){
+            const email=document.getElementById('inviteEmail').value.trim();
+            if(!email||!myTeam){return;}
+            try{await apiFetch('/teams/'+myTeam._id+'/invite',{method:'POST',body:JSON.stringify({email})});showNotification('Invitation sent!');document.getElementById('inviteEmail').value='';}catch(e){showNotification(e.message);}
+        }
+
+        async function acceptInvite(id){try{await apiFetch('/invites/'+id+'/accept',{method:'POST'});showNotification('Joined team!');await loadTeam();}catch(e){showNotification(e.message);}}
+        async function rejectInvite(id){try{await apiFetch('/invites/'+id+'/reject',{method:'POST'});showNotification('Invite rejected');await loadTeam();}catch(e){showNotification(e.message);}}
+
+        async function loadSubmissions(){
+            try{
+                userSubmissions=await apiFetch('/user/submissions');
+                const mySubs=userSubmissions.filter(s=>s.initiativeId===initiativeData._id);
+                let html='';
+                if(mySubs.length>0){
+                    mySubs.forEach(s=>{html+='<div class="sub-card"><h4>'+s.title+'</h4><p>'+s.description+'</p><div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">';if(s.repoUrl)html+='<a href="'+s.repoUrl+'" target="_blank" style="font-size:0.75rem;color:var(--primary);">GitHub ↗</a>';if(s.demoUrl)html+='<a href="'+s.demoUrl+'" target="_blank" style="font-size:0.75rem;color:var(--primary);">Demo ↗</a>';if(s.presentationUrl)html+='<a href="'+s.presentationUrl+'" target="_blank" style="font-size:0.75rem;color:var(--primary);">Presentation ↗</a>';html+='</div><span class="sub-status '+s.status+'">'+s.status.toUpperCase()+'</span></div>';});
+                }else{
+                    html+='<div class="empty-state"><div class="icon">📤</div><p>No submissions yet. Submit your project before the deadline.</p><button class="dash-btn primary" onclick="openModal(\'submitProjectModal\')" style="margin-top:16px;">SUBMIT PROJECT</button></div>';
+                }
+                document.getElementById('submissionsContent').innerHTML=html;
+            }catch(e){document.getElementById('submissionsContent').innerHTML='<div class="empty-state"><p>Failed to load submissions.</p></div>';}
+        }
+
+        async function submitProject(){
+            const title=document.getElementById('subTitle').value.trim();
+            const desc=document.getElementById('subDesc').value.trim();
+            if(!title||!desc){showNotification('Fill required fields');return;}
+            try{
+                await apiFetch('/initiatives/'+initiativeData._id+'/submissions',{method:'POST',body:JSON.stringify({title,description:desc,repoUrl:document.getElementById('subRepo').value,demoUrl:document.getElementById('subDemo').value,presentationUrl:document.getElementById('subPres').value})});
+                await apiFetch('/send-email',{method:'POST',body:JSON.stringify({to:currentUser.email,subject:'Submission Received — '+initiativeData.title,body:'Your project "'+title+'" has been submitted successfully. We will review it soon.'})});
+                closeModal('submitProjectModal');showNotification('Project submitted! Check your email.');await loadSubmissions();
+            }catch(e){showNotification(e.message);}
+        }
+
+        async function loadAnnouncements(){
+            try{
+                allAnnouncements=await apiFetch('/initiatives/'+initiativeData._id+'/announcements');
+                let html='';
+                if(allAnnouncements.length>0){
+                    allAnnouncements.forEach(a=>{html+='<div class="ann-card"><span class="ann-type '+a.type+'">'+a.type.toUpperCase()+'</span><h4>'+a.title+'</h4><p>'+a.content+'</p><div class="ann-date">'+new Date(a.createdAt).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})+'</div></div>';});
+                }else{
+                    html='<div class="empty-state"><div class="icon">📢</div><p>No announcements yet.</p></div>';
+                }
+                document.getElementById('announcementsContent').innerHTML=html;
+            }catch(e){}
+        }
+
+        async function loadWinners(){
+            try{
+                allWinners=await apiFetch('/initiatives/'+initiativeData._id+'/winners');
+                let html='';
+                if(allWinners.length>0){
+                    allWinners.forEach(w=>{
+                        const rankClass=w.rank===1?'gold':w.rank===2?'silver':w.rank===3?'bronze':'';
+                        html+='<div class="winner-card"><div class="winner-rank '+rankClass+'">#'+w.rank+'</div><div class="winner-info"><h4>'+w.teamName+'</h4><p>'+w.memberNames.join(', ')+'</p><p style="margin-top:4px;">'+w.projectTitle+'</p><p class="prize">'+w.prize+'</p></div></div>';
+                    });
+                }else{
+                    html='<div class="empty-state"><div class="icon">🏆</div><p>Winners will be announced after evaluation.</p></div>';
+                }
+                document.getElementById('winnersContent').innerHTML=html;
+            }catch(e){}
+        }
+
+        document.addEventListener('DOMContentLoaded',loadDashboard);
+    </script>
+</body>
+</html>

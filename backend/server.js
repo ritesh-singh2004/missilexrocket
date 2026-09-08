@@ -22,6 +22,11 @@ const certificates = Datastore.create({ filename: path.join(dbPath, 'certificate
 const progress = Datastore.create({ filename: path.join(dbPath, 'progress.db'), autoload: true });
 const initiatives = Datastore.create({ filename: path.join(dbPath, 'initiatives.db'), autoload: true });
 const registrations = Datastore.create({ filename: path.join(dbPath, 'registrations.db'), autoload: true });
+const teams = Datastore.create({ filename: path.join(dbPath, 'teams.db'), autoload: true });
+const submissions = Datastore.create({ filename: path.join(dbPath, 'submissions.db'), autoload: true });
+const announcements = Datastore.create({ filename: path.join(dbPath, 'announcements.db'), autoload: true });
+const winners = Datastore.create({ filename: path.join(dbPath, 'winners.db'), autoload: true });
+const teamInvites = Datastore.create({ filename: path.join(dbPath, 'teamInvites.db'), autoload: true });
 
 // Middleware
 app.use(cors());
@@ -578,6 +583,196 @@ app.get('/api/user/initiatives', auth, async (req, res) => {
     }));
     res.json(result);
   } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// ========== TEAM MANAGEMENT ==========
+
+app.post('/api/initiatives/:id/teams', auth, async (req, res) => {
+  try {
+    const { teamName } = req.body;
+    const user = await users.findOne({ _id: req.userId });
+    const team = await teams.insert({
+      initiativeId: req.params.id,
+      name: teamName,
+      leaderId: req.userId,
+      leaderName: user.name,
+      leaderEmail: user.email,
+      members: [{ userId: req.userId, name: user.name, email: user.email, role: 'leader' }],
+      status: 'active',
+      createdAt: new Date().toISOString()
+    });
+    await registrations.update({ initiativeId: req.params.id, userId: req.userId }, { $set: { teamId: team._id, teamName } });
+    res.json(team);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/initiatives/:id/teams', async (req, res) => {
+  try {
+    const allTeams = await teams.find({ initiativeId: req.params.id });
+    res.json(allTeams);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/user/teams', auth, async (req, res) => {
+  try {
+    const myTeams = await teams.find({ leaderId: req.userId });
+    const memberTeams = await teams.find({ 'members.userId': req.userId });
+    const all = [...myTeams, ...memberTeams.filter(t => !myTeams.find(m => m._id === t._id))];
+    res.json(all);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/teams/:id/invite', auth, async (req, res) => {
+  try {
+    const { email } = req.body;
+    const invitedUser = await users.findOne({ email });
+    if (!invitedUser) return res.status(404).json({ error: 'User not found' });
+    const teamData = await teams.findOne({ _id: req.params.id });
+    if (!teamData) return res.status(404).json({ error: 'Team not found' });
+
+    const existing = await teamInvites.findOne({ teamId: req.params.id, invitedUserId: invitedUser._id });
+    if (existing) return res.status(400).json({ error: 'Already invited' });
+
+    await teamInvites.insert({
+      teamId: req.params.id,
+      initiativeId: teamData.initiativeId,
+      inviterId: req.userId,
+      inviterName: (await users.findOne({ _id: req.userId })).name,
+      invitedUserId: invitedUser._id,
+      invitedUserName: invitedUser.name,
+      invitedUserEmail: email,
+      teamName: teamData.name,
+      status: 'pending',
+      createdAt: new Date().toISOString()
+    });
+    res.json({ message: 'Invitation sent' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/user/invites', auth, async (req, res) => {
+  try {
+    const invites = await teamInvites.find({ invitedUserId: req.userId });
+    res.json(invites);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/invites/:id/accept', auth, async (req, res) => {
+  try {
+    const invite = await teamInvites.findOne({ _id: req.params.id });
+    if (!invite) return res.status(404).json({ error: 'Invite not found' });
+    await teamInvites.update({ _id: req.params.id }, { $set: { status: 'accepted' } });
+    const user = await users.findOne({ _id: req.userId });
+    await teams.update({ _id: invite.teamId }, { $push: { members: { userId: req.userId, name: user.name, email: user.email, role: 'member' } } });
+    res.json({ message: 'Joined team' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/invites/:id/reject', auth, async (req, res) => {
+  try {
+    await teamInvites.update({ _id: req.params.id }, { $set: { status: 'rejected' } });
+    res.json({ message: 'Invite rejected' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// ========== SUBMISSIONS ==========
+
+app.post('/api/initiatives/:id/submissions', auth, async (req, res) => {
+  try {
+    const user = await users.findOne({ _id: req.userId });
+    const reg = await registrations.findOne({ initiativeId: req.params.id, userId: req.userId });
+    const sub = await submissions.insert({
+      initiativeId: req.params.id,
+      userId: req.userId,
+      userName: user.name,
+      userEmail: user.email,
+      teamId: reg?.teamId || null,
+      teamName: reg?.teamName || 'Individual',
+      title: req.body.title,
+      description: req.body.description,
+      repoUrl: req.body.repoUrl || '',
+      demoUrl: req.body.demoUrl || '',
+      presentationUrl: req.body.presentationUrl || '',
+      status: 'submitted',
+      submittedAt: new Date().toISOString()
+    });
+    res.json(sub);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/initiatives/:id/submissions', async (req, res) => {
+  try {
+    const subs = await submissions.find({ initiativeId: req.params.id });
+    res.json(subs);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/user/submissions', auth, async (req, res) => {
+  try {
+    const subs = await submissions.find({ userId: req.userId });
+    res.json(subs);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// ========== ANNOUNCEMENTS ==========
+
+app.post('/api/initiatives/:id/announcements', auth, async (req, res) => {
+  try {
+    const ann = await announcements.insert({
+      initiativeId: req.params.id,
+      title: req.body.title,
+      content: req.body.content,
+      type: req.body.type || 'general',
+      createdBy: req.userId,
+      createdAt: new Date().toISOString()
+    });
+    res.json(ann);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/initiatives/:id/announcements', async (req, res) => {
+  try {
+    const anns = await announcements.find({ initiativeId: req.params.id }).sort({ createdAt: -1 });
+    res.json(anns);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// ========== WINNERS ==========
+
+app.post('/api/initiatives/:id/winners', auth, async (req, res) => {
+  try {
+    const win = await winners.insert({
+      initiativeId: req.params.id,
+      rank: req.body.rank,
+      teamName: req.body.teamName,
+      memberNames: req.body.memberNames || [],
+      projectTitle: req.body.projectTitle,
+      prize: req.body.prize,
+      createdAt: new Date().toISOString()
+    });
+    res.json(win);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/initiatives/:id/winners', async (req, res) => {
+  try {
+    const wins = await winners.find({ initiativeId: req.params.id }).sort({ rank: 1 });
+    res.json(wins);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.delete('/api/winners/:id', auth, async (req, res) => {
+  try {
+    await winners.remove({ _id: req.params.id });
+    res.json({ message: 'Deleted' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// ========== EMAIL (Simple log-based) ==========
+
+app.post('/api/send-email', async (req, res) => {
+  const { to, subject, body } = req.body;
+  console.log(`\n📧 EMAIL SENT TO: ${to}\n   SUBJECT: ${subject}\n   BODY: ${body}\n`);
+  res.json({ message: 'Email sent', to, subject });
 });
 
 // ========== SEED DATA ==========

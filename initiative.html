@@ -187,6 +187,7 @@
                             <div class="sidebar-info-row"><span class="label">Reg Deadline</span><span class="value" style="color:var(--secondary);">${new Date(data.regDeadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span></div>
                             <div class="sidebar-info-row"><span class="label">Registered</span><span class="value">${data.registrations || 0}</span></div>
                             <button class="sidebar-register-btn" id="sidebarRegBtn" onclick="openRegModal()">REGISTER NOW</button>
+                            <a href="dashboard-initiative.html?id=${data._id}" class="sidebar-register-btn" id="dashboardBtn" style="display:none;text-align:center;text-decoration:none;margin-top:8px;background:rgba(0,212,255,0.2);color:var(--primary);border:1px solid rgba(0,212,255,0.3);">GO TO DASHBOARD</a>
                         </div>
                         <div class="sidebar-card">
                             <h4>VENUE</h4>
@@ -250,6 +251,15 @@
             try {
                 const data = await apiFetch('/initiatives/' + id);
                 renderInitiativePage(data);
+                if (currentUser) {
+                    try {
+                        const regs = await apiFetch('/user/initiatives');
+                        if (regs.some(r => r.initiativeId === id)) {
+                            document.getElementById('sidebarRegBtn').style.display = 'none';
+                            document.getElementById('dashboardBtn').style.display = 'block';
+                        }
+                    } catch(e) {}
+                }
             } catch (err) {
                 document.getElementById('initiativeContent').innerHTML = '<div class="init-loading">Initiative not found.</div>';
             }
