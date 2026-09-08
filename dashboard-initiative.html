@@ -15,36 +15,65 @@
         .dash-tab{font-family:'Orbitron',monospace;font-size:0.7rem;letter-spacing:0.08em;padding:12px 20px;background:none;border:none;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.3s;}
         .dash-tab.active{color:var(--primary);border-bottom-color:var(--primary);}
         .dash-tab:hover{color:#fff;}
-        .tab-panel{display:none;}
+        .tab-panel{display:none;animation:fadeUp 0.4s ease;}
         .tab-panel.active{display:block;}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
         .info-banner{background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.15);border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:0.85rem;color:rgba(255,255,255,0.7);}
         .info-banner strong{color:var(--primary);}
-        .roadmap-step{display:flex;align-items:flex-start;gap:16px;padding:16px;background:rgba(255,255,255,0.02);border-radius:8px;margin-bottom:8px;border-left:3px solid rgba(255,255,255,0.08);transition:all 0.3s;}
+
+        .roadmap-step{display:flex;align-items:flex-start;gap:16px;padding:18px 20px;background:rgba(255,255,255,0.02);border-radius:10px;margin-bottom:10px;border-left:3px solid rgba(255,255,255,0.08);transition:all 0.3s;cursor:pointer;position:relative;}
+        .roadmap-step:hover{background:rgba(255,255,255,0.04);}
         .roadmap-step.completed{border-left-color:#00ff88;background:rgba(0,255,136,0.03);}
-        .roadmap-step.active{border-left-color:var(--primary);background:rgba(0,212,255,0.05);}
-        .roadmap-step.upcoming{opacity:0.6;}
-        .step-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;flex-shrink:0;margin-top:2px;}
-        .step-icon.done{background:#00ff88;color:#000;}
-        .step-icon.current{background:var(--primary);color:#000;}
-        .step-icon.pending{background:rgba(255,255,255,0.1);color:var(--gray);}
-        .step-content{flex:1;}
+        .roadmap-step.active{border-left-color:var(--primary);background:rgba(0,212,255,0.08);box-shadow:0 0 20px rgba(0,212,255,0.05);}
+        .roadmap-step.upcoming{opacity:0.5;}
+        .step-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:700;flex-shrink:0;}
+        .step-num.done{background:#00ff88;color:#000;}
+        .step-num.current{background:var(--primary);color:#000;box-shadow:0 0 15px rgba(0,212,255,0.4);}
+        .step-num.pending{background:rgba(255,255,255,0.08);color:var(--gray);}
+        .step-body{flex:1;}
         .step-title{font-family:'Orbitron',monospace;font-size:0.85rem;color:#fff;margin-bottom:4px;}
-        .step-title .badge{font-size:0.6rem;padding:2px 8px;border-radius:4px;margin-left:8px;font-weight:600;}
+        .step-title .badge{font-size:0.55rem;padding:2px 8px;border-radius:4px;margin-left:8px;font-weight:600;vertical-align:middle;}
         .badge-live{background:#00ff88;color:#000;}
         .badge-done{background:rgba(0,255,136,0.2);color:#00ff88;}
-        .step-date{font-size:0.75rem;color:var(--gray);}
-        .team-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:20px;margin-bottom:16px;}
-        .team-card h4{font-family:'Orbitron',monospace;font-size:0.85rem;color:var(--primary);margin-bottom:12px;}
-        .member-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
-        .member-avatar{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#000;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:0.75rem;font-weight:700;}
-        .member-name{font-size:0.85rem;color:#fff;}
-        .member-role{font-size:0.7rem;color:var(--gray);}
-        .sub-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:20px;margin-bottom:16px;}
-        .sub-card h4{font-family:'Orbitron',monospace;font-size:0.9rem;color:#fff;margin-bottom:8px;}
-        .sub-card p{font-size:0.85rem;color:var(--gray);line-height:1.5;}
-        .sub-status{display:inline-block;font-size:0.65rem;padding:4px 10px;border-radius:4px;font-family:'Orbitron',monospace;letter-spacing:0.1em;margin-top:8px;}
+        .badge-upcoming{background:rgba(255,255,255,0.1);color:var(--gray);}
+        .step-date{font-size:0.75rem;color:var(--gray);margin-bottom:8px;}
+        .step-btn{font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.1em;padding:6px 16px;border:none;border-radius:4px;cursor:pointer;font-weight:700;transition:all 0.3s;background:var(--primary);color:#000;}
+        .step-btn:hover{background:#fff;transform:scale(1.05);}
+        .step-btn:disabled{background:rgba(255,255,255,0.05);color:var(--gray);cursor:not-allowed;}
+        .step-btn.done{background:rgba(0,255,136,0.2);color:#00ff88;cursor:default;}
+
+        .team-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;margin-bottom:16px;}
+        .team-card h4{font-family:'Orbitron',monospace;font-size:0.85rem;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+        .team-card h4 .count{font-size:0.65rem;color:var(--gray);font-weight:400;}
+        .member-row{display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid rgba(255,255,255,0.05);border-radius:8px;transition:background 0.2s;}
+        .member-row:last-child{border-bottom:none;}
+        .member-row:hover{background:rgba(255,255,255,0.03);}
+        .member-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#000;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:700;flex-shrink:0;}
+        .member-avatar.leader{background:linear-gradient(135deg,#ffd700,#ff6b35);}
+        .member-info{flex:1;min-width:0;}
+        .member-name{font-size:0.85rem;color:#fff;font-weight:600;}
+        .member-role{font-size:0.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;}
+        .member-detail{font-size:0.7rem;color:rgba(255,255,255,0.4);margin-top:2px;}
+        .member-skills{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px;}
+        .skill-tag{font-size:0.55rem;padding:2px 6px;border-radius:3px;background:rgba(0,212,255,0.1);color:var(--primary);font-family:'Orbitron',monospace;}
+        .member-actions{display:flex;gap:4px;}
+        .member-actions button{font-size:0.55rem;padding:4px 8px;border:none;border-radius:3px;cursor:pointer;font-family:'Orbitron',monospace;}
+
+        .sub-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:24px;margin-bottom:16px;}
+        .sub-card h4{font-family:'Orbitron',monospace;font-size:0.95rem;color:#fff;margin-bottom:6px;}
+        .sub-card .sub-type{font-size:0.6rem;padding:2px 8px;border-radius:4px;font-family:'Orbitron',monospace;letter-spacing:0.1em;margin-bottom:12px;display:inline-block;}
+        .sub-card .sub-type.hackathon{background:rgba(0,212,255,0.15);color:var(--primary);}
+        .sub-card .sub-type.internship{background:rgba(0,255,136,0.15);color:#00ff88;}
+        .sub-card .sub-type.project{background:rgba(255,107,53,0.15);color:var(--secondary);}
+        .sub-card p{font-size:0.85rem;color:var(--gray);line-height:1.6;}
+        .sub-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+        .sub-links a{font-size:0.75rem;color:var(--primary);text-decoration:none;padding:6px 12px;background:rgba(0,212,255,0.08);border-radius:4px;border:1px solid rgba(0,212,255,0.15);transition:all 0.2s;display:flex;align-items:center;gap:4px;}
+        .sub-links a:hover{background:rgba(0,212,255,0.15);}
+        .sub-status{display:inline-block;font-size:0.6rem;padding:4px 10px;border-radius:4px;font-family:'Orbitron',monospace;letter-spacing:0.1em;margin-top:10px;}
         .sub-status.submitted{background:rgba(0,212,255,0.15);color:var(--primary);}
         .sub-status.reviewed{background:rgba(0,255,136,0.15);color:#00ff88;}
+        .sub-status.rejected{background:rgba(255,50,50,0.15);color:#ff5050;}
+
         .ann-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:20px;margin-bottom:12px;}
         .ann-card h4{font-family:'Orbitron',monospace;font-size:0.85rem;color:#fff;margin-bottom:6px;}
         .ann-card p{font-size:0.85rem;color:var(--gray);line-height:1.5;}
@@ -53,6 +82,7 @@
         .ann-type.general{background:rgba(0,212,255,0.15);color:var(--primary);}
         .ann-type.winner{background:rgba(255,215,0,0.15);color:#ffd700;}
         .ann-type.important{background:rgba(255,107,53,0.15);color:var(--secondary);}
+
         .winner-card{background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,107,53,0.05));border:1px solid rgba(255,215,0,0.2);border-radius:10px;padding:20px;margin-bottom:12px;display:flex;gap:16px;align-items:center;}
         .winner-rank{font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;min-width:60px;text-align:center;}
         .winner-rank.gold{color:#ffd700;}
@@ -61,32 +91,98 @@
         .winner-info h4{font-family:'Orbitron',monospace;font-size:0.9rem;color:#fff;margin-bottom:4px;}
         .winner-info p{font-size:0.8rem;color:var(--gray);}
         .winner-info .prize{color:#ffd700;font-weight:700;}
-        .challenge-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:20px;margin-bottom:12px;cursor:pointer;transition:border-color 0.3s;}
-        .challenge-card:hover{border-color:var(--primary);}
-        .challenge-card h4{font-family:'Orbitron',monospace;font-size:0.85rem;color:var(--primary);margin-bottom:6px;}
-        .challenge-card p{font-size:0.8rem;color:var(--gray);}
+
+        .challenge-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:24px;margin-bottom:16px;cursor:pointer;transition:all 0.3s;}
+        .challenge-card:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3);}
+        .challenge-card h4{font-family:'Orbitron',monospace;font-size:0.9rem;color:var(--primary);margin-bottom:8px;}
+        .challenge-card p{font-size:0.8rem;color:var(--gray);line-height:1.5;}
+        .challenge-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+        .challenge-tag{font-size:0.55rem;padding:3px 8px;border-radius:4px;background:rgba(0,212,255,0.1);color:var(--primary);font-family:'Orbitron',monospace;letter-spacing:0.05em;}
+
+        .challenge-detail{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:30px;margin-bottom:20px;}
+        .challenge-detail h3{font-family:'Orbitron',monospace;font-size:1.1rem;color:var(--primary);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+        .challenge-detail h3 .back-btn{font-size:0.6rem;padding:4px 10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:4px;cursor:pointer;color:var(--gray);font-family:'Orbitron',monospace;}
+        .challenge-detail h3 .back-btn:hover{color:var(--primary);border-color:var(--primary);}
+        .challenge-pages{display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:24px;}
+        .challenge-page-tab{font-family:'Orbitron',monospace;font-size:0.65rem;letter-spacing:0.05em;padding:10px 16px;background:none;border:none;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.3s;}
+        .challenge-page-tab.active{color:var(--primary);border-bottom-color:var(--primary);}
+        .challenge-page-tab:hover{color:#fff;}
+        .challenge-page{display:none;}
+        .challenge-page.active{display:block;animation:fadeUp 0.3s ease;}
+        .challenge-page h4{font-family:'Orbitron',monospace;font-size:0.85rem;color:var(--primary);margin-bottom:12px;margin-top:20px;}
+        .challenge-page h4:first-child{margin-top:0;}
+        .challenge-page p,.challenge-page li{font-size:0.85rem;color:var(--gray);line-height:1.7;}
+        .challenge-page ul{padding-left:20px;margin-bottom:16px;}
+        .challenge-page li{margin-bottom:6px;}
+        .challenge-page .highlight-box{background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.15);border-radius:8px;padding:16px;margin:16px 0;}
+        .challenge-page .highlight-box strong{color:var(--primary);}
+        .challenge-page .criteria-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;}
+        .criteria-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:14px;}
+        .criteria-item .pct{font-family:'Orbitron',monospace;font-size:1.2rem;color:var(--primary);font-weight:700;}
+        .criteria-item .label{font-size:0.8rem;color:var(--gray);margin-top:4px;}
+        .timeline-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+        .timeline-item:last-child{border-bottom:none;}
+        .timeline-date{font-family:'Orbitron',monospace;font-size:0.75rem;color:var(--primary);min-width:100px;}
+        .timeline-event{font-size:0.85rem;color:#fff;}
+        .timeline-desc{font-size:0.75rem;color:var(--gray);margin-top:4px;}
+
         .form-group{margin-bottom:16px;}
         .form-group label{display:block;font-family:'Orbitron',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--gray);margin-bottom:6px;}
         .form-group input,.form-group textarea,.form-group select{width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:0.9rem;box-sizing:border-box;}
         .form-group textarea{min-height:100px;resize:vertical;}
         .form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--primary);}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+        .form-section-title{font-family:'Orbitron',monospace;font-size:0.75rem;color:var(--primary);margin:20px 0 12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.06);}
+        .form-section-title:first-child{margin-top:0;}
+
         .dash-btn{font-family:'Orbitron',monospace;font-size:0.75rem;letter-spacing:0.1em;padding:12px 28px;border:none;border-radius:6px;cursor:pointer;font-weight:700;transition:all 0.3s;}
         .dash-btn.primary{background:var(--primary);color:#000;}
         .dash-btn.primary:hover{background:#fff;}
         .dash-btn.secondary{background:rgba(255,255,255,0.05);color:#fff;border:1px solid rgba(255,255,255,0.1);}
+        .dash-btn.secondary:hover{background:rgba(255,255,255,0.1);}
         .dash-btn.danger{background:rgba(255,50,50,0.2);color:#ff5050;border:1px solid rgba(255,50,50,0.3);}
+        .dash-btn.danger:hover{background:rgba(255,50,50,0.3);}
+        .dash-btn.small{font-size:0.6rem;padding:6px 14px;}
+        .dash-btn:disabled{opacity:0.4;cursor:not-allowed;}
+
         .countdown-box{text-align:center;padding:16px;background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);border-radius:8px;margin-bottom:16px;}
         .countdown-label{font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--gray);margin-bottom:8px;}
         .countdown-time{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;color:var(--secondary);}
         .user-card{text-align:center;padding:20px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;margin-bottom:16px;}
-        .user-card .avatar{width:60px;height:60px;border-radius:50%;background:var(--primary);color:#000;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;margin:0 auto 12px;}
+        .user-card .avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#000;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;margin:0 auto 12px;}
         .user-card h4{font-family:'Orbitron',monospace;font-size:0.9rem;color:#fff;margin-bottom:4px;}
         .user-card p{font-size:0.8rem;color:var(--gray);}
+
         .empty-state{text-align:center;padding:60px 20px;color:var(--gray);}
         .empty-state .icon{font-size:3rem;margin-bottom:16px;opacity:0.3;}
+        .empty-state p{margin-bottom:16px;}
+
         .invite-row{display:flex;gap:8px;margin-bottom:16px;}
         .invite-row input{flex:1;}
-        @media(max-width:900px){.dash-wrap{grid-template-columns:1fr;}.dash-sidebar{position:static;}}
+
+        .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:10000;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+        .modal-overlay.active{display:flex;}
+        .modal{background:#111;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:30px;width:90%;max-width:600px;max-height:85vh;overflow-y:auto;position:relative;}
+        .modal h2{font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:20px;}
+        .modal-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--gray);font-size:1.5rem;cursor:pointer;}
+        .modal-close:hover{color:#fff;}
+
+        .progress-bar{width:100%;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;margin-top:8px;overflow:hidden;}
+        .progress-fill{height:100%;border-radius:2px;transition:width 0.5s ease;}
+        .progress-fill.green{background:linear-gradient(90deg,#00ff88,#00cc6a);}
+        .progress-fill.blue{background:linear-gradient(90deg,var(--primary),#0099cc);}
+
+        .team-members-grid{display:grid;gap:12px;margin-top:12px;}
+        .team-member-form{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:16px;}
+        .team-member-form h5{font-family:'Orbitron',monospace;font-size:0.7rem;color:var(--primary);margin-bottom:10px;}
+
+        @media(max-width:900px){
+            .dash-wrap{grid-template-columns:1fr;}
+            .dash-sidebar{position:static;}
+            .form-row{grid-template-columns:1fr;}
+            .criteria-grid{grid-template-columns:1fr !important;}
+            .challenge-pages{overflow-x:auto;}
+        }
     </style>
 </head>
 <body>
@@ -118,37 +214,38 @@
             </div>
 
             <div class="tab-panel active" id="panel-roadmap">
-                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:16px;">ROADMAP</h3>
-                <p style="color:var(--gray);font-size:0.85rem;margin-bottom:24px;">Follow each step carefully, complete all tasks, and achieve the desired outcome.</p>
+                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:8px;">ROADMAP</h3>
+                <p style="color:var(--gray);font-size:0.85rem;margin-bottom:8px;">Follow each step carefully, complete all tasks, and achieve the desired outcome.</p>
+                <div id="roadmapProgress" style="margin-bottom:24px;"></div>
                 <div id="roadmapSteps"></div>
             </div>
 
             <div class="tab-panel" id="panel-team">
-                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:16px;">TEAM MANAGEMENT</h3>
+                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:8px;">TEAM MANAGEMENT</h3>
                 <p style="color:var(--gray);font-size:0.85rem;margin-bottom:24px;">Build your dream team! Onboard like-minded individuals.</p>
                 <div id="teamContent"></div>
             </div>
 
             <div class="tab-panel" id="panel-submissions">
-                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:16px;">SUBMISSIONS</h3>
-                <p style="color:var(--gray);font-size:0.85rem;margin-bottom:24px;">Submit your project for evaluation.</p>
+                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:8px;">SUBMISSIONS</h3>
+                <p style="color:var(--gray);font-size:0.85rem;margin-bottom:24px;">Submit your project for evaluation. Include all required links and files.</p>
                 <div id="submissionsContent"></div>
             </div>
 
             <div class="tab-panel" id="panel-challenges">
-                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:16px;">CHALLENGES</h3>
+                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:8px;">CHALLENGES</h3>
                 <p style="color:var(--gray);font-size:0.85rem;margin-bottom:24px;">View the detailed listing of all assigned challenges.</p>
                 <div id="challengesContent"></div>
             </div>
 
             <div class="tab-panel" id="panel-announcements">
-                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:16px;">ANNOUNCEMENTS</h3>
+                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--primary);margin-bottom:8px;">ANNOUNCEMENTS</h3>
                 <p style="color:var(--gray);font-size:0.85rem;margin-bottom:24px;">Stay informed with all the latest announcements and updates.</p>
                 <div id="announcementsContent"></div>
             </div>
 
             <div class="tab-panel" id="panel-winners">
-                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:#ffd700;margin-bottom:16px;">WINNERS & TOP 10</h3>
+                <h3 style="font-family:'Orbitron',monospace;font-size:1rem;color:#ffd700;margin-bottom:8px;">WINNERS & TOP 10</h3>
                 <p style="color:var(--gray);font-size:0.85rem;margin-bottom:24px;">Congratulations to the selected participants!</p>
                 <div id="winnersContent"></div>
             </div>
@@ -168,6 +265,13 @@
                 <h4>MY TEAM</h4>
                 <div id="myTeamInfo"></div>
             </div>
+            <div class="team-card" id="quickActions" style="display:none;">
+                <h4>QUICK ACTIONS</h4>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                    <a href="initiatives.html" class="dash-btn secondary" style="text-align:center;text-decoration:none;">VIEW ALL EVENTS</a>
+                    <a href="index.html#initiatives" class="dash-btn secondary" style="text-align:center;text-decoration:none;">BACK TO HOME</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -175,8 +279,43 @@
         <div class="modal">
             <button class="modal-close" onclick="closeModal('createTeamModal')">&times;</button>
             <h2>CREATE TEAM</h2>
-            <div class="form-group"><label>TEAM NAME</label><input type="text" id="newTeamName" placeholder="Enter team name"></div>
+            <div class="form-group"><label>TEAM NAME *</label><input type="text" id="newTeamName" placeholder="Enter team name"></div>
+            <div class="form-section-title">YOUR DETAILS (Team Leader)</div>
+            <div class="form-row">
+                <div class="form-group"><label>PHONE *</label><input type="tel" id="leaderPhone" placeholder="Phone number"></div>
+                <div class="form-group"><label>COLLEGE / UNIVERSITY *</label><input type="text" id="leaderCollege" placeholder="College name"></div>
+            </div>
+            <div class="form-group"><label>SKILLS (comma separated)</label><input type="text" id="leaderSkills" placeholder="Python, React, Three.js"></div>
+            <div class="form-section-title">TEAM MEMBERS</div>
+            <div id="teamMembersForms"></div>
+            <button class="dash-btn secondary small" onclick="addMemberForm()" style="margin-bottom:20px;">+ ADD MEMBER</button>
             <button class="dash-btn primary" onclick="createTeam()" style="width:100%;">CREATE TEAM</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="editMemberModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('editMemberModal')">&times;</button>
+            <h2>EDIT MEMBER</h2>
+            <input type="hidden" id="editMemberIdx">
+            <div class="form-group"><label>NAME *</label><input type="text" id="editMemberName" placeholder="Full name"></div>
+            <div class="form-group"><label>EMAIL *</label><input type="email" id="editMemberEmail" placeholder="Email address"></div>
+            <div class="form-row">
+                <div class="form-group"><label>PHONE</label><input type="tel" id="editMemberPhone" placeholder="Phone number"></div>
+                <div class="form-group"><label>COLLEGE</label><input type="text" id="editMemberCollege" placeholder="College name"></div>
+            </div>
+            <div class="form-group"><label>ROLE</label>
+                <select id="editMemberRole">
+                    <option value="member">Member</option>
+                    <option value="developer">Developer</option>
+                    <option value="designer">Designer</option>
+                    <option value="researcher">Researcher</option>
+                    <option value="lead">Tech Lead</option>
+                </select>
+            </div>
+            <div class="form-group"><label>SKILLS (comma separated)</label><input type="text" id="editMemberSkills" placeholder="Python, ML, ROS2"></div>
+            <div class="form-group"><label>ABOUT / BIO</label><textarea id="editMemberBio" placeholder="Short bio about the member..."></textarea></div>
+            <button class="dash-btn primary" onclick="saveMemberEdit()" style="width:100%;">SAVE CHANGES</button>
         </div>
     </div>
 
@@ -184,11 +323,30 @@
         <div class="modal">
             <button class="modal-close" onclick="closeModal('submitProjectModal')">&times;</button>
             <h2>SUBMIT PROJECT</h2>
-            <div class="form-group"><label>PROJECT TITLE</label><input type="text" id="subTitle" placeholder="Your project title"></div>
-            <div class="form-group"><label>DESCRIPTION</label><textarea id="subDesc" placeholder="Describe your project..."></textarea></div>
-            <div class="form-group"><label>GITHUB / REPO URL</label><input type="url" id="subRepo" placeholder="https://github.com/..."></div>
-            <div class="form-group"><label>DEMO URL</label><input type="url" id="subDemo" placeholder="https://..."></div>
-            <div class="form-group"><label>PRESENTATION URL</label><input type="url" id="subPres" placeholder="https://docs.google.com/..."></div>
+            <div class="form-section-title">PROJECT INFO</div>
+            <div class="form-group"><label>PROJECT TITLE *</label><input type="text" id="subTitle" placeholder="Your project title"></div>
+            <div class="form-group"><label>CHALLENGE / CATEGORY *</label>
+                <select id="subChallenge">
+                    <option value="">Select challenge</option>
+                </select>
+            </div>
+            <div class="form-group"><label>DESCRIPTION *</label><textarea id="subDesc" placeholder="Describe your project, approach, and innovation..."></textarea></div>
+            <div class="form-section-title">LINKS</div>
+            <div class="form-row">
+                <div class="form-group"><label>GITHUB REPOSITORY *</label><input type="url" id="subRepo" placeholder="https://github.com/username/repo"></div>
+                <div class="form-group"><label>VIDEO DEMO LINK *</label><input type="url" id="subVideo" placeholder="https://youtube.com/watch?v=..."></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label>LINKEDIN PROFILE *</label><input type="url" id="subLinkedin" placeholder="https://linkedin.com/in/username"></div>
+                <div class="form-group"><label>LIVE DEMO URL</label><input type="url" id="subDemo" placeholder="https://your-app.vercel.app"></div>
+            </div>
+            <div class="form-group"><label>PRESENTATION / PPT URL</label><input type="url" id="subPres" placeholder="https://docs.google.com/presentation/..."></div>
+            <div class="form-section-title">ADDITIONAL INFO</div>
+            <div class="form-row">
+                <div class="form-group"><label>TECH STACK USED</label><input type="text" id="subTech" placeholder="React, Node.js, TensorFlow"></div>
+                <div class="form-group"><label>PROJECT DURATION</label><input type="text" id="subDuration" placeholder="e.g. 3 weeks"></div>
+            </div>
+            <div class="form-group"><label>TEAM MEMBERS (if any)</label><input type="text" id="subTeamMembers" placeholder="Name1, Name2, Name3"></div>
             <button class="dash-btn primary" onclick="submitProject()" style="width:100%;">SUBMIT PROJECT</button>
         </div>
     </div>
@@ -198,12 +356,13 @@
     <script>
         const API='http://localhost:5000/api';
         let authToken=localStorage.getItem('missilex_token')||null;
-        let currentUser=null,initiativeData=null,myTeam=null,userSubmissions=[],allAnnouncements=[],allWinners=[];
+        let currentUser=null,initiativeData=null,myTeam=null,userSubmissions=[],allAnnouncements=[],allWinners=[],allChallenges=[];
+        let memberCount=0;
 
         async function apiFetch(p,o={}){const h={'Content-Type':'application/json',...o.headers};if(authToken)h['Authorization']='Bearer '+authToken;const r=await fetch(API+p,{...o,headers:h});const d=await r.json();if(!r.ok)throw new Error(d.error||'Failed');return d;}
         function openModal(id){document.getElementById(id).classList.add('active');document.body.style.overflow='hidden';}
         function closeModal(id){document.getElementById(id).classList.remove('active');document.body.style.overflow='';}
-        function showNotification(m){const n=document.createElement('div');n.style.cssText='position:fixed;top:20px;right:20px;padding:15px 30px;background:#ff6b35;color:white;font-family:Orbitron,monospace;font-size:0.8rem;letter-spacing:0.1em;border-radius:5px;z-index:100000;box-shadow:0 5px 20px rgba(255,107,53,0.4);';n.textContent=m;document.body.appendChild(n);setTimeout(()=>{n.style.opacity='0';n.style.transition='opacity 0.3s';setTimeout(()=>n.remove(),300);},3000);}
+        function showNotification(m,type='info'){const n=document.createElement('div');const bg=type==='error'?'#ff5050':type==='success'?'#00ff88':'#ff6b35';n.style.cssText='position:fixed;top:20px;right:20px;padding:15px 30px;background:'+bg+';color:'+(type==='success'?'#000':'white')+';font-family:Orbitron,monospace;font-size:0.8rem;letter-spacing:0.1em;border-radius:8px;z-index:100000;box-shadow:0 5px 30px rgba(0,0,0,0.5);';n.textContent=m;document.body.appendChild(n);setTimeout(()=>{n.style.opacity='0';n.style.transition='opacity 0.3s';setTimeout(()=>n.remove(),300);},3000);}
 
         function switchTab(name,btn){document.querySelectorAll('.dash-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('panel-'+name).classList.add('active');}
 
@@ -214,107 +373,465 @@
             const id=params.get('id');
             if(!id){document.getElementById('infoBanner').textContent='No initiative specified. Go to Initiatives page.';return;}
             if(!authToken){window.location.href='index.html';return;}
-            try{currentUser=await apiFetch('/auth/profile');}catch{authToken=null;localStorage.removeItem('missilex_token');window.location.href='index.html';return;}
+            try{currentUser=await apiFetch('/auth/profile');}catch(e){authToken=null;localStorage.removeItem('missilex_token');window.location.href='index.html';return;}
             document.getElementById('navActions').innerHTML='<a href="index.html" style="font-family:Orbitron,monospace;font-size:0.7rem;color:var(--primary);text-decoration:none;">HOME</a>';
             document.getElementById('userAvatarDash').textContent=currentUser.name.charAt(0).toUpperCase();
             document.getElementById('userNameDash').textContent=currentUser.name;
             document.getElementById('userEmailDash').textContent=currentUser.email;
+            document.getElementById('quickActions').style.display='block';
 
             try{
                 initiativeData=await apiFetch('/initiatives/'+id);
                 document.title=initiativeData.title+' — Dashboard';
-                document.getElementById('infoBanner').innerHTML='<strong>'+initiativeData.title+'</strong> — '+initiativeData.mode+' | '+initiativeData.fee;
+                document.getElementById('infoBanner').innerHTML='<strong>'+initiativeData.title+'</strong> — '+initiativeData.mode+' | '+initiativeData.fee+' | Team: '+initiativeData.teamSize;
                 startCountdown(initiativeData.regDeadline);
+                allChallenges=initiativeData.challenges||[];
                 renderRoadmap();
-                renderChallenges();
+                renderChallengesList();
+                populateChallengeSelect();
                 await loadTeam();
                 await loadSubmissions();
                 await loadAnnouncements();
                 await loadWinners();
-            }catch(e){console.error('Dashboard load error:',e);}
+            }catch(e){console.error('Dashboard load error:',e);document.getElementById('infoBanner').textContent='Error loading initiative data.';}
         }
 
         function renderRoadmap(){
             const steps=initiativeData.timeline||[];
             const now=new Date();
-            document.getElementById('roadmapSteps').innerHTML=steps.map((s,i)=>{
-                const stepDate=new Date(initiativeData.startDate);
-                stepDate.setDate(stepDate.getDate()+i*2);
+            const start=new Date(initiativeData.startDate);
+            const end=new Date(initiativeData.endDate);
+            const total=steps.length;
+            let completedCount=0;
+
+            const html=steps.map((s,i)=>{
+                const stepDate=new Date(start);
+                stepDate.setDate(stepDate.getDate()+Math.round((i/(total-1||1))*(end-start)/86400000));
                 const isPast=stepDate<now;
-                const isCurrent=i===Math.min(Math.floor((now-new Date(initiativeData.startDate))/((new Date(initiativeData.endDate)-new Date(initiativeData.startDate))/steps.length)),steps.length-1);
+                const isCurrent=!isPast&&(i===0||new Date(start.getTime()+((i-1)/(total-1||1))*(end-start))<now);
+                if(isPast)completedCount++;
                 const statusClass=isPast?'completed':isCurrent?'active':'upcoming';
-                const iconClass=isPast?'done':isCurrent?'current':'pending';
-                const badge=isPast?'<span class="badge badge-done">DONE</span>':isCurrent?'<span class="badge badge-live">LIVE NOW</span>':'';
-                return '<div class="roadmap-step '+statusClass+'"><div class="step-icon '+iconClass+'">'+(isPast?'✓':(isCurrent?'●':(i+1)))+'</div><div class="step-content"><div class="step-title">'+s.event+badge+'</div><div class="step-date">'+s.date+'</div></div></div>';
+                const numClass=isPast?'done':isCurrent?'current':'pending';
+                const badge=isPast?'<span class="badge badge-done">DONE</span>':isCurrent?'<span class="badge badge-live">LIVE NOW</span>':'<span class="badge badge-upcoming">UPCOMING</span>';
+
+                let btnHtml='';
+                if(isPast){
+                    btnHtml='<button class="step-btn done" disabled>COMPLETED</button>';
+                }else if(isCurrent){
+                    if(s.event.toLowerCase().includes('registration')&&s.event.toLowerCase().includes('open')){
+                        btnHtml='<button class="step-btn" onclick="handleRoadmapAction('+'register'+')">REGISTER NOW</button>';
+                    }else if(s.event.toLowerCase().includes('challenge')||s.event.toLowerCase().includes('hackathon')||s.event.toLowerCase().includes('sprint')||s.event.toLowerCase().includes('internship')){
+                        btnHtml='<button class="step-btn" onclick="handleRoadmapAction(\'start_challenge\')">START NOW</button>';
+                    }else if(s.event.toLowerCase().includes('submission')||s.event.toLowerCase().includes('deadline')){
+                        btnHtml='<button class="step-btn" onclick="handleRoadmapAction(\'submit\')">SUBMIT PROJECT</button>';
+                    }else if(s.event.toLowerCase().includes('review')||s.event.toLowerCase().includes('mid')){
+                        btnHtml='<button class="step-btn" onclick="handleRoadmapAction(\'review\')">VIEW DETAILS</button>';
+                    }else if(s.event.toLowerCase().includes('result')||s.event.toLowerCase().includes('announcement')){
+                        btnHtml='<button class="step-btn" onclick="handleRoadmapAction(\'results\')">VIEW RESULTS</button>';
+                    }else{
+                        btnHtml='<button class="step-btn" onclick="handleRoadmapAction(\'general\')">VIEW DETAILS</button>';
+                    }
+                }else{
+                    btnHtml='<button class="step-btn" disabled>NOT YET</button>';
+                }
+
+                return '<div class="roadmap-step '+statusClass+'">' +
+                    '<div class="step-num '+numClass+'">'+(isPast?'✓':(i+1))+'</div>' +
+                    '<div class="step-body">' +
+                    '<div class="step-title">'+s.event+badge+'</div>' +
+                    '<div class="step-date">'+s.date+'</div>' +
+                    btnHtml +
+                    '</div></div>';
             }).join('');
+
+            document.getElementById('roadmapSteps').innerHTML=html;
+            const pct=Math.round((completedCount/total)*100);
+            document.getElementById('roadmapProgress').innerHTML=
+                '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">'+
+                '<span style="font-family:Orbitron,monospace;font-size:0.7rem;color:var(--gray);">PROGRESS</span>'+
+                '<span style="font-family:Orbitron,monospace;font-size:0.8rem;color:var(--primary);">'+pct+'%</span>'+
+                '</div>'+
+                '<div class="progress-bar"><div class="progress-fill blue" style="width:'+pct+'%"></div></div>';
+        }
+
+        function handleRoadmapAction(action){
+            if(action==='register'){
+                switchTab('team',document.querySelectorAll('.dash-tab')[1]);
+                showNotification('Create a team and register!','info');
+            }else if(action==='start_challenge'){
+                switchTab('challenges',document.querySelectorAll('.dash-tab')[3]);
+                showNotification('Pick a challenge to start!','info');
+            }else if(action==='submit'){
+                if(!myTeam&&initiativeData.teamSize!=='Individual'){
+                    showNotification('Create a team first!','error');
+                    return;
+                }
+                openModal('submitProjectModal');
+            }else if(action==='review'){
+                showNotification('Review phase — judges evaluating submissions.','info');
+            }else if(action==='results'){
+                switchTab('winners',document.querySelectorAll('.dash-tab')[5]);
+            }
+        }
+
+        function addMemberForm(){
+            memberCount++;
+            const html='<div class="team-member-form" id="memberForm'+memberCount+'">'+
+                '<h5 style="display:flex;justify-content:space-between;align-items:center;">MEMBER '+memberCount+'<button class="dash-btn danger small" onclick="removeMemberForm('+memberCount+')" style="font-size:0.5rem;padding:3px 8px;">REMOVE</button></h5>'+
+                '<div class="form-row"><div class="form-group"><label>NAME *</label><input type="text" id="mName'+memberCount+'" placeholder="Full name"></div>'+
+                '<div class="form-group"><label>EMAIL *</label><input type="email" id="mEmail'+memberCount+'" placeholder="Email"></div></div>'+
+                '<div class="form-row"><div class="form-group"><label>PHONE</label><input type="tel" id="mPhone'+memberCount+'" placeholder="Phone"></div>'+
+                '<div class="form-group"><label>COLLEGE</label><input type="text" id="mCollege'+memberCount+'" placeholder="College"></div></div>'+
+                '<div class="form-row"><div class="form-group"><label>ROLE</label><select id="mRole'+memberCount+'"><option value="member">Member</option><option value="developer">Developer</option><option value="designer">Designer</option><option value="researcher">Researcher</option><option value="lead">Tech Lead</option></select></div>'+
+                '<div class="form-group"><label>SKILLS</label><input type="text" id="mSkills'+memberCount+'" placeholder="Python, ML, React"></div></div>'+
+                '</div>';
+            document.getElementById('teamMembersForms').insertAdjacentHTML('beforeend',html);
+        }
+
+        function removeMemberForm(n){
+            const el=document.getElementById('memberForm'+n);
+            if(el)el.remove();
+        }
+
+        async function createTeam(){
+            const name=document.getElementById('newTeamName').value.trim();
+            const phone=document.getElementById('leaderPhone').value.trim();
+            const college=document.getElementById('leaderCollege').value.trim();
+            const skills=document.getElementById('leaderSkills').value.trim();
+            if(!name){showNotification('Enter team name','error');return;}
+            if(!phone||!college){showNotification('Fill phone and college','error');return;}
+
+            const members=[];
+            members.push({name:currentUser.name,email:currentUser.email,phone,college,role:'leader',skills:skills.split(',').map(s=>s.trim()).filter(Boolean),bio:'Team Leader'});
+
+            for(let i=1;i<=memberCount;i++){
+                const mname=document.getElementById('mName'+i)?.value.trim();
+                const memail=document.getElementById('mEmail'+i)?.value.trim();
+                const mphone=document.getElementById('mPhone'+i)?.value.trim();
+                const mcollege=document.getElementById('mCollege'+i)?.value.trim();
+                const mrole=document.getElementById('mRole'+i)?.value;
+                const mskills=document.getElementById('mSkills'+i)?.value.trim();
+                if(mname&&memail){
+                    members.push({name:mname,email:memail,phone:mphone||'',college:mcollege||'',role:mrole||'member',skills:mskills?mskills.split(',').map(s=>s.trim()).filter(Boolean):[],bio:''});
+                }
+            }
+
+            try{
+                await apiFetch('/initiatives/'+initiativeData._id+'/teams',{method:'POST',body:JSON.stringify({teamName:name,members})});
+                closeModal('createTeamModal');
+                showNotification('Team created with '+members.length+' member(s)!','success');
+                await loadTeam();
+            }catch(e){showNotification(e.message,'error');}
         }
 
         async function loadTeam(){
             try{
                 const teams=await apiFetch('/initiatives/'+initiativeData._id+'/teams');
-                myTeam=teams.find(t=>t.leaderId===currentUser._id||t.members.some(m=>m.userId===currentUser._id));
+                myTeam=teams.find(t=>t.leaderId===currentUser._id||(t.members&&t.members.some(m=>m.userId===currentUser._id||m.email===currentUser.email)));
                 const reg=await apiFetch('/user/initiatives');
                 const myReg=reg.find(r=>r.initiativeId===initiativeData._id);
                 let html='';
+
                 if(myTeam){
-                    html+='<div class="team-card"><h4>'+myTeam.name+'</h4>';
-                    myTeam.members.forEach(m=>{html+='<div class="member-row"><div class="member-avatar">'+m.name.charAt(0)+'</div><div><div class="member-name">'+m.name+'</div><div class="member-role">'+m.role.toUpperCase()+'</div></div></div>';});
-                    html+='</div>';
+                    html+='<div class="team-card"><h4>'+myTeam.name+' <span class="count">('+myTeam.members.length+' member'+(myTeam.members.length>1?'s':'')+')</span></h4>';
+                    html+='<div class="team-members-grid">';
+                    myTeam.members.forEach((m,i)=>{
+                        const isLeader=m.role==='leader'||m.userId===myTeam.leaderId;
+                        const initials=m.name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+                        html+='<div class="member-row">'+
+                            '<div class="member-avatar '+(isLeader?'leader':'')+'">'+initials+'</div>'+
+                            '<div class="member-info">'+
+                            '<div class="member-name">'+m.name+(isLeader?' ★ Leader':'')+'</div>'+
+                            '<div class="member-role">'+(m.role||'member').toUpperCase()+'</div>'+
+                            (m.email?'<div class="member-detail">📧 '+m.email+'</div>':'')+
+                            (m.phone?'<div class="member-detail">📱 '+m.phone+'</div>':'')+
+                            (m.college?'<div class="member-detail">🏛️ '+m.college+'</div>':'')+
+                            (m.bio?'<div class="member-detail" style="margin-top:4px;color:rgba(255,255,255,0.5);font-style:italic;">"'+m.bio+'"</div>':'')+
+                            (m.skills&&m.skills.length?'<div class="member-skills">'+m.skills.map(s=>'<span class="skill-tag">'+s+'</span>').join('')+'</div>':'')+
+                            '</div>'+
+                            (myTeam.leaderId===currentUser._id&&!isLeader?'<div class="member-actions"><button class="dash-btn danger small" onclick="removeMemberFromTeam(\''+m.email+'\')" style="font-size:0.5rem;padding:4px 8px;">REMOVE</button></div>':'')+
+                            '</div>';
+                    });
+                    html+='</div></div>';
+
                     if(myTeam.leaderId===currentUser._id){
-                        html+='<div class="team-card"><h4>INVITE MEMBER</h4><div class="invite-row"><input type="email" id="inviteEmail" placeholder="Enter email address"><button class="dash-btn primary" onclick="inviteMember()">INVITE</button></div><div id="inviteList"></div></div>';
+                        html+='<div class="team-card"><h4>INVITE MEMBER</h4><p style="font-size:0.8rem;color:var(--gray);margin-bottom:12px;">Send invitation to a registered user by email.</p><div class="invite-row"><input type="email" id="inviteEmail" placeholder="Enter email address"><button class="dash-btn primary" onclick="inviteMember()">INVITE</button></div><div id="inviteList"></div></div>';
+                        try{
+                            const invites=await apiFetch('/user/invites');
+                            const teamInvites=invites.filter(i=>i.teamId===myTeam._id&&i.status==='pending');
+                            if(teamInvites.length>0){
+                                html+='<div class="team-card"><h4>SENT INVITATIONS</h4>';
+                                teamInvites.forEach(inv=>{
+                                    html+='<div class="member-row"><div class="member-avatar">'+inv.invitedUserName?.charAt(0)+'</div><div class="member-info"><div class="member-name">'+inv.invitedUserName+'</div><div class="member-role">'+inv.invitedUserEmail+'</div></div><span style="font-size:0.6rem;color:var(--gray);font-family:Orbitron,monospace;">PENDING</span></div>';
+                                });
+                                html+='</div>';
+                            }
+                        }catch(e){}
                     }
+
+                    document.getElementById('myTeamCard').style.display='block';
+                    document.getElementById('myTeamInfo').innerHTML='<p style="font-size:0.85rem;color:#fff;">'+myTeam.name+'</p><p style="font-size:0.75rem;color:var(--gray);">'+myTeam.members.length+' member(s)</p>';
                 }else{
                     if(initiativeData.teamSize==='Individual'){
-                        html+='<div class="info-banner">This is an individual participation event. No team needed.</div>';
+                        html+='<div class="info-banner">This is an individual participation event. No team needed. You can submit directly from the Submissions tab.</div>';
                     }else{
-                        html+='<div class="empty-state"><div class="icon">👥</div><p>No team yet. Create one or accept an invitation.</p>';
-                        html+='<button class="dash-btn primary" onclick="openModal(\'createTeamModal\')" style="margin-top:16px;">CREATE TEAM</button></div>';
+                        html+='<div class="empty-state"><div class="icon">👥</div><p>No team yet. Create one to participate in this event.</p>'+
+                        '<button class="dash-btn primary" onclick="openCreateTeamModal()" style="margin-top:16px;">CREATE TEAM</button></div>';
                     }
                 }
+
                 document.getElementById('teamContent').innerHTML=html;
-                if(myTeam){document.getElementById('myTeamCard').style.display='block';document.getElementById('myTeamInfo').innerHTML='<p style="font-size:0.85rem;color:#fff;">'+myTeam.name+'</p><p style="font-size:0.75rem;color:var(--gray);">'+myTeam.members.length+' member(s)</p>';}
-                try{const invites=await apiFetch('/user/invites');if(invites.length>0){let invHtml='<div class="team-card"><h4>PENDING INVITATIONS</h4>';invites.filter(i=>i.status==='pending').forEach(inv=>{invHtml+='<div class="member-row"><div class="member-avatar">'+inv.teamName.charAt(0)+'</div><div style="flex:1"><div class="member-name">'+inv.teamName+'</div><div class="member-role">Invited by '+inv.inviterName+'</div></div><button class="dash-btn primary" onclick="acceptInvite(\''+inv._id+'\')" style="font-size:0.6rem;padding:6px 12px;">ACCEPT</button><button class="dash-btn danger" onclick="rejectInvite(\''+inv._id+'\')" style="font-size:0.6rem;padding:6px 12px;margin-left:6px;">REJECT</button></div>';});invHtml+='</div>';document.getElementById('teamContent').innerHTML+=invHtml;}}catch(e){}
+
+                try{
+                    const invites=await apiFetch('/user/invites');
+                    const pending=invites.filter(i=>i.status==='pending'&&i.invitedUserId===currentUser._id);
+                    if(pending.length>0){
+                        let invHtml='<div class="team-card" style="border-color:rgba(255,107,53,0.3);"><h4 style="color:var(--secondary);">PENDING INVITATIONS</h4>';
+                        pending.forEach(inv=>{
+                            invHtml+='<div class="member-row" style="background:rgba(255,107,53,0.03);border-radius:8px;"><div class="member-avatar" style="background:linear-gradient(135deg,var(--secondary),#ff9966);">'+inv.teamName.charAt(0)+'</div><div style="flex:1"><div class="member-name">'+inv.teamName+'</div><div class="member-role">Invited by '+inv.inviterName+'</div></div><button class="dash-btn primary small" onclick="acceptInvite(\''+inv._id+'\')" style="font-size:0.55rem;">ACCEPT</button><button class="dash-btn danger small" onclick="rejectInvite(\''+inv._id+'\')" style="font-size:0.55rem;margin-left:4px;">REJECT</button></div>';
+                        });
+                        invHtml+='</div>';
+                        document.getElementById('teamContent').innerHTML+=invHtml;
+                    }
+                }catch(e){}
             }catch(e){document.getElementById('teamContent').innerHTML='<div class="empty-state"><p>Failed to load team data.</p></div>';}
         }
 
-        async function createTeam(){
-            const name=document.getElementById('newTeamName').value.trim();
-            if(!name){showNotification('Enter team name');return;}
-            try{await apiFetch('/initiatives/'+initiativeData._id+'/teams',{method:'POST',body:JSON.stringify({teamName:name})});closeModal('createTeamModal');showNotification('Team created!');await loadTeam();}catch(e){showNotification(e.message);}
+        function openCreateTeamModal(){
+            memberCount=0;
+            document.getElementById('newTeamName').value='';
+            document.getElementById('leaderPhone').value='';
+            document.getElementById('leaderCollege').value='';
+            document.getElementById('leaderSkills').value='';
+            document.getElementById('teamMembersForms').innerHTML='';
+            if(initiativeData.teamSize){
+                const max=parseInt(initiativeData.teamSize)||4;
+                for(let i=1;i<max-1;i++)addMemberForm();
+            }
+            openModal('createTeamModal');
         }
 
         async function inviteMember(){
             const email=document.getElementById('inviteEmail').value.trim();
             if(!email||!myTeam){return;}
-            try{await apiFetch('/teams/'+myTeam._id+'/invite',{method:'POST',body:JSON.stringify({email})});showNotification('Invitation sent!');document.getElementById('inviteEmail').value='';}catch(e){showNotification(e.message);}
+            try{await apiFetch('/teams/'+myTeam._id+'/invite',{method:'POST',body:JSON.stringify({email})});showNotification('Invitation sent!','success');document.getElementById('inviteEmail').value='';}catch(e){showNotification(e.message,'error');}
         }
 
-        async function acceptInvite(id){try{await apiFetch('/invites/'+id+'/accept',{method:'POST'});showNotification('Joined team!');await loadTeam();}catch(e){showNotification(e.message);}}
-        async function rejectInvite(id){try{await apiFetch('/invites/'+id+'/reject',{method:'POST'});showNotification('Invite rejected');await loadTeam();}catch(e){showNotification(e.message);}}
+        async function acceptInvite(id){try{await apiFetch('/invites/'+id+'/accept',{method:'POST'});showNotification('Joined team!','success');await loadTeam();}catch(e){showNotification(e.message,'error');}}
+        async function rejectInvite(id){try{await apiFetch('/invites/'+id+'/reject',{method:'POST'});showNotification('Invite rejected','info');await loadTeam();}catch(e){showNotification(e.message,'error');}}
+
+        async function removeMemberFromTeam(email){
+            if(!confirm('Remove this member from team?'))return;
+            try{await apiFetch('/teams/'+myTeam._id+'/remove-member',{method:'POST',body:JSON.stringify({email})});showNotification('Member removed','success');await loadTeam();}catch(e){showNotification(e.message,'error');}
+        }
+
+        function populateChallengeSelect(){
+            const sel=document.getElementById('subChallenge');
+            sel.innerHTML='<option value="">Select challenge</option>';
+            allChallenges.forEach(c=>{
+                sel.innerHTML+='<option value="'+c+'">'+c+'</option>';
+            });
+        }
 
         async function loadSubmissions(){
             try{
                 userSubmissions=await apiFetch('/user/submissions');
                 const mySubs=userSubmissions.filter(s=>s.initiativeId===initiativeData._id);
                 let html='';
+
                 if(mySubs.length>0){
-                    mySubs.forEach(s=>{html+='<div class="sub-card"><h4>'+s.title+'</h4><p>'+s.description+'</p><div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">';if(s.repoUrl)html+='<a href="'+s.repoUrl+'" target="_blank" style="font-size:0.75rem;color:var(--primary);">GitHub ↗</a>';if(s.demoUrl)html+='<a href="'+s.demoUrl+'" target="_blank" style="font-size:0.75rem;color:var(--primary);">Demo ↗</a>';if(s.presentationUrl)html+='<a href="'+s.presentationUrl+'" target="_blank" style="font-size:0.75rem;color:var(--primary);">Presentation ↗</a>';html+='</div><span class="sub-status '+s.status+'">'+s.status.toUpperCase()+'</span></div>';});
+                    mySubs.forEach(s=>{
+                        html+='<div class="sub-card"><div class="sub-type '+(initiativeData.type||'hackathon')+'">'+(s.challenge||initiativeData.type||'HACKATHON').toUpperCase()+'</div><h4>'+s.title+'</h4><p>'+s.description+'</p>';
+                        if(s.techUsed)html+='<p style="font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:4px;">Tech: '+s.techUsed+'</p>';
+                        if(s.teamMembers)html+='<p style="font-size:0.75rem;color:rgba(255,255,255,0.4);">Team: '+s.teamMembers+'</p>';
+                        html+='<div class="sub-links">';
+                        if(s.repoUrl)html+='<a href="'+s.repoUrl+'" target="_blank">🔗 GitHub</a>';
+                        if(s.demoUrl)html+='<a href="'+s.demoUrl+'" target="_blank">🌐 Live Demo</a>';
+                        if(s.videoUrl)html+='<a href="'+s.videoUrl+'" target="_blank">📹 Video Demo</a>';
+                        if(s.linkedinUrl)html+='<a href="'+s.linkedinUrl+'" target="_blank">💼 LinkedIn</a>';
+                        if(s.presentationUrl)html+='<a href="'+s.presentationUrl+'" target="_blank">📊 Presentation</a>';
+                        html+='</div>';
+                        html+='<span class="sub-status '+s.status+'">'+s.status.toUpperCase()+'</span>';
+                        html+='<div style="font-size:0.7rem;color:var(--gray);margin-top:8px;">Submitted: '+new Date(s.submittedAt).toLocaleString('en-IN')+'</div>';
+                        html+='</div>';
+                    });
+                    html+='<button class="dash-btn secondary" onclick="openSubmitModal()" style="margin-top:8px;">SUBMIT ANOTHER PROJECT</button>';
                 }else{
-                    html+='<div class="empty-state"><div class="icon">📤</div><p>No submissions yet. Submit your project before the deadline.</p><button class="dash-btn primary" onclick="openModal(\'submitProjectModal\')" style="margin-top:16px;">SUBMIT PROJECT</button></div>';
+                    html+='<div class="empty-state"><div class="icon">📤</div><p>No submissions yet. Submit your project before the deadline.</p><button class="dash-btn primary" onclick="openSubmitModal()" style="margin-top:16px;">SUBMIT PROJECT</button></div>';
                 }
                 document.getElementById('submissionsContent').innerHTML=html;
             }catch(e){document.getElementById('submissionsContent').innerHTML='<div class="empty-state"><p>Failed to load submissions.</p></div>';}
         }
 
+        function openSubmitModal(){
+            if(initiativeData.teamSize!=='Individual'&&!myTeam){
+                showNotification('Create a team first!','error');
+                switchTab('team',document.querySelectorAll('.dash-tab')[1]);
+                return;
+            }
+            document.getElementById('subTitle').value='';
+            document.getElementById('subChallenge').value='';
+            document.getElementById('subDesc').value='';
+            document.getElementById('subRepo').value='';
+            document.getElementById('subVideo').value='';
+            document.getElementById('subLinkedin').value='';
+            document.getElementById('subDemo').value='';
+            document.getElementById('subPres').value='';
+            document.getElementById('subTech').value='';
+            document.getElementById('subDuration').value='';
+            document.getElementById('subTeamMembers').value='';
+            openModal('submitProjectModal');
+        }
+
         async function submitProject(){
             const title=document.getElementById('subTitle').value.trim();
+            const challenge=document.getElementById('subChallenge').value;
             const desc=document.getElementById('subDesc').value.trim();
-            if(!title||!desc){showNotification('Fill required fields');return;}
+            const repoUrl=document.getElementById('subRepo').value.trim();
+            const videoUrl=document.getElementById('subVideo').value.trim();
+            const linkedinUrl=document.getElementById('subLinkedin').value.trim();
+            if(!title){showNotification('Enter project title','error');return;}
+            if(!desc){showNotification('Enter description','error');return;}
+            if(!repoUrl){showNotification('GitHub URL required','error');return;}
+            if(!videoUrl){showNotification('Video demo link required','error');return;}
+            if(!linkedinUrl){showNotification('LinkedIn profile required','error');return;}
+
             try{
-                await apiFetch('/initiatives/'+initiativeData._id+'/submissions',{method:'POST',body:JSON.stringify({title,description:desc,repoUrl:document.getElementById('subRepo').value,demoUrl:document.getElementById('subDemo').value,presentationUrl:document.getElementById('subPres').value})});
-                await apiFetch('/send-email',{method:'POST',body:JSON.stringify({to:currentUser.email,subject:'Submission Received — '+initiativeData.title,body:'Your project "'+title+'" has been submitted successfully. We will review it soon.'})});
-                closeModal('submitProjectModal');showNotification('Project submitted! Check your email.');await loadSubmissions();
-            }catch(e){showNotification(e.message);}
+                await apiFetch('/initiatives/'+initiativeData._id+'/submissions',{method:'POST',body:JSON.stringify({
+                    title,challenge,description:desc,repoUrl,videoUrl,linkedinUrl,
+                    demoUrl:document.getElementById('subDemo').value.trim(),
+                    presentationUrl:document.getElementById('subPres').value.trim(),
+                    techUsed:document.getElementById('subTech').value.trim(),
+                    duration:document.getElementById('subDuration').value.trim(),
+                    teamMembers:document.getElementById('subTeamMembers').value.trim()
+                })});
+                try{await apiFetch('/send-email',{method:'POST',body:JSON.stringify({to:currentUser.email,subject:'Submission Received — '+initiativeData.title,body:'Your project "'+title+'" has been submitted successfully. We will review it soon.'})});}catch(e){}
+                closeModal('submitProjectModal');showNotification('Project submitted successfully!','success');await loadSubmissions();
+            }catch(e){showNotification(e.message,'error');}
+        }
+
+        function renderChallengesList(){
+            let html='';
+            if(allChallenges.length>0){
+                allChallenges.forEach((c,i)=>{
+                    const icons=['🤖','🚀','🛡️','🎯','🛸','⚔️','📡','🔬'];
+                    html+='<div class="challenge-card" onclick="showChallengeDetail('+i+')">'+
+                        '<h4>'+icons[i%icons.length]+' '+c+'</h4>'+
+                        '<p>Detailed overview, requirements, timeline, judging criteria, and resources for this challenge.</p>'+
+                        '<div class="challenge-tags"><span class="challenge-tag">'+initiativeData.type.toUpperCase()+'</span><span class="challenge-tag">'+initiativeData.mode.toUpperCase()+'</span><span class="challenge-tag">'+initiativeData.teamSize+'</span></div>'+
+                        '</div>';
+                });
+            }else{
+                html='<div class="empty-state"><div class="icon">🏆</div><p>No challenges defined for this event yet.</p></div>';
+            }
+            document.getElementById('challengesContent').innerHTML=html;
+        }
+
+        function showChallengeDetail(idx){
+            const c=allChallenges[idx];
+            const icons=['🤖','🚀','🛡️','🎯','🛸','⚔️','📡','🔬'];
+            let html='<div class="challenge-detail">'+
+                '<h3><button class="back-btn" onclick="renderChallengesList()">← BACK</button> '+icons[idx%icons.length]+' '+c+'</h3>'+
+
+                '<div class="challenge-pages">'+
+                '<button class="challenge-page-tab active" onclick="switchChallengePage(0,this,'+idx+')">Overview</button>'+
+                '<button class="challenge-page-tab" onclick="switchChallengePage(1,this,'+idx+')">Requirements</button>'+
+                '<button class="challenge-page-tab" onclick="switchChallengePage(2,this,'+idx+')">Timeline</button>'+
+                '<button class="challenge-page-tab" onclick="switchChallengePage(3,this,'+idx+')">Judging</button>'+
+                '<button class="challenge-page-tab" onclick="switchChallengePage(4,this,'+idx+')">Resources</button>'+
+                '</div>'+
+
+                '<div class="challenge-page active" id="cp0-'+idx+'">'+
+                '<h4>OVERVIEW</h4>'+
+                '<p>'+initiativeData.description+'</p>'+
+                '<div class="highlight-box"><strong>Challenge:</strong> '+c+'<br><strong>Event:</strong> '+initiativeData.title+'<br><strong>Organizer:</strong> '+initiativeData.organizer+'<br><strong>Mode:</strong> '+initiativeData.mode+' | <strong>Fee:</strong> '+initiativeData.fee+'</div>'+
+                '<h4>WHAT YOU WILL BUILD</h4>'+
+                '<p>Participants will design, develop, and present innovative solutions in the domain of <strong>'+c+'</strong>. Projects should demonstrate technical excellence, creativity, and real-world applicability.</p>'+
+                '<h4>WHO CAN PARTICIPATE</h4>'+
+                '<ul><li>Engineering students, graduates, and working professionals</li><li>Teams of '+initiativeData.teamSize+'</li><li>Open to all disciplines with interest in '+c.toLowerCase()+'</li></ul>'+
+                '</div>'+
+
+                '<div class="challenge-page" id="cp1-'+idx+'">'+
+                '<h4>TECHNICAL REQUIREMENTS</h4>'+
+                '<ul>'+
+                '<li>Working prototype or simulation with demonstrable functionality</li>'+
+                '<li>Clean, documented codebase (GitHub repository required)</li>'+
+                '<li>Video demonstration (3-5 minutes) showing the solution in action</li>'+
+                '<li>Presentation deck covering problem, approach, and results</li>'+
+                '<li>Real-time or simulated data processing capabilities</li>'+
+                '</ul>'+
+                '<h4>DELIVERABLES</h4>'+
+                '<ul>'+
+                '<li><strong>Source Code:</strong> Complete, well-commented repository</li>'+
+                '<li><strong>Video Demo:</strong> YouTube/Vimeo link (3-5 min walkthrough)</li>'+
+                '<li><strong>Presentation:</strong> Google Slides / PowerPoint (10-15 slides)</li>'+
+                '<li><strong>Documentation:</strong> README with setup instructions</li>'+
+                '<li><strong>LinkedIn Profile:</strong> For team verification</li>'+
+                '</ul>'+
+                '<div class="highlight-box"><strong>Mandatory:</strong> GitHub repo, video demo link, LinkedIn profiles, and presentation are all required for valid submission.</div>'+
+                '</div>'+
+
+                '<div class="challenge-page" id="cp2-'+idx+'">'+
+                '<h4>EVENT TIMELINE</h4>'+
+                (initiativeData.timeline||[]).map(t=>
+                    '<div class="timeline-item"><div class="timeline-date">'+t.date+'</div><div><div class="timeline-event">'+t.event+'</div><div class="timeline-desc">'+(t.status==='active'?'🔴 Currently Active':'')+'</div></div></div>'
+                ).join('')+
+                '<h4>IMPORTANT DATES</h4>'+
+                '<div class="highlight-box"><strong>Registration Deadline:</strong> '+new Date(initiativeData.regDeadline).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})+'<br>'+
+                '<strong>Event Start:</strong> '+new Date(initiativeData.startDate).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})+'<br>'+
+                '<strong>Event End:</strong> '+new Date(initiativeData.endDate).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})+'</div>'+
+                '</div>'+
+
+                '<div class="challenge-page" id="cp3-'+idx+'">'+
+                '<h4>JUDGING CRITERIA</h4>'+
+                '<div class="criteria-grid">'+
+                '<div class="criteria-item"><div class="pct">30%</div><div class="label">Technical Complexity & Innovation</div></div>'+
+                '<div class="criteria-item"><div class="pct">25%</div><div class="label">Functionality & Demo Quality</div></div>'+
+                '<div class="criteria-item"><div class="pct">20%</div><div class="label">Code Quality & Documentation</div></div>'+
+                '<div class="criteria-item"><div class="pct">15%</div><div class="label">Presentation & Communication</div></div>'+
+                '<div class="criteria-item"><div class="pct">10%</div><div class="label">Real-world Impact & Scalability</div></div>'+
+                '</div>'+
+                '<h4>JUDGING PANEL</h4>'+
+                '<p>Projects will be evaluated by industry experts from '+initiativeData.organizer+'. Top teams will receive prizes worth '+initiativeData.prizes+'.</p>'+
+                '<h4>PRIZES</h4>'+
+                '<div class="highlight-box"><strong>Total Prize Pool:</strong> '+initiativeData.prizes+'<br>'+
+                '<strong>Winners:</strong> Cash prizes + Internship opportunities + Certificates<br>'+
+                '<strong>All Participants:</strong> Certificate of Participation</div>'+
+                '</div>'+
+
+                '<div class="challenge-page" id="cp4-'+idx+'">'+
+                '<h4>GETTING STARTED</h4>'+
+                '<ul>'+
+                '<li>Form your team of '+initiativeData.teamSize+'</li>'+
+                '<li>Choose your approach and tech stack</li>'+
+                '<li>Set up your GitHub repository</li>'+
+                '<li>Start building your prototype</li>'+
+                '<li>Record your demo video</li>'+
+                '<li>Submit before the deadline</li>'+
+                '</ul>'+
+                '<h4>RECOMMENDED RESOURCES</h4>'+
+                '<ul>'+
+                '<li><strong>Documentation:</strong> Official docs for your chosen tech stack</li>'+
+                '<li><strong>Tutorials:</strong> MissileX learning modules and workshops</li>'+
+                '<li><strong>Community:</strong> Discord server for mentor support</li>'+
+                '<li><strong>Tools:</strong> GitHub, VS Code, Figma, cloud platforms</li>'+
+                '</ul>'+
+                '<h4>FAQ</h4>'+
+                (initiativeData.faqs||[]).map(f=>
+                    '<div style="margin-bottom:12px;"><p style="color:var(--primary);font-weight:600;font-size:0.85rem;">Q: '+f.q+'</p><p style="font-size:0.85rem;">A: '+f.a+'</p></div>'
+                ).join('')+
+                '</div>'+
+
+                '</div>';
+
+            document.getElementById('challengesContent').innerHTML=html;
+        }
+
+        function switchChallengePage(page,btn,idx){
+            document.querySelectorAll('.challenge-page-tab').forEach(t=>t.classList.remove('active'));
+            document.querySelectorAll('.challenge-page').forEach(p=>p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('cp'+page+'-'+idx).classList.add('active');
         }
 
         async function loadAnnouncements(){

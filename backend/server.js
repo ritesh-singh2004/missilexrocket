@@ -590,15 +590,29 @@ app.get('/api/user/initiatives', auth, async (req, res) => {
 
 app.post('/api/initiatives/:id/teams', auth, async (req, res) => {
   try {
-    const { teamName } = req.body;
+    const { teamName, members } = req.body;
     const user = await users.findOne({ _id: req.userId });
+    const teamMembers = (members && members.length > 0)
+      ? members.map((m, i) => ({
+          userId: i === 0 ? req.userId : undefined,
+          name: m.name,
+          email: m.email,
+          phone: m.phone || '',
+          college: m.college || '',
+          role: i === 0 ? 'leader' : (m.role || 'member'),
+          skills: m.skills || [],
+          bio: m.bio || '',
+          joinedAt: new Date().toISOString()
+        }))
+      : [{ userId: req.userId, name: user.name, email: user.email, phone: '', college: '', role: 'leader', skills: [], bio: 'Team Leader', joinedAt: new Date().toISOString() }];
+
     const team = await teams.insert({
       initiativeId: req.params.id,
       name: teamName,
       leaderId: req.userId,
       leaderName: user.name,
       leaderEmail: user.email,
-      members: [{ userId: req.userId, name: user.name, email: user.email, role: 'leader' }],
+      members: teamMembers,
       status: 'active',
       createdAt: new Date().toISOString()
     });
@@ -627,18 +641,22 @@ app.post('/api/teams/:id/invite', auth, async (req, res) => {
   try {
     const { email } = req.body;
     const invitedUser = await users.findOne({ email });
-    if (!invitedUser) return res.status(404).json({ error: 'User not found' });
+    if (!invitedUser) return res.status(404).json({ error: 'User not found. They must register first.' });
     const teamData = await teams.findOne({ _id: req.params.id });
     if (!teamData) return res.status(404).json({ error: 'Team not found' });
 
-    const existing = await teamInvites.findOne({ teamId: req.params.id, invitedUserId: invitedUser._id });
+    const alreadyMember = teamData.members.some(m => m.email === email);
+    if (alreadyMember) return res.status(400).json({ error: 'User is already a team member' });
+
+    const existing = await teamInvites.findOne({ teamId: req.params.id, invitedUserId: invitedUser._id, status: 'pending' });
     if (existing) return res.status(400).json({ error: 'Already invited' });
 
+    const inviter = await users.findOne({ _id: req.userId });
     await teamInvites.insert({
       teamId: req.params.id,
       initiativeId: teamData.initiativeId,
       inviterId: req.userId,
-      inviterName: (await users.findOne({ _id: req.userId })).name,
+      inviterName: inviter.name,
       invitedUserId: invitedUser._id,
       invitedUserName: invitedUser.name,
       invitedUserEmail: email,
@@ -646,7 +664,21 @@ app.post('/api/teams/:id/invite', auth, async (req, res) => {
       status: 'pending',
       createdAt: new Date().toISOString()
     });
-    res.json({ message: 'Invitation sent' });
+    res.json({ message: 'Invitation sent to ' + invitedUser.name });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/teams/:id/remove-member', auth, async (req, res) => {
+  try {
+    const { email } = req.body;
+    const teamData = await teams.findOne({ _id: req.params.id });
+    if (!teamData) return res.status(404).json({ error: 'Team not found' });
+    if (teamData.leaderId !== req.userId) return res.status(403).json({ error: 'Only team leader can remove members' });
+    if (email === teamData.leaderEmail) return res.status(400).json({ error: 'Cannot remove team leader' });
+
+    await teams.update({ _id: req.params.id }, { $pull: { members: { email: email } } });
+    const updatedTeam = await teams.findOne({ _id: req.params.id });
+    res.json({ message: 'Member removed', team: updatedTeam });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
@@ -661,10 +693,26 @@ app.post('/api/invites/:id/accept', auth, async (req, res) => {
   try {
     const invite = await teamInvites.findOne({ _id: req.params.id });
     if (!invite) return res.status(404).json({ error: 'Invite not found' });
+    if (invite.status !== 'pending') return res.status(400).json({ error: 'Invite already processed' });
+
     await teamInvites.update({ _id: req.params.id }, { $set: { status: 'accepted' } });
     const user = await users.findOne({ _id: req.userId });
-    await teams.update({ _id: invite.teamId }, { $push: { members: { userId: req.userId, name: user.name, email: user.email, role: 'member' } } });
-    res.json({ message: 'Joined team' });
+    await teams.update({ _id: invite.teamId }, {
+      $push: {
+        members: {
+          userId: req.userId,
+          name: user.name,
+          email: user.email,
+          phone: '',
+          college: '',
+          role: 'member',
+          skills: [],
+          bio: '',
+          joinedAt: new Date().toISOString()
+        }
+      }
+    });
+    res.json({ message: 'Joined team successfully' });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
@@ -689,10 +737,16 @@ app.post('/api/initiatives/:id/submissions', auth, async (req, res) => {
       teamId: reg?.teamId || null,
       teamName: reg?.teamName || 'Individual',
       title: req.body.title,
+      challenge: req.body.challenge || '',
       description: req.body.description,
       repoUrl: req.body.repoUrl || '',
       demoUrl: req.body.demoUrl || '',
+      videoUrl: req.body.videoUrl || '',
+      linkedinUrl: req.body.linkedinUrl || '',
       presentationUrl: req.body.presentationUrl || '',
+      techUsed: req.body.techUsed || '',
+      duration: req.body.duration || '',
+      teamMembers: req.body.teamMembers || '',
       status: 'submitted',
       submittedAt: new Date().toISOString()
     });
