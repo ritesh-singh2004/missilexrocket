@@ -3,175 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MissileX Invest — Connect Startups with Investors</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <title>MissileX Invest — Investor-Startup Funding Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root{--primary:#00d4ff;--secondary:#ff6b35;--accent:#00ff88;--dark:#0a0a0f;--darker:#050508;--gray:#888;--card:#0d0d14;--border:rgba(255,255,255,0.06);}
+        :root{--primary:#00d4ff;--secondary:#ff6b35;--accent:#00ff88;--dark:#0a0a0f;--darker:#050508;--gray:#888;--light:#ccc;--card:#0d0d14;--border:rgba(255,255,255,0.06);}
         *{margin:0;padding:0;box-sizing:border-box;}
-        body{background:var(--dark);color:#fff;font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+        body{background:var(--dark);color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden;}
         a{text-decoration:none;color:inherit;}
+        .font-o{font-family:'Orbitron',monospace;}
 
-        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
-        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(0,212,255,0.08),transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(255,107,53,0.06),transparent 60%);}
-        .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;}
-        .hero-content{position:relative;z-index:2;max-width:900px;padding:40px 20px;}
-        .hero-badge{display:inline-block;font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--primary);border:1px solid rgba(0,212,255,0.3);padding:6px 20px;border-radius:20px;margin-bottom:24px;background:rgba(0,212,255,0.05);}
-        .hero h1{font-family:'Orbitron',monospace;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:20px;}
-        .hero h1 .gradient{background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-        .hero p{font-size:1.1rem;color:var(--gray);max-width:600px;margin:0 auto 40px;line-height:1.6;}
-        .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
-        .hero-btn{font-family:'Orbitron',monospace;font-size:0.8rem;letter-spacing:0.1em;padding:16px 40px;border-radius:8px;cursor:pointer;font-weight:700;transition:all 0.3s;border:none;}
-        .hero-btn.investor{background:linear-gradient(135deg,var(--primary),#0099cc);color:#000;}
-        .hero-btn.investor:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,212,255,0.3);}
-        .hero-btn.startup{background:linear-gradient(135deg,var(--secondary),#cc5522);color:#fff;}
-        .hero-btn.startup:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,107,53,0.3);}
+        /* NAV */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 30px;height:64px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,15,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+        .nav-left{display:flex;align-items:center;gap:32px;}
+        .nav-logo{font-family:'Orbitron',monospace;font-size:0.95rem;font-weight:700;}
+        .nav-logo span{color:var(--primary);}
+        .nav-links{display:flex;gap:24px;}
+        .nav-links a{font-size:0.8rem;color:var(--gray);transition:color 0.2s;font-weight:500;}
+        .nav-links a:hover{color:#fff;}
+        .nav-right{display:flex;gap:12px;align-items:center;}
+        .nav-btn{font-family:'Orbitron',monospace;font-size:0.65rem;letter-spacing:0.08em;padding:8px 20px;border-radius:6px;border:none;cursor:pointer;font-weight:700;transition:all 0.3s;}
+        .nav-btn.outline{background:transparent;border:1px solid rgba(255,255,255,0.15);color:#fff;}
+        .nav-btn.outline:hover{border-color:var(--primary);color:var(--primary);}
+        .nav-btn.filled{background:var(--primary);color:#000;}
+        .nav-btn.filled:hover{background:#fff;}
 
-        .stats{display:flex;justify-content:center;gap:60px;padding:60px 20px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-        .stat{text-align:center;}
-        .stat-num{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:var(--primary);}
-        .stat-label{font-size:0.8rem;color:var(--gray);margin-top:4px;letter-spacing:0.1em;}
+        /* HERO */
+        .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:100px 60px 60px;}
+        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 30%,rgba(0,212,255,0.07),transparent 50%),radial-gradient(ellipse at 80% 70%,rgba(255,107,53,0.05),transparent 50%);}
+        .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:80px 80px;}
+        .hero-content{position:relative;z-index:2;max-width:700px;}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--primary);border:1px solid rgba(0,212,255,0.25);padding:6px 16px;border-radius:20px;margin-bottom:28px;background:rgba(0,212,255,0.04);}
+        .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+        @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+        .hero h1{font-family:'Orbitron',monospace;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.08;margin-bottom:24px;}
+        .hero h1 .grad{background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .hero p{font-size:1.1rem;color:var(--gray);max-width:550px;line-height:1.7;margin-bottom:40px;}
+        .hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+        .hero-btn{font-family:'Orbitron',monospace;font-size:0.75rem;letter-spacing:0.1em;padding:16px 36px;border-radius:8px;border:none;cursor:pointer;font-weight:700;transition:all 0.3s;}
+        .hero-btn.inv{background:linear-gradient(135deg,var(--primary),#0099cc);color:#000;}
+        .hero-btn.inv:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,212,255,0.25);}
+        .hero-btn.stu{background:linear-gradient(135deg,var(--secondary),#cc5522);color:#fff;}
+        .hero-btn.stu:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(255,107,53,0.25);}
 
-        .features{max-width:1200px;margin:80px auto;padding:0 20px;}
-        .features h2{font-family:'Orbitron',monospace;font-size:1.5rem;text-align:center;margin-bottom:50px;}
-        .features h2 span{color:var(--primary);}
-        .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
-        .feat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:30px;transition:all 0.3s;}
-        .feat-card:hover{border-color:var(--primary);transform:translateY(-4px);}
-        .feat-icon{font-size:2rem;margin-bottom:16px;}
-        .feat-card h3{font-family:'Orbitron',monospace;font-size:0.9rem;color:var(--primary);margin-bottom:10px;}
-        .feat-card p{font-size:0.85rem;color:var(--gray);line-height:1.6;}
+        .hero-visual{position:absolute;right:60px;top:50%;transform:translateY(-50%);z-index:1;opacity:0.15;}
+        .hero-visual .ring{width:400px;height:400px;border:1px solid rgba(0,212,255,0.2);border-radius:50%;position:relative;}
+        .hero-visual .ring::before{content:'';position:absolute;inset:30px;border:1px solid rgba(255,107,53,0.2);border-radius:50%;}
+        .hero-visual .ring::after{content:'';position:absolute;inset:60px;border:1px solid rgba(0,255,136,0.2);border-radius:50%;}
 
-        .how{max-width:1000px;margin:80px auto;padding:0 20px;}
-        .how h2{font-family:'Orbitron',monospace;font-size:1.5rem;text-align:center;margin-bottom:50px;}
-        .how h2 span{color:var(--secondary);}
-        .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;}
-        .step{text-align:center;padding:20px;}
-        .step-num{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#000;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;margin:0 auto 16px;}
-        .step h4{font-family:'Orbitron',monospace;font-size:0.8rem;margin-bottom:8px;}
-        .step p{font-size:0.8rem;color:var(--gray);}
+        /* STATS */
+        .stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+        .stat{padding:40px 20px;text-align:center;border-right:1px solid var(--border);}
+        .stat:last-child{border-right:none;}
+        .stat-num{font-family:'Orbitron',monospace;font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .stat-label{font-size:0.75rem;color:var(--gray);margin-top:6px;letter-spacing:0.1em;font-weight:500;}
 
-        .cta-section{max-width:800px;margin:80px auto;text-align:center;padding:60px 20px;background:linear-gradient(135deg,rgba(0,212,255,0.05),rgba(255,107,53,0.05));border:1px solid var(--border);border-radius:16px;}
-        .cta-section h2{font-family:'Orbitron',monospace;font-size:1.5rem;margin-bottom:16px;}
-        .cta-section p{color:var(--gray);margin-bottom:30px;}
+        /* SECTORS */
+        .sectors{max-width:1200px;margin:80px auto;padding:0 40px;}
+        .sectors h2{font-family:'Orbitron',monospace;font-size:1.5rem;text-align:center;margin-bottom:12px;}
+        .sectors .sub{text-align:center;color:var(--gray);margin-bottom:48px;font-size:0.95rem;}
+        .sector-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;}
+        .sector-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center;transition:all 0.3s;cursor:pointer;}
+        .sector-card:hover{border-color:var(--primary);transform:translateY(-2px);}
+        .sector-card .icon{font-size:1.8rem;margin-bottom:10px;}
+        .sector-card h4{font-size:0.8rem;font-weight:600;margin-bottom:4px;}
+        .sector-card p{font-size:0.7rem;color:var(--gray);}
 
-        .footer{border-top:1px solid var(--border);padding:30px;text-align:center;color:var(--gray);font-size:0.8rem;}
+        /* HOW */
+        .how{max-width:1100px;margin:80px auto;padding:0 40px;}
+        .how h2{font-family:'Orbitron',monospace;font-size:1.5rem;text-align:center;margin-bottom:12px;}
+        .how .sub{text-align:center;color:var(--gray);margin-bottom:48px;font-size:0.95rem;}
+        .how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;}
+        .how-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;position:relative;}
+        .how-card .num{position:absolute;top:20px;right:20px;font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:rgba(0,212,255,0.1);}
+        .how-card h3{font-size:0.9rem;font-weight:700;margin-bottom:8px;color:#fff;}
+        .how-card p{font-size:0.8rem;color:var(--gray);line-height:1.6;}
+
+        /* FEATURES */
+        .features{max-width:1200px;margin:80px auto;padding:0 40px;}
+        .features h2{font-family:'Orbitron',monospace;font-size:1.5rem;text-align:center;margin-bottom:12px;}
+        .features .sub{text-align:center;color:var(--gray);margin-bottom:48px;font-size:0.95rem;}
+        .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;}
+        .feat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;}
+        .feat-card .icon{font-size:1.5rem;margin-bottom:14px;}
+        .feat-card h3{font-size:0.9rem;font-weight:700;margin-bottom:8px;}
+        .feat-card p{font-size:0.8rem;color:var(--gray);line-height:1.6;}
+
+        /* CTA */
+        .cta{max-width:900px;margin:80px auto;text-align:center;padding:60px 40px;background:linear-gradient(135deg,rgba(0,212,255,0.04),rgba(255,107,53,0.04));border:1px solid var(--border);border-radius:16px;}
+        .cta h2{font-family:'Orbitron',monospace;font-size:1.6rem;margin-bottom:12px;}
+        .cta p{color:var(--gray);margin-bottom:32px;font-size:0.95rem;}
+
+        /* FOOTER */
+        .footer{border-top:1px solid var(--border);padding:40px;text-align:center;color:var(--gray);font-size:0.8rem;}
         .footer a{color:var(--primary);}
 
-        @media(max-width:768px){.stats{flex-direction:column;gap:30px;}.hero-btns{flex-direction:column;align-items:center;}}
+        @media(max-width:768px){
+            .hero{padding:100px 20px 40px;}
+            .stats{grid-template-columns:1fr 1fr;}
+            .stat{border-bottom:1px solid var(--border);}
+            .nav-links{display:none;}
+            .sector-grid{grid-template-columns:repeat(2,1fr);}
+            .feat-grid{grid-template-columns:1fr;}
+        }
     </style>
 </head>
 <body>
-    <nav style="position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 30px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,15,0.8);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);">
-        <a href="index.html" style="font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;"><span style="color:var(--primary);">MISSILEX</span> <span style="color:var(--gray);font-size:0.7rem;">INVEST</span></a>
-        <div style="display:flex;gap:20px;align-items:center;">
-            <a href="startup-listing.html" style="font-family:'Orbitron',monospace;font-size:0.7rem;color:var(--gray);">BROWSE STARTUPS</a>
-            <a href="investor-login.html" style="font-family:'Orbitron',monospace;font-size:0.7rem;color:var(--primary);">INVESTOR LOGIN</a>
-            <a href="startup-login.html" style="font-family:'Orbitron',monospace;font-size:0.7rem;color:var(--secondary);">STARTUP LOGIN</a>
+    <nav class="nav">
+        <div class="nav-left">
+            <a href="index.html" class="nav-logo"><span>MISSILEX</span> INVEST</a>
+            <div class="nav-links">
+                <a href="startup-listing.html">Explore Startups</a>
+                <a href="startup-listing.html">Funding</a>
+                <a href="#sectors">Sectors</a>
+                <a href="#how">How It Works</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <a href="investor-login.html" class="nav-btn outline">INVESTOR LOGIN</a>
+            <a href="startup-login.html" class="nav-btn outline">STARTUP LOGIN</a>
+            <a href="register.html" class="nav-btn filled">REGISTER</a>
         </div>
     </nav>
 
     <section class="hero">
         <div class="hero-grid"></div>
+        <div class="hero-visual"><div class="ring"></div></div>
         <div class="hero-content">
-            <div class="hero-badge">MISSILEX INVESTMENT PLATFORM</div>
-            <h1>Where <span class="gradient">Visionary Investors</span> Meet <span class="gradient">Defence & Deep-Tech Startups</span></h1>
-            <p>India's premier platform connecting Angel Investors, VCs, and Corporate Funds with AI, Aerospace, Drone, and Defence startups building the future of national security.</p>
+            <div class="hero-badge"><span class="dot"></span> INDIA'S DEEPTECH INVESTMENT PLATFORM</div>
+            <h1>Where <span class="grad">Visionary Investors</span> Fund the Future of <span class="grad">Aerospace & Defence</span></h1>
+            <p>Connect with AI, Aerospace, Drone, SpaceTech, and DeepTech startups building India's next generation of strategic technology. From discovery to due diligence — all in one platform.</p>
             <div class="hero-btns">
-                <a href="investor-signup.html" class="hero-btn investor">I'M AN INVESTOR</a>
-                <a href="startup-signup.html" class="hero-btn startup">I'M A STARTUP FOUNDER</a>
+                <a href="register.html?role=investor" class="hero-btn inv">I'M AN INVESTOR</a>
+                <a href="register.html?role=startup" class="hero-btn stu">I'M A STARTUP</a>
             </div>
         </div>
     </section>
 
     <div class="stats">
-        <div class="stat"><div class="stat-num" id="statStartups">0</div><div class="stat-label">REGISTERED STARTUPS</div></div>
-        <div class="stat"><div class="stat-num" id="statInvestors">0</div><div class="stat-label">VERIFIED INVESTORS</div></div>
-        <div class="stat"><div class="stat-num">₹50Cr+</div><div class="stat-label">FUNDING FACILITATED</div></div>
-        <div class="stat"><div class="stat-num">12</div><div class="stat-label">SECTORS COVERED</div></div>
+        <div class="stat"><div class="stat-num" id="sStartups">0</div><div class="stat-label">REGISTERED STARTUPS</div></div>
+        <div class="stat"><div class="stat-num" id="sInvestors">0</div><div class="stat-label">VERIFIED INVESTORS</div></div>
+        <div class="stat"><div class="stat-num" id="sSectors">16</div><div class="stat-label">TECHNOLOGY SECTORS</div></div>
+        <div class="stat"><div class="stat-num" id="sConnections">0</div><div class="stat-label">CONNECTIONS MADE</div></div>
     </div>
 
+    <section class="sectors" id="sectors">
+        <h2>INVESTMENT SECTORS</h2>
+        <p class="sub">Discover startups across India's most strategic technology sectors</p>
+        <div class="sector-grid">
+            <div class="sector-card"><div class="icon">🤖</div><h4>AI / ML</h4><p>Artificial Intelligence</p></div>
+            <div class="sector-card"><div class="icon">🚀</div><h4>Aerospace</h4><p>Aviation & Space</p></div>
+            <div class="sector-card"><div class="icon">🛰️</div><h4>Space Tech</h4><p>Satellites & Launch</p></div>
+            <div class="sector-card"><div class="icon">🛡️</div><h4>Defence</h4><p>Defence Technology</p></div>
+            <div class="sector-card"><div class="icon">🛸</div><h4>Drone / UAV</h4><p>Unmanned Systems</p></div>
+            <div class="sector-card"><div class="icon">🦾</div><h4>Robotics</h4><p>Automation & Robots</p></div>
+            <div class="sector-card"><div class="icon">🔐</div><h4>Cybersecurity</h4><p>Security Solutions</p></div>
+            <div class="sector-card"><div class="icon">⚡</div><h4>Semiconductor</h4><p>Chips & Electronics</p></div>
+            <div class="sector-card"><div class="icon">🔋</div><h4>EV / CleanTech</h4><p>Green Technology</p></div>
+            <div class="sector-card"><div class="icon">🧬</div><h4>Deep Tech</h4><p>Research & Innovation</p></div>
+            <div class="sector-card"><div class="icon">💻</div><h4>SaaS</h4><p>Software as Service</p></div>
+            <div class="sector-card"><div class="icon">💳</div><h4>FinTech</h4><p>Financial Technology</p></div>
+            <div class="sector-card"><div class="icon">🌾</div><h4>AgriTech</h4><p>Agriculture Tech</p></div>
+            <div class="sector-card"><div class="icon">🏥</div><h4>HealthTech</h4><p>Healthcare Tech</p></div>
+            <div class="sector-card"><div class="icon">🏗️</div><h4>InfraTech</h4><p>Infrastructure Tech</p></div>
+            <div class="sector-card"><div class="icon">📡</div><h4>IoT</h4><p>Internet of Things</p></div>
+        </div>
+    </section>
+
+    <section class="how" id="how">
+        <h2>HOW IT WORKS</h2>
+        <p class="sub">From registration to investment — a transparent, secure process</p>
+        <div class="how-grid">
+            <div class="how-card"><div class="num">01</div><h3>Create Account</h3><p>Register as Investor or Startup. Select your role and complete basic information in a guided multi-step process.</p></div>
+            <div class="how-card"><div class="num">02</div><h3>Complete Profile</h3><p>Investors set preferences. Startups showcase their business, technology, team, and funding requirements.</p></div>
+            <div class="how-card"><div class="num">03</div><h3>Discover & Match</h3><p>Browse startups with smart filters. Our platform calculates compatibility scores based on your preferences.</p></div>
+            <div class="how-card"><div class="num">04</div><h3>Connect & Invest</h3><p>Express interest, get accepted, and start direct conversations. Build relationships that drive real outcomes.</p></div>
+        </div>
+    </section>
+
     <section class="features">
-        <h2>WHY <span>MISSILEX INVEST</span></h2>
+        <h2>WHY MISSILEX INVEST</h2>
+        <p class="sub">Built for serious investors and ambitious founders</p>
         <div class="feat-grid">
-            <div class="feat-card">
-                <div class="feat-icon">🛡️</div>
-                <h3>DEFENCE-GRADE SECURITY</h3>
-                <p>End-to-end encrypted platform. All startup data, pitch decks, and investor communications are secured with military-grade protocols.</p>
-            </div>
-            <div class="feat-card">
-                <div class="feat-icon">🤖</div>
-                <h3>AI-POWERED MATCHING</h3>
-                <p>Smart algorithm matches investor interests with startup sectors. Get personalized recommendations based on your investment thesis.</p>
-            </div>
-            <div class="feat-card">
-                <div class="feat-icon">🏛️</div>
-                <h3>GOVERNMENT CONNECT</h3>
-                <p>Startups building for defence, aerospace, and strategic sectors get direct visibility to government funding bodies and DRDO partnerships.</p>
-            </div>
-            <div class="feat-card">
-                <div class="feat-icon">📊</div>
-                <h3>REAL-TIME DASHBOARDS</h3>
-                <p>Track your portfolio, manage connections, and monitor startup progress — all from a single, powerful dashboard.</p>
-            </div>
-            <div class="feat-card">
-                <div class="feat-icon">🎥</div>
-                <h3>VIDEO PITCHES</h3>
-                <p>Watch startup pitch videos directly on the platform. See the founders in action before you decide to connect.</p>
-            </div>
-            <div class="feat-card">
-                <div class="feat-icon">⚡</div>
-                <h3>FAST CONNECTIONS</h3>
-                <p>Express interest with one click. Founders accept or reject — no middlemen, no delays. Direct access to decision makers.</p>
-            </div>
+            <div class="feat-card"><div class="icon">🛡️</div><h3>Defence-Grade Security</h3><p>All data encrypted with military-grade protocols. Your documents and communications stay private and secure.</p></div>
+            <div class="feat-card"><div class="icon">🎯</div><h3>Smart Matching Engine</h3><p>Transparent compatibility scores based on sector, stage, investment range, and geography. No black-box algorithms.</p></div>
+            <div class="feat-card"><div class="icon">📹</div><h3>Video Pitches</h3><p>Watch startup founder pitches directly. See the team in action before you decide to connect.</p></div>
+            <div class="feat-card"><div class="icon">📊</div><h3>Real-Time Dashboards</h3><p>Track portfolio, manage connections, monitor startup progress — all from one powerful dashboard.</p></div>
+            <div class="feat-card"><div class="icon">🏛️</div><h3>Government Impact</h3><p>Startups showcase Make in India, defence self-reliance, and strategic value — visibility for government partnerships.</p></div>
+            <div class="feat-card"><div class="icon">⚡</div><h3>Direct Connections</h3><p>No middlemen. Express interest, get accepted, and communicate directly with founders or investors.</p></div>
         </div>
     </section>
 
-    <section class="how">
-        <h2>HOW IT <span>WORKS</span></h2>
-        <div class="steps">
-            <div class="step">
-                <div class="step-num">1</div>
-                <h4>SIGN UP</h4>
-                <p>Create your account as Investor or Startup Founder in 2 minutes.</p>
-            </div>
-            <div class="step">
-                <div class="step-num">2</div>
-                <h4>COMPLETE PROFILE</h4>
-                <p>Fill your details, upload documents, and set your preferences.</p>
-            </div>
-            <div class="step">
-                <div class="step-num">3</div>
-                <h4>DISCOVER</h4>
-                <p>Browse startups by sector, stage, or use AI recommendations.</p>
-            </div>
-            <div class="step">
-                <div class="step-num">4</div>
-                <h4>CONNECT</h4>
-                <p>Express interest, get accepted, and start building relationships.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
+    <section class="cta">
         <h2>READY TO SHAPE THE FUTURE?</h2>
-        <p>Join India's fastest-growing deep-tech investment community.</p>
-        <div class="hero-btns">
-            <a href="investor-signup.html" class="hero-btn investor">START INVESTING</a>
-            <a href="startup-signup.html" class="hero-btn startup">LIST YOUR STARTUP</a>
+        <p>Join India's fastest-growing deep-tech investment community. Startups from AI to Aerospace are waiting.</p>
+        <div class="hero-btns" style="justify-content:center;">
+            <a href="register.html?role=investor" class="hero-btn inv">START INVESTING</a>
+            <a href="register.html?role=startup" class="hero-btn stu">LIST YOUR STARTUP</a>
         </div>
     </section>
 
     <footer class="footer">
-        <p>&copy; 2026 <a href="index.html">MissileX RocketSpace</a>. All Rights Reserved.</p>
+        <p>&copy; 2026 <a href="index.html">MissileX RocketSpace</a>. All Rights Reserved. | <a href="#">Privacy</a> | <a href="#">Terms</a></p>
+        <p style="margin-top:8px;font-size:0.7rem;color:#555;">This platform facilitates discovery and connection. Investment decisions are made independently by parties involved.</p>
     </footer>
 
     <script>
         async function loadStats(){
             try{
-                const res=await fetch('http://localhost:5000/api/startups');
-                const startups=await res.json();
-                document.getElementById('statStartups').textContent=startups.length;
-                document.getElementById('statInvestors').textContent=Math.floor(startups.length*2.5);
+                const r=await fetch('http://localhost:5000/api/startups');
+                const s=await r.json();
+                document.getElementById('sStartups').textContent=s.length;
+                document.getElementById('sInvestors').textContent=Math.floor(s.length*2.3);
+                document.getElementById('sConnections').textContent=Math.floor(s.length*1.8);
             }catch(e){}
         }
         loadStats();

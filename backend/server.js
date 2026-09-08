@@ -31,6 +31,19 @@ const teamInvites = Datastore.create({ filename: path.join(dbPath, 'teamInvites.
 const investors = Datastore.create({ filename: path.join(dbPath, 'investors.db'), autoload: true });
 const startups = Datastore.create({ filename: path.join(dbPath, 'startups.db'), autoload: true });
 const connections = Datastore.create({ filename: path.join(dbPath, 'connections.db'), autoload: true });
+const investorProfiles = Datastore.create({ filename: path.join(dbPath, 'investorProfiles.db'), autoload: true });
+const investorPreferences = Datastore.create({ filename: path.join(dbPath, 'investorPreferences.db'), autoload: true });
+const startupProducts = Datastore.create({ filename: path.join(dbPath, 'startupProducts.db'), autoload: true });
+const startupTeam = Datastore.create({ filename: path.join(dbPath, 'startupTeam.db'), autoload: true });
+const startupFunding = Datastore.create({ filename: path.join(dbPath, 'startupFunding.db'), autoload: true });
+const startupImpact = Datastore.create({ filename: path.join(dbPath, 'startupImpact.db'), autoload: true });
+const startupMedia = Datastore.create({ filename: path.join(dbPath, 'startupMedia.db'), autoload: true });
+const pitchDecks = Datastore.create({ filename: path.join(dbPath, 'pitchDecks.db'), autoload: true });
+const conversations = Datastore.create({ filename: path.join(dbPath, 'conversations.db'), autoload: true });
+const messages = Datastore.create({ filename: path.join(dbPath, 'messages.db'), autoload: true });
+const notifications = Datastore.create({ filename: path.join(dbPath, 'notifications.db'), autoload: true });
+const auditLogs = Datastore.create({ filename: path.join(dbPath, 'auditLogs.db'), autoload: true });
+const savedStartups = Datastore.create({ filename: path.join(dbPath, 'savedStartups.db'), autoload: true });
 
 // Middleware
 app.use(cors());
@@ -1159,6 +1172,332 @@ app.post('/api/startup/connections/:id/respond', investorAuth, async (req, res) 
       await sendEmail(inv.email, `Connection Accepted — ${conn.startupName}`, `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0f;color:#fff;padding:20px;"><h2 style="color:#00ff88;">Connection Accepted!</h2><p>Great news! <strong>${conn.startupName}</strong> has accepted your interest request.</p><p>Founder Email: <strong>${conn.founderEmail}</strong></p><p style="margin-top:20px;"><a href="http://localhost:5000/investor-dashboard.html" style="background:#00d4ff;color:#000;padding:10px 20px;text-decoration:none;border-radius:5px;">View in Dashboard</a></p></div>`);
     }
     res.json({ message: 'Connection ' + status });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// ========== MULTI-STEP INVESTOR ONBOARDING ==========
+
+app.get('/api/investor/onboarding', investorAuth, async (req, res) => {
+  try {
+    const profile = await investorProfiles.findOne({ userId: req.userId });
+    const prefs = await investorPreferences.findOne({ userId: req.userId });
+    res.json({ profile: profile || null, preferences: prefs || null, completed: !!(profile && prefs) });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/investor/onboarding/step1', investorAuth, async (req, res) => {
+  try {
+    const { fullName, orgName, investorType, designation, country, city, email, phone, website, linkedin } = req.body;
+    const existing = await investorProfiles.findOne({ userId: req.userId });
+    const data = { userId: req.userId, fullName, orgName, investorType, designation, country, city, email, phone, website, linkedin, step: 1, updatedAt: new Date().toISOString() };
+    if (existing) { await investorProfiles.update({ userId: req.userId }, { $set: data }); }
+    else { await investorProfiles.insert({ ...data, createdAt: new Date().toISOString() }); }
+    res.json({ message: 'Step 1 saved' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/investor/onboarding/step2', investorAuth, async (req, res) => {
+  try {
+    const { preferredSectors, investmentStages, minInvestment, maxInvestment, preferredGeography, investmentTypes } = req.body;
+    const existing = await investorPreferences.findOne({ userId: req.userId });
+    const data = { userId: req.userId, preferredSectors, investmentStages, minInvestment, maxInvestment, preferredGeography, investmentTypes, step: 2, updatedAt: new Date().toISOString() };
+    if (existing) { await investorPreferences.update({ userId: req.userId }, { $set: data }); }
+    else { await investorPreferences.insert({ ...data, createdAt: new Date().toISOString() }); }
+    res.json({ message: 'Step 2 saved' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/investor/onboarding/step3', investorAuth, async (req, res) => {
+  try {
+    const { previousInvestments, portfolioCompanies, yearsExperience, preferredStartupStage, dueDiligence, preferredFounderProfile, expectedInvolvement, strategicValue, mentorshipAvail, industryConnections } = req.body;
+    const existing = await investorPreferences.findOne({ userId: req.userId });
+    const data = { previousInvestments, portfolioCompanies, yearsExperience, preferredStartupStage, dueDiligence, preferredFounderProfile, expectedInvolvement, strategicValue, mentorshipAvail, industryConnections, step: 3, updatedAt: new Date().toISOString() };
+    if (existing) { await investorPreferences.update({ userId: req.userId }, { $set: data }); }
+    else { await investorPreferences.insert({ ...data, createdAt: new Date().toISOString() }); }
+    res.json({ message: 'Step 3 saved' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/investor/onboarding/complete', investorAuth, async (req, res) => {
+  try {
+    await investorProfiles.update({ userId: req.userId }, { $set: { onboardingComplete: true, verified: 'under_review', updatedAt: new Date().toISOString() } });
+    const profile = await investorProfiles.findOne({ userId: req.userId });
+    const { password: _, ...userData } = await investors.findOne({ _id: req.userId });
+    res.json({ message: 'Profile submitted for review', profile, user: userData });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// ========== MULTI-STEP STARTUP ONBOARDING ==========
+
+app.get('/api/startup/onboarding', investorAuth, async (req, res) => {
+  try {
+    const profile = await startups.findOne({ _id: req.userId });
+    const product = await startupProducts.findOne({ startupId: req.userId });
+    const team = await startupTeam.find({ startupId: req.userId });
+    const funding = await startupFunding.findOne({ startupId: req.userId });
+    const impact = await startupImpact.findOne({ startupId: req.userId });
+    const media = await startupMedia.findOne({ startupId: req.userId });
+    res.json({ profile, product, team, funding, impact, media });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/startup/onboarding/step1', investorAuth, async (req, res) => {
+  try {
+    const { startupName, legalName, foundedYear, country, state, city, website, companyEmail, contactPerson, sector, stage, registrationStatus, shortDescription } = req.body;
+    await startups.update({ _id: req.userId }, { $set: {
+      startupName, legalName, foundedYear, country, state, city, website, companyEmail, contactPerson, sector, stage, registrationStatus, shortDescription, onboardingStep: 1, updatedAt: new Date().toISOString()
+    }});
+    res.json({ message: 'Step 1 saved' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/startup/onboarding/step2', investorAuth, async (req, res) => {
+  try {
+    const { problem, solution, product, technology, targetUsers, businessModel, competitiveAdvantage, innovation, developmentStage } = req.body;
+    await startups.update({ _id: req.userId }, { $set: {
+      problem, solution, productDesc: product, technology, targetUsers, businessModel, competitiveAdvantage, innovation, developmentStage, onboardingStep: 2, updatedAt: new Date().toISOString()
+    }});
+    res.json({ message: 'Step 2 saved' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/startup/onboarding/step3', investorAuth, async (req, res) => {
+  try {
+    const { productName, productDescription, productCategory, productStatus, prototypeAvailable, commercialProduct, deploymentStatus, coreTechnology, proprietaryTech, patents, aiComponents, hardwareComponents, softwareComponents, techReadiness } = req.body;
+    const existing = await startupProducts.findOne({ startupId: req.userId });
+    const data = { startupId: req.userId, productName, productDescription, productCategory, productStatus, prototypeAvailable, commercialProduct, deploymentStatus, coreTechnology, proprietaryTech, patents, aiComponents, hardwareComponents, softwareComponents, techReadiness, updatedAt: new Date().toISOString() };
+    if (existing) await startupProducts.update({ startupId: req.userId }, { $set: data });
+    else await startupProducts.insert({ ...data, createdAt: new Date().toISOString() });
+    await startups.update({ _id: req.userId }, { $set: { onboardingStep: 3 } });
+    res.json({ message: 'Step 3 saved' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/startup/onboarding/step4', investorAuth, async (req, res) => {
+  try {
+    const { teamMembers } = req.body;
+    await startupTeam.remove({ startupId: req.userId }, { multi: true });
+    for (const m of teamMembers) {
+      await startupTeam.insert({ startupId: req.userId, name: m.name, role: m.role, bio: m.bio, linkedin: m.linkedin, photo: m.photo || '', createdAt: new Date().toISOString() });
+    }
+    await startups.update({ _id: req.userId }, { $set: { onboardingStep: 4 } });
+    res.json({ message: 'Step 4 saved' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/startup/onboarding/step5', investorAuth, async (req, res) => {
+  try {
+    const { targetMarket, tam, sam, som, revenueStatus, revenueRange, monthlyRevenue, growthRate, customers, users, partnerships, pilots, contracts, deployments, governmentProjects } = req.body;
+    await startups.update({ _id: req.userId }, { $set: {
+      targetMarket, tam, sam, som, revenueStatus, revenueRange, monthlyRevenue, growthRate, customers, users, partnerships, pilots, contracts, deployments, governmentProjects, onboardingStep: 5, updatedAt: new Date().toISOString()
+    }});
+    res.json({ message: 'Step 5 saved' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/startup/onboarding/step6', investorAuth, async (req, res) => {
+  try {
+    const { raisingStatus, fundingStage, targetAmount, minInvestment, maxRaise, fundingType, equityOffered, useOfFunds, fundingDeadline, amountRaised, amountRemaining, pitchVideo, pitchDeckUrl, govtBenefits, societyBenefits } = req.body;
+    await startups.update({ _id: req.userId }, { $set: {
+      raisingStatus, fundingStage, targetAmount, minInvestment, maxRaise, fundingType, equityOffered, useOfFunds, fundingDeadline, amountRaised, amountRemaining, pitchVideo, pitchDeckUrl, govtBenefits, societyBenefits, onboardingStep: 6, updatedAt: new Date().toISOString()
+    }});
+    const existing = await startupFunding.findOne({ startupId: req.userId });
+    const fData = { startupId: req.userId, raisingStatus, fundingStage, targetAmount, minInvestment, maxRaise, fundingType, equityOffered, useOfFunds, fundingDeadline, amountRaised, amountRemaining, updatedAt: new Date().toISOString() };
+    if (existing) await startupFunding.update({ startupId: req.userId }, { $set: fData });
+    else await startupFunding.insert({ ...fData, createdAt: new Date().toISOString() });
+    res.json({ message: 'Step 6 saved' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/startup/onboarding/complete', investorAuth, async (req, res) => {
+  try {
+    await startups.update({ _id: req.userId }, { $set: { onboardingComplete: true, verified: 'under_review', updatedAt: new Date().toISOString() } });
+    const { password: _, ...userData } = await startups.findOne({ _id: req.userId });
+    res.json({ message: 'Profile submitted for review', user: userData });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// ========== MATCHING ENGINE ==========
+
+function calculateMatch(investorPrefs, startup) {
+  if (!investorPrefs || !startup) return 0;
+  let score = 0, total = 0;
+  const sectors = investorPrefs.preferredSectors || [];
+  if (sectors.length > 0) { total += 30; if (sectors.includes(startup.sector)) score += 30; }
+  const stages = investorPrefs.investmentStages || [];
+  if (stages.length > 0) { total += 25; if (stages.includes(startup.stage) || stages.includes(startup.fundingStage)) score += 25; }
+  const min = investorPrefs.minInvestment || 0;
+  const max = investorPrefs.maxInvestment || Infinity;
+  const target = startup.targetAmount || startup.fundingAmount || 0;
+  if (min > 0 || max < Infinity) { total += 25; if (target >= min && (max === Infinity || target <= max)) score += 25; }
+  const geo = investorPrefs.preferredGeography || '';
+  if (geo) { total += 10; if (!geo || geo === 'Global' || geo === 'India') score += 10; else if (startup.country === geo || startup.state === geo) score += 10; }
+  const types = investorPrefs.investmentTypes || [];
+  if (types.length > 0) { total += 10; score += 10; }
+  return total > 0 ? Math.round((score / total) * 100) : 50;
+}
+
+app.get('/api/investor/recommended', investorAuth, async (req, res) => {
+  try {
+    const prefs = await investorPreferences.findOne({ userId: req.userId });
+    const allStartups = await startups.find({ onboardingComplete: true, verified: { $in: ['verified', 'under_review'] } });
+    const results = allStartups.map(s => ({ ...s, matchScore: calculateMatch(prefs, s) })).sort((a, b) => b.matchScore - a.matchScore);
+    const safe = results.map(({ password, ...rest }) => rest);
+    res.json(safe);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// ========== SAVED STARTUPS ==========
+
+app.post('/api/investor/save-startup', investorAuth, async (req, res) => {
+  try {
+    const { startupId } = req.body;
+    const existing = await savedStartups.findOne({ userId: req.userId, startupId });
+    if (existing) { await savedStartups.remove({ _id: existing._id }); res.json({ saved: false }); }
+    else { await savedStartups.insert({ userId: req.userId, startupId, savedAt: new Date().toISOString() }); res.json({ saved: true }); }
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/investor/saved', investorAuth, async (req, res) => {
+  try {
+    const saved = await savedStartups.find({ userId: req.userId });
+    const ids = saved.map(s => s.startupId);
+    const all = await startups.find({ _id: { $in: ids } });
+    res.json(all.map(({ password, ...r }) => r));
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// ========== MESSAGING ==========
+
+app.post('/api/messages/conversation', investorAuth, async (req, res) => {
+  try {
+    const { otherUserId, startupId, investorId } = req.body;
+    let conv = await conversations.findOne({ $or: [{ user1: req.userId, user2: otherUserId }, { user1: otherUserId, user2: req.userId }] });
+    if (!conv) {
+      conv = await conversations.insert({ user1: req.userId, user2: otherUserId, startupId: startupId || '', investorId: investorId || '', createdAt: new Date().toISOString() });
+    }
+    res.json(conv);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/messages/conversations', investorAuth, async (req, res) => {
+  try {
+    const convs = await conversations.find({ $or: [{ user1: req.userId }, { user2: req.userId }] });
+    const result = [];
+    for (const c of convs) {
+      const otherId = c.user1 === req.userId ? c.user2 : c.user1;
+      const other = await investors.findOne({ _id: otherId }) || await startups.findOne({ _id: otherId }) || await users.findOne({ _id: otherId });
+      const lastMsg = await messages.findOne({ conversationId: c._id }).sort({ createdAt: -1 });
+      const unread = await messages.count({ conversationId: c._id, senderId: { $ne: req.userId }, read: false });
+      result.push({ ...c, otherName: other?.name || other?.founderName || other?.startupName || 'Unknown', otherAvatar: other?.avatar || '?', lastMessage: lastMsg?.message || '', lastTime: lastMsg?.createdAt || c.createdAt, unread });
+    }
+    res.json(result.sort((a, b) => new Date(b.lastTime) - new Date(a.lastTime)));
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/messages/:conversationId', investorAuth, async (req, res) => {
+  try {
+    const msgs = await messages.find({ conversationId: req.params.conversationId }).sort({ createdAt: 1 });
+    await messages.update({ conversationId: req.params.conversationId, senderId: { $ne: req.userId }, read: false }, { $set: { read: true } }, { multi: true });
+    res.json(msgs);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/messages/:conversationId', investorAuth, async (req, res) => {
+  try {
+    const { message } = req.body;
+    const msg = await messages.insert({ conversationId: req.params.conversationId, senderId: req.userId, message, read: false, createdAt: new Date().toISOString() });
+    res.json(msg);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// ========== NOTIFICATIONS ==========
+
+app.get('/api/notifications', investorAuth, async (req, res) => {
+  try {
+    const notifs = await notifications.find({ userId: req.userId }).sort({ createdAt: -1 }).limit(50);
+    res.json(notifs);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/notifications/:id/read', investorAuth, async (req, res) => {
+  try { await notifications.update({ _id: req.params.id }, { $set: { read: true } }); res.json({ ok: true }); } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// ========== ADMIN APIs ==========
+
+app.get('/api/admin/users', auth, async (req, res) => {
+  try {
+    const allUsers = await users.find({}).sort({ createdAt: -1 });
+    const allInvestors = await investors.find({});
+    const allStartups = await startups.find({});
+    res.json({ students: allUsers, investors: allInvestors, startups: allStartups });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.patch('/api/admin/verify/:type/:id', auth, async (req, res) => {
+  try {
+    const { status } = req.body;
+    const col = req.params.type === 'investor' ? investors : startups;
+    await col.update({ _id: req.params.id }, { $set: { verified: status, verifiedAt: new Date().toISOString() } });
+    await auditLogs.insert({ userId: req.userId, action: 'verify', entityType: req.params.type, entityId: req.params.id, status, createdAt: new Date().toISOString() });
+    res.json({ message: 'Updated' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/admin/stats', auth, async (req, res) => {
+  try {
+    const totalInvestors = await investors.count({});
+    const totalStartups = await startups.count({});
+    const totalConnections = await connections.count({});
+    const verifiedInvestors = await investors.count({ verified: 'verified' });
+    const verifiedStartups = await startups.count({ verified: 'verified' });
+    res.json({ totalInvestors, totalStartups, totalConnections, verifiedInvestors, verifiedStartups, pendingVerifications: totalInvestors + totalStartups - verifiedInvestors - verifiedStartups });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/admin/audit-logs', auth, async (req, res) => {
+  try { const logs = await auditLogs.find({}).sort({ createdAt: -1 }).limit(100); res.json(logs); } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// ========== PROFILE COMPLETION ==========
+
+app.get('/api/investor/completion', investorAuth, async (req, res) => {
+  try {
+    const profile = await investorProfiles.findOne({ userId: req.userId });
+    const prefs = await investorPreferences.findOne({ userId: req.userId });
+    let completed = 0, total = 8;
+    if (profile?.fullName) completed++;
+    if (profile?.investorType) completed++;
+    if (prefs?.preferredSectors?.length) completed++;
+    if (prefs?.minInvestment || prefs?.maxInvestment) completed++;
+    if (prefs?.investmentStages?.length) completed++;
+    if (prefs?.previousInvestments) completed++;
+    if (prefs?.yearsExperience) completed++;
+    if (prefs?.strategicValue) completed++;
+    res.json({ percentage: Math.round((completed / total) * 100), completed, total });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/startup/completion', investorAuth, async (req, res) => {
+  try {
+    const s = await startups.findOne({ _id: req.userId });
+    const p = await startupProducts.findOne({ startupId: req.userId });
+    const t = await startupTeam.find({ startupId: req.userId });
+    let completed = 0, total = 12;
+    if (s?.startupName) completed++;
+    if (s?.sector) completed++;
+    if (s?.description || s?.shortDescription) completed++;
+    if (s?.website) completed++;
+    if (s?.fundingStage || s?.stage) completed++;
+    if (s?.targetAmount) completed++;
+    if (s?.pitchVideo) completed++;
+    if (s?.pitchDeckUrl) completed++;
+    if (s?.govtBenefits) completed++;
+    if (p?.productName) completed++;
+    if (t.length > 0) completed++;
+    if (s?.problem) completed++;
+    res.json({ percentage: Math.round((completed / total) * 100), completed, total });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 

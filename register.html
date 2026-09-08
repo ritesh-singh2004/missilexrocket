@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register — MissileX Invest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#00d4ff;--secondary:#ff6b35;--accent:#00ff88;--dark:#0a0a0f;--gray:#888;--card:#0d0d14;--border:rgba(255,255,255,0.06);}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--dark);color:#fff;font-family:'Inter',sans-serif;min-height:100vh;}
+        .font-o{font-family:'Orbitron',monospace;}
+
+        .auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+        .auth-card{background:var(--card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:640px;overflow:hidden;}
+        .auth-header{padding:32px 32px 0;}
+        .auth-header h1{font-family:'Orbitron',monospace;font-size:1.4rem;margin-bottom:6px;}
+        .auth-header h1 span{color:var(--primary);}
+        .auth-header p{font-size:0.85rem;color:var(--gray);margin-bottom:24px;}
+        .auth-body{padding:0 32px 32px;}
+
+        .progress-bar{display:flex;gap:4px;margin-bottom:32px;}
+        .progress-step{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,0.08);transition:background 0.3s;}
+        .progress-step.active{background:var(--primary);}
+        .progress-step.done{background:var(--accent);}
+        .progress-labels{display:flex;justify-content:space-between;margin-bottom:24px;}
+        .progress-label{font-family:'Orbitron',monospace;font-size:0.55rem;color:var(--gray);letter-spacing:0.05em;}
+        .progress-label.active{color:var(--primary);}
+        .progress-label.done{color:var(--accent);}
+
+        .step{display:none;}
+        .step.active{display:block;animation:fadeUp 0.3s ease;}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+        .role-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+        .role-card{background:rgba(255,255,255,0.02);border:2px solid rgba(255,255,255,0.08);border-radius:12px;padding:28px 20px;text-align:center;cursor:pointer;transition:all 0.3s;}
+        .role-card:hover{border-color:rgba(255,255,255,0.2);}
+        .role-card.selected.inv{border-color:var(--primary);background:rgba(0,212,255,0.05);}
+        .role-card.selected.stu{border-color:var(--secondary);background:rgba(255,107,53,0.05);}
+        .role-card .icon{font-size:2.5rem;margin-bottom:12px;}
+        .role-card h3{font-family:'Orbitron',monospace;font-size:0.85rem;margin-bottom:6px;}
+        .role-card p{font-size:0.75rem;color:var(--gray);line-height:1.5;}
+
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+        .form-group{margin-bottom:14px;}
+        .form-group label{display:block;font-family:'Orbitron',monospace;font-size:0.55rem;letter-spacing:0.1em;color:var(--gray);margin-bottom:5px;}
+        .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#fff;font-family:'Inter',sans-serif;font-size:0.85rem;}
+        .form-group textarea{min-height:80px;resize:vertical;}
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);}
+        .form-group select option{background:#111;color:#fff;}
+        .form-group.full{grid-column:1/-1;}
+
+        .chip-group{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+        .chip{font-size:0.7rem;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.02);cursor:pointer;transition:all 0.2s;font-weight:500;}
+        .chip:hover{border-color:var(--primary);}
+        .chip.selected{background:rgba(0,212,255,0.15);border-color:var(--primary);color:var(--primary);}
+
+        .btn-row{display:flex;gap:10px;margin-top:20px;}
+        .btn{font-family:'Orbitron',monospace;font-size:0.7rem;letter-spacing:0.08em;padding:12px 24px;border:none;border-radius:6px;cursor:pointer;font-weight:700;transition:all 0.3s;}
+        .btn-primary{background:var(--primary);color:#000;flex:1;}
+        .btn-primary:hover{background:#fff;}
+        .btn-secondary{background:rgba(255,255,255,0.05);color:#fff;border:1px solid var(--border);}
+        .btn-secondary:hover{border-color:var(--primary);}
+
+        .error{background:rgba(255,50,50,0.1);border:1px solid rgba(255,50,50,0.3);border-radius:6px;padding:10px;margin-bottom:14px;font-size:0.8rem;color:#ff5050;display:none;}
+        .switch{text-align:center;margin-top:20px;font-size:0.8rem;color:var(--gray);}
+        .switch a{color:var(--primary);}
+
+        @media(max-width:600px){.form-row{grid-template-columns:1fr;}.role-grid{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+    <div class="auth-wrap">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>CREATE <span>ACCOUNT</span></h1>
+                <p id="headerSub">Choose your account type to get started.</p>
+            </div>
+            <div class="auth-body">
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-step active"></div>
+                    <div class="progress-step"></div>
+                    <div class="progress-step"></div>
+                    <div class="progress-step"></div>
+                </div>
+                <div class="progress-labels" id="progressLabels">
+                    <span class="progress-label active">ROLE</span>
+                    <span class="progress-label">ACCOUNT</span>
+                    <span class="progress-label">DETAILS</span>
+                    <span class="progress-label">SUBMIT</span>
+                </div>
+
+                <div class="error" id="errMsg"></div>
+
+                <!-- STEP 1: Role Selection -->
+                <div class="step active" id="step1">
+                    <p style="font-size:0.85rem;color:var(--gray);margin-bottom:20px;">What type of account are you creating?</p>
+                    <div class="role-grid">
+                        <div class="role-card inv" onclick="selectRole('investor')">
+                            <div class="icon">💰</div>
+                            <h3>INVESTOR</h3>
+                            <p>I want to discover and invest in promising AI, Aerospace, and DeepTech startups.</p>
+                        </div>
+                        <div class="role-card stu" onclick="selectRole('startup')">
+                            <div class="icon">🚀</div>
+                            <h3>STARTUP</h3>
+                            <p>I am building a startup and looking for funding and investor connections.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Account -->
+                <div class="step" id="step2">
+                    <div class="form-row">
+                        <div class="form-group"><label>FULL NAME *</label><input type="text" id="rName" placeholder="Your full name"></div>
+                        <div class="form-group"><label>EMAIL *</label><input type="email" id="rEmail" placeholder="email@example.com"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>PHONE *</label><input type="tel" id="rPhone" placeholder="+91 98765 43210"></div>
+                        <div class="form-group"><label>PASSWORD *</label><input type="password" id="rPassword" placeholder="Min 6 characters"></div>
+                    </div>
+                    <div id="investorExtra" style="display:none;">
+                        <div class="form-row">
+                            <div class="form-group"><label>ORGANIZATION / FUND</label><input type="text" id="rOrg" placeholder="Fund or firm name"></div>
+                            <div class="form-group"><label>INVESTOR TYPE *</label>
+                                <select id="rInvestorType"><option value="">Select</option><option>Angel Investor</option><option>Venture Capital</option><option>Corporate Investor</option><option>Family Office</option><option>Government Fund</option><option>Private Equity</option><option>Accelerator</option><option>Incubator</option><option>Strategic Investor</option><option>HNI</option></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="startupExtra" style="display:none;">
+                        <div class="form-row">
+                            <div class="form-group"><label>STARTUP NAME *</label><input type="text" id="rStartupName" placeholder="Your startup name"></div>
+                            <div class="form-group"><label>SECTOR *</label>
+                                <select id="rSector"><option value="">Select</option><option>AI</option><option>Aerospace</option><option>Space Tech</option><option>Defence</option><option>Drone / UAV</option><option>Robotics</option><option>Cybersecurity</option><option>Semiconductor</option><option>EV / CleanTech</option><option>Deep Tech</option><option>SaaS</option><option>FinTech</option><option>HealthTech</option><option>AgriTech</option><option>Other</option></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Details -->
+                <div class="step" id="step3">
+                    <div id="investorDetails" style="display:none;">
+                        <p style="font-size:0.85rem;color:var(--gray);margin-bottom:16px;">Set your investment preferences. You can update these later.</p>
+                        <div class="form-group"><label>SECTORS OF INTEREST *</label>
+                            <div class="chip-group" id="sectorChips">
+                                <span class="chip" onclick="toggleChip(this)">AI</span><span class="chip" onclick="toggleChip(this)">Aerospace</span>
+                                <span class="chip" onclick="toggleChip(this)">Defence</span><span class="chip" onclick="toggleChip(this)">Drone</span>
+                                <span class="chip" onclick="toggleChip(this)">Space Tech</span><span class="chip" onclick="toggleChip(this)">Robotics</span>
+                                <span class="chip" onclick="toggleChip(this)">Cybersecurity</span><span class="chip" onclick="toggleChip(this)">Semiconductor</span>
+                                <span class="chip" onclick="toggleChip(this)">EV</span><span class="chip" onclick="toggleChip(this)">Deep Tech</span>
+                                <span class="chip" onclick="toggleChip(this)">SaaS</span><span class="chip" onclick="toggleChip(this)">FinTech</span>
+                                <span class="chip" onclick="toggleChip(this)">HealthTech</span><span class="chip" onclick="toggleChip(this)">AgriTech</span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label>INVESTMENT STAGE</label>
+                                <select id="rStage"><option value="">Select</option><option>Pre-Seed</option><option>Seed</option><option>Series A</option><option>Series B</option><option>Growth</option></select>
+                            </div>
+                            <div class="form-group"><label>INVESTMENT RANGE (₹ Lakhs)</label>
+                                <div style="display:flex;gap:8px;"><input type="number" id="rMinInv" placeholder="Min"><input type="number" id="rMaxInv" placeholder="Max"></div>
+                            </div>
+                        </div>
+                        <div class="form-group"><label>GEOGRAPHY</label>
+                            <select id="rGeo"><option>India</option><option>Asia</option><option>Global</option></select>
+                        </div>
+                    </div>
+                    <div id="startupDetails" style="display:none;">
+                        <p style="font-size:0.85rem;color:var(--gray);margin-bottom:16px;">Tell us about your startup. You can complete your full profile later.</p>
+                        <div class="form-group"><label>SHORT DESCRIPTION *</label><textarea id="rDesc" placeholder="What does your startup do? Problem it solves..."></textarea></div>
+                        <div class="form-row">
+                            <div class="form-group"><label>WEBSITE</label><input type="url" id="rWebsite" placeholder="https://..."></div>
+                            <div class="form-group"><label>FOUNDED YEAR</label><input type="number" id="rFounded" placeholder="2024"></div>
+                        </div>
+                        <div class="form-group"><label>STARTUP STAGE</label>
+                            <select id="rStartupStage"><option value="">Select</option><option>Idea</option><option>Pre-Seed</option><option>Seed</option><option>Series A</option><option>Series B</option><option>Growth</option></select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Submit -->
+                <div class="step" id="step4">
+                    <div style="text-align:center;padding:20px 0;">
+                        <div style="font-size:3rem;margin-bottom:16px;">✅</div>
+                        <h3 style="font-family:'Orbitron',monospace;font-size:1rem;margin-bottom:8px;">ACCOUNT READY</h3>
+                        <p style="color:var(--gray);font-size:0.85rem;margin-bottom:24px;" id="submitMsg">Your account has been created. Complete your profile to start using the platform.</p>
+                        <button class="btn btn-primary" onclick="goToDashboard()" style="width:100%;max-width:300px;" id="dashBtn">GO TO DASHBOARD</button>
+                    </div>
+                </div>
+
+                <div class="btn-row" id="btnRow">
+                    <button class="btn btn-secondary" onclick="prevStep()" id="prevBtn" style="display:none;">BACK</button>
+                    <button class="btn btn-primary" onclick="nextStep()" id="nextBtn">CONTINUE</button>
+                </div>
+
+                <div class="switch" style="margin-top:20px;">Already have an account? <a href="investor-login.html">Login</a></div>
+                <div class="switch" style="margin-top:8px;"><a href="invest.html">← Back to Home</a></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API='http://localhost:5000/api';
+        let currentStep=1, selectedRole=null, authToken=null;
+
+        const params=new URLSearchParams(window.location.search);
+        if(params.get('role')==='investor')setTimeout(()=>selectRole('investor'),100);
+        if(params.get('role')==='startup')setTimeout(()=>selectRole('startup'),100);
+
+        function selectRole(role){
+            selectedRole=role;
+            document.querySelectorAll('.role-card').forEach(c=>c.classList.remove('selected'));
+            document.querySelector('.role-card.'+(role==='investor'?'inv':'stu')).classList.add('selected');
+        }
+
+        function toggleChip(el){el.classList.toggle('selected');}
+
+        function updateProgress(){
+            document.querySelectorAll('.progress-step').forEach((s,i)=>{
+                s.classList.remove('active','done');
+                if(i<currentStep-1)s.classList.add('done');
+                if(i===currentStep-1)s.classList.add('active');
+            });
+            document.querySelectorAll('.progress-label').forEach((l,i)=>{
+                l.classList.remove('active','done');
+                if(i<currentStep-1)l.classList.add('done');
+                if(i===currentStep-1)l.classList.add('active');
+            });
+        }
+
+        function showStep(n){
+            document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+            document.getElementById('step'+n).classList.add('active');
+            document.getElementById('prevBtn').style.display=n>1&&n<4?'block':'none';
+            document.getElementById('nextBtn').style.display=n<3?'block':'none';
+            document.getElementById('btnRow').style.display=n===4?'none':'flex';
+            document.getElementById('headerSub').textContent=['Choose your account type to get started.','Create your account credentials.','Set your preferences and details.',''][n-1];
+            updateProgress();
+        }
+
+        function nextStep(){
+            const err=document.getElementById('errMsg');err.style.display='none';
+            if(currentStep===1){
+                if(!selectedRole){err.textContent='Please select a role';err.style.display='block';return;}
+                document.getElementById('investorExtra').style.display=selectedRole==='investor'?'block':'none';
+                document.getElementById('startupExtra').style.display=selectedRole==='startup'?'block':'none';
+                document.getElementById('investorDetails').style.display=selectedRole==='investor'?'block':'none';
+                document.getElementById('startupDetails').style.display=selectedRole==='startup'?'block':'none';
+            }
+            if(currentStep===2){
+                const name=document.getElementById('rName').value.trim();
+                const email=document.getElementById('rEmail').value.trim();
+                const phone=document.getElementById('rPhone').value.trim();
+                const pw=document.getElementById('rPassword').value;
+                if(!name||!email||!phone||!pw){err.textContent='Fill all required fields';err.style.display='block';return;}
+                if(pw.length<6){err.textContent='Password must be 6+ characters';err.style.display='block';return;}
+                if(selectedRole==='startup'&&!document.getElementById('rStartupName').value.trim()){err.textContent='Enter startup name';err.style.display='block';return;}
+                if(selectedRole==='investor'&&!document.getElementById('rInvestorType').value){err.textContent='Select investor type';err.style.display='block';return;}
+            }
+            if(currentStep===3){registerAndSave();return;}
+            currentStep++;showStep(currentStep);
+        }
+
+        function prevStep(){if(currentStep>1){currentStep--;showStep(currentStep);}}
+
+        async function registerAndSave(){
+            const err=document.getElementById('errMsg');err.style.display='none';
+            const name=document.getElementById('rName').value.trim();
+            const email=document.getElementById('rEmail').value.trim();
+            const phone=document.getElementById('rPhone').value.trim();
+            const password=document.getElementById('rPassword').value;
+
+            try{
+                let url, body;
+                if(selectedRole==='investor'){
+                    url=API+'/investor/signup';
+                    body={name,email,phone,password,firmName:document.getElementById('rOrg').value.trim(),investorType:document.getElementById('rInvestorType').value};
+                }else{
+                    url=API+'/startup/signup';
+                    body={name,email,phone,password,startupName:document.getElementById('rStartupName').value.trim()};
+                }
+                const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+                const json=await res.json();
+                if(!res.ok){err.textContent=json.error;err.style.display='block';return;}
+                authToken=json.token;
+                const storageKey=selectedRole==='investor'?'missilex_investor_token':'missilex_startup_token';
+                localStorage.setItem(storageKey,json.token);
+                localStorage.setItem(storageKey.replace('_token',''),JSON.stringify(json.user));
+
+                if(selectedRole==='investor'){
+                    const sectors=[...document.querySelectorAll('#sectorChips .chip.selected')].map(c=>c.textContent);
+                    await fetch(API+'/investor/onboarding/step2',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({
+                        preferredSectors:sectors,
+                        investmentStages:[document.getElementById('rStage').value].filter(Boolean),
+                        minInvestment:parseInt(document.getElementById('rMinInv').value)||0,
+                        maxInvestment:parseInt(document.getElementById('rMaxInv').value)||0,
+                        preferredGeography:document.getElementById('rGeo').value,
+                        investmentTypes:[]
+                    })});
+                }else{
+                    await fetch(API+'/startup/onboarding/step1',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},body:JSON.stringify({
+                        startupName:document.getElementById('rStartupName').value.trim(),
+                        sector:document.getElementById('rSector').value,
+                        shortDescription:document.getElementById('rDesc').value.trim(),
+                        website:document.getElementById('rWebsite').value.trim(),
+                        foundedYear:document.getElementById('rFounded').value,
+                        stage:document.getElementById('rStartupStage').value
+                    })});
+                }
+                document.getElementById('submitMsg').textContent='Your '+(selectedRole==='investor'?'investor':'startup')+' account is ready! Complete your full profile from the dashboard.';
+                document.getElementById('dashBtn').textContent='GO TO '+(selectedRole==='investor'?'INVESTOR':'STARTUP')+' DASHBOARD';
+                currentStep=4;showStep(4);
+            }catch(e){err.textContent='Connection failed';err.style.display='block';}
+        }
+
+        function goToDashboard(){
+            window.location.href=selectedRole==='investor'?'investor-dashboard.html':'startup-dashboard.html';
+        }
+
+        showStep(1);
+    </script>
+</body>
+</html>
