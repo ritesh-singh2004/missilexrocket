@@ -81,6 +81,37 @@ app.post('/api/auth/register', async (req, res) => {
     });
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+
+    const welcomeHtml = `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0f;color:#ffffff;">
+      <div style="background:linear-gradient(135deg,#00d4ff,#ff6b35);padding:30px;text-align:center;">
+        <h1 style="margin:0;font-size:1.5rem;color:#000;letter-spacing:2px;">WELCOME TO MISSILEX!</h1>
+        <p style="margin:8px 0 0;color:rgba(0,0,0,0.7);font-size:0.85rem;">Your space & defence journey begins now</p>
+      </div>
+      <div style="padding:30px;">
+        <p style="color:#ccc;font-size:0.9rem;line-height:1.6;">Hi <strong>${name}</strong>,</p>
+        <p style="color:#ccc;font-size:0.9rem;line-height:1.6;">Welcome to <strong style="color:#00d4ff;">MissileX RocketSpace</strong>! Your account has been created successfully.</p>
+
+        <div style="background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:20px;margin:20px 0;">
+          <p style="margin:0;color:#00d4ff;font-size:0.8rem;letter-spacing:1px;">WHAT YOU CAN DO</p>
+          <p style="margin:8px 0 0;color:#ccc;font-size:0.85rem;">🚀 Join hackathons &amp; challenges</p>
+          <p style="margin:4px 0 0;color:#ccc;font-size:0.85rem;">🏆 Compete in ISRO/DRDO/IAF projects</p>
+          <p style="margin:4px 0 0;color:#ccc;font-size:0.85rem;">📜 Earn certificates</p>
+          <p style="margin:4px 0 0;color:#ccc;font-size:0.85rem;">💰 Win prizes up to ₹2,00,000</p>
+        </div>
+
+        <div style="text-align:center;margin:30px 0;">
+          <a href="http://localhost:5000/index.html#initiatives" style="display:inline-block;background:linear-gradient(135deg,#00d4ff,#0099cc);color:#000;text-decoration:none;padding:14px 40px;border-radius:6px;font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:700;letter-spacing:1px;">
+            EXPLORE EVENTS
+          </a>
+        </div>
+
+        <hr style="border:1px solid #333;margin:20px 0;">
+        <p style="color:#555;font-size:0.7rem;">This is an automated email from MissileX RocketSpace. Do not reply.</p>
+      </div>
+    </div>`;
+
+    await sendEmail(email, 'Welcome to MissileX RocketSpace! 🚀', welcomeHtml);
+
     const { password: _, ...userData } = user;
     res.json({ token, user: userData });
   } catch (err) {
@@ -98,6 +129,21 @@ app.post('/api/auth/login', async (req, res) => {
     if (!valid) return res.status(400).json({ error: 'Invalid password' });
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+
+    const loginHtml = `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0f;color:#ffffff;">
+      <div style="background:linear-gradient(135deg,#00d4ff,#0099cc);padding:20px;text-align:center;">
+        <h1 style="margin:0;font-size:1.2rem;color:#000;letter-spacing:2px;">LOGIN ALERT</h1>
+      </div>
+      <div style="padding:20px;">
+        <p style="color:#ccc;font-size:0.85rem;line-height:1.6;">Hi <strong>${user.name}</strong>,</p>
+        <p style="color:#ccc;font-size:0.85rem;line-height:1.6;">You have successfully logged in to <strong style="color:#00d4ff;">MissileX RocketSpace</strong>.</p>
+        <p style="color:#888;font-size:0.8rem;margin-top:10px;">📅 ${new Date().toLocaleString('en-IN')}</p>
+        <p style="color:#ff6b35;font-size:0.8rem;margin-top:10px;">⚠️ If this wasn't you, please change your password immediately.</p>
+      </div>
+    </div>`;
+
+    sendEmail(email, 'Login Alert — MissileX RocketSpace', loginHtml);
+
     const { password: _, ...userData } = user;
     res.json({ token, user: userData });
   } catch (err) {
@@ -641,7 +687,7 @@ app.post('/api/teams/:id/invite', auth, async (req, res) => {
   try {
     const { email } = req.body;
     const invitedUser = await users.findOne({ email });
-    if (!invitedUser) return res.status(404).json({ error: 'User not found. They must register first.' });
+    if (!invitedUser) return res.status(404).json({ error: 'User not found. They must register first on MissileX.' });
     const teamData = await teams.findOne({ _id: req.params.id });
     if (!teamData) return res.status(404).json({ error: 'Team not found' });
 
@@ -649,10 +695,17 @@ app.post('/api/teams/:id/invite', auth, async (req, res) => {
     if (alreadyMember) return res.status(400).json({ error: 'User is already a team member' });
 
     const existing = await teamInvites.findOne({ teamId: req.params.id, invitedUserId: invitedUser._id, status: 'pending' });
-    if (existing) return res.status(400).json({ error: 'Already invited' });
+    if (existing) return res.status(400).json({ error: 'Already invited. Waiting for response.' });
+
+    await teamInvites.update(
+      { teamId: req.params.id, invitedUserId: invitedUser._id },
+      { $set: { status: 'revoked' } },
+      { multi: true }
+    );
 
     const inviter = await users.findOne({ _id: req.userId });
-    await teamInvites.insert({
+    const initiative = await initiatives.findOne({ _id: teamData.initiativeId });
+    const inviteRecord = await teamInvites.insert({
       teamId: req.params.id,
       initiativeId: teamData.initiativeId,
       inviterId: req.userId,
@@ -664,7 +717,48 @@ app.post('/api/teams/:id/invite', auth, async (req, res) => {
       status: 'pending',
       createdAt: new Date().toISOString()
     });
-    res.json({ message: 'Invitation sent to ' + invitedUser.name });
+
+    const dashboardUrl = `http://localhost:5000/dashboard-initiative.html?id=${teamData.initiativeId}`;
+    const emailHtml = `
+      <div style="font-family:'Segoe UI',Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0f;color:#ffffff;">
+        <div style="background:linear-gradient(135deg,#00d4ff,#ff6b35);padding:30px;text-align:center;">
+          <h1 style="margin:0;font-size:1.5rem;color:#000;letter-spacing:2px;">MISSILEX ROCKETSPACE</h1>
+          <p style="margin:8px 0 0;color:rgba(0,0,0,0.7);font-size:0.85rem;">Team Invitation</p>
+        </div>
+        <div style="padding:30px;">
+          <h2 style="color:#00d4ff;font-size:1.1rem;">You've been invited to join a team!</h2>
+          <p style="color:#ccc;font-size:0.9rem;line-height:1.6;">Hi <strong>${invitedUser.name}</strong>,</p>
+          <p style="color:#ccc;font-size:0.9rem;line-height:1.6;">
+            <strong>${inviter.name}</strong> has invited you to join team <strong>"${teamData.name}"</strong>
+            for the event <strong>"${initiative ? initiative.title : 'MissileX Event'}"</strong>.
+          </p>
+
+          <div style="background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:20px;margin:20px 0;">
+            <p style="margin:0;color:#00d4ff;font-size:0.8rem;letter-spacing:1px;">EVENT DETAILS</p>
+            <p style="margin:8px 0 0;color:#ccc;font-size:0.85rem;">📅 ${initiative ? initiative.startDate + ' to ' + initiative.endDate : 'TBA'}</p>
+            <p style="margin:4px 0 0;color:#ccc;font-size:0.85rem;">👥 Team Size: ${initiative ? initiative.teamSize : 'TBA'}</p>
+            <p style="margin:4px 0 0;color:#ccc;font-size:0.85rem;">🏆 Prizes: ${initiative ? initiative.prizes : 'TBA'}</p>
+          </div>
+
+          <div style="text-align:center;margin:30px 0;">
+            <a href="${dashboardUrl}" style="display:inline-block;background:linear-gradient(135deg,#00d4ff,#0099cc);color:#000;text-decoration:none;padding:14px 40px;border-radius:6px;font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:700;letter-spacing:1px;">
+              ACCEPT INVITATION
+            </a>
+          </div>
+
+          <p style="color:#888;font-size:0.8rem;line-height:1.5;">
+            If the button doesn't work, copy and paste this link in your browser:<br>
+            <a href="${dashboardUrl}" style="color:#00d4ff;">${dashboardUrl}</a>
+          </p>
+
+          <hr style="border:1px solid #333;margin:20px 0;">
+          <p style="color:#555;font-size:0.7rem;">This is an automated email from MissileX RocketSpace. Do not reply.</p>
+        </div>
+      </div>`;
+
+    await sendEmail(email, `Team Invitation: ${teamData.name} — ${initiative ? initiative.title : 'MissileX Event'}`, emailHtml);
+
+    res.json({ message: 'Invitation sent to ' + invitedUser.name + ' via email' });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
@@ -712,6 +806,21 @@ app.post('/api/invites/:id/accept', auth, async (req, res) => {
         }
       }
     });
+
+    const teamData = await teams.findOne({ _id: invite.teamId });
+    const acceptEmail = `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0f;color:#ffffff;">
+      <div style="background:linear-gradient(135deg,#00ff88,#00cc6a);padding:30px;text-align:center;">
+        <h1 style="margin:0;font-size:1.5rem;color:#000;letter-spacing:2px;">WELCOME TO THE TEAM!</h1>
+      </div>
+      <div style="padding:30px;">
+        <p style="color:#ccc;font-size:0.9rem;line-height:1.6;">Hi <strong>${user.name}</strong>,</p>
+        <p style="color:#ccc;font-size:0.9rem;line-height:1.6;">You have successfully joined team <strong>"${invite.teamName}"</strong>!</p>
+        <p style="color:#ccc;font-size:0.9rem;line-height:1.6;">Team Members: ${teamData ? teamData.members.map(m => m.name).join(', ') : ''}</p>
+        <p style="color:#888;font-size:0.8rem;margin-top:20px;">Good luck with the challenge!</p>
+      </div>
+    </div>`;
+    await sendEmail(user.email, `Welcome to team "${invite.teamName}"!`, acceptEmail);
+
     res.json({ message: 'Joined team successfully' });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
