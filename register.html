@@ -231,7 +231,8 @@
             document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
             document.getElementById('step'+n).classList.add('active');
             document.getElementById('prevBtn').style.display=n>1&&n<4?'block':'none';
-            document.getElementById('nextBtn').style.display=n<3?'block':'none';
+            document.getElementById('nextBtn').style.display=n<4?'block':'none';
+            document.getElementById('nextBtn').textContent=n===3?'SUBMIT PROFILE':'CONTINUE';
             document.getElementById('btnRow').style.display=n===4?'none':'flex';
             document.getElementById('headerSub').textContent=['Choose your account type to get started.','Create your account credentials.','Set your preferences and details.',''][n-1];
             updateProgress();
