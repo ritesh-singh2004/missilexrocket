@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MissileX Rocket Space Research</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Orbitron:wght@400;500;700;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="loading-screen">
@@ -27,78 +27,39 @@
     <canvas id="space-canvas"></canvas>
 
     <nav id="navbar">
-        <div class="nav-logo">
-            <span class="logo-text">MISSILEX</span>
-            <span class="logo-sub">ROCKET SPACE RESEARCH</span>
-        </div>
-        <div class="nav-links">
-            <a href="#home" class="nav-link active" data-section="0">HOME</a>
-            <a href="#about" class="nav-link has-dropdown" data-section="1">ABOUT
-                <div class="nav-dropdown">
-                    <a href="#about-mission" class="nav-dropdown-link">
-                        <span class="dropdown-title">Mission & Vision</span>
-                        <span class="dropdown-desc">Objectives, research goals and the team behind MissileX.</span>
-                    </a>
-                    <a href="#about-isro-leadership" class="nav-dropdown-link">
-                        <span class="dropdown-title">ISRO Leadership</span>
-                        <span class="dropdown-desc">Leadership driving India's space research programs.</span>
-                    </a>
-                    <a href="#about-drdo-leadership" class="nav-dropdown-link">
-                        <span class="dropdown-title">DRDO Leadership</span>
-                        <span class="dropdown-desc">Defence research and missile system development leaders.</span>
-                    </a>
-                    <a href="#about-iaf" class="nav-dropdown-link">
-                        <span class="dropdown-title">Indian Air Force</span>
-                        <span class="dropdown-desc">Guardians of the Indian skies since 1932.</span>
-                    </a>
-                    <a href="#about-navy" class="nav-dropdown-link">
-                        <span class="dropdown-title">Indian Navy</span>
-                        <span class="dropdown-desc">Protecting India's maritime interests across oceans.</span>
-                    </a>
-                    <a href="#about-army" class="nav-dropdown-link">
-                        <span class="dropdown-title">Indian Army</span>
-                        <span class="dropdown-desc">India's land warfare force, world's largest volunteer army.</span>
-                    </a>
-                    <a href="#about-kalam" class="nav-dropdown-link">
-                        <span class="dropdown-title">APJ Abdul Kalam</span>
-                        <span class="dropdown-desc">Legacy of India's missile scientist and visionary leader.</span>
-                    </a>
+        <div class="nav-top">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">MX</div>
+                <div class="logo-text-group">
+                    <span class="logo-hindi">मिसाइलएक्स रॉकेट स्पेस अनुसंधान</span>
+                    <span class="logo-english">MISSILEX ROCKET SPACE RESEARCH</span>
                 </div>
             </a>
-            <a href="#isro-section" class="nav-link">ISRO</a>
-            <a href="#drdo-section" class="nav-link">DRDO</a>
-            <a href="#iaf-section" class="nav-link">AIR FORCE</a>
-            <a href="#army-section" class="nav-link">ARMY</a>
-            <a href="#navy-section" class="nav-link">NAVY</a>
-            <a href="programs.html" class="nav-link">PROGRAMS</a>
-            <a href="projects.html" class="nav-link">PROJECTS</a>
-            <a href="books/index.html" class="nav-link">BOOKS</a>
-            <a href="invest.html" class="nav-link has-dropdown">
-                INVEST
-                <div class="nav-dropdown">
-                    <a href="invest.html" class="nav-dropdown-link">
-                        <span class="dropdown-title">Investment Platform</span>
-                        <span class="dropdown-desc">Connect investors with AI, Aerospace & DeepTech startups.</span>
-                    </a>
-                    <a href="startup-listing.html" class="nav-dropdown-link">
-                        <span class="dropdown-title">Explore Startups</span>
-                        <span class="dropdown-desc">Browse startups seeking funding across 16 sectors.</span>
-                    </a>
-                    <a href="register.html?role=investor" class="nav-dropdown-link">
-                        <span class="dropdown-title">For Investors</span>
-                        <span class="dropdown-desc">Create investor account and start discovering startups.</span>
-                    </a>
-                    <a href="register.html?role=startup" class="nav-dropdown-link">
-                        <span class="dropdown-title">For Startups</span>
-                        <span class="dropdown-desc">List your startup and connect with investors.</span>
-                    </a>
+            <div class="nav-top-right">
+                <div class="nav-search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="text" placeholder="Search...">
                 </div>
-            </a>
-            <a href="contact.html" class="nav-link">CONTACT</a>
+                <button class="nav-btn outline" onclick="openModal('loginModal')">Login</button>
+                <button class="nav-btn filled" onclick="openModal('registerModal')">Create Account</button>
+            </div>
         </div>
-        <div class="nav-actions">
-            <button class="nav-login-btn" id="loginBtn">LOGIN</button>
-            <button class="nav-register-btn" id="registerBtnNav">CREATE ACCOUNT</button>
+        <div class="nav-main">
+            <div class="nav-links">
+                <a href="#home" class="nav-link active" data-section="0">Home</a>
+                <a href="#about" class="nav-link has-dropdown" data-section="1">About ▾</a>
+                <a href="#isro-section" class="nav-link">Activities</a>
+                <a href="#drdo-section" class="nav-link">Research</a>
+                <a href="#iaf-section" class="nav-link">Technology</a>
+                <a href="programs.html" class="nav-link">Programs</a>
+                <a href="projects.html" class="nav-link">Missiles</a>
+                <a href="#navy-section" class="nav-link">Rocket Systems</a>
+                <a href="books/index.html" class="nav-link">Space Systems</a>
+                <a href="invest.html" class="nav-link">Innovation</a>
+                <a href="initiatives.html" class="nav-link">Gallery</a>
+                <a href="news.html" class="nav-link">News</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
         </div>
         <div class="nav-hamburger">
             <span></span>
@@ -106,6 +67,18 @@
             <span></span>
         </div>
     </nav>
+
+    <div class="flash-news">
+        <div class="flash-label">FLASH NEWS</div>
+        <div class="flash-ticker">
+            <span>New Space Research Program launched for graduate researchers</span>
+            <span class="flash-date">19 May 2026</span>
+            <span>Rocket systems simulation suite reaches mission-ready status</span>
+            <span class="flash-date">28 Jul 2026</span>
+            <span>AI Mission Planning Lab reaches full operational capacity</span>
+            <span class="flash-date">02 Aug 2026</span>
+        </div>
+    </div>
 
     <div id="content-wrapper">
         <section id="home" class="section">
