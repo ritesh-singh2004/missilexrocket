@@ -180,10 +180,16 @@ app.get('/api/auth/profile', auth, async (req, res) => {
 
 app.put('/api/auth/profile', auth, async (req, res) => {
   try {
-    const { name, email } = req.body;
+    const { name, email, phone, location, website, linkedin, bio, avatarImage } = req.body;
     const updates = {};
-    if (name) updates.name = name;
-    if (email) updates.email = email;
+    if (name !== undefined) updates.name = name;
+    if (email !== undefined) updates.email = email;
+    if (phone !== undefined) updates.phone = phone;
+    if (location !== undefined) updates.location = location;
+    if (website !== undefined) updates.website = website;
+    if (linkedin !== undefined) updates.linkedin = linkedin;
+    if (bio !== undefined) updates.bio = bio;
+    if (avatarImage !== undefined) updates.avatarImage = avatarImage;
     await users.update({ _id: req.userId }, { $set: updates });
     const user = await users.findOne({ _id: req.userId });
     const { password: _, ...userData } = user;

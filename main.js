@@ -583,7 +583,12 @@ function handleLogout() {
 function updateUserUI() {
     const na = document.querySelector('.nav-actions');
     if (currentUser) {
-        na.innerHTML = `<div class="nav-user-menu active" onclick="document.getElementById('dashboard').scrollIntoView({behavior:'smooth'})"><div class="user-avatar-nav">${currentUser.name.charAt(0).toUpperCase()}</div><span class="user-name-nav">${currentUser.name.split(' ')[0]}</span></div>`;
+        const avatarLetter = currentUser.name.charAt(0).toUpperCase();
+        na.innerHTML = `
+            <a href="profile.html" class="nav-user-menu active" style="text-decoration:none;">
+                <div class="user-avatar-nav">${avatarLetter}</div>
+                <span class="user-name-nav">${currentUser.name.split(' ')[0]}</span>
+            </a>`;
     } else {
         na.innerHTML = `<button class="nav-login-btn" onclick="openModal('loginModal')">LOGIN</button><button class="nav-register-btn" onclick="openModal('registerModal')">CREATE ACCOUNT</button>`;
     }
