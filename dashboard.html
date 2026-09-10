@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard — MissileX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#00d4ff;--secondary:#ff6b35;--accent:#00ff88;--dark:#0a0a0f;--gray:#888;--card:#0d0d14;--border:rgba(255,255,255,0.06);}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--dark);color:#fff;font-family:'Inter',sans-serif;min-height:100vh;}
+        a{text-decoration:none;color:inherit;}
+
+        .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 40px;height:60px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,12,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
+        .nav-logo{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;display:flex;align-items:center;gap:10px;}
+        .nav-logo span{background:linear-gradient(135deg,var(--primary),#00ff88);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .nav-links{display:flex;gap:6px;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:6px 8px;}
+        .nav-links a{font-family:'Orbitron',monospace;font-size:0.6rem;color:rgba(255,255,255,0.5);padding:8px 14px;border-radius:8px;transition:all 0.3s;}
+        .nav-links a:hover,.nav-links a.active{color:var(--primary);background:rgba(0,212,255,0.08);}
+        .nav-right{display:flex;gap:12px;align-items:center;}
+        .nav-right a{font-family:'Orbitron',monospace;font-size:0.6rem;color:rgba(255,255,255,0.5);padding:8px 14px;border-radius:8px;transition:all 0.3s;}
+        .nav-right a:hover{color:var(--primary);background:rgba(0,212,255,0.08);}
+
+        .container{max-width:1000px;margin:0 auto;padding:90px 20px 60px;}
+
+        .dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;padding:28px;background:var(--card);border:1px solid var(--border);border-radius:14px;}
+        .dash-user{display:flex;align-items:center;gap:16px;}
+        .avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#00ff88);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;color:#000;}
+        .avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;}
+        .user-info h2{font-family:'Orbitron',monospace;font-size:1.1rem;margin-bottom:2px;}
+        .user-info p{font-size:0.85rem;color:var(--gray);}
+
+        .btn{font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.08em;padding:10px 20px;border:none;border-radius:8px;cursor:pointer;font-weight:700;transition:all 0.3s;}
+        .btn-danger{background:rgba(255,50,50,0.15);color:#ff5050;border:1px solid rgba(255,50,50,0.3);}
+        .btn-danger:hover{background:rgba(255,50,50,0.3);}
+        .btn-primary{background:linear-gradient(135deg,var(--primary),#00b8d4);color:#000;}
+        .btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,212,255,0.3);}
+
+        .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:30px;}
+        .stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;}
+        .stat-num{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:var(--primary);}
+        .stat-label{font-family:'Orbitron',monospace;font-size:0.55rem;letter-spacing:0.1em;color:var(--gray);margin-top:4px;}
+
+        .section-title{font-family:'Orbitron',monospace;font-size:0.85rem;color:var(--primary);margin:24px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+
+        .project-list{display:grid;gap:12px;}
+        .project-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;}
+        .project-item .info h4{font-family:'Orbitron',monospace;font-size:0.8rem;margin-bottom:2px;}
+        .project-item .info p{font-size:0.75rem;color:var(--gray);}
+        .project-item .progress{font-family:'Orbitron',monospace;font-size:0.7rem;color:var(--accent);}
+        .empty-msg{text-align:center;padding:30px;color:var(--gray);font-size:0.85rem;}
+
+        .cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+        .cert-card{background:var(--card);border:1px solid rgba(0,212,255,0.2);border-radius:10px;padding:18px;position:relative;overflow:hidden;}
+        .cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));}
+        .cert-card h4{font-family:'Orbitron',monospace;font-size:0.75rem;margin-bottom:6px;}
+        .cert-card p{font-size:0.75rem;color:var(--gray);}
+
+        .quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px;}
+        .quick-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center;transition:all 0.3s;cursor:pointer;}
+        .quick-card:hover{border-color:var(--primary);transform:translateY(-2px);}
+        .quick-card .icon{font-size:1.5rem;margin-bottom:8px;}
+        .quick-card h4{font-family:'Orbitron',monospace;font-size:0.7rem;margin-bottom:4px;}
+        .quick-card p{font-size:0.7rem;color:var(--gray);}
+
+        @media(max-width:600px){.stats-row{grid-template-columns:1fr;}.quick-grid{grid-template-columns:1fr;}.dash-header{flex-direction:column;gap:16px;text-align:center;}}
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo"><span>MISSILEX</span> DASHBOARD</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="initiatives.html">Initiatives</a>
+            <a href="profile.html">Profile</a>
+        </div>
+        <div class="nav-right">
+            <a href="#" onclick="logout()">LOGOUT</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="dash-header">
+            <div class="dash-user">
+                <div class="avatar" id="avatarEl">-</div>
+                <div class="user-info">
+                    <h2 id="userName">-</h2>
+                    <p id="userEmail">-</p>
+                </div>
+            </div>
+            <button class="btn btn-danger" onclick="logout()">LOGOUT</button>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-card"><div class="stat-num" id="statProjects">0</div><div class="stat-label">PROJECTS STARTED</div></div>
+            <div class="stat-card"><div class="stat-num" id="statCompleted">0</div><div class="stat-label">COMPLETED</div></div>
+            <div class="stat-card"><div class="stat-num" id="statCerts">0</div><div class="stat-label">CERTIFICATES</div></div>
+        </div>
+
+        <div class="section-title">MY PROJECTS</div>
+        <div class="project-list" id="projectList"><div class="empty-msg">No projects started yet. Go to Projects to begin!</div></div>
+
+        <div class="section-title">MY CERTIFICATES</div>
+        <div class="cert-grid" id="certList"><div class="empty-msg">No certificates earned yet.</div></div>
+
+        <div class="quick-grid">
+            <a href="index.html#projects" class="quick-card"><div class="icon">🚀</div><h4>EXPLORE PROJECTS</h4><p>Browse and start new projects</p></a>
+            <a href="initiatives.html" class="quick-card"><div class="icon">🏆</div><h4>INITIATIVES</h4><p>Hackathons, internships, sprints</p></a>
+            <a href="index.html#gallery" class="quick-card"><div class="icon">📸</div><h4>GALLERY</h4><p>Launches, spacecraft, facilities</p></a>
+            <a href="profile.html" class="quick-card"><div class="icon">👤</div><h4>MY PROFILE</h4><p>Edit profile, upload picture</p></a>
+        </div>
+    </div>
+
+    <script>
+        const API='http://localhost:5000/api';
+        const token=localStorage.getItem('missilex_token');
+        if(!token)window.location.href='index.html';
+
+        async function apiFetch(p,o={}){
+            const h={'Content-Type':'application/json',...o.headers};
+            if(token)h['Authorization']='Bearer '+token;
+            const r=await fetch(API+p,{...o,headers:h});
+            const d=await r.json();
+            if(!r.ok)throw new Error(d.error||'Failed');
+            return d;
+        }
+
+        function logout(){
+            localStorage.removeItem('missilex_token');
+            localStorage.removeItem('missilex_user');
+            window.location.href='index.html';
+        }
+
+        async function load(){
+            try{
+                const data=await apiFetch('/dashboard');
+                document.getElementById('userName').textContent=data.user.name;
+                document.getElementById('userEmail').textContent=data.user.email;
+                document.getElementById('avatarEl').textContent=data.user.name.charAt(0).toUpperCase();
+                document.getElementById('statProjects').textContent=data.stats.programsEnrolled;
+                document.getElementById('statCompleted').textContent=data.stats.projectsCompleted;
+                document.getElementById('statCerts').textContent=data.stats.certificatesEarned;
+
+                if(data.projects&&data.projects.length){
+                    document.getElementById('projectList').innerHTML=data.projects.map(p=>`
+                        <div class="project-item">
+                            <div class="info"><h4>${p.itemId}</h4><p>Started ${p.enrolledAt?new Date(p.enrolledAt).toLocaleDateString('en-IN'):'N/A'}</p></div>
+                            <div class="progress">${p.progress||0}%</div>
+                        </div>`).join('');
+                }
+
+                if(data.certificates&&data.certificates.length){
+                    document.getElementById('certList').innerHTML=data.certificates.map(c=>`
+                        <div class="cert-card">
+                            <h4>${c.programName}</h4>
+                            <p>Earned: ${new Date(c.completionDate).toLocaleDateString('en-IN')}</p>
+                        </div>`).join('');
+                }
+            }catch(e){}
+        }
+        load();
+    </script>
+</body>
+</html>
