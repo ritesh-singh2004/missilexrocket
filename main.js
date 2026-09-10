@@ -12,12 +12,6 @@ async function apiFetch(path, opts = {}) {
     return data;
 }
 
-let scene, camera, renderer, earth, stars, particles, missileScene;
-let mouseX = 0, mouseY = 0;
-let targetX = 0, targetY = 0;
-const windowHalfX = window.innerWidth / 2;
-const windowHalfY = window.innerHeight / 2;
-
 let currentUser = null;
 let myProjects = [];
 let myCertificates = [];
@@ -122,130 +116,6 @@ const projectsData = {
         { title: 'Optimization & Validation', tasks: ['Run optimization trials', 'Compare with analytical solutions', 'Document results'] }
     ]}
 };
-
-function init() {
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 30;
-    renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('space-canvas'), antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    createStarfield(); createEarth(); createParticles(); createNebula(); createMissile3D(); createMiniRockets();
-    document.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('resize', onWindowResize);
-    animate();
-}
-
-function createStarfield() {
-    const g = new THREE.BufferGeometry(), v = [];
-    for (let i = 0; i < 15000; i++) v.push((Math.random() - 0.5) * 200, (Math.random() - 0.5) * 200, (Math.random() - 0.5) * 200);
-    g.setAttribute('position', new THREE.Float32BufferAttribute(v, 3));
-    stars = new THREE.Points(g, new THREE.PointsMaterial({ color: 0xffffff, size: 0.1, transparent: true, opacity: 0.8 }));
-    scene.add(stars);
-}
-
-function createEarth() {
-    const earthMaterial = new THREE.ShaderMaterial({
-        uniforms: { time: { value: 0 }, glowColor: { value: new THREE.Color(0x00d4ff) } },
-        vertexShader: `varying vec2 vUv; varying vec3 vNormal; void main() { vUv = uv; vNormal = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-        fragmentShader: `uniform float time; uniform vec3 glowColor; varying vec2 vUv; varying vec3 vNormal; float noise(vec2 st) { return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123); } void main() { vec3 light = normalize(vec3(1.0, 1.0, 1.0)); float diff = max(dot(vNormal, light), 0.0); float continents = smoothstep(0.5, 0.52, noise(vUv * 10.0 + time * 0.01)); vec3 landColor = vec3(0.1, 0.4, 0.2); vec3 waterColor = vec3(0.0, 0.1, 0.3); vec3 baseColor = mix(waterColor, landColor, continents); float atmosphere = pow(1.0 - abs(dot(vNormal, vec3(0.0, 0.0, 1.0))), 2.0); vec3 finalColor = baseColor * diff + glowColor * 0.5 * atmosphere; float grid = smoothstep(0.98, 1.0, sin(vUv.x * 50.0) * sin(vUv.y * 50.0)); finalColor += vec3(0.0, 0.5, 1.0) * grid * 0.3; gl_FragColor = vec4(finalColor, 1.0); }`
-    });
-    earth = new THREE.Mesh(new THREE.SphereGeometry(8, 64, 64), earthMaterial);
-    earth.position.set(15, 0, -10);
-    scene.add(earth);
-    const glowMaterial = new THREE.ShaderMaterial({
-        uniforms: { glowColor: { value: new THREE.Color(0x00d4ff) } },
-        vertexShader: `varying vec3 vNormal; void main() { vNormal = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-        fragmentShader: `uniform vec3 glowColor; varying vec3 vNormal; void main() { float intensity = pow(0.7 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0); gl_FragColor = vec4(glowColor, intensity * 0.5); }`,
-        side: THREE.BackSide, blending: THREE.AdditiveBlending, transparent: true
-    });
-    earth.add(new THREE.Mesh(new THREE.SphereGeometry(8.5, 32, 32), glowMaterial));
-    const sg = new THREE.Group();
-    for (let i = 0; i < 8; i++) {
-        const sat = new THREE.Mesh(new THREE.OctahedronGeometry(0.2, 0), new THREE.MeshBasicMaterial({ color: 0xff6b35 }));
-        sat.userData = { orbitRadius: 10 + Math.random() * 3, orbitSpeed: 0.001 + Math.random() * 0.002, orbitTilt: Math.random() * Math.PI, orbitPhase: Math.random() * Math.PI * 2 };
-        sg.add(sat);
-        const oc = new THREE.EllipseCurve(0, 0, sat.userData.orbitRadius, sat.userData.orbitRadius * 0.3, 0, 2 * Math.PI, false, 0);
-        const ol = new THREE.Line(new THREE.BufferGeometry().setFromPoints(oc.getPoints(100)), new THREE.LineBasicMaterial({ color: 0xff6b35, transparent: true, opacity: 0.2 }));
-        ol.rotation.x = sat.userData.orbitTilt; sg.add(ol);
-    }
-    sg.userData.update = function(time) { sg.children.forEach(c => { if (c.isMesh) { const d = c.userData, a = time * d.orbitSpeed + d.orbitPhase; c.position.x = Math.cos(a) * d.orbitRadius; c.position.z = Math.sin(a) * d.orbitRadius * 0.3; c.position.y = Math.sin(d.orbitTilt) * Math.sin(a) * 2; c.rotation.x += 0.02; c.rotation.y += 0.01; } }); };
-    earth.add(sg);
-}
-
-function createParticles() {
-    const g = new THREE.BufferGeometry(), p = new Float32Array(6000), c = new Float32Array(6000);
-    const c1 = new THREE.Color(0xff6b35), c2 = new THREE.Color(0x00d4ff);
-    for (let i = 0; i < 6000; i += 3) { p[i] = (Math.random() - 0.5) * 100; p[i + 1] = (Math.random() - 0.5) * 100; p[i + 2] = (Math.random() - 0.5) * 100; const co = c1.clone().lerp(c2, Math.random()); c[i] = co.r; c[i + 1] = co.g; c[i + 2] = co.b; }
-    g.setAttribute('position', new THREE.BufferAttribute(p, 3)); g.setAttribute('color', new THREE.BufferAttribute(c, 3));
-    particles = new THREE.Points(g, new THREE.PointsMaterial({ size: 0.15, vertexColors: true, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending }));
-    scene.add(particles);
-}
-
-function createNebula() {
-    const nm = new THREE.ShaderMaterial({
-        uniforms: { time: { value: 0 } },
-        vertexShader: `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-        fragmentShader: `uniform float time; varying vec2 vUv; float noise(vec2 st) { return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123); } float fbm(vec2 st) { float value = 0.0, amplitude = 0.5; for (int i = 0; i < 5; i++) { value += amplitude * noise(st); st *= 2.0; amplitude *= 0.5; } return value; } void main() { vec2 st = vUv; float n = fbm(st * 3.0 + time * 0.05); vec3 finalColor = mix(vec3(0.1, 0.0, 0.2), vec3(0.0, 0.2, 0.4), n); finalColor = mix(finalColor, vec3(0.3, 0.0, 0.1), fbm(st * 2.0 - time * 0.03)); gl_FragColor = vec4(finalColor, n * 0.3); }`,
-        transparent: true, blending: THREE.AdditiveBlending, side: THREE.DoubleSide
-    });
-    const nebula = new THREE.Mesh(new THREE.PlaneGeometry(100, 100), nm);
-    nebula.position.z = -50; scene.add(nebula);
-}
-
-function createMissile3D() {
-    const container = document.getElementById('missile-container');
-    if (!container) return;
-    missileScene = new THREE.Scene();
-    const mc = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
-    mc.position.set(5, 2, 10);
-    const mr = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    mr.setSize(container.clientWidth, container.clientHeight);
-    container.appendChild(mr.domElement);
-    const mg = new THREE.Group();
-    mg.add(new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 5, 32), new THREE.MeshPhongMaterial({ color: 0x444444, shininess: 100 })));
-    const nose = new THREE.Mesh(new THREE.ConeGeometry(0.3, 1.2, 32), new THREE.MeshPhongMaterial({ color: 0xff6b35, shininess: 100 }));
-    nose.position.y = 3.1; mg.add(nose);
-    for (let i = 0; i < 4; i++) { const f = new THREE.Mesh(new THREE.BoxGeometry(0.08, 1, 0.6), new THREE.MeshPhongMaterial({ color: 0xff6b35 })); f.position.set(Math.cos(i * Math.PI / 2) * 0.45, -2, Math.sin(i * Math.PI / 2) * 0.45); f.rotation.y = i * Math.PI / 2; mg.add(f); }
-    mg.position.y = -1; missileScene.add(mg);
-    missileScene.add(new THREE.AmbientLight(0x404040, 0.5));
-    const dl = new THREE.DirectionalLight(0xffffff, 1); dl.position.set(5, 5, 5); missileScene.add(dl);
-    (function anim() { requestAnimationFrame(anim); mg.rotation.y += 0.005; mg.position.y = -1 + Math.sin(Date.now() * 0.002) * 0.1; mr.render(missileScene, mc); })();
-}
-
-function createMiniRockets() {
-    ['rocket-mini-1', 'rocket-mini-2', 'rocket-mini-3'].forEach((id, idx) => {
-        const container = document.getElementById(id);
-        if (!container) return;
-        const ms = new THREE.Scene(), mc = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
-        mc.position.set(3, 1, 5);
-        const mr = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        mr.setSize(100, 150); container.appendChild(mr.domElement);
-        const mg = new THREE.Group();
-        mg.add(new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.25, 2, 16), new THREE.MeshPhongMaterial({ color: 0xcccccc })));
-        const nose = new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.8, 16), new THREE.MeshPhongMaterial({ color: [0xff6b35, 0x00d4ff, 0xff3366][idx] }));
-        nose.position.y = 1.4; mg.add(nose); ms.add(mg);
-        ms.add(new THREE.AmbientLight(0x404040, 0.5));
-        const dl = new THREE.DirectionalLight(0xffffff, 1); dl.position.set(3, 3, 3); ms.add(dl);
-        (function anim() { requestAnimationFrame(anim); mg.rotation.y += 0.01; mg.position.y = Math.sin(Date.now() * 0.003 + idx) * 0.05; mr.render(ms, mc); })();
-    });
-}
-
-function onMouseMove(e) { mouseX = (e.clientX - windowHalfX) * 0.5; mouseY = (e.clientY - windowHalfY) * 0.5; }
-function onWindowResize() { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); }
-
-function animate() {
-    requestAnimationFrame(animate);
-    const time = Date.now() * 0.001;
-    targetX += (mouseX - targetX) * 0.02; targetY += (mouseY - targetY) * 0.02;
-    if (stars) { stars.rotation.y += 0.0002; stars.rotation.x += 0.0001; }
-    if (earth) { earth.rotation.y += 0.002; earth.material.uniforms.time.value = time; earth.children.forEach(c => { if (c.userData && c.userData.update) c.userData.update(time); }); }
-    if (particles) { particles.rotation.y += 0.0005; particles.rotation.x += 0.0002; }
-    camera.position.x += (targetX * 0.1 - camera.position.x) * 0.02;
-    camera.position.y += (-targetY * 0.1 - camera.position.y) * 0.02;
-    camera.lookAt(scene.position);
-    renderer.render(scene, camera);
-}
 
 function initAnimations() {
     gsap.to('.hero-badge', { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.3 });
@@ -1039,7 +909,7 @@ async function downloadPitchCertificate() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    init(); initNavigation(); initScrollProgress(); initEventListeners(); initOrgSections(); initInitiativeFilters();
+    initNavigation(); initAnimations(); initEventListeners(); initOrgSections(); initInitiativeFilters();
     loadInitiatives();
     document.querySelectorAll('.org-img img').forEach(img => {
         img.onerror = function() { this.classList.add('broken'); };
