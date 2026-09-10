@@ -381,27 +381,28 @@ function downloadCertificate() {
 
 async function updateDashboard() {
     if (!currentUser || !authToken) return;
+    const el = (id) => document.getElementById(id);
     try {
         const data = await apiFetch('/dashboard');
-        document.getElementById('dashboardName').textContent = data.user.name;
-        document.getElementById('dashboardEmail').textContent = data.user.email;
-        document.getElementById('userAvatar').textContent = data.user.avatar || data.user.name.charAt(0).toUpperCase();
-        document.getElementById('projectsStarted').textContent = data.stats.programsEnrolled;
-        document.getElementById('projectsCompleted').textContent = data.stats.projectsCompleted;
-        document.getElementById('certificatesEarned').textContent = data.stats.certificatesEarned;
+        if (el('dashboardName')) el('dashboardName').textContent = data.user.name;
+        if (el('dashboardEmail')) el('dashboardEmail').textContent = data.user.email;
+        if (el('userAvatar')) el('userAvatar').textContent = data.user.avatar || data.user.name.charAt(0).toUpperCase();
+        if (el('projectsStarted')) el('projectsStarted').textContent = data.stats.programsEnrolled;
+        if (el('projectsCompleted')) el('projectsCompleted').textContent = data.stats.projectsCompleted;
+        if (el('certificatesEarned')) el('certificatesEarned').textContent = data.stats.certificatesEarned;
     } catch (err) {
-        document.getElementById('dashboardName').textContent = currentUser.name;
-        document.getElementById('dashboardEmail').textContent = currentUser.email;
-        document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
-        document.getElementById('projectsStarted').textContent = '0';
-        document.getElementById('projectsCompleted').textContent = '0';
-        document.getElementById('certificatesEarned').textContent = '0';
+        if (el('dashboardName')) el('dashboardName').textContent = currentUser.name;
+        if (el('dashboardEmail')) el('dashboardEmail').textContent = currentUser.email;
+        if (el('userAvatar')) el('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+        if (el('projectsStarted')) el('projectsStarted').textContent = '0';
+        if (el('projectsCompleted')) el('projectsCompleted').textContent = '0';
+        if (el('certificatesEarned')) el('certificatesEarned').textContent = '0';
     }
     const mpe = document.getElementById('myProjects');
-    mpe.innerHTML = myProjects.length === 0 ? '<p class="no-projects">No projects started yet. Go to Projects section to begin!</p>' :
+    if (mpe) mpe.innerHTML = myProjects.length === 0 ? '<p class="no-projects">No projects started yet. Go to Projects section to begin!</p>' :
         myProjects.map(p => `<div class="my-project-item"><div class="my-project-info"><h4>${p.title}</h4><p>${p.category} | Started: ${p.startDate}</p><div style="width:100%;height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:8px;"><div style="width:${p.progress || 0}%;height:100%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:2px;"></div></div><p style="font-size:0.7rem;margin-top:4px;">${p.progress || 0}% COMPLETE</p></div><div style="display:flex;gap:10px;"><button class="complete-project-btn" onclick="viewProject('${p.id}')" style="background:var(--primary);">CONTINUE</button><button class="complete-project-btn" onclick="completeProject('${p.id}')">MARK COMPLETE</button></div></div>`).join('');
     const mce = document.getElementById('myCertificates');
-    mce.innerHTML = myCertificates.length === 0 ? '<p class="no-projects">No certificates earned yet. Complete a project to earn one!</p>' :
+    if (mce) mce.innerHTML = myCertificates.length === 0 ? '<p class="no-projects">No certificates earned yet. Complete a project to earn one!</p>' :
         myCertificates.map(c => `<div class="my-certificate-item"><div class="my-project-info"><h4>${c.project}</h4><p>ID: ${c.id} | ${c.date}</p></div><button class="view-cert-btn" onclick="showCertificate('${c.id}')">VIEW CERTIFICATE</button></div>`).join('');
 }
 
@@ -452,6 +453,7 @@ function handleLogout() {
 
 function updateUserUI() {
     const na = document.querySelector('.nav-actions');
+    if (!na) return;
     if (currentUser) {
         const avatarContent = currentUser.avatarImage
             ? `<img src="${currentUser.avatarImage}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`
@@ -462,7 +464,7 @@ function updateUserUI() {
                 <span class="user-name-nav">${currentUser.name.split(' ')[0]}</span>
             </a>`;
     } else {
-        na.innerHTML = `<button class="nav-login-btn" onclick="openModal('loginModal')">LOGIN</button><button class="nav-register-btn" onclick="openModal('registerModal')">CREATE ACCOUNT</button>`;
+        na.innerHTML = `<button class="nav-btn outline" onclick="openModal('loginModal')">Login</button><button class="nav-btn filled" onclick="openModal('registerModal')">Create Account</button>`;
     }
 }
 
@@ -793,10 +795,11 @@ function initScrollProgress() {
 }
 
 function initEventListeners() {
-    document.getElementById('loginBtn').addEventListener('click', () => openModal('loginModal'));
-    document.getElementById('registerBtnNav').addEventListener('click', () => openModal('registerModal'));
-    document.getElementById('submitProjectBtn').addEventListener('click', () => { if (!currentUser) { openModal('loginModal'); return; } openModal('submitProjectModal'); });
-    document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+    const bind = (id, fn) => { const el = document.getElementById(id); if (el) el.addEventListener('click', fn); };
+    bind('loginBtn', () => openModal('loginModal'));
+    bind('registerBtnNav', () => openModal('registerModal'));
+    bind('submitProjectBtn', () => { if (!currentUser) { openModal('loginModal'); return; } openModal('submitProjectModal'); });
+    bind('logoutBtn', handleLogout);
     document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', e => { if (e.target === o) { o.classList.remove('active'); document.body.style.overflow = ''; } }));
 }
 
