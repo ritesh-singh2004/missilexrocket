@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAVAL VESSELS & SUBMARINES - Indian Navy's Maritime Warfare Fleet</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #0a1628;
+  --navy-light: #0f2038;
+  --navy-mid: #142a4a;
+  --orange: #ff6b00;
+  --orange-light: #ff8c33;
+  --orange-dark: #cc5500;
+  --text: #e8eaf0;
+  --text-dim: #8899aa;
+  --accent: #00d4ff;
+  --border: #1e3a5f;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--navy);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.download-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: var(--orange);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 4px 15px rgba(255,107,0,0.4);
+  transition: all 0.3s;
+}
+.download-btn:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+.book-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* COVER PAGE */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #0a1628 0%, #0f2038 50%, #142a4a 100%);
+  border-bottom: 4px solid var(--orange);
+  page-break-after: always;
+  padding: 40px 20px;
+}
+
+.cover-icon {
+  font-size: 100px;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 30px rgba(255,107,0,0.5));
+}
+
+.cover h1 {
+  font-size: 2.8em;
+  font-weight: 900;
+  color: var(--orange);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.cover h2 {
+  font-size: 1.4em;
+  font-weight: 400;
+  color: var(--text-dim);
+  margin-bottom: 40px;
+}
+
+.cover-meta {
+  font-size: 0.9em;
+  color: var(--text-dim);
+  margin-top: 20px;
+}
+
+.cover-meta span { color: var(--orange); font-weight: 600; }
+
+/* TABLE OF CONTENTS */
+.toc {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 40px;
+  margin: 40px 0;
+  page-break-after: always;
+}
+
+.toc h2 {
+  font-size: 1.8em;
+  color: var(--orange);
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--orange);
+  padding-bottom: 10px;
+}
+
+.toc ol {
+  list-style: none;
+  counter-reset: chapter;
+}
+
+.toc li {
+  counter-increment: chapter;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,107,0,0.1);
+  font-size: 1.05em;
+}
+
+.toc li::before {
+  content: counter(chapter, decimal-leading-zero);
+  color: var(--orange);
+  font-weight: 700;
+  margin-right: 15px;
+  font-size: 1.1em;
+}
+
+.toc li a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.toc li a:hover { color: var(--orange); }
+
+/* CHAPTER PAGES */
+.chapter {
+  page-break-before: always;
+  padding: 60px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.chapter-header {
+  background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+  border-left: 5px solid var(--orange);
+  border-radius: 0 12px 12px 0;
+  padding: 30px 40px;
+  margin-bottom: 40px;
+}
+
+.chapter-num {
+  font-size: 0.85em;
+  color: var(--orange);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 5px;
+}
+
+.chapter-title {
+  font-size: 2em;
+  font-weight: 800;
+  color: white;
+}
+
+.chapter h3 {
+  font-size: 1.4em;
+  color: var(--orange);
+  margin: 30px 0 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.chapter h4 {
+  font-size: 1.15em;
+  color: var(--accent);
+  margin: 25px 0 10px;
+}
+
+.chapter p { margin-bottom: 15px; }
+
+/* KEY FACTS BOX */
+.key-facts {
+  background: linear-gradient(135deg, rgba(255,107,0,0.08), rgba(255,107,0,0.03));
+  border: 1px solid rgba(255,107,0,0.3);
+  border-radius: 10px;
+  padding: 25px;
+  margin: 25px 0;
+}
+
+.key-facts h4 {
+  color: var(--orange);
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.key-facts ul {
+  list-style: none;
+  columns: 2;
+}
+
+.key-facts li {
+  padding: 4px 0;
+  font-size: 0.95em;
+  break-inside: avoid;
+}
+
+.key-facts li strong { color: var(--accent); }
+
+/* ASCII DIAGRAM */
+.ascii-diagram {
+  background: #060e1a;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 25px 0;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #88ccff;
+}
+
+.ascii-diagram .label {
+  color: var(--orange);
+  font-weight: bold;
+}
+
+/* COMPARISON TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+}
+
+th {
+  background: var(--navy-mid);
+  color: var(--orange);
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 700;
+  border: 1px solid var(--border);
+}
+
+td {
+  padding: 10px 15px;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) { background: rgba(15,32,56,0.5); }
+tr:hover { background: rgba(255,107,0,0.05); }
+
+/* CHAPTER SUMMARY */
+.chapter-summary {
+  background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,212,255,0.02));
+  border: 1px solid rgba(0,212,255,0.2);
+  border-radius: 10px;
+  padding: 20px 25px;
+  margin: 30px 0;
+}
+
+.chapter-summary h4 {
+  color: var(--accent);
+  margin-bottom: 10px;
+  font-size: 1em;
+}
+
+.chapter-summary p { font-size: 0.95em; margin-bottom: 8px; }
+
+/* PRINT STYLES */
+@media print {
+  .download-btn { display: none !important; }
+  body { background: white; color: #111; }
+  .cover { background: #f0f0f0; min-height: auto; padding: 80px 20px; }
+  .cover h1 { color: #cc5500; }
+  .chapter { page-break-before: always; }
+  .key-facts { background: #f8f4f0; border-color: #cc5500; }
+  .ascii-diagram { background: #f5f5f5; color: #333; }
+  .chapter-summary { background: #f0f8ff; }
+  table { border: 1px solid #ccc; }
+  th { background: #e8e8e8; color: #333; }
+  td { border: 1px solid #ddd; }
+  .chapter-header { background: #f0f0f0; }
+  .chapter-title { color: #222; }
+}
+</style>
+</head>
+<body>
+
+<button class="download-btn" onclick="window.print()">⬇ Download PDF</button>
+
+<div class="book-container">
+
+<!-- ==================== COVER PAGE ==================== -->
+<div class="cover">
+  <div class="cover-icon">⚓</div>
+  <h1>NAVAL VESSELS & SUBMARINES</h1>
+  <h2>Indian Navy's Maritime Warfare Fleet</h2>
+  <p style="color:var(--text-dim); max-width:600px; font-size:1.05em;">
+    A comprehensive technical reference covering India's aircraft carriers, nuclear submarines,
+    destroyers, frigates, corvettes, amphibious vessels, and the weapons that arm them.
+  </p>
+  <div class="cover-meta">
+    <p>Author: <span>MissileX RocketSpace Research</span></p>
+    <p>Date: September 2026 | Pages: 20+ | Edition: First</p>
+  </div>
+</div>
+
+<!-- ==================== TABLE OF CONTENTS ==================== -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#ch1">History of the Indian Navy (1950 Onwards)</a></li>
+    <li><a href="#ch2">INS Vikrant — Indigenous Aircraft Carrier</a></li>
+    <li><a href="#ch3">INS Vikramaditya — Fleet Carrier</a></li>
+    <li><a href="#ch4">INS Arihant — Nuclear Submarine (SSBN)</a></li>
+    <li><a href="#ch5">INS Arighat — Second SSBN</a></li>
+    <li><a href="#ch6">INS Kolkata — Guided Missile Destroyer</a></li>
+    <li><a href="#ch7">INS Visakhapatnam — Project 15B Destroyer</a></li>
+    <li><a href="#ch8">Kalvari Class — Scorpene Attack Submarine</a></li>
+    <li><a href="#ch9">Shivalik Class — Stealth Frigate</a></li>
+    <li><a href="#ch10">Talwar Class — Guided Missile Frigate</a></li>
+    <li><a href="#ch11">Kamorta Class — Anti-Submarine Corvette</a></li>
+    <li><a href="#ch12">Rajput Class — Destroyer Fleet</a></li>
+    <li><a href="#ch13">Godavari Class — Frigate Fleet</a></li>
+    <li><a href="#ch14">LPD — Landing Platform Dock (Jalashwa)</a></li>
+    <li><a href="#ch15">Submarine Fleet — Sindhughosh & Shishumar Classes</a></li>
+    <li><a href="#ch16">Naval Weapons — BrahMos, Barak-8, Torpedoes</a></li>
+    <li><a href="#ch17">Aircraft Carrier Operations — MiG-29K & Helicopters</a></li>
+    <li><a href="#ch18">Shipbuilding Infrastructure — Mazagon Dock & Garden Reach</a></li>
+    <li><a href="#ch19">Fleet Comparison Tables & ASCII Diagrams</a></li>
+    <li><a href="#ch20">Summary & Future of the Indian Navy</a></li>
+  </ol>
+</div>
+
+<!-- ==================== CHAPTER 1 ==================== -->
+<div class="chapter" id="ch1">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 01</div>
+    <div class="chapter-title">History of the Indian Navy (1950 Onwards)</div>
+  </div>
+
+  <h3>Post-Independence Foundation</h3>
+  <p>When India gained independence on 15 August 1947, the Royal Indian Navy comprised just 26 vessels — small warships inherited from the British. On 26 January 1950, when India became a Republic, the service was renamed the Indian Navy. In the early years, the navy was a modest force focused on coastal patrol and training, operating a handful of frigates, corvettes, and minesweepers transferred from the Royal Navy.</p>
+
+  <h3>The 1961 Goa Liberation and First Carrier</h3>
+  <p>A watershed moment came with the acquisition of INS Vikrant (R11), a Majestic-class aircraft carrier from Britain, in 1961. INS Vikrant was instrumental in the liberation of Goa in 1961, launching Sea Hawk aircraft against Portuguese targets — India's first carrier-based air strike. The ship later played a decisive role in the 1971 Indo-Pakistani War, blockading East Pakistan and cutting off supply lines to Dhaka.</p>
+
+  <h3>The 1971 War — A Naval Coming of Age</h3>
+  <p>The 1971 war was the Indian Navy's defining moment. INS Vikrant operated in the Bay of Bengal, while missile boats of the Osa class struck Chittagong and Cox's Bazar. The successful naval blockade of East Pakistan demonstrated India's ability to project power across the Indian Ocean region and led to the formal adoption of a two-carrier navy doctrine.</p>
+
+  <h3>Soviet-Era Acquisitions (1980s)</h3>
+  <p>The 1980s saw massive fleet expansion with Soviet-built Rajput-class destroyers (Kashin-II), Krivak-class frigates (later Talwar class), and Kilo-class submarines (Sindhughosh class). INS Vikrant's sister ship, INS Viraat (ex-HMS Hermes), was acquired from Britain in 1987, giving India a second operational carrier.</p>
+
+  <h3>Modern Era (2000–Present)</h3>
+  <p>The 21st century brought dramatic modernization. INS Vikramaditya (ex-Admiral Gorshkov) was commissioned in 2013 from Russia. The indigenous INS Vikrant was commissioned in September 2022. Nuclear submarines INS Arihant (2016) and INS Arighat (2024) completed India's nuclear triad. The fleet now includes Kolkata-class and Visakhapatnam-class destroyers, Kalvari-class submarines, and plans for future SSNs and additional submarines under Projects 75I and 76.</p>
+
+  <div class="key-facts">
+    <h4>📋 Key Milestones</h4>
+    <ul>
+      <li><strong>1947:</strong> Royal Indian Navy with 26 vessels</li>
+      <li><strong>1950:</strong> Renamed Indian Navy</li>
+      <li><strong>1961:</strong> INS Vikrant commissioned; Goa Liberation</li>
+      <li><strong>1971:</strong> Decisive role in Bangladesh war</li>
+      <li><strong>1987:</strong> INS Viraat (second carrier) commissioned</li>
+      <li><strong>2013:</strong> INS Vikramaditya commissioned</li>
+      <li><strong>2016:</strong> INS Arihant — first SSBN</li>
+      <li><strong>2022:</strong> INS Vikrant — first indigenous carrier</li>
+      <li><strong>2024:</strong> INS Arighat — second SSBN commissioned</li>
+    </ul>
+  </div>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The Indian Navy evolved from a 26-ship force in 1947 to one of the world's most powerful navies. From the decisive 1971 war to the induction of indigenous aircraft carriers and nuclear submarines, the service has consistently expanded its capability to project power across the Indian Ocean.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 2 ==================== -->
+<div class="chapter" id="ch2">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 02</div>
+    <div class="chapter-title">INS Vikrant — Indigenous Aircraft Carrier</div>
+  </div>
+
+  <h3>Overview</h3>
+  <p>INS Vikrant (R11) is India's first indigenous aircraft carrier and the largest warship ever built in India. Commissioned on 2 September 2022 by Prime Minister Narendra Modi at Cochin Shipyard, Vikrant represents the pinnacle of indigenous shipbuilding. The name carries forward the legacy of INS Vikrant (R11), which served from 1961 to 1997 and played a decisive role in the 1971 war.</p>
+
+  <div class="ascii-diagram">
+<span class="label">INS VIKRANT (R11) — STOBAR Aircraft Carrier Profile</span>
+
+         /\  /\
+        /  \/  \         Barak-8 VLS
+       / BRIDGE \       ┌─────────┐
+      /    FLYCO  \     │░░░░░░░░░│
+  ___/______________\___/─────────\_________
+ |  76mm  |  ╔══════════════════════════╗  |
+ |  AK-630 | ║    FLIGHT DECK (12,450m²) ║  |
+ |______| ║  MiG-29K  ·  MiG-29KUB   ║  |
+         ║  ·  Ka-31  ·  MH-60R      ║  |
+ 14° ═══>║  ═══════════════════════════║<══ Ski-jump
+  ski    ╚════════════════════════════╝
+         |  HANGAR (20 aircraft capacity)  |
+         |  2 × 30T Deck Elevators         |
+         |________________________________|
+
+ Length: 262.5 m | Beam: 62 m | Draft: 8.4 m
+ Displacement: 45,000 tonnes | Speed: 28 knots
+ Crew: ~1,700 | Aircraft: Up to 36
+  </div>
+
+  <div class="key-facts">
+    <h4>📋 INS Vikrant — Key Specifications</h4>
+    <ul>
+      <li><strong>Displacement:</strong> 45,000 tonnes full load</li>
+      <li><strong>Length:</strong> 262.5 m (861 ft)</li>
+      <li><strong>Beam:</strong> 62 m (203 ft)</li>
+      <li><strong>Draft:</strong> 8.4 m</li>
+      <li><strong>Speed:</strong> 28 knots</li>
+      <li><strong>Range:</strong> 7,500 nautical miles at 18 knots</li>
+      <li><strong>Propulsion:</strong> 4 × GE LM2500+ gas turbines (80 MW)</li>
+      <li><strong>Power Generation:</strong> Enough to power 5,000 households</li>
+      <li><strong>Compartments:</strong> 2,300 | Corridors: 8 km</li>
+      <li><strong>Aircraft Capacity:</strong> 36 (16 MiG-29K + 20 helicopters)</li>
+      <li><strong>Takeoff System:</strong> STOBAR with 14° ski-jump</li>
+      <li><strong>Indigenous Content:</strong> 76%</li>
+      <li><strong>Cost:</strong> ₹23,000 crore (~$3.1 billion)</li>
+      <li><strong>Builder:</strong> Cochin Shipyard Limited</li>
+      <li><strong>Design:</strong> Indian Navy Warship Design Bureau</li>
+    </ul>
+  </div>
+
+  <h3>Aviation Facilities</h3>
+  <p>The flight deck measures 12,450 square metres and can park 12 fighter jets and 6 helicopters simultaneously for rapid deployment. Two hydraulic 360° rotatable turntables in the hangar allow aircraft to be turned in any direction. The two deck-edge elevators (30-tonne capacity each) are a significant improvement over INS Vikramaditya's single centreline elevator, allowing flight operations and elevator operations to continue simultaneously.</p>
+
+  <h3>Defensive Armament</h3>
+  <p>INS Vikrant is armed with 2 × 32-cell VLS launching Barak-8 surface-to-air missiles (range 0.5–100 km), 4 × AK-630 CIWS, and 5 × OFT 12.7mm remote-controlled guns. The DRDO Shakti EW suite provides electronic warfare protection, while the Kavach anti-missile system and Maareech torpedo defence system offer additional layers of defence.</p>
+
+  <h3>Operational History</h3>
+  <p>On 20 August 2024, INS Vikrant officially joined the Western Fleet, deploying for twin-carrier fighter operations in the Arabian Sea alongside INS Vikramaditya. The carrier battle group included Kolkata-class destroyers and Talwar-class frigates. On 3 December 2024, Vikrant achieved Final Operational Clearance after extensive trials and is now fully operational.</p>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>INS Vikrant is India's greatest indigenous shipbuilding achievement — a 45,000-tonne STOBAR carrier carrying 36 aircraft including MiG-29K fighters. With 76% indigenous content, it represents India's emergence as a nation capable of designing and building aircraft carriers from scratch.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 3 ==================== -->
+<div class="chapter" id="ch3">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 03</div>
+    <div class="chapter-title">INS Vikramaditya — Fleet Carrier</div>
+  </div>
+
+  <h3>From Soviet Cruiser to Indian Fleet Carrier</h3>
+  <p>INS Vikramaditya (R33) is the Indian Navy's largest warship and its flagship until INS Vikrant achieved operational status. Originally the Soviet Navy's Admiral Gorshkov (ex-Baku), a modified Kiev-class aircraft cruiser commissioned in 1987, the ship was purchased by India in January 2004 for conversion into a dedicated STOBAR aircraft carrier. The massive refit at Sevmash shipyard in Severodvinsk, Russia, cost approximately $2.35 billion and took over a decade.</p>
+
+  <div class="ascii-diagram">
+<span class="label">INS VIKRAMADITYA (R33) — Side Profile</span>
+
+              Barak-8 LR-SAM
+             ┌───────────┐
+        ┌────┤  Bridge/   ├────┐
+        │    │  FLYCO     │    │
+  ______/    └───────────┘    \______
+ |   ╔══════════════════════════════╗ |
+ |   ║     FLIGHT DECK (11,000m²)   ║ |
+ |   ║   MiG-29K  ·  Ka-31  · Ka-28║ |
+ |   ║   ════════════════════════   ║ |
+ |   ╚══════════════════════════════╝ |
+ |  ═══> 14.3° ski-jump            |
+ |  HANGAR (130m × 22.5m × 6.6m)    |
+ |  2 × Deck Elevators (20T/30T)     |
+ |____________________________________|
+
+ Length: 284 m | Beam: 61 m | Draft: 10.2 m
+ Displacement: 45,000 tonnes | Speed: 30+ knots
+ Crew: ~1,600 | Aircraft: 26-34
+  </div>
+
+  <div class="key-facts">
+    <h4>📋 INS Vikramaditya — Key Specifications</h4>
+    <ul>
+      <li><strong>Displacement:</strong> 44,500 tonnes full load</li>
+      <li><strong>Length:</strong> 284 m (932 ft)</li>
+      <li><strong>Beam:</strong> 61 m (200 ft)</li>
+      <li><strong>Speed:</strong> 30+ knots</li>
+      <li><strong>Range:</strong> 13,500 nautical miles at 18 knots</li>
+      <li><strong>Endurance:</strong> 45 days at sea</li>
+      <li><strong>Propulsion:</strong> 8 × pressurised boilers, 180,000 hp</li>
+      <li><strong>Aircraft:</strong> 26 MiG-29K + 10 helicopters</li>
+      <li><strong>Takeoff:</strong> STOBAR, 14.3° ski-jump</li>
+      <li><strong>Complement:</strong> 1,600 personnel</li>
+    </ul>
+  </div>
+
+  <h3>MiG-29K Operations</h3>
+  <p>The Mikoyan MiG-29K is the primary carrier-based fighter. INAS 303 "Black Panthers" operates the MiG-29K from Vikramaditya. The first carrier landing was achieved on 8 February 2014. The fighter can carry anti-ship missiles (Kh-35UE), air-to-air missiles (R-73, R-77, Astra), guided bombs, and rockets. The ship's RES radar complex and LUNA/DAPS landing systems enable all-weather operations.</p>
+
+  <h3>Service Record</h3>
+  <p>INS Vikramaditya has participated in Exercise Malabar (2017, 2020), Milan 2024, and dual-carrier operations with INS Vikrant in 2024. The carrier conducted bilateral exercises with the Italian Navy's Cavour carrier strike group in October 2024. The ship operates from INS Kadamba at Karwar on India's western coast.</p>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>INS Vikramaditya transformed from a Soviet cruiser-carrier into India's primary fleet carrier, operating 26 MiG-29K fighters. With 13,500 nm range and 45-day endurance, it serves as the backbone of Indian naval aviation pending full operationalization of INS Vikrant.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 4 ==================== -->
+<div class="chapter" id="ch4">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 04</div>
+    <div class="chapter-title">INS Arihant — Nuclear Submarine (SSBN)</div>
+  </div>
+
+  <h3>India's Sea-Based Nuclear Deterrent</h3>
+  <p>INS Arihant (S2) is India's first indigenous nuclear-powered ballistic missile submarine (SSBN), commissioned on 26 August 2016 under the Advanced Technology Vessel (ATV) programme. The 6,000-tonne submarine completed its first deterrence patrol in November 2018, officially completing India's nuclear triad — the ability to launch nuclear weapons from land, air, and sea.</p>
+
+  <div class="ascii-diagram">
+<span class="label">INS ARIHANT (S2) — Submerged Profile</span>
+
+              ___/\\\___
+             /   |||   \         ← Sail/Conning Tower
+            /    |||    \
+     ______/_____|||_____\_________________________
+    /    _________________________________    \
+   /   /  VLS (4 tubes × 3 K-15 missiles)  \   \
+  |   |  ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐  |   |
+  |   |  │ K-15│ │ K-15│ │ K-15│ │ K-15│  |   |
+  |   |  │SLBM │ │SLBM │ │SLBM │ │SLBM │  |   |
+  |   |  └─────┘ └─────┘ └─────┘ └─────┘  |   |
+  |   \_____________________________________/   |
+  |                                              |
+  |  [ Reactor ]  [ Control ]  [ Weapons Bay ]  |
+  |   83MW PWR    Systems       Torpedo Tubes   |
+  |______________________________________________|
+
+ Length: 111 m | Beam: 11 m | Draft: 9.5 m
+ Displacement: 6,000 tonnes
+ Speed: 24 kt submerged | 10 kt surfaced
+ Armament: 12 × K-15 SLBMs or 4 × K-4 SLBMs
+  </div>
+
+  <div class="key-facts">
+    <h4>📋 INS Arihant — Key Specifications</h4>
+    <ul>
+      <li><strong>Displacement:</strong> 6,000 tonnes</li>
+      <li><strong>Length:</strong> 111 m</li>
+      <li><strong>Beam:</strong> 11 m</li>
+      <li><strong>Speed:</strong> 24 knots submerged</li>
+      <li><strong>Reactor:</strong> 83 MW pressurised light-water reactor (PWR)</li>
+      <li><strong>VLS Tubes:</strong> 4</li>
+      <li><strong>Primary Armament:</strong> 12 × K-15 Sagarika SLBMs (700 km range)</li>
+      <li><strong>Secondary Armament:</strong> K-4 SLBMs (3,500 km range)</li>
+      <li><strong>Endurance:</strong> ~50 days submerged</li>
+      <li><strong>First Patrol:</strong> November 2018 (20 days)</li>
+    </ul>
+  </div>
+
+  <h3>K-15 Sagarika SLBM</h3>
+  <p>The K-15 (also known as Sagarika or B-05) is a 700 km range submarine-launched ballistic missile with a 2,000 kg warhead. While it provides nuclear deterrent capability, its limited range means the SSBN must approach adversary coastlines to target major cities — a vulnerability the K-4 missile addresses.</p>
+
+  <h3>K-4 SLBM — Extended Range</h3>
+  <p>The K-4 (Kalam-4) is an intermediate-range SLBM with a range of 3,500 km, developed by DRDO. It is 12 m long, weighs 17 tonnes, and carries a 2,500 kg nuclear warhead. The K-4 was successfully tested from INS Arihant in December 2025. Each VLS tube can carry either one K-4 or three K-15 missiles. The K-4 enables targeting of all of Pakistan and most of China from the Bay of Bengal.</p>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>INS Arihant is the cornerstone of India's nuclear triad. Powered by an 83MW PWR, it carries 12 K-15 SLBMs (700 km range) or 4 K-4 SLBMs (3,500 km range), providing a credible second-strike capability central to India's no-first-use nuclear doctrine.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 5 ==================== -->
+<div class="chapter" id="ch5">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 05</div>
+    <div class="chapter-title">INS Arighat — Second SSBN</div>
+  </div>
+
+  <h3>Enhanced Second-Strike Capability</h3>
+  <p>INS Arighat (S3), meaning "Destroyer of the Enemy," is India's second Arihant-class SSBN, commissioned on 29 August 2024 at Visakhapatnam by Defence Minister Rajnath Singh. Built at the Ship Building Centre (SBC) in Visakhapatnam under the ATV programme, Arighat represents significant improvements over INS Arihant in indigenous systems, sensors, and combat capability.</p>
+
+  <div class="key-facts">
+    <h4>📋 INS Arighat — Key Specifications</h4>
+    <ul>
+      <li><strong>Displacement:</strong> 6,000 tonnes</li>
+      <li><strong>Length:</strong> 111.6 m</li>
+      <li><strong>Beam:</strong> 11 m</li>
+      <li><strong>Speed:</strong> 24 knots submerged</li>
+      <li><strong>VLS Tubes:</strong> 4 (can carry K-4 or K-15 missiles)</li>
+      <li><strong>Armament:</strong> 12 × K-15 Sagarika SLBMs</li>
+      <li><strong>K-4 Integration:</strong> Ready for K-4 deployment</li>
+      <li><strong>Commissioned:</strong> 29 August 2024</li>
+      <li><strong>Pennant:</strong> S3</li>
+    </ul>
+  </div>
+
+  <h3>Technological Advancements</h3>
+  <p>While externally similar to Arihant, Arighat incorporates significantly more advanced indigenous systems. The submarine's combat systems, sensors, and weapon systems have been entirely conceptualised, designed, manufactured and integrated by Indian scientists, industry, and naval personnel. This makes it substantially more advanced than its predecessor, with enhanced stealth, automation, and operational capability.</p>
+
+  <h3>Strategic Significance</h3>
+  <p>The commissioning of Arighat gives India two operational SSBNs, enabling continuous at-sea deterrent patrol. While one SSBN is on patrol, the other can undergo maintenance, ensuring an uninterrupted nuclear deterrent. The submarine is designed for deployment in the Indo-Pacific region for long-range deterrent patrols.</p>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>INS Arighat strengthens India's sea-based nuclear triad with enhanced indigenous systems. Commissioned in August 2024, it provides improved K-4 SLBM capability and ensures continuous at-sea deterrent patrol alongside INS Arihant.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 6 ==================== -->
+<div class="chapter" id="ch6">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 06</div>
+    <div class="chapter-title">INS Kolkata — Guided Missile Destroyer</div>
+  </div>
+
+  <h3>India's Most Potent Indigenous Destroyer</h3>
+  <p>INS Kolkata (D63) is the lead ship of the Kolkata-class guided missile destroyers, built by Mazagon Dock Limited (MDL) in Mumbai. Commissioned on 16 August 2014, Kolkata is a Project 15A vessel designed by the Indian Navy's Directorate of Naval Design. It was the first warship to deploy the BrahMos supersonic cruise missile from a VLS and the Barak-8 LR-SAM system.</p>
+
+  <div class="ascii-diagram">
+<span class="label">INS KOLKATA (D63) — Guided Missile Destroyer Profile</span>
+
+              ┌───┐
+              │RDR│  EL/M-2248 MF-STAR
+              └─┬─┘
+         ┌──────┴──────┐
+    ┌────┤   Bridge     ├────┐
+    │    └──────────────┘    │
+  __/────────────────────────\__
+ |  76mm  |  Barak-8  | BrahMos|
+ |  SRGM  |  VLS (32) | VLS(16)|
+ |________|___________|________|
+ |  AK-630  |  Heli  |  AK-630 |
+ |  CIWS    |  Deck  |  CIWS   |
+ |__________|________|_________|
+ |  RBU-6000  |  Torpedo Tubes |
+ |  ASW Rckt  |  533mm × 4     |
+ |____________|________________|
+
+ Length: 163 m | Beam: 17.4 m | Draft: 6.5 m
+ Displacement: 7,400 tonnes | Speed: 30+ knots
+ Crew: 300 (50 officers + 250 sailors)
+  </div>
+
+  <div class="key-facts">
+    <h4>📋 INS Kolkata — Key Specifications</h4>
+    <ul>
+      <li><strong>Displacement:</strong> 7,400 tonnes full load</li>
+      <li><strong>Length:</strong> 163 m</li>
+      <li><strong>Beam:</strong> 17.4 m</li>
+      <li><strong>Speed:</strong> 30+ knots</li>
+      <li><strong>Range:</strong> 6,000 nmi at 18 knots</li>
+      <li><strong>Propulsion:</strong> COGAG — 4 × Zorya DT-59 gas turbines</li>
+      <li><strong>Anti-Air:</strong> 32 × Barak-8 SAM (4 × 8 VLS)</li>
+      <li><strong>Anti-Ship:</strong> 16 × BrahMos (2 × 8 VLS)</li>
+      <li><strong>Guns:</strong> 1 × OTO Melara 76mm, 4 × AK-630 CIWS</li>
+      <li><strong>ASW:</strong> 4 × 533mm torpedo tubes, 2 × RBU-6000</li>
+      <li><strong>Aircraft:</strong> 2 × HAL Dhruv or Sea King helicopters</li>
+    </ul>
+  </div>
+
+  <h3>BrahMos Integration</h3>
+  <p>INS Kolkata was the first Indian warship to fire a BrahMos missile from a VLS, achieving this milestone on 9 June 2014 during pre-commissioning trials. The BrahMos, a Mach 2.8 supersonic cruise missile with 290 km range (upgradeable to 800 km), gives Kolkata a devastating anti-ship and land-attack capability. The 16-cell Universal Vertical Launcher Module (UVLM) allows all 16 missiles to be fired in salvo.</p>
+
+  <h3>Barak-8 Long Range SAM</h3>
+  <p>The Barak-8 LR-SAM, co-developed by Israel Aerospace Industries and DRDO, provides area air defence with a range of 0.5–100 km. The EL/M-2248 MF-STAR AESA radar can track multiple targets simultaneously, making Kolkata a formidable air defence platform.</p>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>INS Kolkata is a 7,400-tonne guided missile destroyer armed with 32 Barak-8 SAMs and 16 BrahMos supersonic cruise missiles. It pioneered VLS-launched BrahMos and Barak-8 operations for the Indian Navy, setting the standard for future destroyers.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 7 ==================== -->
+<div class="chapter" id="ch7">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 07</div>
+    <div class="chapter-title">INS Visakhapatnam — Project 15B Destroyer</div>
+  </div>
+
+  <h3>Next-Generation Stealth Destroyer</h3>
+  <p>The Visakhapatnam-class (Project 15B) represents the Indian Navy's most advanced destroyers. Built at Mazagon Dock Limited, the four-ship class (Visakhapatnam, Mormugao, Imphal, Surat) incorporates improved stealth, automation, and ordnance over the preceding Kolkata class. The class was designed by the Warship Design Bureau with approximately 75% indigenous content.</p>
+
+  <div class="key-facts">
+    <h4>📋 Project 15B — Key Specifications</h4>
+    <ul>
+      <li><strong>Ships:</strong> 4 (all commissioned by January 2025)</li>
+      <li><strong>Displacement:</strong> 7,400 tonnes</li>
+      <li><strong>Length:</strong> 163 m</li>
+      <li><strong>Speed:</strong> 33.5+ knots</li>
+      <li><strong>Range:</strong> 9,000 nmi at 18 knots</li>
+      <li><strong>Endurance:</strong> 55 days</li>
+      <li><strong>Propulsion:</strong> COGAG — 4 × Zorya DT-59 + 2 × Bergen diesel</li>
+      <li><strong>Anti-Air:</strong> 32 × Barak-8ER (extended range ~150 km)</li>
+      <li><strong>Anti-Ship:</strong> 16 × BrahMos</li>
+      <li><strong>ASW:</strong> 4 × 533mm torpedo tubes, 2 × RBU-6000</li>
+      <li><strong>EW Suite:</strong> DRDO Shakti + Nayan COMINT</li>
+      <li><strong>Cost:</strong> ₹8,950 crore per ship (~$1.1B)</li>
+    </ul>
+  </div>
+
+  <h3>Ships of the Class</h3>
+  <table>
+    <tr><th>Ship</th><th>Pennant</th><th>Commissioned</th><th>Status</th></tr>
+    <tr><td>INS Visakhapatnam</td><td>D66</td><td>21 November 2021</td><td>Active</td></tr>
+    <tr><td>INS Mormugao</td><td>D67</td><td>18 December 2022</td><td>Active</td></tr>
+    <tr><td>INS Imphal</td><td>D68</td><td>26 December 2023</td><td>Active</td></tr>
+    <tr><td>INS Surat</td><td>D69</td><td>15 January 2025</td><td>Active</td></tr>
+  </table>
+
+  <h3>Improvements Over Kolkata Class</h3>
+  <p>Key enhancements include improved stealth features, higher automation (reducing crew requirements), extended range (9,000 nm vs 6,000 nm), higher endurance (55 vs 45 days), and enhanced Barak-8ER missiles with extended range of approximately 150 km. The ships also feature improved electronic warfare suites and better ergonomics for crew accommodation.</p>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>Project 15B Visakhapatnam-class destroyers are India's most advanced surface combatants, featuring enhanced stealth, 75% indigenous content, 32 Barak-8ER missiles, and 16 BrahMos cruise missiles. All four ships are now operational with the Indian Navy.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 8 ==================== -->
+<div class="chapter" id="ch8">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 08</div>
+    <div class="chapter-title">Kalvari Class — Scorpene Attack Submarine</div>
+  </div>
+
+  <h3>India's Modern Submarine Fleet</h3>
+  <p>The Kalvari-class submarines (Project 75) are diesel-electric attack submarines based on the French Scorpène design by Naval Group. Six submarines have been built at Mazagon Dock Limited (MDL) in Mumbai under a technology transfer agreement. The class represents India's most modern conventional submarine fleet, with the final unit INS Vaghsheer commissioned in January 2025.</p>
+
+  <div class="ascii-diagram">
+<span class="label">KALVARI-CLASS SUBMARINE — Cross-Section Profile</span>
+
+                    ___/\\\___
+                   /   |||   \    ← Sail with Periscopes
+                  /    |||    \
+     ___________/_____|||_____\_________________
+    /  ___________________________    \
+   /  /   SONAR  |  COMBAT SYS  |  \  \
+  |  |   BOW     |   SUBTICS    |  |  |
+  |  |  6 × 533mm Torpedo Tubes  |  |  |
+  |  |  [SUT] [Exocet] [Mines]  |  |  |
+  |  |__________________________|  |  |
+  |  BATTERY CELLS (360 units)     |  |
+  |  2 × MAN 1250kW Diesel Engines|  |
+  |  PERMANENTLY MAGNETISED MOTOR  |  |
+  |________________________________|
+
+ Length: 67.5 m | Beam: 6.2 m | Height: 12.3 m
+ Displacement: 1,615 t surfaced / 1,775 t submerged
+ Speed: 11 kt surfaced / 20 kt submerged
+ Depth: 350 m | Crew: 43
+  </div>
+
+  <div class="key-facts">
+    <h4>📋 Kalvari Class — Key Specifications</h4>
+    <ul>
+      <li><strong>Displacement:</strong> 1,615 t surfaced / 1,775 t submerged</li>
+      <li><strong>Length:</strong> 67.5 m</li>
+      <li><strong>Beam:</strong> 6.2 m</li>
+      <li><strong>Speed:</strong> 11 kt surfaced / 20 kt submerged</li>
+      <li><strong>Range:</strong> 6,500 nmi at 8 kt (surfaced)</li>
+      <li><strong>Endurance:</strong> 50 days</li>
+      <li><strong>Test Depth:</strong> 350 m</li>
+      <li><strong>Armament:</strong> 6 × 533mm tubes, 18 weapons</li>
+      <li><strong>Weapons:</strong> SUT torpedoes, SM-39 Exocet, or 30 mines</li>
+      <li><strong>AIP:</strong> DRDO PAFC fuel cell (planned mid-life refit)</li>
+    </ul>
+  </div>
+
+  <h3>Ships of the Class</h3>
+  <table>
+    <tr><th>Ship</th><th>Commissioned</th><th>Status</th></tr>
+    <tr><td>INS Kalvari (S21)</td><td>14 December 2017</td><td>Active</td></tr>
+    <tr><td>INS Khanderi (S22)</td><td>10 September 2019</td><td>Active</td></tr>
+    <tr><td>INS Karanj (S23)</td><td>10 March 2021</td><td>Active</td></tr>
+    <tr><td>INS Vela (S24)</td><td>25 November 2021</td><td>Active</td></tr>
+    <tr><td>INS Vagir (S25)</td><td>23 January 2023</td><td>Active</td></tr>
+    <tr><td>INS Vaghsheer (S26)</td><td>15 January 2025</td><td>Active</td></tr>
+  </table>
+
+  <h3>Air Independent Propulsion (AIP)</h3>
+  <p>The DRDO-developed PAFC (Phosphoric Acid Fuel Cell) AIP system will be fitted during mid-life refits, extending submerged endurance from 2-4 days to approximately 14 days. INS Khanderi is expected to be the first submarine to receive AIP during its refit scheduled for 2026-2028. The AIP system generates 24 × 13.5 kW cells with onboard hydrogen generation.</p>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The six Kalvari-class Scorpène submarines are India's modern conventional attack submarines, built at Mazagon Dock with French technology transfer. Armed with torpedoes and Exocet missiles, they will be enhanced with DRDO AIP systems to extend submerged endurance significantly.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 9 ==================== -->
+<div class="chapter" id="ch9">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 09</div>
+    <div class="chapter-title">Shivalik Class — Stealth Frigate</div>
+  </div>
+
+  <h3>India's First Stealth Frigates</h3>
+  <p>The Shivalik class (Project 17) comprises three multi-role stealth frigates — INS Shivalik (F47), INS Satpura (F48), and INS Sahyadri (F49) — built at Mazagon Dock Limited. Commissioned between 2010 and 2012, these are the first Indian warships designed with low-observability features including structural, thermal, and acoustic stealth. They represent a major leap over the preceding Talwar class.</p>
+
+  <div class="key-facts">
+    <h4>📋 Shivalik Class — Key Specifications</h4>
+    <ul>
+      <li><strong>Displacement:</strong> 6,200 tonnes full load</li>
+      <li><strong>Length:</strong> 142.5 m</li>
+      <li><strong>Beam:</strong> 16.9 m</li>
+      <li><strong>Speed:</strong> 32 knots (gas turbines) / 22 kt (diesel)</li>
+      <li><strong>Range:</strong> 5,000+ nmi at 18 knots</li>
+      <li><strong>Propulsion:</strong> CODOG — 2 × GE LM2500+ / 2 × Pielstick diesels</li>
+      <li><strong>Anti-Ship:</strong> 8 × BrahMos (VLS)</li>
+      <li><strong>Anti-Air:</strong> 24 × Shtil-1 SAM + 16 × Barak-1</li>
+      <li><strong>ASW:</strong> 2 × RBU-6000, torpedo tubes</li>
+      <li><strong>Guns:</strong> 1 × OTO Melara 76mm, 2 × AK-630 CIWS</li>
+      <li><strong>Aircraft:</strong> 2 × HAL Dhruv or Sea King</li>
+      <li><strong>Indigenous Content:</strong> ~70%</li>
+    </ul>
+  </div>
+
+  <h3>Stealth Features</h3>
+  <p>Shivalik-class frigates employ extensive signature reduction including Canada's Davis Engineering Infrared Suppression System (IRSS), radar-absorbent materials (RAM), noise/vibration-proof machinery mounts, and a tumblehome superstructure to reduce radar cross-section. While not as stealthy as the French La Fayette class, they represent a significant step forward for Indian naval design.</p>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The three Shivalik-class stealth frigates are 6,200-tonne multi-role warships with BrahMos anti-ship missiles, Shtil-1/Barak-1 air defence, and comprehensive stealth features. They form the backbone of the Indian Navy's frigate force alongside the follow-on Nilgiri class.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 10 ==================== -->
+<div class="chapter" id="ch10">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 10</div>
+    <div class="chapter-title">Talwar Class — Guided Missile Frigate</div>
+  </div>
+
+  <h3>Workhorse of the Indian Navy</h3>
+  <p>The Talwar class (Project 11356) comprises eight guided missile frigates built in Russia, with two more under construction at Goa Shipyard. Commissioned in batches from 2003 to 2013, these Krivak III-derivatives form a core element of India's surface fleet. The class features semi-stealth characteristics with a reduced radar cross-section compared to earlier Indian frigates.</p>
+
+  <div class="key-facts">
+    <h4>📋 Talwar Class — Key Specifications</h4>
+    <ul>
+      <li><strong>Displacement:</strong> 4,035 tonnes full load</li>
+      <li><strong>Length:</strong> 124.8 m</li>
+      <li><strong>Beam:</strong> 15.2 m</li>
+      <li><strong>Speed:</strong> 32 knots</li>
+      <li><strong>Range:</strong> 4,850 nmi at 14 knots</li>
+      <li><strong>Propulsion:</strong> COGAG — 4 × Zorya gas turbines</li>
+      <li><strong>Anti-Ship:</strong> 8 × BrahMos (Batch II-IV) or Klub-N (Batch I)</li>
+      <li><strong>Anti-Air:</strong> 24 × Shtil-1 SAM (rail-launched or VLS)</li>
+      <li><strong>Guns:</strong> 1 × A-190E 100mm (or 76mm), 2 × AK-630 CIWS</li>
+      <li><strong>ASW:</strong> RBU-6000, 533mm torpedo tubes</li>
+      <li><strong>Aircraft:</strong> 1 × Ka-28/Ka-31 or HAL Dhruv</li>
+      <li><strong>Complement:</strong> 180 personnel</li>
+    </ul>
+  </div>
+
+  <h3>Batch Evolution</h3>
+  <table>
+    <tr><th>Batch</th><th>Ships</th><th>Builder</th><th>Anti-Ship Missile</th><th>CIWS</th></tr>
+    <tr><td>Batch I</td><td>Talwar, Trishul, Tabar</td><td>Baltiysky Zavod</td><td>Klub-N</td><td>Kashtan</td></tr>
+    <tr><td>Batch II</td><td>Teg, Tarkash, Trikand</td><td>Yantar Shipyard</td><td>BrahMos</td><td>AK-630</td></tr>
+    <tr><td>Batch III</td><td>Tushil, Tamala</td><td>Yantar Shipyard</td><td>BrahMos</td><td>AK-630</td></tr>
+    <tr><td>Batch IV</td><td>Under construction</td><td>Goa Shipyard</td><td>BrahMos</td><td>AK-630</td></tr>
+  </table>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The Talwar class is the Indian Navy's most numerous modern frigate type, with 8 active ships and 2 under construction. Batch II onwards carry BrahMos supersonic cruise missiles, making them potent anti-ship platforms. The class bridges the gap until the Nilgiri-class frigates enter service.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 11 ==================== -->
+<div class="chapter" id="ch11">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 11</div>
+    <div class="chapter-title">Kamorta Class — Anti-Submarine Corvette</div>
+  </div>
+
+  <h3>India's First ASW Stealth Corvettes</h3>
+  <p>The Kamorta class (Project 28) comprises four anti-submarine warfare corvettes built at Garden Reach Shipbuilders and Engineers (GRSE), Kolkata. Commissioned between 2014 and 2020, these are India's first indigenously designed ASW stealth corvettes, featuring advanced acoustic signature reduction and an X-shaped hull form for improved stealth.</p>
+
+  <div class="key-facts">
+    <h4>📋 Kamorta Class — Key Specifications</h4>
+    <ul>
+      <li><strong>Displacement:</strong> 3,300 tonnes full load</li>
+      <li><strong>Length:</strong> 109 m</li>
+      <li><strong>Beam:</strong> 13.7 m</li>
+      <li><strong>Speed:</strong> 25 knots</li>
+      <li><strong>Range:</strong> 3,450 nmi at 8 knots</li>
+      <li><strong>Propulsion:</strong> CODAD — 4 × Pielstick 12PA6 STC6 diesels</li>
+      <li><strong>Guns:</strong> 76mm SRGM, AK-630M CIWS</li>
+      <li><strong>ASW:</strong> RBU-6000, 533mm torpedo tubes (Varunastra)</li>
+      <li><strong>Decoys:</strong> Kavach chaff launchers</li>
+      <li><strong>Sensors:</strong> Revati radar, HUMSA-NG sonar</li>
+      <li><strong>Aircraft:</strong> 1 × helicopter with rail-less helo traversing</li>
+      <li><strong>Indigenous Content:</strong> ~90%</li>
+    </ul>
+  </div>
+
+  <h3>Ships of the Class</h3>
+  <table>
+    <tr><th>Ship</th><th>Pennant</th><th>Commissioned</th></tr>
+    <tr><td>INS Kamorta</td><td>P28</td><td>23 August 2014</td></tr>
+    <tr><td>INS Kadmatt</td><td>P29</td><td>7 January 2016</td></tr>
+    <tr><td>INS Kiltan</td><td>P30</td><td>16 October 2017</td></tr>
+    <tr><td>INS Kavaratti</td><td>P31</td><td>22 October 2020</td></tr>
+  </table>
+
+  <h3>Advanced Stealth Design</h3>
+  <p>The X-shaped hull form minimises underwater resistance and acoustic signature. The raft-mounted propulsion system reduces vibration transmission, while the Infrared Suppression System (IRSS) masks thermal signature. The ships incorporate Total Atmospheric Control System (TACS) for NBC protection and can fight in nuclear, biological, and chemical warfare scenarios.</p>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The four Kamorta-class corvettes are India's dedicated ASW platforms with 90% indigenous content. Featuring advanced stealth design, X-shaped hull, and Varunastra heavyweight torpedoes, they provide critical anti-submarine coverage for fleet operations.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 12 ==================== -->
+<div class="chapter" id="ch12">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 12</div>
+    <div class="chapter-title">Rajput Class — Destroyer Fleet</div>
+  </div>
+
+  <h3>The Pioneers</h3>
+  <p>The Rajput class (Kashin-II, Project 61ME) comprises five guided-missile destroyers built at the 61 Kommunara Shipbuilding Plant in Nikolaev, Soviet Union. Commissioned between 1980 and 1988, these modified Kashin-class destroyers were the Indian Navy's first missile-armed destroyers and the first ships to deploy the BrahMos supersonic cruise missile. Three ships remain active with the Eastern Naval Command.</p>
+
+  <div class="key-facts">
+    <h4>📋 Rajput Class — Key Specifications</h4>
+    <ul>
+      <li><strong>Displacement:</strong> 4,974 tonnes full load</li>
+      <li><strong>Length:</strong> 146.5 m</li>
+      <li><strong>Beam:</strong> 15.8 m</li>
+      <li><strong>Speed:</strong> 35 knots (fastest in IN fleet)</li>
+      <li><strong>Range:</strong> 4,500 nmi at 18 knots</li>
+      <li><strong>Propulsion:</strong> COGAG — 4 × Zorya M3E gas turbines, 72,000 hp</li>
+      <li><strong>Anti-Ship:</strong> 4 × BrahMos (insinclined launchers, INS Rajput was trials ship)</li>
+      <li><strong>Anti-Air:</strong> S-125M Goa SAM (SA-N-1) — 44 missiles</li>
+      <li><strong>Guns:</strong> 1 × twin 76mm, 4 × AK-630M CIWS</li>
+      <li><strong>ASW:</strong> 2 × RBU-6000, torpedo tubes</li>
+      <li><strong>Aircraft:</strong> 1 × Ka-28 (last 2 ships) or Chetak (first 3)</li>
+    </ul>
+  </div>
+
+  <h3>Ships of the Class</h3>
+  <table>
+    <tr><th>Ship</th><th>Pennant</th><th>Commissioned</th><th>Status</th></tr>
+    <tr><td>INS Rajput</td><td>D51</td><td>4 May 1980</td><td>Decommissioned (2021)</td></tr>
+    <tr><td>INS Rana</td><td>D52</td><td>19 February 1982</td><td>Active</td></tr>
+    <tr><td>INS Ranjit</td><td>D53</td><td>24 November 1983</td><td>Decommissioned (2019), sunk TROPEX-21</td></tr>
+    <tr><td>INS Ranvir</td><td>D54</td><td>21 April 1986</td><td>Active</td></tr>
+    <tr><td>INS Ranvijay</td><td>D55</td><td>21 December 1987</td><td>Active</td></tr>
+  </table>
+
+  <h3>BrahMos Trials Ship</h3>
+  <p>INS Rajput served as the primary BrahMos missile trials platform, conducting four successful test firings (2003-2008). The final test involved a moving target — a decommissioned vessel — which was completely destroyed by the supersonic missile's kinetic energy and warhead.</p>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The Rajput class served as the Indian Navy's first missile destroyers for over four decades. Three ships remain active, having been upgraded with BrahMos missiles. The class pioneered Indian naval missile operations and provided the platform for BrahMos development testing.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 13 ==================== -->
+<div class="chapter" id="ch13">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 13</div>
+    <div class="chapter-title">Godavari Class — Frigate Fleet</div>
+  </div>
+
+  <h3>India's First Major Indigenous Frigates</h3>
+  <p>The Godavari class (Project 16) comprised three guided-missile frigates — INS Godavari (F20), INS Ganga (F22), and INS Gomati (F21) — built at Mazagon Dock Limited. These were India's first major indigenous warship designs and predecessors to the Shivalik class. All three ships have been decommissioned, but their legacy in indigenous shipbuilding is significant.</p>
+
+  <div class="key-facts">
+    <h4>📋 Godavari Class — Key Specifications</h4>
+    <ul>
+      <li><strong>Displacement:</strong> 3,600 tonnes standard / 4,974 tonnes full load</li>
+      <li><strong>Length:</strong> 141 m</li>
+      <li><strong>Beam:</strong> 15.4 m</li>
+      <li><strong>Speed:</strong> 28 knots</li>
+      <li><strong>Range:</strong> 4,500 nmi at 18 knots</li>
+      <li><strong>Propulsion:</strong> CODAG — 2 × Oerlikon gas turbines + 2 × Pielstick diesels</li>
+      <li><strong>Anti-Ship:</strong> 4 × SS-N-2D Styx (later replaced with BrahMos on Godavari)</li>
+      <li><strong>Anti-Air:</strong> 24 × SA-N-1 Goa (S-125M)</li>
+      <li><strong>Guns:</strong> 2 × twin 76mm, 4 × AK-230 CIWS</li>
+      <li><strong>ASW:</strong> RBU-6000, torpedo tubes</li>
+      <li><strong>Aircraft:</strong> 1 × Sea King or Chetak</li>
+    </ul>
+  </div>
+
+  <h3>Service and Decommissioning</h3>
+  <p>Godavari was decommissioned in 2007, Ganga in 2010, and Gomati in 2017. INS Godavari was notable as the first Indian warship to carry BrahMos missiles in an inclined launcher configuration. The class proved India's capability to design and build complex frigates, paving the way for the Talwar and Shivalik classes.</p>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The Godavari class was a landmark in indigenous warship construction, proving India's ability to design and build complex frigates. Though all three ships are now decommissioned, they established the foundation for modern Indian frigate programs.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 14 ==================== -->
+<div class="chapter" id="ch14">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 14</div>
+    <div class="chapter-title">LPD — Landing Platform Dock (INS Jalashwa)</div>
+  </div>
+
+  <h3>India's Amphibious Assault Ship</h3>
+  <p>INS Jalashwa (L41), meaning "Horse of the Sea," is India's first and only Landing Platform Dock (LPD). Acquired from the United States in 2007 as the former USS Trenton (LPD-14), an Austin-class amphibious transport dock, it is the second-largest warship in the Indian Navy after the aircraft carriers. Based at Visakhapatnam, INS Jalashwa serves as the cornerstone of Indian amphibious operations.</p>
+
+  <div class="key-facts">
+    <h4>📋 INS Jalashwa — Key Specifications</h4>
+    <ul>
+      <li><strong>Displacement:</strong> 16,600 tonnes full load</li>
+      <li><strong>Length:</strong> 173.7 m</li>
+      <li><strong>Beam:</strong> 30.4 m</li>
+      <li><strong>Draft:</strong> 6.7 m</li>
+      <li><strong>Speed:</strong> 20 knots</li>
+      <li><strong>Propulsion:</strong> 2 × boilers, 2 × steam turbines, 24,000 shp</li>
+      <li><strong>Troops:</strong> Up to 1,000 fully armed personnel</li>
+      <li><strong>Helicopters:</strong> 6 × UH-3 Sea King (simultaneous ops)</li>
+      <li><strong>Landing Craft:</strong> 4 × LCM-8 or 9 × LCM-6 or 1 × LCAC</li>
+      <li><strong>Medical:</strong> 4 operating theatres, 12-bed ward, lab, dental</li>
+      <li><strong>Cost:</strong> $48.44 million (acquired) + $39M for 6 helicopters</li>
+    </ul>
+  </div>
+
+  <h3>Amphibious Capabilities</h3>
+  <p>Jalashwa's distinctive well deck can house up to four LCM-8 mechanised landing craft, launched by flooding the well deck and lowering the hinged aft gate. The flight deck can simultaneously operate six medium helicopters or VTOL aircraft like the Sea Harrier. The ship's cargo spaces carry vehicles, supplies, and equipment for amphibious assault operations.</p>
+
+  <h3>Humanitarian Operations</h3>
+  <p>INS Jalashwa has been extensively used for humanitarian operations including Operation Samudra Setu during COVID-19 repatriation and disaster relief missions. Its extensive medical facilities make it uniquely suited for humanitarian assistance and disaster relief (HADR) operations.</p>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>INS Jalashwa is India's sole LPD and second-largest warship, providing amphibious assault capability with 1,000 troops, 6 helicopters, and landing craft. It serves dual roles as an amphibious warfare platform and humanitarian relief vessel.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 15 ==================== -->
+<div class="chapter" id="ch15">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 15</div>
+    <div class="chapter-title">Submarine Fleet — Sindhughosh & Shishumar Classes</div>
+  </div>
+
+  <h3>Sindhughosh Class (Kilo/877EKM)</h3>
+  <p>The Sindhughosh class comprises Russian-built Kilo-class diesel-electric submarines, the first of which was commissioned in 1986. Originally eight submarines were inducted, but several have been retired. INS Sindhughosh, the lead boat, has been decommissioned. These submarines were the backbone of India's submarine fleet for three decades and brought significant advances in underwater warfare capability.</p>
+
+  <div class="key-facts">
+    <h4>📋 Sindhughosh Class — Key Specifications</h4>
+    <ul>
+      <li><strong>Displacement:</strong> 2,325 tonnes submerged</li>
+      <li><strong>Length:</strong> 72.6 m</li>
+      <li><strong>Beam:</strong> 9.9 m</li>
+      <li><strong>Speed:</strong> 17 kt surfaced / 10 kt submerged</li>
+      <li><strong>Range:</strong> 7,500 nmi at snorkel</li>
+      <li><strong>Armament:</strong> 6 × 533mm torpedo tubes, 18 weapons</li>
+      <li><strong>Missiles:</strong> Klub-S cruise missiles (upgraded)</li>
+      <li><strong>Depth:</strong> 300 m</li>
+    </ul>
+  </div>
+
+  <h3>Shishumar Class (Type 209/1500)</h3>
+  <p>The Shishumar class comprises four German HDW Type 209/1500 submarines built at Mazagon Dock Limited under licence. Commissioned between 1986 and 1994, these are among the oldest submarines in the Indian Navy. The boats have undergone mid-life upgrades to extend their operational life.</p>
+
+  <div class="key-facts">
+    <h4>📋 Shishumar Class — Key Specifications</h4>
+    <ul>
+      <li><strong>Displacement:</strong> 1,850 tonnes surfaced</li>
+      <li><strong>Length:</strong> 64.4 m</li>
+      <li><strong>Beam:</strong> 6.2 m</li>
+      <li><strong>Speed:</strong> 11 kt surfaced / 22 kt submerged</li>
+      <li><strong>Range:</strong> 8,000 nmi at snorkel</li>
+      <li><strong>Armament:</strong> 8 × 533mm torpedo tubes, 14 weapons</li>
+      <li><strong>Ships:</strong> Shishumar, Shankul, Shalki, Shankul</li>
+    </ul>
+  </div>
+
+  <h3>Future Submarine Programs</h3>
+  <p>India's submarine fleet is undergoing significant expansion. The 30-year submarine building plan envisions 24 conventional submarines. Current programs include:</p>
+  <ul>
+    <li><strong>Project 75I:</strong> Six Type 214 submarines with AIP (Thyssenkrupp Marine Systems + MDL), valued at ₹70,000 crore</li>
+    <li><strong>Project 76:</strong> Indigenous conventional submarines with Indian design and high indigenisation</li>
+    <li><strong>SSN Programme:</strong> Two nuclear-powered attack submarines approved at ₹35,000 crore, first expected around 2036-37</li>
+    <li><strong>Additional SSBNs:</strong> S4 and S4* under construction at Visakhapatnam</li>
+  </ul>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The Sindhughosh and Shishumar classes formed India's conventional submarine fleet for decades. While aging, they are being supplemented by the Kalvari class and future Project 75I submarines, alongside expanding nuclear submarine programs.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 16 ==================== -->
+<div class="chapter" id="ch16">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 16</div>
+    <div class="chapter-title">Naval Weapons — BrahMos, Barak-8, Torpedoes</div>
+  </div>
+
+  <h3>BrahMos Supersonic Cruise Missile</h3>
+  <p>The BrahMos is the world's fastest supersonic cruise missile, co-developed by India's DRDO and Russia's NPO Mashinostroyenia. In its naval configuration, it operates at Mach 2.5-3.0 with a range of 290 km (export version), extendable to 450-800 km for Indian Navy variants. The missile's two-stage propulsion uses a solid rocket booster for initial acceleration and a liquid-fuelled ramjet for sustained supersonic cruise.</p>
+
+  <div class="ascii-diagram">
+<span class="label">BRAHMOS NAVAL VARIANT — Technical Diagram</span>
+
+  ┌─────────────────────────────────────────┐
+  │          BRAHMOS SUPersonic MISSILE       │
+  │                                           │
+  │  ┌──────┐  ┌──────────────────────────┐  │
+  │  │SOLID │  │   LIQUID RAMJET ENGINE   │  │
+  │  │BOOST │→ │   Sustained Mach 2.8     │  │
+  │  │      │  │                          │  │
+  │  └──────┘  └──────────────────────────┘  │
+  │                                           │
+  │  ┌────────┐  ┌────────┐  ┌───────────┐  │
+  │  │ WARHEAD│  │ GUIDANCE│  │ TERMINAL  │  │
+  │  │ 200-300│  │ INS +   │  │ RADAR     │  │
+  │  │   kg   │  │ GNSS    │  │ SEEKER    │  │
+  │  └────────┘  └────────┘  └───────────┘  │
+  └─────────────────────────────────────────┘
+
+  UVLM (Vertical Launcher Module)
+  ┌─────────┐  Mounted under deck
+  │░░░░░░░░░│  Fires vertically in any direction
+  │░░░░░░░░░│  Salvo capability: 16 missiles
+  │░░░░░░░░░│  from Kolkata/Visakhapatnam class
+  └─────────┘
+
+  Key Specs:
+  • Speed: Mach 2.5 - 3.0
+  • Range: 290 km (export) / 450-800 km (domestic)
+  • Warhead: 200-300 kg (conventional/nuclear)
+  • Altitude: 3-15 m (sea skimming)
+  • Guidance: INS + GNSS + Terminal ARH
+  </div>
+
+  <h3>Barak-8 Long Range Surface-to-Air Missile</h3>
+  <p>The Barak-8 (also LR-SAM) is co-developed by Israel Aerospace Industries and DRDO. It provides area air defence with a range of 0.5-100 km against aircraft, helicopters, anti-ship missiles, cruise missiles, ballistic missiles, and UAVs. The EL/M-2248 MF-STAR AESA radar provides simultaneous multi-target tracking and engagement.</p>
+
+  <h3>Naval Torpedoes</h3>
+  <table>
+    <tr><th>Torpedo</th><th>Type</th><th>Weight</th><th>Range</th><th>Speed</th><th>Users</th></tr>
+    <tr><td>Varunastra</td><td>Heavyweight (HWT)</td><td>1,500 kg</td><td>40 km</td><td>40 kt</td><td>Destroyers, Frigates</td></tr>
+    <tr><td>SUT</td><td>HWT</td><td>1,410 kg</td><td>28 km</td><td>35 kt</td><td>Kalvari class</td></tr>
+    <tr><td>Black Shark</td><td>HWT</td><td>1,550 kg</td><td>50 km</td><td>36 kt</td><td>Future submarines</td></tr>
+    <tr><td>SET-65E</td><td>HWT</td><td>1,070 kg</td><td>15 km</td><td>30 kt</td><td>Talwar class</td></tr>
+  </table>
+
+  <h3>Additional Naval Weapons</h3>
+  <ul>
+    <li><strong>SM-39 Exocet:</strong> Submarine-launched anti-ship missile, 50 km range, Mach 0.93</li>
+    <li><strong>Klub-N:</strong> Submarine-launched cruise missile, 220 km range, Mach 2.9 terminal</li>
+    <li><strong>K-15 Sagarika:</strong> Submarine-launched ballistic missile, 700 km range</li>
+    <li><strong>K-4:</strong> Intermediate-range SLBM, 3,500 km range</li>
+    <li><strong>RBU-6000:</strong> 12-barrel anti-submarine rocket launcher, 6,000 m range</li>
+    <li><strong>AK-630M:</strong> 30mm CIWS, 5,000 rounds/min</li>
+  </ul>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>Indian naval weapons combine Indian, Russian, and Israeli systems. The BrahMos (Mach 2.8, 290-800 km range) is the primary strike weapon, while Barak-8 provides area air defence. Submarine-launched weapons include K-15/K-4 SLBMs for nuclear deterrence and Exocet/Klub for anti-ship warfare.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 17 ==================== -->
+<div class="chapter" id="ch17">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 17</div>
+    <div class="chapter-title">Aircraft Carrier Operations — MiG-29K & Helicopters</div>
+  </div>
+
+  <h3>MiG-29K Fulcrum-D</h3>
+  <p>The Mikoyan MiG-29K is the Indian Navy's primary carrier-based multirole fighter, operated from both INS Vikramaditya and INS Vikrant. INAS 303 "Black Panthers" operates the MiG-29K, while INAS 300 "White Tigers" operates the two-seat MiG-29KUB trainer variant. The fighter entered operational service in February 2010.</p>
+
+  <div class="key-facts">
+    <h4>📋 MiG-29K — Key Specifications</h4>
+    <ul>
+      <li><strong>Crew:</strong> 1 (K) / 2 (KUB)</li>
+      <li><strong>Length:</strong> 17.3 m</li>
+      <li><strong>Wingspan:</strong> 11.99 m</li>
+      <li><strong>Max Takeoff Weight:</strong> 24,500 kg</li>
+      <li><strong>Engines:</strong> 2 × Klimov RD-33MK (88.3 kN each with afterburner)</li>
+      <li><strong>Max Speed:</strong> Mach 2+ (2,200 km/h at altitude)</li>
+      <li><strong>Range:</strong> 2,000 km (high altitude) / 700 km (low altitude)</li>
+      <li><strong>Ferry Range:</strong> 5,500 km (with refuelling)</li>
+      <li><strong>Ceiling:</strong> 17,500 m</li>
+      <li><strong>Hardpoints:</strong> 9 (4,500 kg capacity)</li>
+    </ul>
+  </div>
+
+  <h3>MiG-29K Weapons Suite</h3>
+  <ul>
+    <li><strong>Air-to-Air:</strong> R-73E, RVV-AE (R-77), Astra (Indian)</li>
+    <li><strong>Anti-Ship:</strong> Kh-35UE, Kh-31A, NASM-MR (Indian)</li>
+    <li><strong>Land-Attack:</strong> Rampage, KAB-500KR/L guided bombs</li>
+    <li><strong>Guns:</strong> 1 × 30mm GSh-30-1 (150 rounds)</li>
+    <li><strong>Payload:</strong> 4,500 kg stores capacity</li>
+  </ul>
+
+  <h3>Carrier Air Wings</h3>
+  <table>
+    <tr><th>Squadron</th><th>Name</th><th>Aircraft</th><th>Role</th></tr>
+    <tr><td>INAS 300</td><td>White Tigers</td><td>MiG-29KUB</td><td>Training</td></tr>
+    <tr><td>INAS 303</td><td>Black Panthers</td><td>MiG-29K</td><td>Multirole Fighter</td></tr>
+    <tr><td>INAS 321</td><td>Angels</td><td>HAL Chetak</td><td>Utility</td></tr>
+    <tr><td>INAS 322</td><td>Guardians</td><td>HAL Dhruv</td><td>Utility</td></tr>
+    <tr><td>INAS 330</td><td>Harpoons</td><td>Sea King</td><td>ASW</td></tr>
+    <tr><td>INAS 339</td><td>Falcons</td><td>Ka-31</td><td>AEW&C</td></tr>
+    <tr><td>INAS 336</td><td>Raptors</td><td>MH-60R</td><td>ASuW/ASW</td></tr>
+  </table>
+
+  <h3>STOBAR Operations</h3>
+  <p>Both Indian carriers use the Short Take-Off But Arrested Recovery (STOBAR) configuration. Aircraft take off using a 14° ski-jump and land using three arrester wires. The MiG-29K performs a controlled approach to the carrier deck, catching an arrester wire with its tailhook. Night operations require special training and the Saturn Lighting System on the flight deck.</p>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The MiG-29K is the backbone of Indian naval aviation, operating from both carriers with air-to-air, anti-ship, and land-attack capability. Combined with Ka-31 AEW, MH-60R ASW, and Dhruv helicopters, the carrier air wings provide comprehensive fleet defence and offensive capability.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 18 ==================== -->
+<div class="chapter" id="ch18">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 18</div>
+    <div class="chapter-title">Shipbuilding Infrastructure — Mazagon Dock & Garden Reach</div>
+  </div>
+
+  <h3>Mazagon Dock Shipbuilders Limited (MDL)</h3>
+  <p>MDL, located in Mumbai, is India's premier warship and submarine building yard. The facility has been significantly modernized under the Mazdock Modernization Project (MMP) at a cost of ₹9 billion. Post-modernization, MDL's warship capacity increased from 8 to 10 ships and submarine capacity from 6 to 11 submarines.</p>
+
+  <div class="key-facts">
+    <h4>📋 MDL — Key Infrastructure</h4>
+    <ul>
+      <li><strong>Slipways:</strong> SY1 & SY2 (189.5m × 26m), NY (237.25m × 29m)</li>
+      <li><strong>Goliath Crane:</strong> 300-tonne capacity, 138m span</li>
+      <li><strong>Module Shop:</strong> 6,000 sq.m with 50T EOT cranes</li>
+      <li><strong>Wet Basin:</strong> 27,000 sq.m berthing space</li>
+      <li><strong>Submarine Section Assembly:</strong> 9,900 sq.m workshop</li>
+      <li><strong>Dry Docks:</strong> Ritchie (216m), Mogul (129m), East Yard (89m)</li>
+      <li><strong>VR Lab:</strong> Virtual reality shipbuilding simulation</li>
+    </ul>
+  </div>
+
+  <h3>Key Ships Built at MDL</h3>
+  <ul>
+    <li>INS Vikrant (R11) — Indigenous Aircraft Carrier</li>
+    <li>INS Kolkata (D63) — Lead Kolkata-class destroyer</li>
+    <li>INS Visakhapatnam (D66) — Lead Project 15B destroyer</li>
+    <li>INS Shivalik (F47) — Lead stealth frigate</li>
+    <li>Kalvari class — All 6 Scorpène submarines</li>
+  </ul>
+
+  <h3>Garden Reach Shipbuilders & Engineers (GRSE)</h3>
+  <p>GRSE, located in Kolkata, is one of India's leading shipyards with an integrated shipbuilding facility spanning 48 acres. The yard features a 180m × 29m dry dock, module hall for constructing pre-outfitted blocks up to 200 tonnes, and blast/paint cell facilities.</p>
+
+  <div class="key-facts">
+    <h4>📋 GRSE — Key Infrastructure</h4>
+    <ul>
+      <li><strong>Dry Dock:</strong> 180m × 29m × 10m (10,000 DWT)</li>
+      <li><strong>Inclined Berth:</strong> 180m × 23m (4,500 DWT)</li>
+      <li><strong>Wet Basin:</strong> 80m × 25m × 8m (fully covered)</li>
+      <li><strong>New Dry Dock:</strong> 160m × 25m × 8m with 40T Goliath cranes</li>
+      <li><strong>Module Hall:</strong> 200-tonne pre-outfitted blocks</li>
+    </ul>
+  </div>
+
+  <h3>Key Ships Built at GRSE</h3>
+  <ul>
+    <li>Kamorta class — All 4 ASW corvettes (Project 28)</li>
+    <li>INS Kamorta, Kadmatt, Kiltan, Kavaratti</li>
+    <li>Landing Craft Utilities (LCU) for the Navy</li>
+    <li>Fast Patrol Vessels and Offshore Patrol Vessels</li>
+  </ul>
+
+  <h3>Other Shipyards</h3>
+  <ul>
+    <li><strong>Goa Shipyard Limited (GSL):</strong> Building Talwar Batch IV frigates and Landing Craft</li>
+    <li><strong>Cochin Shipyard Limited (CSL):</strong> Built INS Vikrant; building next-gen aircraft carriers</li>
+    <li><strong>Hindustan Shipyard Limited (HSL):</strong> Building nuclear submarines and submarines</li>
+  </ul>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>India's shipbuilding infrastructure has been dramatically upgraded with MDL and GRSE capable of building aircraft carriers, destroyers, frigates, corvettes, and submarines. The modernized facilities enable modular construction, reducing build periods while maintaining quality.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 19 ==================== -->
+<div class="chapter" id="ch19">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 19</div>
+    <div class="chapter-title">Fleet Comparison Tables & ASCII Diagrams</div>
+  </div>
+
+  <h3>Surface Combatants — Comparison</h3>
+  <table>
+    <tr><th>Ship Class</th><th>Type</th><th>Displacement</th><th>Length</th><th>Speed</th><th>Primary Weapon</th></tr>
+    <tr><td>INS Vikrant</td><td>Aircraft Carrier</td><td>45,000 t</td><td>262.5 m</td><td>28 kt</td><td>MiG-29K (36 aircraft)</td></tr>
+    <tr><td>INS Vikramaditya</td><td>Aircraft Carrier</td><td>44,500 t</td><td>284 m</td><td>30 kt</td><td>MiG-29K (26 aircraft)</td></tr>
+    <tr><td>Visakhapatnam</td><td>Destroyer (P-15B)</td><td>7,400 t</td><td>163 m</td><td>33.5 kt</td><td>32 Barak-8 + 16 BrahMos</td></tr>
+    <tr><td>Kolkata</td><td>Destroyer (P-15A)</td><td>7,400 t</td><td>163 m</td><td>30 kt</td><td>32 Barak-8 + 16 BrahMos</td></tr>
+    <tr><td>Shivalik</td><td>Frigate (P-17)</td><td>6,200 t</td><td>142.5 m</td><td>32 kt</td><td>8 BrahMos + Shtil-1</td></tr>
+    <tr><td>Talwar</td><td>Frigate (P-11356)</td><td>4,035 t</td><td>124.8 m</td><td>32 kt</td><td>8 BrahMos + Shtil-1</td></tr>
+    <tr><td>Kamorta</td><td>Corvette (P-28)</td><td>3,300 t</td><td>109 m</td><td>25 kt</td><td>RBU-6000 + Torpedoes</td></tr>
+    <tr><td>Rajput</td><td>Destroyer (Kashin-II)</td><td>4,974 t</td><td>146.5 m</td><td>35 kt</td><td>4 BrahMos + SA-N-1</td></tr>
+  </table>
+
+  <h3>Submarine Fleet — Comparison</h3>
+  <table>
+    <tr><th>Class</th><th>Type</th><th>Displacement</th><th>Length</th><th>Speed (Sub)</th><th>Armament</th></tr>
+    <tr><td>Arihant</td><td>SSBN (Nuclear)</td><td>6,000 t</td><td>111 m</td><td>24 kt</td><td>12 × K-15 or 4 × K-4</td></tr>
+    <tr><td>Arighat</td><td>SSBN (Nuclear)</td><td>6,000 t</td><td>111.6 m</td><td>24 kt</td><td>12 × K-15 or 4 × K-4</td></tr>
+    <tr><td>Kalvari</td><td>SSK (Diesel)</td><td>1,775 t</td><td>67.5 m</td><td>20 kt</td><td>6 × 533mm (18 weapons)</td></tr>
+    <tr><td>Sindhughosh</td><td>SSK (Diesel)</td><td>2,325 t</td><td>72.6 m</td><td>17 kt</td><td>6 × 533mm + Klub-S</td></tr>
+    <tr><td>Shishumar</td><td>SSK (Diesel)</td><td>1,850 t</td><td>64.4 m</td><td>22 kt</td><td>8 × 533mm (14 weapons)</td></tr>
+  </table>
+
+  <h3>ASCII Fleet Overview</h3>
+  <div class="ascii-diagram">
+<span class="label">INDIAN NAVY FLEET COMPOSITION — Visual Overview</span>
+
+═══════════════════════════════════════════════════════════════
+  AIRCRAFT CARRIERS (2)
+  ┌─────────────────────┐    ┌─────────────────────┐
+  │   INS VIKRANT (R11) │    │  INS VIKRAMADITYA   │
+  │   45,000t | 262m    │    │     (R33)           │
+  │   STOBAR | IAC-1    │    │   44,500t | 284m    │
+  │   76% Indigenous     │    │   STOBAR | Russian   │
+  └─────────────────────┘    └─────────────────────┘
+
+═══════════════════════════════════════════════════════════════
+  DESTROYERS (8 active)
+  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐
+  │ P-15B (4)    │ │ P-15A (3)    │ │ Rajput (3)   │
+  │ Visakhapatnam│ │ Kolkata      │ │ Kashin-II    │
+  │ 7,400t       │ │ 7,400t       │ │ 4,974t       │
+  │ 32 Barak-8   │ │ 32 Barak-8   │ │ 4 BrahMos    │
+  │ 16 BrahMos   │ │ 16 BrahMos   │ │ SA-N-1 SAM   │
+  └──────────────┘ └──────────────┘ └──────────────┘
+
+═══════════════════════════════════════════════════════════════
+  FRIGATES (11 active)
+  ┌──────────────┐ ┌──────────────┐
+  │ Shivalik (3) │ │ Talwar (8)   │
+  │ P-17 Stealth │ │ P-11356      │
+  │ 6,200t       │ │ 4,035t       │
+  │ BrahMos      │ │ BrahMos      │
+  └──────────────┘ └──────────────┘
+
+═══════════════════════════════════════════════════════════════
+  CORVETTES & AMPHIBIOUS (5+)
+  ┌──────────────┐ ┌──────────────┐
+  │ Kamorta (4)  │ │ Jalashwa (1) │
+  │ P-28 ASW     │ │ LPD          │
+  │ 3,300t       │ │ 16,600t      │
+  │ 90% Indig.   │ │ 1,000 troops │
+  └──────────────┘ └──────────────┘
+
+═══════════════════════════════════════════════════════════════
+  SUBMARINES (16 conventional + 2 nuclear)
+  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐
+  │ Kalvari (6)  │ │ Sindhughosh  │ │ Shishumar    │
+  │ Scorpène     │ │ Kilo (4)     │ │ Type 209 (4) │
+  │ 1,775t       │ │ 2,325t       │ │ 1,850t       │
+  │              │ │              │ │              │
+  └──────────────┘ └──────────────┘ └──────────────┘
+  ┌──────────────────────────────┐
+  │ NUCLEAR SUBMARINES (2)       │
+  │ INS Arihant (S2) + Arighat  │
+  │ SSBN | 6,000t | K-4 SLBM   │
+  └──────────────────────────────┘
+  </div>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The Indian Navy operates 2 aircraft carriers, 8 destroyers, 11 frigates, 4 corvettes, 1 LPD, 16 conventional submarines, and 2 nuclear SSBNs. Total fleet strength exceeds 130 vessels with approximately 60 more under construction.</p>
+  </div>
+</div>
+
+<!-- ==================== CHAPTER 20 ==================== -->
+<div class="chapter" id="ch20">
+  <div class="chapter-header">
+    <div class="chapter-num">Chapter 20</div>
+    <div class="chapter-title">Summary & Future of the Indian Navy</div>
+  </div>
+
+  <h3>Current Fleet Summary</h3>
+  <p>The Indian Navy today operates one of the world's most capable and diverse maritime forces. With over 130 vessels including two aircraft carriers, the fleet is poised to grow significantly over the coming decades. The navy's core mission — securing India's 7,516 km coastline, 2.01 million sq km Exclusive Economic Zone, and projecting power across the Indian Ocean Region — is supported by an increasingly indigenous fleet.</p>
+
+  <div class="key-facts">
+    <h4>📋 Indian Navy — Fleet Summary (2026)</h4>
+    <ul>
+      <li><strong>Aircraft Carriers:</strong> 2 (Vikrant, Vikramaditya)</li>
+      <li><strong>Destroyers:</strong> 8 (P-15B × 4, P-15A × 3, Rajput × 3)</li>
+      <li><strong>Frigates:</strong> 11 (Shivalik × 3, Talwar × 8)</li>
+      <li><strong>Corvettes:</strong> 4+ (Kamorta × 4 + others)</li>
+      <li><strong>Submarines (Conventional):</strong> 16 (Kalvari × 6, Sindhughosh × 4, Shishumar × 4 + 2 others)</li>
+      <li><strong>Submarines (Nuclear SSBN):</strong> 2 (Arihant, Arighat)</li>
+      <li><strong>LPD:</strong> 1 (Jalashwa)</li>
+      <li><strong>Under Construction:</strong> ~60 vessels</li>
+    </ul>
+  </div>
+
+  <h3>Strategic Vision</h3>
+  <p>The Indian Navy's strategic doctrine focuses on three pillars:</p>
+  <ul>
+    <li><strong>Sea Control:</strong> Dominating the Indian Ocean littoral through carrier battle groups and submarine patrols</li>
+    <li><strong>Sea Denial:</strong> Preventing adversary naval operations through submarines, mines, and anti-ship missiles</li>
+    <li><strong>Power Projection:</strong> Expeditionary capability through amphibious forces and carrier-based aviation</li>
+  </ul>
+
+  <h3>Future Programs</h3>
+  <table>
+    <tr><th>Program</th><th>Type</th><th>Details</th><th>Timeline</th></tr>
+    <tr><td>Project 75I</td><td>6-9 Conventional Submarines</td><td>Type 214 with AIP (TKMS + MDL)</td><td>First sub ~7 years after contract</td></tr>
+    <tr><td>Project 76</td><td>6+ Indigenous Submarines</td><td>Indian design, DRDO AIP</td><td>After P-75I</td></tr>
+    <tr><td>SSN Programme</td><td>2 Nuclear Attack Submarines</td><td>₹35,000 crore approved</td><td>First SSN ~2036-37</td></tr>
+    <tr><td>S5 Class SSBN</td><td>Next-Gen SSBN</td><td>Larger than Arihant class</td><td>Late 2020s</td></tr>
+    <tr><td>Project 18</td><td>Next-Gen Destroyer</td><td>Follow-on to P-15B</td><td>Under development</td></tr>
+    <tr><td>Nilgiri Class</td><td>7 Stealth Frigates</td><td>Project 17A, improved Shivalik</td><td>Under construction</td></tr>
+    <tr><td>IAC-2</td><td>Second Indigenous Carrier</td><td>Potential CATOBAR config</td><td>Under consideration</td></tr>
+    <tr><td>Future Force (2047)</td><td>200+ Ship Navy</td><td>Self-reliant by 100th year of independence</td><td>Ongoing</td></tr>
+  </table>
+
+  <h3>Indigenization Achievements</h3>
+  <p>India's naval shipbuilding has achieved remarkable indigenization — 76% on INS Vikrant, 75% on Project 15B destroyers, and 90% on Kamorta corvettes. The DRDO-developed K-4 SLBM, Varunastra torpedo, BrahMos missile, and Barak-8 SAM demonstrate India's growing self-reliance in naval weapons systems. With 60 warships under construction, India is building one of the world's largest naval fleets indigenously.</p>
+
+  <h3>Strategic Challenges</h3>
+  <p>The Indian Navy faces several challenges in the coming decades:</p>
+  <ul>
+    <li><strong>Submarine Shortfall:</strong> Aging fleet requiring replacement faster than current programs can deliver</li>
+    <li><strong>Regional Competition:</strong> Pakistan's acquisition of 8 Chinese Hangor-class submarines; China's expanding naval presence in the Indian Ocean</li>
+    <li><strong>Budget Constraints:</strong> Balancing modernization with operational readiness</li>
+    <li><strong>Technology Transfer:</strong> Ensuring meaningful technology absorption for future indigenous programs</li>
+  </ul>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The Indian Navy is entering a transformative era with indigenous carriers, nuclear submarines, and advanced surface combatants. The fleet is projected to grow to 200+ vessels by 2047, with programs spanning conventional submarines, nuclear attack submarines, next-generation destroyers, and advanced frigates. India's naval shipbuilding infrastructure and indigenous weapons capability position it as a dominant maritime power in the Indian Ocean Region.</p>
+  </div>
+
+  <div style="text-align:center; padding:60px 0; border-top:2px solid var(--orange); margin-top:40px;">
+    <p style="font-size:1.2em; color:var(--orange); font-weight:700;">⚓ END OF BOOK ⚓</p>
+    <p style="color:var(--text-dim); margin-top:10px;">NAVAL VESSELS & SUBMARINES — Indian Navy's Maritime Warfare Fleet</p>
+    <p style="color:var(--text-dim); margin-top:5px;">Author: MissileX RocketSpace Research</p>
+    <p style="color:var(--text-dim); margin-top:20px; font-size:0.85em;">
+      Disclaimer: This publication is for educational and reference purposes only. Information sourced from
+      public domain including Indian Navy official sources, Press Information Bureau, Wikipedia, and
+      defence publications. All specifications are approximate and based on publicly available data.
+    </p>
+  </div>
+</div>
+
+</div><!-- End book-container -->
+
+</body>
+</html>

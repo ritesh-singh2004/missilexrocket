@@ -22,7 +22,7 @@
         .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
         .nav-hamburger span{width:25px;height:2px;background:#fff;transition:0.3s;}
 
-        .container{max-width:1100px;margin:0 auto;padding:100px 20px 60px;}
+        .container{max-width:1200px;margin:0 auto;padding:100px 20px 60px;}
         .page-header{text-align:center;margin-bottom:50px;}
         .page-header .label{font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--primary);margin-bottom:8px;}
         .page-header h1{font-family:'Orbitron',monospace;font-size:2.2rem;font-weight:900;margin-bottom:12px;}
@@ -33,7 +33,10 @@
         .page-header .stat-num{font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;color:var(--primary);}
         .page-header .stat-label{font-size:0.7rem;color:var(--gray);letter-spacing:0.1em;}
 
-        .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;}
+        .section-label{font-family:'Orbitron',monospace;font-size:0.7rem;letter-spacing:0.15em;color:var(--primary);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+        .section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--primary),transparent);}
+
+        .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;margin-bottom:40px;}
         .book-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.4s;position:relative;}
         .book-card:hover{border-color:rgba(0,212,255,0.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.3);}
         .book-cover{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
@@ -69,7 +72,12 @@
             <a href="missile-testing.html">MISSILE TESTING</a>
             <a href="satellite-array.html">SATELLITE ARRAY</a>
             <a href="rocket-assembly.html">ROCKET ASSEMBLY</a>
-            <a href="earth-observation.html">EARTH OBSERVATION</a>
+            <a href="earth-observation.html">EARTH OBS.</a>
+            <a href="launch-vehicles-satellites.html">LAUNCH VEHICLES</a>
+            <a href="missile-weapon-systems.html">MISSILE SYSTEMS</a>
+            <a href="aircraft-systems.html">AIRCRAFT</a>
+            <a href="armored-vehicles.html">ARMORED</a>
+            <a href="naval-vessels.html">NAVAL</a>
         </div>
         <div class="nav-hamburger"><span></span><span></span><span></span></div>
     </nav>
@@ -80,12 +88,14 @@
             <h1>MissileX <span>Knowledge Base</span></h1>
             <p>Comprehensive research books on India's defence and space technology. Download and study at your own pace.</p>
             <div class="stats">
-                <div class="stat"><div class="stat-num">5</div><div class="stat-label">BOOKS</div></div>
-                <div class="stat"><div class="stat-num">100+</div><div class="stat-label">PAGES</div></div>
+                <div class="stat"><div class="stat-num">10</div><div class="stat-label">BOOKS</div></div>
+                <div class="stat"><div class="stat-num">220+</div><div class="stat-label">PAGES</div></div>
                 <div class="stat"><div class="stat-num">20</div><div class="stat-label">CHAPTERS EACH</div></div>
             </div>
         </div>
 
+        <!-- Space & Launch Vehicles -->
+        <div class="section-label">🚀 SPACE & LAUNCH VEHICLES</div>
         <div class="books-grid">
             <div class="book-card">
                 <div class="book-cover" style="background:linear-gradient(135deg,#0a1628,#1a3a5f,#0d2137);">
@@ -102,27 +112,7 @@
                     </div>
                     <div class="book-actions">
                         <a href="launch-complex.html" class="btn btn-primary">READ NOW</a>
-                        <a href="launch-complex.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD PDF</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="book-card">
-                <div class="book-cover" style="background:linear-gradient(135deg,#1a0a0a,#5f1a1a,#2e0a0a);">
-                    <div class="pages-badge">22 PAGES</div>
-                    <div class="icon">🎯</div>
-                </div>
-                <div class="book-info">
-                    <h3>Missile Testing</h3>
-                    <p>India's Strategic Defence Systems — Agni, Prithvi, BrahMos, Akash. Complete guide to missile technology and testing infrastructure.</p>
-                    <div class="book-meta">
-                        <span>🚀 Missile Systems</span>
-                        <span>🎯 Guidance Tech</span>
-                        <span>🛡️ Defence</span>
-                    </div>
-                    <div class="book-actions">
-                        <a href="missile-testing.html" class="btn btn-primary">READ NOW</a>
-                        <a href="missile-testing.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD PDF</a>
+                        <a href="launch-complex.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD</a>
                     </div>
                 </div>
             </div>
@@ -142,7 +132,7 @@
                     </div>
                     <div class="book-actions">
                         <a href="satellite-array.html" class="btn btn-primary">READ NOW</a>
-                        <a href="satellite-array.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD PDF</a>
+                        <a href="satellite-array.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD</a>
                     </div>
                 </div>
             </div>
@@ -162,7 +152,7 @@
                     </div>
                     <div class="book-actions">
                         <a href="rocket-assembly.html" class="btn btn-primary">READ NOW</a>
-                        <a href="rocket-assembly.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD PDF</a>
+                        <a href="rocket-assembly.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD</a>
                     </div>
                 </div>
             </div>
@@ -182,7 +172,135 @@
                     </div>
                     <div class="book-actions">
                         <a href="earth-observation.html" class="btn btn-primary">READ NOW</a>
-                        <a href="earth-observation.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD PDF</a>
+                        <a href="earth-observation.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div class="book-cover" style="background:linear-gradient(135deg,#0a1628,#0050a0,#0a1628);">
+                    <div class="pages-badge">22 PAGES</div>
+                    <div class="icon">🛰️</div>
+                </div>
+                <div class="book-info">
+                    <h3>Launch Vehicles & Satellites</h3>
+                    <p>India's Space Transportation & Orbital Infrastructure — PSLV, GSLV, LVM3, SSLV, Chandrayaan, Mangalyaan missions.</p>
+                    <div class="book-meta">
+                        <span>🚀 Launch Vehicles</span>
+                        <span>🛰️ Satellites</span>
+                        <span>🌙 Moon Missions</span>
+                    </div>
+                    <div class="book-actions">
+                        <a href="launch-vehicles-satellites.html" class="btn btn-primary">READ NOW</a>
+                        <a href="launch-vehicles-satellites.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Defence Systems -->
+        <div class="section-label">🛡️ DEFENCE & WEAPONS SYSTEMS</div>
+        <div class="books-grid">
+            <div class="book-card">
+                <div class="book-cover" style="background:linear-gradient(135deg,#1a0a0a,#5f1a1a,#2e0a0a);">
+                    <div class="pages-badge">22 PAGES</div>
+                    <div class="icon">🎯</div>
+                </div>
+                <div class="book-info">
+                    <h3>Missile Testing</h3>
+                    <p>India's Strategic Defence Systems — Agni, Prithvi, BrahMos, Akash. Complete guide to missile technology and testing infrastructure.</p>
+                    <div class="book-meta">
+                        <span>🚀 Missile Systems</span>
+                        <span>🎯 Guidance Tech</span>
+                        <span>🛡️ Defence</span>
+                    </div>
+                    <div class="book-actions">
+                        <a href="missile-testing.html" class="btn btn-primary">READ NOW</a>
+                        <a href="missile-testing.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div class="book-cover" style="background:linear-gradient(135deg,#1a0a00,#5f3a00,#2e1a00);">
+                    <div class="pages-badge">22 PAGES</div>
+                    <div class="icon">💣</div>
+                </div>
+                <div class="book-info">
+                    <h3>Missile & Weapon Systems</h3>
+                    <p>India's Strategic Defence Arsenal — Agni-V ICBM, BrahMos Supersonic Cruise, Akash Air Defence, Nag ATGM, Barak-8.</p>
+                    <div class="book-meta">
+                        <span>🎯 ICBM</span>
+                        <span>💨 Cruise Missile</span>
+                        <span>🛡️ Air Defence</span>
+                    </div>
+                    <div class="book-actions">
+                        <a href="missile-weapon-systems.html" class="btn btn-primary">READ NOW</a>
+                        <a href="missile-weapon-systems.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Combat Vehicles & Aircraft -->
+        <div class="section-label">✈️ COMBAT VEHICLES & AIRCRAFT</div>
+        <div class="books-grid">
+            <div class="book-card">
+                <div class="book-cover" style="background:linear-gradient(135deg,#0a1a28,#1a3a5f,#0a1628);">
+                    <div class="pages-badge">22 PAGES</div>
+                    <div class="icon">✈️</div>
+                </div>
+                <div class="book-info">
+                    <h3>Aircraft & Systems</h3>
+                    <p>Indian Air Force Fleet — Su-30MKI, Rafale, Tejas MK1, MiG-29UPG, Mirage 2000, Apache, Chinook, AMCA 5th Gen.</p>
+                    <div class="book-meta">
+                        <span>✈️ Fighters</span>
+                        <span>🚁 Helicopters</span>
+                        <span>🛡️ Air Defence</span>
+                    </div>
+                    <div class="book-actions">
+                        <a href="aircraft-systems.html" class="btn btn-primary">READ NOW</a>
+                        <a href="aircraft-systems.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div class="book-cover" style="background:linear-gradient(135deg,#1a1a0a,#3a3a0a,#2e2e0a);">
+                    <div class="pages-badge">22 PAGES</div>
+                    <div class="icon">🛡️</div>
+                </div>
+                <div class="book-info">
+                    <h3>Armored Vehicles & Weapons</h3>
+                    <p>Indian Army's Ground Warfare — T-90S Bhishma, Arjun MK1, BMP-2 Sarath, K9 Vajra, Dhanush, ATAGS artillery.</p>
+                    <div class="book-meta">
+                        <span>🛡️ Tanks</span>
+                        <span>🔫 Artillery</span>
+                        <span>⚔️ ICVs</span>
+                    </div>
+                    <div class="book-actions">
+                        <a href="armored-vehicles.html" class="btn btn-primary">READ NOW</a>
+                        <a href="armored-vehicles.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div class="book-cover" style="background:linear-gradient(135deg,#0a0a28,#1a1a5f,#0a0a28);">
+                    <div class="pages-badge">22 PAGES</div>
+                    <div class="icon">⚓</div>
+                </div>
+                <div class="book-info">
+                    <h3>Naval Vessels & Submarines</h3>
+                    <p>Indian Navy's Maritime Fleet — INS Vikrant, INS Vikramaditya, INS Arihant SSBN, Kalvari Submarine, Kolkata Destroyer.</p>
+                    <div class="book-meta">
+                        <span>⚓ Carriers</span>
+                        <span>🚢 Destroyers</span>
+                        <span>🔱 Submarines</span>
+                    </div>
+                    <div class="book-actions">
+                        <a href="naval-vessels.html" class="btn btn-primary">READ NOW</a>
+                        <a href="naval-vessels.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD</a>
                     </div>
                 </div>
             </div>
@@ -190,8 +308,8 @@
 
         <div class="total-section">
             <h3>TOTAL RESEARCH LIBRARY</h3>
-            <p>5 comprehensive books covering India's complete defence and space technology ecosystem</p>
-            <div class="total-badge">110+ PAGES OF KNOWLEDGE</div>
+            <p>10 comprehensive books covering India's complete defence and space technology ecosystem</p>
+            <div class="total-badge">220+ PAGES OF KNOWLEDGE</div>
         </div>
     </div>
 

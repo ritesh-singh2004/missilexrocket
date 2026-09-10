@@ -1,0 +1,1066 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIRCRAFT & SYSTEMS - Indian Air Force Fleet & Combat Aviation</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-light: #121f38;
+    --navy-mid: #1a2d4a;
+    --orange: #ff6b00;
+    --orange-glow: #ff8533;
+    --orange-dark: #cc5500;
+    --text: #e8eaf0;
+    --text-dim: #8a92a6;
+    --accent-blue: #4a9eff;
+    --accent-green: #34d399;
+    --accent-red: #f87171;
+    --accent-yellow: #fbbf24;
+    --card-bg: rgba(26,45,74,0.6);
+    --border: rgba(255,107,0,0.2);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--text); line-height: 1.7; font-size: 15px; }
+  .page { min-height: 100vh; padding: 40px 60px; page-break-after: always; position: relative; border-bottom: 2px solid var(--border); }
+  .page::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 20% 0%, rgba(255,107,0,0.05) 0%, transparent 60%); pointer-events: none; }
+  .cover { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 100vh; background: linear-gradient(135deg, #0a1628 0%, #121f38 40%, #1a2d4a 100%); position: relative; }
+  .cover::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff6b00' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: 0.5; pointer-events: none; }
+  .cover-badge { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); color: #fff; padding: 8px 28px; border-radius: 30px; font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 30px; position: relative; z-index: 1; }
+  .cover h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 10px; position: relative; z-index: 1; }
+  .cover h1 span { color: var(--orange); }
+  .cover h2 { font-size: clamp(1rem, 2.5vw, 1.4rem); font-weight: 400; color: var(--text-dim); margin-bottom: 40px; position: relative; z-index: 1; }
+  .cover-meta { color: var(--text-dim); font-size: 13px; position: relative; z-index: 1; }
+  .cover-meta strong { color: var(--orange); }
+  .cover-ascii { font-family: 'Courier New', monospace; font-size: 11px; color: var(--orange); opacity: 0.6; white-space: pre; margin: 30px 0; position: relative; z-index: 1; }
+  h2.chapter-title { font-size: 1.8rem; font-weight: 800; color: var(--orange); border-bottom: 3px solid var(--orange); padding-bottom: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
+  h2.chapter-title .ch-num { background: var(--orange); color: #fff; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 900; flex-shrink: 0; }
+  h3 { color: var(--orange-glow); font-size: 1.15rem; margin: 20px 0 10px; font-weight: 700; }
+  h4 { color: var(--accent-blue); font-size: 1rem; margin: 15px 0 8px; font-weight: 600; }
+  p { margin-bottom: 12px; color: var(--text); }
+  .key-fact { background: linear-gradient(135deg, rgba(255,107,0,0.12), rgba(255,107,0,0.04)); border-left: 4px solid var(--orange); padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 18px 0; }
+  .key-fact strong { color: var(--orange); }
+  .info-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin: 18px 0; }
+  .info-box.blue { border-left: 4px solid var(--accent-blue); }
+  .info-box.green { border-left: 4px solid var(--accent-green); }
+  .info-box.red { border-left: 4px solid var(--accent-red); }
+  .info-box.yellow { border-left: 4px solid var(--accent-yellow); }
+  .ascii-diagram { background: #080e1a; border: 1px solid rgba(255,107,0,0.15); border-radius: 10px; padding: 20px; margin: 20px 0; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.4; overflow-x: auto; white-space: pre; color: var(--orange); }
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 13px; }
+  th { background: var(--orange); color: #fff; padding: 12px 14px; text-align: left; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 10px 14px; border-bottom: 1px solid rgba(255,107,0,0.1); background: rgba(10,22,40,0.5); }
+  tr:hover td { background: rgba(255,107,0,0.08); }
+  .chapter-summary { background: linear-gradient(135deg, rgba(74,158,255,0.1), rgba(74,158,255,0.02)); border: 1px solid rgba(74,158,255,0.3); border-radius: 10px; padding: 20px; margin: 25px 0; }
+  .chapter-summary h4 { color: var(--accent-blue); margin-top: 0; }
+  ul { margin: 10px 0 10px 24px; }
+  li { margin-bottom: 6px; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+  .stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 18px; text-align: center; }
+  .stat-card .stat-num { font-size: 2rem; font-weight: 900; color: var(--orange); display: block; }
+  .stat-card .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .toc { list-style: none; padding: 0; }
+  .toc li { padding: 10px 0; border-bottom: 1px solid rgba(255,107,0,0.1); display: flex; justify-content: space-between; }
+  .toc li a { color: var(--text); text-decoration: none; font-weight: 500; }
+  .toc li a:hover { color: var(--orange); }
+  .toc .toc-num { color: var(--orange); font-weight: 700; margin-right: 10px; }
+  .download-btn { display: inline-block; background: linear-gradient(135deg, var(--orange), var(--orange-dark)); color: #fff; padding: 14px 36px; border-radius: 8px; font-size: 16px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; transition: transform 0.2s, box-shadow 0.2s; margin: 20px 0; }
+  .download-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,107,0,0.4); }
+  .page-num { position: absolute; bottom: 20px; right: 40px; font-size: 12px; color: var(--text-dim); }
+  @media print { body { background: #fff; color: #111; font-size: 11pt; } .page { padding: 20px 30px; border-bottom: 1px solid #ccc; } .cover { background: #fff !important; } .cover h1, .cover h1 span { color: #111; } .cover h2, .cover-meta { color: #333; } .cover-badge { background: #ff6b00; } .download-btn { display: none; } .key-fact, .info-box, .chapter-summary { background: #f5f5f5; border-color: #ccc; } .ascii-diagram { background: #f8f8f8; color: #333; border-color: #ccc; } th { background: #ff6b00; color: #fff; } td { background: #fff; } .stat-card { background: #f5f5f5; border-color: #ccc; } .stat-card .stat-num { color: #ff6b00; } h2.chapter-title { color: #cc5500; border-bottom-color: #cc5500; } h2.chapter-title .ch-num { background: #cc5500; color: #fff; } }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="page cover">
+  <div class="cover-badge">MissileX RocketSpace Research</div>
+  <div class="cover-ascii">
+       ___  _______  _______  ___        ______
+      /   | / ____/ / ____/ /   |      / ____/
+     / /| |/ / __  / __/ / /| |     / __/
+    / ___ / /_/ / / /___/ ___ |    / /___
+   /_/  |_\/____/ /_____/_/  |_|   /______/
+      ____  _   __ _______ __    __ __  ____
+     / __ \/ | / // ____/ / /   / // / / __ \
+    / / / /  |/ // /   / / /   / // / / / / /
+   / /_/ / /|  // /___/ / /___/ // /_/ /_/ /
+  /_____/_/ |_/ \____/_/_____/ \____/____/
+  </div>
+  <h1>AIRCRAFT & <span>SYSTEMS</span></h1>
+  <h2>Indian Air Force Fleet &amp; Combat Aviation</h2>
+  <p style="color:var(--text-dim); max-width:600px; margin-bottom:10px;">
+    A comprehensive 20-chapter reference covering every major platform in the IAF inventory &mdash; from fighters and helicopters to transport, trainers, air defence, and network centric warfare.
+  </p>
+  <div class="cover-meta">
+    <p><strong>Author:</strong> MissileX RocketSpace Research</p>
+    <p><strong>Published:</strong> September 2026 | <strong>Chapters:</strong> 20 | <strong>Pages:</strong> 20</p>
+    <p style="margin-top:10px;">Data sourced from Defence Standard, Times of India, The Hindu, Boeing India, IDRW, and Indian MoD (2025&ndash;2026)</p>
+  </div>
+  <div style="margin-top:30px; position:relative; z-index:1;">
+    <button class="download-btn" onclick="window.print()">&#11015; Download / Print PDF</button>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="page">
+  <h2 class="chapter-title"><span class="ch-num">T</span> Table of Contents</h2>
+  <ul class="toc">
+    <li><a href="#ch1"><span class="toc-num">01</span> History of Indian Air Force Aviation</a></li>
+    <li><a href="#ch2"><span class="toc-num">02</span> Sukhoi Su-30MKI &mdash; Air Superiority Fighter</a></li>
+    <li><a href="#ch3"><span class="toc-num">03</span> Dassault Rafale &mdash; Omni-Role Fighter</a></li>
+    <li><a href="#ch4"><span class="toc-num">04</span> HAL Tejas MK1 &mdash; Light Combat Aircraft</a></li>
+    <li><a href="#ch5"><span class="toc-num">05</span> HAL Tejas MK2 &mdash; Enhanced LCA</a></li>
+    <li><a href="#ch6"><span class="toc-num">06</span> MiG-29UPG &mdash; Air Superiority Fighter</a></li>
+    <li><a href="#ch7"><span class="toc-num">07</span> Mirage 2000 &mdash; Precision Strike Fighter</a></li>
+    <li><a href="#ch8"><span class="toc-num">08</span> Jaguar DARIN III &mdash; Deep Attack</a></li>
+    <li><a href="#ch9"><span class="toc-num">09</span> HAL AMCA &mdash; 5th Generation Fighter</a></li>
+    <li><a href="#ch10"><span class="toc-num">10</span> HAL TEDBF &mdash; Twin Engine Deck Based Fighter</a></li>
+    <li><a href="#ch11"><span class="toc-num">11</span> Force Multipliers &mdash; AWACS &amp; Refuellers</a></li>
+    <li><a href="#ch12"><span class="toc-num">12</span> Helicopter Fleet &mdash; Apache &amp; Chinook</a></li>
+    <li><a href="#ch13"><span class="toc-num">13</span> Advanced Light Helicopter &mdash; ALH Dhruv</a></li>
+    <li><a href="#ch14"><span class="toc-num">14</span> Light Combat Helicopter &mdash; LCH Prachand</a></li>
+    <li><a href="#ch15"><span class="toc-num">15</span> Transport Fleet &mdash; C-17 &amp; C-130J</a></li>
+    <li><a href="#ch16"><span class="toc-num">16</span> Training Aircraft &mdash; HJT-36, HTT-40, PC-7 MKII</a></li>
+    <li><a href="#ch17"><span class="toc-num">17</span> Air Defence Systems &mdash; S-400, Akash, MRSAM</a></li>
+    <li><a href="#ch18"><span class="toc-num">18</span> IAF Network Centric Warfare</a></li>
+    <li><a href="#ch19"><span class="toc-num">19</span> Aircraft Comparison Table &amp; ASCII Diagrams</a></li>
+    <li><a href="#ch20"><span class="toc-num">20</span> Summary &amp; Future of IAF</a></li>
+  </ul>
+  <div class="page-num">ii</div>
+</div>
+
+<!-- CHAPTER 1 -->
+<div class="page" id="ch1">
+  <h2 class="chapter-title"><span class="ch-num">01</span> History of Indian Air Force Aviation</h2>
+  <h3>Genesis of the IAF</h3>
+  <p>The Indian Air Force was established on <strong>8 October 1932</strong> as an auxiliary air force of the British Indian Empire. The first operational squadron, No. 1 Squadron, was formed on 1 April 1933 with six Westland Wapiti biplanes and five Indian pilots trained in the UK. The IAF saw its first action during the North-West Frontier campaigns of the 1930s and earned battle honours during World War II in Burma, North Africa, and China.</p>
+  <h3>Post-Independence Expansion</h3>
+  <p>After independence in 1947, the IAF expanded rapidly during the Kashmir conflict of 1947&ndash;48, using Dakota transports and Tempest fighters. The 1962 Sino-Indian War exposed critical gaps in IAF capability, prompting large-scale procurement from the Soviet Union. By the 1971 Indo-Pakistan War, the IAF had grown to 33 squadrons and played a decisive role in the liberation of Bangladesh, conducting over 4,000 combat sorties.</p>
+  <div class="key-fact">
+    <strong>Key Milestone:</strong> The IAF operated 33 squadrons during the 1971 war and flew over 4,000 combat sorties, including deep interdiction strikes and close air support across East Pakistan (now Bangladesh).
+  </div>
+  <h3>The Soviet-Era Fleet</h3>
+  <p>During the Cold War, the IAF built its fleet around Soviet platforms. The MiG-21 entered service in 1963 and became the backbone of the fighter fleet for decades. The MiG-25 reconnaissance variant operated from 1981 to 2006. The Su-7 and MiG-23 provided ground attack capability, while the MiG-29UB and Su-30MKI arrived in the 1990s as air superiority platforms.</p>
+  <h3>The Modernisation Era (1990s&ndash;Present)</h3>
+  <p>The 1990s saw the IAF acquire the Su-30MKI from Russia and the Mirage 2000 from France. The 2000s brought the Hawk AJT from the UK and negotiations for the Rafale from Dassault. India&rsquo;s indigenous Tejas programme, initiated in 1983, saw the first LCA prototype fly in 2001. The 2010s marked a strategic shift toward diversification with the Apache and Chinook helicopter acquisitions from Boeing, while the 2020s have focused on scaling the Tejas fleet and the MRFA programme for 114 additional Rafales.</p>
+  <h3>IAF Today &mdash; By the Numbers</h3>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">~29</span><span class="stat-label">Active Fighter Squadrons</span></div>
+    <div class="stat-card"><span class="stat-num">42</span><span class="stat-label">Sanctioned Squadrons</span></div>
+    <div class="stat-card"><span class="stat-num">~1,600</span><span class="stat-label">Total Active Aircraft</span></div>
+    <div class="stat-card"><span class="stat-num">1.4L</span><span class="stat-label">Active Personnel</span></div>
+  </div>
+  <div class="info-box yellow">
+    <h4>The Squadron Gap</h4>
+    <p>The IAF currently operates approximately 29&ndash;31 combat squadrons against a sanctioned requirement of 42. This 12-squadron gap &mdash; equivalent to roughly 200 fighters &mdash; emerged as older MiG-21 and MiG-27 squadrons were retired faster than new aircraft could be inducted. Closing this gap before 2040 is considered unlikely under current timelines.</p>
+  </div>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>From 1933 with six biplanes to the 4th largest air force in the world, the IAF&rsquo;s evolution reflects India&rsquo;s strategic ambitions. The current challenge is bridging the squadron deficit through a mix of indigenous Tejas production, Rafale acquisitions, Su-30MKI upgrades, and future AMCA development &mdash; all within a $47+ billion modernisation programme.</p>
+  </div>
+  <div class="page-num">1</div>
+</div>
+
+<!-- CHAPTER 2 -->
+<div class="page" id="ch2">
+  <h2 class="chapter-title"><span class="ch-num">02</span> Sukhoi Su-30MKI &mdash; Air Superiority Fighter</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">~260</span><span class="stat-label">In Service</span></div>
+    <div class="stat-card"><span class="stat-num">Mach 2.0</span><span class="stat-label">Max Speed</span></div>
+    <div class="stat-card"><span class="stat-num">1,500km</span><span class="stat-label">Combat Radius</span></div>
+    <div class="stat-card"><span class="stat-num">8,130kg</span><span class="stat-label">Max Payload</span></div>
+  </div>
+  <h3>Background</h3>
+  <p>The Su-30MKI is the backbone of the Indian Air Force, with approximately 260 aircraft in service across twelve squadrons. India&rsquo;s first Su-30K fighters arrived in 1997 with No. 24 Squadron &ldquo;Hawks&rdquo; at Lohegaon, Pune. The type evolved into the Su-30MKI &mdash; a twin-engine, super-maneuverable air superiority fighter developed specifically for India&rsquo;s requirements by Sukhoi and Hindustan Aeronautics Limited (HAL).</p>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> The Su-30MKI carries up to 8,130 kg of ordnance including BrahMos-A cruise missiles, Astra BVR missiles, and a wide range of precision-guided munitions. It has a combat radius of approximately 1,500 km clean.
+  </div>
+  <h3>Avionics &amp; Capabilities</h3>
+  <ul>
+    <li><strong>Radar:</strong> N011M Bars passive electronically scanned array (PESA) radar with look-down/shoot-down capability</li>
+    <li><strong>EW Suite:</strong> Israeli Elta EL/M-8222 jammer and Indian DRDO-developed systems</li>
+    <li><strong>IRST:</strong> OLS-35 infrared search and track system for passive detection</li>
+    <li><strong>Cockpit:</strong> Glass cockpit with two-seat tandem arrangement, HUD, and multi-function displays</li>
+    <li><strong>Thrust Vectoring:</strong> AL-31FP engines with 3D thrust-vectoring nozzles for super-maneuverability</li>
+  </ul>
+  <h3>Super Sukhoi Upgrade Programme</h3>
+  <p>A major modernisation programme dubbed &ldquo;Super Sukhoi&rdquo; aims to keep the fleet relevant through the 2040s. Phase One (approved 2023, 19,000 crore) upgrades 84 aircraft with a new DRDO 64-bit mission computer, Tejas Mk1A-derived avionics, and an indigenous AESA radar (Virupaksha). Phase Two (targeting ~2030) covers another 84 jets with AMCA-derived technologies. An ambitious proposal would extend modernisation to 200 of the 260-strong fleet, potentially integrating the AL-31F 177S engine for serious thrust upgrades.</p>
+  <h3>Weapons Integration</h3>
+  <table>
+    <tr><th>Weapon</th><th>Type</th><th>Range</th><th>Status</th></tr>
+    <tr><td>BrahMos-A</td><td>Supersonic Cruise Missile</td><td>400+ km</td><td>Integrated</td></tr>
+    <tr><td>Astra Mk1</td><td>BVR Air-to-Air Missile</td><td>110 km</td><td>Integrated</td></tr>
+    <tr><td>Astra Mk2</td><td>BVR Air-to-Air Missile</td><td>160+ km</td><td>Under Testing</td></tr>
+    <tr><td>R-77</td><td>BVR Air-to-Air Missile</td><td>175 km</td><td>Operational</td></tr>
+    <tr><td>KH-59ME</td><td>Stand-off Cruise Missile</td><td>285 km</td><td>Integrated</td></tr>
+    <tr><td>SPICE-2000</td><td>Guided Bomb</td><td>60 km</td><td>Integrated</td></tr>
+  </table>
+  <div class="info-box green">
+    <h4>Operational Role</h4>
+    <p>The Su-30MKI provides the heavy end of the IAF&rsquo;s fighter fleet. Its range, payload, and airframe capacity for heavy weapons make it the primary platform for long-range strike and air superiority missions. It complements (rather than competes with) the Tejas and Rafale, which serve different roles in the IAF&rsquo;s balanced fleet strategy.</p>
+  </div>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The Su-30MKI remains the IAF&rsquo;s most numerous and strategically important fighter. With ~260 aircraft across 12 squadrons, it provides heavy long-range air superiority and deep strike capability. The Super Sukhoi upgrade will integrate indigenous AESA radar, advanced EW, and new weapons, keeping the platform relevant through the 2040s as the IAF transitions to a mixed fleet of Tejas, Rafale, and eventually AMCA.</p>
+  </div>
+  <div class="page-num">2</div>
+</div>
+
+<!-- CHAPTER 3 -->
+<div class="page" id="ch3">
+  <h2 class="chapter-title"><span class="ch-num">03</span> Dassault Rafale &mdash; Omni-Role Fighter</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">36</span><span class="stat-label">In Service</span></div>
+    <div class="stat-card"><span class="stat-num">Mach 1.8</span><span class="stat-label">Max Speed</span></div>
+    <div class="stat-card"><span class="stat-num">1,850km</span><span class="stat-label">Combat Radius</span></div>
+    <div class="stat-card"><span class="stat-num">9,500kg</span><span class="stat-label">Max Payload</span></div>
+  </div>
+  <h3>Acquisition History</h3>
+  <p>In April 2015, India signed a &euro;7.87 billion deal for 36 Rafale fighters under an inter-governmental agreement with France. The final aircraft was delivered in December 2024 from Dassault&rsquo;s Merignac facility. The fleet operates from two bases: Ambala (No. 17 &ldquo;Golden Arrows&rdquo; Squadron) and Hashimara (No. 101 &ldquo;Falcons&rdquo; Squadron).</p>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> All 36 Rafale fighters are confirmed operational as of June 2026. The IAF issued an RFP for a 5-month Bridge Support contract with Safran Aircraft Engines to sustain fleet operations, calculating 2,250 flying hours (36 aircraft x 12.5 hrs/month x 5 months).
+  </div>
+  <h3>Avionics &amp; Sensors</h3>
+  <ul>
+    <li><strong>Radar:</strong> Thales RBE2-AESA &mdash; active electronically scanned array radar for long-range detection and tracking</li>
+    <li><strong>EW Suite:</strong> SPECTRA &mdash; integrated electronic warfare suite with detection, identification, and countermeasures</li>
+    <li><strong>IRST:</strong> Front Sector Optronics (FSO) &mdash; passive infrared and visible-light detection system</li>
+    <li><strong>Helmet:</strong> Thales TopHelmet &mdash; integrated helmet-mounted display and sight</li>
+    <li><strong>Data Link:</strong> Real-time secure tactical data link for network-centric operations</li>
+  </ul>
+  <h3>Weapons Suite</h3>
+  <table>
+    <tr><th>Weapon</th><th>Type</th><th>Range</th><th>Role</th></tr>
+    <tr><td>Meteor</td><td>BVR Air-to-Air Missile</td><td>150+ km</td><td>Air Dominance</td></tr>
+    <tr><td>MICA (IR/EM)</td><td>Short/Medium Range AAM</td><td>50/80 km</td><td>Self-Defence / BVR</td></tr>
+    <tr><td>SCALP EG</td><td>Stand-off Cruise Missile</td><td>500+ km</td><td>Deep Strike</td></tr>
+    <tr><td>Hammer</td><td>Precision Guided Kit</td><td>70 km</td><td>Close Air Support</td></tr>
+    <tr><td>AM39 Exocet</td><td>Air-launched Anti-Ship Missile</td><td>70 km</td><td>Maritime Strike</td></tr>
+    <tr><td>GBU-12</td><td>Laser-Guided Bomb</td><td>&mdash;</td><td>Target Elimination</td></tr>
+  </table>
+  <h3>Meteor BVR Missile &mdash; Game Changer</h3>
+  <div class="info-box blue">
+    <p>The Meteor missile, powered by a throttleable ducted rocket motor, provides no-escape zone capabilities that exceed most competing BVR missiles globally. Its range of 150+ km combined with its active radar seeker gives the IAF a decisive edge in beyond-visual-range air combat. This was a key strategic motivation for the Rafale acquisition.</p>
+  </div>
+  <h3>MRFA Programme &mdash; 114 Additional Rafales</h3>
+  <p>In February 2026, India&rsquo;s Defence Acquisition Council cleared the procurement of 114 additional Rafales at approximately 3.25 lakh crore (~$36&ndash;40 billion) &mdash; the largest single fighter deal in IAF history. Under the programme, 18 aircraft would be imported in fly-away condition, while 96 would be manufactured in India with up to 60% indigenous content.</p>
+  <div class="info-box green">
+    <h4>Strategic Significance</h4>
+    <p>If the MRFA programme is approved and delivered, the IAF&rsquo;s Rafale fleet would grow from 36 to 150 aircraft. Combined with 260 Su-30MKIs and 180+ Tejas Mk1A, this would form a robust three-tier fighter fleet capable of meeting IAF operational requirements against both China and Pakistan.</p>
+  </div>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The 36 Rafale fighters give the IAF a qualitative edge in electronic warfare and precision strike. Equipped with Meteor BVR missiles, SCALP cruise missiles, and SPECTRA EW suite, they represent the most advanced sensor/weapon combination in the IAF inventory. The proposed acquisition of 114 more would make Rafale a cornerstone of IAF power projection through the 2060s.</p>
+  </div>
+  <div class="page-num">3</div>
+</div>
+
+<!-- CHAPTER 4 -->
+<div class="page" id="ch4">
+  <h2 class="chapter-title"><span class="ch-num">04</span> HAL Tejas MK1 &mdash; Light Combat Aircraft</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">Mach 1.6</span><span class="stat-label">Max Speed</span></div>
+    <div class="stat-card"><span class="stat-num">~500km</span><span class="stat-label">Combat Radius</span></div>
+    <div class="stat-card"><span class="stat-num">3,500kg</span><span class="stat-label">Max Payload</span></div>
+    <div class="stat-card"><span class="stat-num">2 Sqns</span><span class="stat-label">Currently Equipped</span></div>
+  </div>
+  <h3>Origins of India&rsquo;s Indigenous Fighter</h3>
+  <p>The Light Combat Aircraft (LCA) programme was initiated in 1983 by the Indian government to develop an indigenous fighter to replace the ageing MiG-21 fleet. Developed by the Aeronautical Development Agency (ADA) and manufactured by HAL, the Tejas programme took nearly three decades from conception to operational service. The first technology demonstrator flew on 4 January 2001.</p>
+  <h3>Design &amp; Construction</h3>
+  <ul>
+    <li><strong>Airframe:</strong> 45% composite materials (carbon-fibre), making it one of the lightest multi-role fighters in its class</li>
+    <li><strong>Configuration:</strong> Single-engine, tailless compound delta wing design</li>
+    <li><strong>Engine:</strong> General Electric F404-GE-IN20 turbofan (53 kN dry / 90 kN with afterburner)</li>
+    <li><strong>Radar:</strong> Elta EL/M-2032 multi-mode pulse-Doppler radar</li>
+    <li><strong>HUD:</strong> Israel Aerospace Industries (IAI) Elbit bistatic HUD</li>
+  </ul>
+  <h3>Operational Capability</h3>
+  <p>The Tejas Mk1 entered operational service in 2016 with No. 45 Squadron &ldquo;Flying Daggers&rdquo; at Sulur, Tamil Nadu. A second squadron, No. 18 &ldquo;Flying Bullets&rdquo;, was raised in 2020. The aircraft proved its capability during Operation Sindoor in May 2025, demonstrating its role in combat operations.</p>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> The Tejas Mk1 holds the record as the world&rsquo;s smallest and lightest multi-role fighter in its class. Its composite airframe provides a low radar cross-section, while its fly-by-wire flight control system gives it excellent agility.
+  </div>
+  <h3>Weapons Compatibility</h3>
+  <table>
+    <tr><th>Weapon</th><th>Type</th><th>Role</th></tr>
+    <tr><td>Astra Mk1</td><td>BVR Air-to-Air Missile</td><td>Long-range interception</td></tr>
+    <tr><td>R-73</td><td>WVR Air-to-Air Missile</td><td>Close combat</td></tr>
+    <tr><td>Derby</td><td>BVR Air-to-Air Missile</td><td>Medium-range combat</td></tr>
+    <tr><td>SPICE-2000</td><td>Guided Bomb</td><td>Precision strike</td></tr>
+    <tr><td>GOPAL</td><td>Laser-Guided Bomb</td><td>Close air support</td></tr>
+    <tr><td>ASRAAM</td><td>WVR Air-to-Air Missile</td><td>Self-defence</td></tr>
+  </table>
+  <h3>Tejas Mk1A &mdash; The Enhanced Version</h3>
+  <div class="info-box blue">
+    <p>A 62,370 crore contract for 97 Tejas Mk1A aircraft (plus 83 already contracted) brings total orders to 180 aircraft. The Mk1A features an AESA radar (Uttam), an integrated electronic warfare suite, improved avionics, and higher weapon payload capacity. Deliveries are expected from 2027&ndash;28, with production ramping to 24 aircraft annually. A third production line at Nashik is being established to accelerate output.</p>
+  </div>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The HAL Tejas Mk1 represents India&rsquo;s first indigenous fighter aircraft. With 180 Mk1A aircraft on order, it is the IAF&rsquo;s primary platform for rebuilding squadron strength at approximately one-sixth the unit cost of a Rafale. The programme has driven significant growth in India&rsquo;s aerospace manufacturing ecosystem and is foundational to the country&rsquo;s self-reliance goals.</p>
+  </div>
+  <div class="page-num">4</div>
+</div>
+
+<!-- CHAPTER 5 -->
+<div class="page" id="ch5">
+  <h2 class="chapter-title"><span class="ch-num">05</span> HAL Tejas MK2 &mdash; Enhanced LCA</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">Mach 1.8</span><span class="stat-label">Max Speed</span></div>
+    <div class="stat-card"><span class="stat-num">GE F414</span><span class="stat-label">Engine (98kN)</span></div>
+    <div class="stat-card"><span class="stat-num">5,000kg</span><span class="stat-label">Max Payload</span></div>
+    <div class="stat-card"><span class="stat-num">Medium</span><span class="stat-label">Fighter Class</span></div>
+  </div>
+  <h3>Bridging Light and Medium Fighter Roles</h3>
+  <p>The Tejas Mk2 is positioned as a &ldquo;Medium Weight Fighter&rdquo; &mdash; a heavier, more capable follow-on to the Mk1 designed to replace the Mirage 2000 and MiG-29 fleets. It addresses the Mk1&rsquo;s limitations in range, payload, and avionics while maintaining the indigenous manufacturing base built by the LCA programme.</p>
+  <h3>Key Improvements Over Mk1</h3>
+  <ul>
+    <li><strong>Engine:</strong> Upgraded from GE F404 to GE F414 (98 kN thrust) &mdash; 25% more thrust than Mk1</li>
+    <li><strong>Airframe:</strong> Enlarged fuselage with additional fuel capacity (500+ kg internal fuel increase)</li>
+    <li><strong>Radar:</strong> Uttam AESA radar with extended detection range</li>
+    <li><strong>EW Suite:</strong> New indigenous electronic warfare suite</li>
+    <li><strong>Cockpit:</strong> Wide-angle HUD, larger MFDs, and HOTAS controls</li>
+    <li><strong>Weapons:</strong> Integration of BrahMos-NG and advanced Astra missiles</li>
+  </ul>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> The Tejas Mk2&rsquo;s GE F414 engine provides 98 kN of thrust with afterburner, compared to the Mk1&rsquo;s 90 kN F404. This 25% thrust increase enables higher speed, greater payload capacity, and improved sustained turn rate.
+  </div>
+  <h3>Design Philosophy</h3>
+  <div class="info-box blue">
+    <p>The Tejas Mk2 represents a pragmatic approach: rather than jumping directly to a new design, HAL is evolving the proven Mk1 platform with larger dimensions, better engines, and modern avionics. This approach reduces development risk and cost while delivering a meaningful capability upgrade. The aircraft shares mission computing, sensors, and line-replaceable units with the AMCA programme, reducing overall programme risk.</p>
+  </div>
+  <h3>Timeline &amp; Status</h3>
+  <table>
+    <tr><th>Milestone</th><th>Target Date</th><th>Status</th></tr>
+    <tr><td>Critical Design Review</td><td>2025</td><td>Completed</td></tr>
+    <tr><td>First Prototype Roll-out</td><td>2027&ndash;28</td><td>Under Construction</td></tr>
+    <tr><td>First Flight</td><td>2028&ndash;29</td><td>Scheduled</td></tr>
+    <tr><td>Operational Clearance</td><td>2030&ndash;31</td><td>Planned</td></tr>
+    <tr><td>First Squadron Formation</td><td>2032&ndash;33</td><td>Planned</td></tr>
+  </table>
+  <h3>Role in the IAF Fleet</h3>
+  <p>The Tejas Mk2 is intended to serve as the medium-weight complement to the lightweight Mk1 and heavy-weight Su-30MKI/Rafale. It fills the gap between the Tejas Mk1A (light multirole) and the future AMCA (5th generation), providing the IAF with a cost-effective medium fighter.</p>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The Tejas Mk2 represents the natural evolution of the LCA programme, delivering 25% more thrust, greater range, and enhanced avionics in a matured airframe. Expected to fly by 2028&ndash;29, it will replace the Mirage 2000 and MiG-29 fleets while sharing systems commonality with the AMCA programme.</p>
+  </div>
+  <div class="page-num">5</div>
+</div>
+
+<!-- CHAPTER 6 -->
+<div class="page" id="ch6">
+  <h2 class="chapter-title"><span class="ch-num">06</span> MiG-29UPG &mdash; Air Superiority Fighter</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">~50</span><span class="stat-label">In Service (est.)</span></div>
+    <div class="stat-card"><span class="stat-num">Mach 2.25</span><span class="stat-label">Max Speed</span></div>
+    <div class="stat-card"><span class="stat-num">1,430km</span><span class="stat-label">Combat Radius</span></div>
+    <div class="stat-card"><span class="stat-num">4,000kg</span><span class="stat-label">Max Payload</span></div>
+  </div>
+  <h3>Origins and Acquisition</h3>
+  <p>India acquired the MiG-29 from the Soviet Union in the mid-1980s as a direct response to Pakistan&rsquo;s acquisition of the F-16 Fighting Falcon. The first MiG-29UB (twin-seat trainer) arrived in 1986, with the single-seat MiG-29B following shortly after. India became the largest export customer for the MiG-29, operating the type across multiple squadrons.</p>
+  <h3>UPG Upgrade Programme</h3>
+  <p>The MiG-29UPG programme, completed in the 2010s, upgraded India&rsquo;s entire fleet with new avionics, a Zhuk-ME pulse-Doppler radar, a glass cockpit, and the ability to carry R-77 BVR missiles. The upgrade also extended the airframe life and improved engine reliability.</p>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> The MiG-29 was the first air superiority fighter in the IAF&rsquo;s inventory to carry the R-77 beyond-visual-range missile, giving India a BVR capability before the Su-30MKI arrived in significant numbers.
+  </div>
+  <h3>Operational Role</h3>
+  <ul>
+    <li>Air superiority and counter-air missions</li>
+    <li>Fleet defence and combat air patrol</li>
+    <li>Close air support with limited ground-attack capability</li>
+    <li>Two-seat MiG-29UB used for weapons training</li>
+  </ul>
+  <h3>Current Status</h3>
+  <p>The MiG-29 fleet is being progressively phased out as Tejas Mk1A and eventually Tejas Mk2 come online. The aircraft remain operationally capable but are being retired due to ageing airframes and the availability of newer platforms.</p>
+  <div class="info-box yellow">
+    <h4>Phase-Out Plan</h4>
+    <p>IAF plans to retire MiG-29 squadrons by the early 2030s as Tejas Mk1A deliveries ramp up. The aircraft&rsquo;s squadron slots will be reallocated to newer platforms.</p>
+  </div>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The MiG-29UPG served as a critical air superiority platform for the IAF for over three decades. With ~50 aircraft across several squadrons, it provided first-generation BVR capability and served as the primary counter to Pakistan&rsquo;s F-16 fleet. The type is now being phased out in favour of newer indigenous and Western platforms.</p>
+  </div>
+  <div class="page-num">6</div>
+</div>
+
+<!-- CHAPTER 7 -->
+<div class="page" id="ch7">
+  <h2 class="chapter-title"><span class="ch-num">07</span> Mirage 2000 &mdash; Precision Strike Fighter</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">~50</span><span class="stat-label">In Service (est.)</span></div>
+    <div class="stat-card"><span class="stat-num">Mach 2.2</span><span class="stat-label">Max Speed</span></div>
+    <div class="stat-card"><span class="stat-num">1,480km</span><span class="stat-label">Combat Radius</span></div>
+    <div class="stat-card"><span class="stat-num">6,300kg</span><span class="stat-label">Max Payload</span></div>
+  </div>
+  <h3>Acquisition</h3>
+  <p>India acquired 51 Mirage 2000 fighters from Dassault Aviation in the 1980s (40 single-seat and 11 two-seat trainers). The aircraft were acquired specifically for the nuclear strike role, with the Mirage 2000 designated as India&rsquo;s primary nuclear-capable delivery platform.</p>
+  <h3>Kargil War &mdash; Defining Moment</h3>
+  <p>The Mirage 2000 earned its reputation during the 1999 Kargil War, where it conducted precision strikes against Pakistani positions at heights of 16,000&ndash;18,000 feet. Equipped with laser-guided bombs (LGBs), the Mirage 2000 destroyed bunkers and supply depots with pinpoint accuracy, turning the tide of the conflict.</p>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> The Mirage 2000 was the only IAF platform that could deliver laser-guided bombs with high precision during the Kargil War. Its ability to operate at extreme altitudes made it indispensable for mountain warfare.
+  </div>
+  <h3>Upgrade &mdash; Mirage 2000-5</h3>
+  <p>A major upgrade programme converted ~50 aircraft to the Mirage 2000-5 standard with new Thales RDY-2 radar, improved avionics, glass cockpit, and the ability to carry MICA BVR missiles. The upgrade extended the aircraft&rsquo;s operational life through the 2030s.</p>
+  <h3>Weapons &amp; Capabilities</h3>
+  <table>
+    <tr><th>Weapon</th><th>Type</th><th>Role</th></tr>
+    <tr><td>MICA (IR/EM)</td><td>BVR/WVR Air-to-Air Missile</td><td>Air defence</td></tr>
+    <tr><td>SCALP EG</td><td>Stand-off Cruise Missile</td><td>Deep strike</td></tr>
+    <tr><td>LGB (Laser-Guided Bomb)</td><td>Precision Guided Munition</td><td>Precision strike</td></tr>
+    <tr><td>Durandal</td><td>Anti-Runway Bomb</td><td>Airfield denial</td></tr>
+  </table>
+  <h3>Retirement Timeline</h3>
+  <p>The Mirage 2000 fleet is being phased out as newer Rafale and Tejas aircraft replace it. The type&rsquo;s nuclear-strike role is being transferred to the Rafale and Su-30MKI (BrahMos integration).</p>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The Mirage 2000 served as the IAF&rsquo;s premier precision-strike and nuclear-delivery platform for over three decades. Its legendary performance in the Kargil War cemented its status as one of the most capable strike fighters in the IAF inventory. With ~50 aircraft (now fewer as retirements proceed), it is being phased out in favour of the Rafale and Tejas Mk1A.</p>
+  </div>
+  <div class="page-num">7</div>
+</div>
+
+<!-- CHAPTER 8 -->
+<div class="page" id="ch8">
+  <h2 class="chapter-title"><span class="ch-num">08</span> Jaguar DARIN III &mdash; Deep Attack</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">~120</span><span class="stat-label">In Service (est.)</span></div>
+    <div class="stat-card"><span class="stat-num">Mach 1.3</span><span class="stat-label">Max Speed</span></div>
+    <div class="stat-card"><span class="stat-num">850km</span><span class="stat-label">Combat Radius</span></div>
+    <div class="stat-card"><span class="stat-num">4,750kg</span><span class="stat-label">Max Payload</span></div>
+  </div>
+  <h3>Background</h3>
+  <p>The SEPECAT Jaguar is a Anglo-French deep attack aircraft that entered IAF service in the 1980s. India acquired 120+ Jaguars in several batches for deep interdiction, anti-shipping, and battlefield air interdiction roles. The aircraft was licence-built by HAL and has been progressively upgraded.</p>
+  <h3>DARIN III Upgrade</h3>
+  <p>The DARIN (Display, Attack, Range, Inertial Navigation) III upgrade programme modernised the Jaguar fleet with a Thales Vega radar, new mission computers, a glass cockpit with wide-angle HUD, and the ability to carry new-generation precision-guided munitions. The upgrade transformed the Jaguar from a 1970s-era attack aircraft into a modern deep-strike platform.</p>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> The Jaguar DARIN III upgrade includes the Thales Vega multi-mode radar with terrain-following capability, enabling low-level deep-penetration strike missions in all weather conditions.
+  </div>
+  <h3>Weapons Integration</h3>
+  <ul>
+    <li><strong>ASRAAM:</strong> Advanced Short-Range Air-to-Air Missile for self-defence</li>
+    <li><strong>Precision-Guided Bombs:</strong> LGBs and GPS-guided munitions</li>
+    <li><strong>Anti-Ship:</strong> Sea Eagle and Harpoon missiles (naval variant)</li>
+    <li><strong>Nuclear:</strong> Historically configured for nuclear payload delivery</li>
+  </ul>
+  <h3>Current Status &amp; Phase-Out</h3>
+  <p>The Jaguar fleet, plagued by crashes and maintenance issues, is being progressively phased out. The aircraft&rsquo;s deep-attack role is being absorbed by the Su-30MKI (with BrahMos integration) and the Rafale (with SCALP cruise missiles). The Jaguar IB trainer variant continues in service for weapons training.</p>
+  <div class="info-box red">
+    <h4>Phase-Out Challenges</h4>
+    <p>The Jaguar&rsquo;s single-engine Adour Mk 811 turbofan is reaching the end of its service life, making spare parts increasingly scarce. The aircraft&rsquo;s limited speed and payload compared to modern standards make it increasingly vulnerable in contested airspace.</p>
+  </div>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The Jaguar DARIN III served as the IAF&rsquo;s primary deep-attack platform for over four decades. While the DARIN III upgrade extended its relevance, the type is now being phased out as newer platforms (Su-30MKI with BrahMos, Rafale with SCALP) assume the deep-strike role with greater range, payload, and survivability.</p>
+  </div>
+  <div class="page-num">8</div>
+</div>
+
+<!-- CHAPTER 9 -->
+<div class="page" id="ch9">
+  <h2 class="chapter-title"><span class="ch-num">09</span> HAL AMCA &mdash; 5th Generation Fighter</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">5th Gen</span><span class="stat-label">Generation</span></div>
+    <div class="stat-card"><span class="stat-num">Mach 1.8+</span><span class="stat-label">Supercruise</span></div>
+    <div class="stat-card"><span class="stat-num">5</span><span class="stat-label">Prototypes Planned</span></div>
+    <div class="stat-card"><span class="stat-num">7 Sqns</span><span class="stat-label">Target Fleet</span></div>
+  </div>
+  <h3>India&rsquo;s Fifth-Generation Ambition</h3>
+  <p>The Advanced Medium Combat Aircraft (AMCA) is India&rsquo;s indigenous fifth-generation stealth fighter programme, being developed by the Aeronautical Development Agency (ADA) under the Ministry of Defence. It represents one of India&rsquo;s most ambitious aerospace projects and aims to place India among a select group of nations capable of designing and building a fifth-generation fighter.</p>
+  <h3>Key Features</h3>
+  <ul>
+    <li><strong>Stealth:</strong> Low-observable (LO) design with internal weapons bay, radar-absorbing materials, and angular shaping</li>
+    <li><strong>Supercruise:</strong> Ability to sustain supersonic speed without afterburner (Mach 1.8+)</li>
+    <li><strong>Avionics:</strong> AESA radar, IRST, advanced EW suite, and sensor fusion</li>
+    <li><strong>Engines:</strong> Mk1 with GE F414; Mk2 with jointly developed 110 kN engine</li>
+    <li><strong>Internal Weapons Bay:</strong> Reduces radar cross-section while carrying ordnance</li>
+  </ul>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> In May 2026, the Ministry of Defence issued an RFP for the AMCA programme to three shortlisted consortia: L&amp;T-BEL, Tata Advanced Systems, and Bharat Forge-BEML. The selected partner must achieve first prototype flight within 30 months of contract signing.
+  </div>
+  <h3>Programme Timeline</h3>
+  <table>
+    <tr><th>Milestone</th><th>Target Date</th><th>Status</th></tr>
+    <tr><td>RFP Issued</td><td>May 2026</td><td>Completed</td></tr>
+    <tr><td>Partner Selection</td><td>2026&ndash;27</td><td>In Progress</td></tr>
+    <tr><td>First Prototype Flight</td><td>2028&ndash;30</td><td>Planned</td></tr>
+    <tr><td>Testing (1,800 sorties)</td><td>84-month window</td><td>Planned</td></tr>
+    <tr><td>First Squadron Induction</td><td>Mid-2030s</td><td>Targeted</td></tr>
+  </table>
+  <h3>Strategic Significance</h3>
+  <div class="info-box green">
+    <p>The AMCA will give the IAF its first truly fifth-generation capability, matching (in concept) platforms like the F-22 Raptor and F-35 Lightning II. With seven squadrons planned, it will form the tip of the IAF&rsquo;s spear alongside the Rafale and Su-30MKI, providing stealth, supercruise, and advanced sensor fusion capabilities that no current IAF platform possesses.</p>
+  </div>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The HAL AMCA is India&rsquo;s answer to the fifth-generation fighter challenge. With stealth design, supercruise, AESA radar, and internal weapons carriage, it aims to match global fifth-generation standards. The programme is now in active development with private-sector partners, targeting first flight by the late 2020s and induction by the mid-2030s.</p>
+  </div>
+  <div class="page-num">9</div>
+</div>
+
+<!-- CHAPTER 10 -->
+<div class="page" id="ch10">
+  <h2 class="chapter-title"><span class="ch-num">10</span> HAL TEDBF &mdash; Twin Engine Deck Based Fighter</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">Twin</span><span class="stat-label">Engine Config</span></div>
+    <div class="stat-card"><span class="stat-num">80+</span><span class="stat-label">IOC Requirement</span></div>
+    <div class="stat-card"><span class="stat-num">~2038</span><span class="stat-label">Target Induction</span></div>
+    <div class="stat-card"><span class="stat-num">5-Minus</span><span class="stat-label">Gen Classification</span></div>
+  </div>
+  <h3>Naval Fighter Ambition</h3>
+  <p>The Twin Engine Deck Based Fighter (TEDBF) is being developed by the Aeronautical Development Agency (ADA) as India&rsquo;s next-generation carrier-based fighter for the Indian Navy. Described as a &ldquo;5-minus&rdquo; generation aircraft, it combines modern sensors, electronic warfare, and networking capability without the full maintenance burden of a true fifth-generation platform.</p>
+  <h3>Key Features</h3>
+  <ul>
+    <li><strong>Twin Engines:</strong> Enhanced survivability for carrier operations with twin-engine reliability</li>
+    <li><strong>Carrier Suitability:</strong> Strengthened landing gear, arrestor hook, and folding wings for deck operations</li>
+    <li><strong>Sensors:</strong> Shared mission computing, sensors, and LRUs with AMCA programme</li>
+    <li><strong>EW Suite:</strong> Advanced electronic warfare and networking capabilities</li>
+    <li><strong>Weapons:</strong> Integration of next-generation air-to-air and anti-ship missiles</li>
+  </ul>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> The Indian Navy requires at least 80 TEDBF aircraft for initial operating capability. The Critical Design Review is targeted for mid-to-late 2026, with CCS approval in 2027 and induction by 2038.
+  </div>
+  <h3>Programme Status</h3>
+  <p>The TEDBF programme is described as entering its &ldquo;most critical period&rdquo; as the Critical Design Review approaches. The programme shares systems commonality with AMCA, reducing risks and costs. The Navy&rsquo;s overwhelming interest in TEDBF may even lead to reconsideration of buying additional Rafale-M beyond the initial 26.</p>
+  <div class="info-box blue">
+    <h4>Relationship with AMCA</h4>
+    <p>The TEDBF shares mission computing, sensors, and line-replaceable units with the AMCA programme, creating a common systems architecture that reduces development costs and logistics complexity. This approach mirrors how the Rafale and Rafale-M share 80% parts commonality.</p>
+  </div>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The HAL TEDBF is India&rsquo;s carrier-based twin-engine fighter, designed to operate from INS Vikrant and future carriers. Described as &ldquo;5-minus&rdquo; generation, it combines modern sensors and EW with carrier suitability. With 80+ aircraft required for IOC and induction targeted for 2038, the programme represents a critical step in India&rsquo;s naval aviation self-reliance.</p>
+  </div>
+  <div class="page-num">10</div>
+</div>
+
+<!-- CHAPTER 11 -->
+<div class="page" id="ch11">
+  <h2 class="chapter-title"><span class="ch-num">11</span> Force Multipliers &mdash; AWACS &amp; Refuellers</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">3</span><span class="stat-label">Phalcon AWACS</span></div>
+    <div class="stat-card"><span class="stat-num">6</span><span class="stat-label">Il-78 MKI Tankers</span></div>
+    <div class="stat-card"><span class="stat-num">400+</span><span class="stat-label">Detection Range (km)</span></div>
+    <div class="stat-card"><span class="stat-num">360</span><span class="stat-label">Deg Coverage</span></div>
+  </div>
+  <h3>Airborne Warning and Control System</h3>
+  <p>The IAF operates three Beriev A-50EI Phalcon AWACS aircraft, mounted on the Il-76 airframe. These aircraft carry the Israeli Elta EL/W-2090 Phalcon conformal AESA radar, providing 360-degree surveillance with a detection range of over 400 km against a wide range of aerial targets.</p>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> The Phalcon AWACS can track up to 100 targets simultaneously at ranges exceeding 400 km, providing real-time battlefield situational awareness and serving as an airborne command and control centre for fighter formations.
+  </div>
+  <h3>Force Multiplier Capabilities</h3>
+  <ul>
+    <li><strong>Early Warning:</strong> Detects low-flying aircraft, cruise missiles, and drones at extended ranges beyond ground-based radar coverage</li>
+    <li><strong>Command &amp; Control:</strong> Serves as an airborne command post, directing fighter formations in real-time</li>
+    <li><strong>Data Fusion:</strong> Integrates data from ground radars, fighters, and other sensors into a unified air picture</li>
+    <li><strong>Battle Management:</strong> Provides tactical data links to all networked platforms in the theatre</li>
+  </ul>
+  <h3>Aerial Refuelling &mdash; Force Extenders</h3>
+  <p>The IAF operates six Il-78 MKI aerial tankers, based on the Il-76 airframe. These aircraft extend the range and endurance of fighter formations through probe-and-drogue refuelling. The Il-78 can carry up to three UPAZ refuelling pods, each with 18,200 kg of fuel capacity.</p>
+  <h3>Strategic Impact</h3>
+  <div class="info-box green">
+    <p>Force multipliers like AWACS and tankers transform the IAF from a collection of individual platforms into an integrated fighting force. The ability to refuel fighters in mid-air extends the IAF&rsquo;s operational reach deep into contested territory, while AWACS provides the situational awareness needed for coordinated operations across multiple sectors.</p>
+  </div>
+  <h3>Future Needs</h3>
+  <p>The IAF is seeking additional AWACS platforms and has expressed interest in the Boeing 767-based Wedgetail AEW&amp;C. The MTA programme (see Chapter 15) also includes aerial refuelling variants, which would significantly expand the IAF&rsquo;s tanker fleet.</p>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>Force multipliers &mdash; AWACS and aerial tankers &mdash; are critical force enablers that multiply the effectiveness of every fighter in the IAF inventory. The three Phalcon AWACS provide 360-degree surveillance, while six Il-78 MKI tankers extend fighter range. These platforms are essential for sustained operations across the IAF&rsquo;s vast area of responsibility.</p>
+  </div>
+  <div class="page-num">11</div>
+</div>
+
+<!-- CHAPTER 12 -->
+<div class="page" id="ch12">
+  <h2 class="chapter-title"><span class="ch-num">12</span> Helicopter Fleet &mdash; Apache &amp; Chinook</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">22</span><span class="stat-label">Apache AH-64E</span></div>
+    <div class="stat-card"><span class="stat-num">15</span><span class="stat-label">Chinook CH-47F</span></div>
+    <div class="stat-card"><span class="stat-num">$3B</span><span class="stat-label">Total Contract Value</span></div>
+    <div class="stat-card"><span class="stat-num">2019&ndash;20</span><span class="stat-label">Delivery Period</span></div>
+  </div>
+  <h3>AH-64E Apache &mdash; Attack Helicopter</h3>
+  <p>India acquired 22 Boeing AH-64E Apache Guardian attack helicopters in a $3 billion deal signed in September 2015. The final aircraft was delivered in June 2020. The IAF operates the Apaches from two bases: 125 Squadron &ldquo;Gladiators&rdquo; at Pathankot (western front) and 137 Squadron at Jorhat (eastern front/China border).</p>
+  <h3>Apache Capabilities</h3>
+  <ul>
+    <li><strong>Radar:</strong> Longbow Fire Control Radar with target detection and tracking</li>
+    <li><strong>Weapons:</strong> Hellfire missiles (anti-armour), 70mm rockets, 30mm M230 chain gun</li>
+    <li><strong>Sensors:</strong> Target Acquisition Designation Sight/Pilot Night Vision Sensor (TADS/PNVS)</li>
+    <li><strong>Survivability:</strong> Crashworthy armour, redundant systems, self-sealing fuel tanks</li>
+    <li><strong>Networking:</strong> Real-time data links for coordinated operations</li>
+  </ul>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> The IAF operates 22 Apaches. The Indian Army has also acquired 6 Apaches (2025 deliveries) and may seek 39 total for three strike brigades. Tata Boeing Aerospace Limited (TBAL) in Hyderabad manufactures Apache fuselages for both Indian and global fleets.
+  </div>
+  <h3>CH-47F Chinook &mdash; Heavy-Lift Helicopter</h3>
+  <p>India operates 15 Boeing CH-47F(I) Chinook heavy-lift helicopters, delivered between 2019 and 2020. The Chinook replaced the ageing Mi-26 fleet and provides strategic heavy-lift capability for troop insertion, equipment transport, and high-altitude logistics.</p>
+  <h3>Chinook Capabilities</h3>
+  <ul>
+    <li><strong>Payload:</strong> Up to 10,886 kg internal or 12,700 kg external sling load</li>
+    <li><strong>Rotor System:</strong> Tandem rotor design for exceptional lift capacity</li>
+    <li><strong>Altitude:</strong> Proven performance in hot-and-high conditions, critical for Himalayan operations</li>
+    <li><strong>Cockpit:</strong> Common Avionics Architecture System (CAAS) glass cockpit</li>
+    <li><strong>Flight Control:</strong> Digital Automatic Flight Control System (DAFCS) for precision operations</li>
+  </ul>
+  <h3>Squadron Assignments</h3>
+  <table>
+    <tr><th>Helicopter</th><th>Squadron</th><th>Base</th><th>Front</th></tr>
+    <tr><td>Apache AH-64E</td><td>125 HU &ldquo;Gladiators&rdquo;</td><td>Pathankot</td><td>Western (Punjab/J&amp;K)</td></tr>
+    <tr><td>Apache AH-64E</td><td>137 HU</td><td>Jorhat</td><td>Eastern (China border)</td></tr>
+    <tr><td>Chinook CH-47F</td><td>Heavy Lift Sqn</td><td>Air Force Station</td><td>Multipurpose</td></tr>
+  </table>
+  <div class="info-box green">
+    <h4>Make in India</h4>
+    <p>The Boeing programme includes 30% offsets and significant Indian manufacturing. Tata Boeing Aerospace Limited (TBAL) has delivered over 300 fuselages, supporting both Indian and global Apache production lines. A GE Aerospace MRO contract ensures engine overhaul capability within India.</p>
+  </div>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The Apache and Chinook acquisition transformed the IAF&rsquo;s rotary-wing capability. 22 Apaches provide world-class attack capability while 15 Chinooks deliver unmatched heavy-lift for high-altitude Himalayan operations. Both platforms are manufactured with significant Indian content through Tata Boeing Aerospace, strengthening domestic aerospace capability.</p>
+  </div>
+  <div class="page-num">12</div>
+</div>
+
+<!-- CHAPTER 13 -->
+<div class="page" id="ch13">
+  <h2 class="chapter-title"><span class="ch-num">13</span> Advanced Light Helicopter &mdash; ALH Dhruv</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">250+</span><span class="stat-label">In Service (All Svc)</span></div>
+    <div class="stat-card"><span class="stat-num">Twin</span><span class="stat-label">Engine</span></div>
+    <div class="stat-card"><span class="stat-num">295km/h</span><span class="stat-label">Max Speed</span></div>
+    <div class="stat-card"><span class="stat-num">100%</span><span class="stat-label">Indigenous</span></div>
+  </div>
+  <h3>India&rsquo;s Indigenous Multi-Role Helicopter</h3>
+  <p>The HAL Advanced Light Helicopter (ALH) Dhruv is a multi-role, medium-weight helicopter developed and manufactured entirely in India by Hindustan Aeronautics Limited. First flown in 1992 and inducted from 2002, it is one of the most successful indigenous helicopter programmes in the world, with over 250 units in service across the Indian Army, Navy, Air Force, and Coast Guard.</p>
+  <h3>Variants</h3>
+  <table>
+    <tr><th>Variant</th><th>Role</th><th>Key Features</th></tr>
+    <tr><td>Mk.I / Mk.II</td><td>Utility</td><td>General purpose transport, CASEVAC</td></tr>
+    <tr><td>Mk.III</td><td>CAS/Armed</td><td>Weapons pylons, rocket pods, cannons</td></tr>
+    <tr><td>WSI (Rudra)</td><td>Attack</td><td>Turret gun, rockets, Helina ATGM</td></tr>
+    <tr><td>Navy MR</td><td>ASW/ASuW</td><td>Anti-submarine warfare, torpedo/radar</td></tr>
+  </table>
+  <h3>Design &amp; Capabilities</h3>
+  <ul>
+    <li><strong>Powerplant:</strong> Two Shakti turboshaft engines (HAL-Safran joint venture)</li>
+    <li><strong>Payload:</strong> Up to 1,500 kg internal cargo or 4,000 kg external sling load</li>
+    <li><strong>Range:</strong> 350+ km ferry range with auxiliary fuel</li>
+    <li><strong>Cabin:</strong> Spacious cabin accommodating 12&ndash;14 troops or 4 stretchers</li>
+    <li><strong>High-Altitude:</strong> Proven performance in Himalayan conditions</li>
+  </ul>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> The ALH Dhruv has been exported to several countries and has proven its reliability in some of the world&rsquo;s most demanding environments. The Shakti engine, a HAL-Safran joint venture, provides 12% more power than the original Turbomeca TM 333.
+  </div>
+  <h3>Rudra &mdash; The Armed Variant</h3>
+  <div class="info-box blue">
+    <p>The HAL Rudra (ALH WSI) is the armed variant of the Dhruv, equipped with a 20mm turret gun, 70mm rockets, and Helina anti-tank guided missiles. It provides the IAF with a dedicated armed helicopter capability while leveraging the proven Dhruv airframe. The IAF has inducted Rudra variants for close air support and battlefield surveillance.</p>
+  </div>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The ALH Dhruv represents India&rsquo;s most successful indigenous helicopter programme, with 250+ units in service across all armed forces. Available in utility, armed (Rudra), and naval variants, it provides a cost-effective multi-role platform entirely designed and manufactured in India. The Shakti engine programme has also built critical turbine engine manufacturing capability.</p>
+  </div>
+  <div class="page-num">13</div>
+</div>
+
+<!-- CHAPTER 14 -->
+<div class="page" id="ch14">
+  <h2 class="chapter-title"><span class="ch-num">14</span> Light Combat Helicopter &mdash; LCH Prachand</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">15</span><span class="stat-label">Delivered (2025)</span></div>
+    <div class="stat-card"><span class="stat-num">156</span><span class="stat-label">On Order (total)</span></div>
+    <div class="stat-card"><span class="stat-num">285km/h</span><span class="stat-label">Max Speed</span></div>
+    <div class="stat-card"><span class="stat-num">5.5km</span><span class="stat-label">Service Ceiling</span></div>
+  </div>
+  <h3>World&rsquo;s Highest-Altitude Combat Helicopter</h3>
+  <p>The Light Combat Helicopter (LCH) Prachand is India&rsquo;s first indigenous attack helicopter, designed and developed by Hindustan Aeronautics Limited (HAL). It holds the distinction of being the only attack helicopter in the world certified to operate at altitudes exceeding 5,000 metres, making it specifically designed for high-altitude warfare in the Himalayas.</p>
+  <h3>Design for High-Altitude Warfare</h3>
+  <ul>
+    <li><strong>Service Ceiling:</strong> 5,500 metres &mdash; highest of any attack helicopter globally</li>
+    <li><strong>Hot-and-High Performance:</strong> Designed for operations in Ladakh, Siachen, and Arunachal Pradesh</li>
+    <li><strong>Weight:</strong> 5.5-tonne class &mdash; light enough for high-altitude operations</li>
+    <li><strong>Powerplant:</strong> Two HAL-Safran Shakti turboshaft engines</li>
+  </ul>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> The LCH Prachand is the only attack helicopter in the world certified to operate above 5,000 metres altitude. It was specifically designed to fill the capability gap identified during the Kargil War, where the IAF lacked an attack helicopter capable of operating at extreme altitudes.
+  </div>
+  <h3>Weapons Suite</h3>
+  <table>
+    <tr><th>Weapon</th><th>Role</th><th>Notes</th></tr>
+    <tr><td>20mm M621 Cannon</td><td>Close Air Support</td><td>Turret-mounted, 500 rounds</td></tr>
+    <tr><td>70mm Rockets</td><td>Area Suppression</td><td>Up to 4 pods</td></tr>
+    <tr><td>Helina ATGM</td><td>Anti-Tank</td><td>Fire-and-forget, 7km range</td></tr>
+    <tr><td>Mistral 2 AAM</td><td>Air-to-Air</td><td>Self-defence against helicopters/drones</td></tr>
+  </table>
+  <h3>Operational Deployment</h3>
+  <p>The first batch of 15 LCH Prachand helicopters was delivered in 2025 to the IAF and Indian Army. The IAF&rsquo;s initial deployment focuses on forward bases in Ladakh and the eastern sector, providing close air support for mountain warfare operations along the Line of Actual Control (LAC) with China.</p>
+  <div class="info-box green">
+    <h4>Strategic Significance</h4>
+    <p>The LCH Prachand directly addresses a critical capability gap exposed during the Kargil War &mdash; the lack of an attack helicopter that could operate at extreme altitudes. With 156 on order, it will provide dedicated close air support for mountain warfare along both the China and Pakistan borders.</p>
+  </div>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The LCH Prachand is a uniquely Indian solution to a uniquely Indian problem: high-altitude attack helicopter operations in the Himalayas. With 156 on order and deliveries underway, it provides close air support capability that no other helicopter in the world can match at extreme altitudes. It represents a critical capability for mountain warfare along India&rsquo;s northern borders.</p>
+  </div>
+  <div class="page-num">14</div>
+</div>
+
+<!-- CHAPTER 15 -->
+<div class="page" id="ch15">
+  <h2 class="chapter-title"><span class="ch-num">15</span> Transport Fleet &mdash; C-17 &amp; C-130J</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">11</span><span class="stat-label">C-17 Globemaster</span></div>
+    <div class="stat-card"><span class="stat-num">12</span><span class="stat-label">C-130J Super Hercules</span></div>
+    <div class="stat-card"><span class="stat-num">77T</span><span class="stat-label">C-17 Max Payload</span></div>
+    <div class="stat-card"><span class="stat-num">20T</span><span class="stat-label">C-130J Max Payload</span></div>
+  </div>
+  <h3>C-17 Globemaster III &mdash; Strategic Airlift</h3>
+  <p>India operates 11 Boeing C-17 Globemaster III strategic airlifters, acquired in two batches (10 in 2013&ndash;14, 1 additional in 2019). The C-17 provides the IAF with strategic heavy-lift capability, enabling rapid deployment of troops, equipment, and supplies across India&rsquo;s vast territory and to forward bases in the Himalayas.</p>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> The C-17 Globemaster III can carry a payload of up to 77 tonnes (170,000 lbs), making it capable of transporting main battle tanks, helicopters, and large engineering equipment. It can operate from unpaved runways as short as 3,500 feet.
+  </div>
+  <h3>C-130J Super Hercules &mdash; Tactical Airlift</h3>
+  <p>India operates 12 Lockheed Martin C-130J-30 Super Hercules aircraft, acquired in 2011 for $2 billion. The stretched C-130J-30 variant provides tactical airlift capability, special operations support, and high-altitude logistics missions. The aircraft are operated by No. 77 Squadron &ldquo;The Veiled Vipers&rdquo; at Hindon.</p>
+  <h3>C-130J Capabilities</h3>
+  <ul>
+    <li><strong>Payload:</strong> Up to 20 tonnes, capable of carrying vehicles, troops, and cargo</li>
+    <li><strong>STOL:</strong> Short take-off and landing capability from austere runways</li>
+    <li><strong>Special Operations:</strong> Configured for para-drops, special forces insertion, and combat search-and-rescue</li>
+    <li><strong>Made in India:</strong> Tata Advanced Systems manufactures C-130J empennage assemblies for global production</li>
+  </ul>
+  <h3>C-295MW &mdash; New Tactical Transport</h3>
+  <div class="info-box blue">
+    <p>India is acquiring 56 Airbus C-295MW tactical transport aircraft under a deal signed in September 2023, with 40 aircraft to be manufactured in India by Tata Advanced Systems Limited (TASL). The C-295 replaces the ageing Avro HS-748 fleet and fills the gap between the C-130J and smaller utility aircraft. The first Indian-built C-295 is expected to roll out in 2026.</p>
+  </div>
+  <h3>Medium Transport Aircraft Programme</h3>
+  <p>In August 2026, the Defence Ministry issued a tender worth approximately 1 lakh crore for 60 Multirole Transport Aircraft (MTA) to replace the IAF&rsquo;s ageing cargo fleet. Three contenders are in the running: Airbus A400M (37-tonne payload), Embraer C-390 Millennium (26-tonne payload), and Lockheed Martin C-130J (20-tonne payload). Under the programme, 12 aircraft would be imported while 48 would be manufactured in India.</p>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The IAF&rsquo;s transport fleet combines strategic heavy-lift (11 C-17s), tactical airlift (12 C-130Js), and a new generation of medium transports (56 C-295s). The pending MTA programme for 60 aircraft will further modernise the fleet. Indian manufacturing plays a growing role, with Tata producing C-130J and C-295 components domestically.</p>
+  </div>
+  <div class="page-num">15</div>
+</div>
+
+<!-- CHAPTER 16 -->
+<div class="page" id="ch16">
+  <h2 class="chapter-title"><span class="ch-num">16</span> Training Aircraft &mdash; HJT-36, HTT-40, PC-7 MKII</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">74</span><span class="stat-label">PC-7 MKII</span></div>
+    <div class="stat-card"><span class="stat-num">70</span><span class="stat-label">HTT-40 on Order</span></div>
+    <div class="stat-card"><span class="stat-num">181</span><span class="stat-label">Basic Trainer Req.</span></div>
+    <div class="stat-card"><span class="stat-num">3</span><span class="stat-label">Training Stages</span></div>
+  </div>
+  <h3>The IAF Pilot Training Pipeline</h3>
+  <p>The IAF&rsquo;s pilot training pipeline consists of three stages: Basic, Intermediate, and Advanced. Each stage requires specific aircraft types and training infrastructure. A shortage of trainer aircraft has been identified as a critical bottleneck limiting pilot production, directly impacting the IAF&rsquo;s ability to crew its expanding fleet.</p>
+  <h3>Basic Training &mdash; PC-7 MKII &amp; HTT-40</h3>
+  <p>Basic pilot training is currently conducted using 74 Pilatus PC-7 MkII turboprop aircraft, acquired from Switzerland. The IAF has a sanctioned requirement for 181 basic trainers, leaving a significant shortfall. The indigenous HAL HTT-40 basic trainer (70 on order) is designed to replace imported aircraft and achieve self-reliance in pilot training.</p>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> The IAF&rsquo;s basic trainer fleet of 74 PC-7 MKIIs is approximately half the sanctioned requirement of 181 aircraft. Deliveries of 70 HAL HTT-40 trainers ordered in 2023 are expected to begin in 2026&ndash;27, helping close this gap.
+  </div>
+  <h3>Intermediate Training &mdash; HJT-36 Sitara/Yashas</h3>
+  <p>The HAL HJT-36 &ldquo;Sitara&rdquo; intermediate jet trainer programme, initiated in 1999, faced repeated development delays. In 2025, HAL unveiled a modernised variant renamed &ldquo;Yashas&rdquo;, and the Air Force has requested four aircraft on lease for evaluation. The HJT-16 Kiran, based on a 1950s design, continues in limited service as an interim solution.</p>
+  <h3>Advanced Training &mdash; Hawk Mk.132</h3>
+  <p>Advanced jet training is conducted using the BAE Systems Hawk Mk.132, with approximately 100 aircraft in service. The Hawk provides weapons training and lead-in fighter training for pilots transitioning to frontline fighters like the Su-30MKI and Tejas.</p>
+  <h3>Training Fleet Overview</h3>
+  <table>
+    <tr><th>Stage</th><th>Aircraft</th><th>In Service</th><th>Role</th></tr>
+    <tr><td>Basic</td><td>Pilatus PC-7 MKII</td><td>74</td><td>Ab initio flying training</td></tr>
+    <tr><td>Basic</td><td>HAL HTT-40</td><td>70 (on order)</td><td>Indigenous basic trainer</td></tr>
+    <tr><td>Intermediate</td><td>HJT-16 Kiran</td><td>Limited</td><td>Transition training (ageing)</td></tr>
+    <tr><td>Intermediate</td><td>HJT-36 Yashas</td><td>Evaluation</td><td>Modern IJT (under test)</td></tr>
+    <tr><td>Advanced</td><td>Hawk Mk.132</td><td>~100</td><td>Weapons/LIFT training</td></tr>
+  </table>
+  <h3>Synthetic Training Integration</h3>
+  <div class="info-box blue">
+    <p>The IAF is increasingly relying on synthetic training to supplement limited aircraft availability. About 30% of HTT-40 training tasks will be conducted through Full Mission Simulators (FBFMS), Cockpit Procedure Trainers (CPT), and Avionics Part Task Trainers (APTT). This approach preserves the limited live-fly fleet while maintaining training quality.</p>
+  </div>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The IAF faces a critical training bottleneck due to trainer aircraft shortages. With only 74 PC-7 MKIIs against a requirement of 181, and the indigenous HTT-40 yet to deliver, pilot production is constrained. The training pipeline of PC-7 MKII (basic), Yashas (intermediate), and Hawk (advanced) represents the path to self-reliance in aircrew generation.</p>
+  </div>
+  <div class="page-num">16</div>
+</div>
+
+<!-- CHAPTER 17 -->
+<div class="page" id="ch17">
+  <h2 class="chapter-title"><span class="ch-num">17</span> Air Defence Systems &mdash; S-400, Akash, MRSAM</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">400km</span><span class="stat-label">S-400 Range</span></div>
+    <div class="stat-card"><span class="stat-num">25&ndash;45km</span><span class="stat-label">Akash Range</span></div>
+    <div class="stat-card"><span class="stat-num">70&ndash;100km</span><span class="stat-label">MRSAM Range</span></div>
+    <div class="stat-card"><span class="stat-num">4</span><span class="stat-label">Defence Layers</span></div>
+  </div>
+  <h3>India&rsquo;s Multi-Layered Air Defence Shield</h3>
+  <p>India operates a sophisticated multi-layered integrated air defence system, combining Indian, Israeli, and Russian platforms into a cohesive defensive shield. During Operation Sindoor (May 2025), this system successfully neutralized over 500 Pakistani drones and missiles targeting 15 military and civilian locations.</p>
+  <h3>Layer 1: Long-Range &mdash; S-400 Triumf</h3>
+  <p>The S-400 Triumf, named &ldquo;Sudarshan Chakra&rdquo; in Indian service, forms the outermost defence layer. Acquired from Russia, it can engage targets up to 400 km away and detect threats from 600 km. The system can track 300 targets and engage 36 simultaneously. Each squadron has two batteries with 128 missiles per battery, deployable in 5 minutes.</p>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> During Operation Sindoor, the S-400 system forced Pakistan to relocate F-16s to avoid its engagement envelope. The system can engage stealth aircraft, drones, ballistic missiles, and cruise missiles using four types of interceptors.
+  </div>
+  <h3>Layer 2: Medium-Range &mdash; MRSAM (Barak-8)</h3>
+  <p>The Indo-Israeli Medium Range Surface-to-Air Missile (MRSAM), also known as Barak-8, covers the 70&ndash;100 km range. It uses active radar homing and can engage cruise missiles, UAVs, and fighter jets in severe saturation scenarios. The system has been deployed along sensitive borders including Ladakh and Sikkim.</p>
+  <h3>Layer 3: Short-Medium Range &mdash; Akash</h3>
+  <p>The indigenous Akash SAM system provides area air defence with a range of 25&ndash;45 km. It features the Rajendra phased array radar and can engage four targets simultaneously. With 96% indigenous content, Akash has drawn international interest from countries including Armenia, Brazil, Vietnam, and the UAE.</p>
+  <h3>Layer 4: Point Defence &mdash; C-UAS &amp; MANPADS</h3>
+  <p>The innermost layer comprises Counter-Unmanned Aerial Systems (C-UAS), man-portable air defence systems (MANPADS), and ack-ack guns (L70, ZSU-23 Shilka) for very short-range threats. This layer protects critical assets from low-flying drones and loitering munitions.</p>
+  <h3>Integration &mdash; IACCS &amp; Akashteer</h3>
+  <div class="info-box green">
+    <p>The IAF&rsquo;s Integrated Air Command and Control System (IACCS) and the Army&rsquo;s Akashteer system integrate all layers into a unified defensive network. Real-time data fusion from diverse radars creates a unified air picture, enabling rapid threat detection and neutralization. This seamless integration of Indian, Israeli, and Russian systems demonstrated under combat conditions is considered unprecedented globally.</p>
+  </div>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>India&rsquo;s multi-layered air defence &mdash; S-400 (400km), MRSAM (100km), Akash (45km), and C-UAS systems &mdash; proved its effectiveness during Operation Sindoor by neutralizing 500+ threats with zero damage to critical assets. The seamless integration of Indian, Israeli, and Russian systems through IACCS/Akashteer represents a global first in heterogeneous air defence interoperability.</p>
+  </div>
+  <div class="page-num">17</div>
+</div>
+
+<!-- CHAPTER 18 -->
+<div class="page" id="ch18">
+  <h2 class="chapter-title"><span class="ch-num">18</span> IAF Network Centric Warfare</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">2010</span><span class="stat-label">AFNET Launched</span></div>
+    <div class="stat-card"><span class="stat-num">IACCS</span><span class="stat-label">Integration Hub</span></div>
+    <div class="stat-card"><span class="stat-num">3-Force</span><span class="stat-label">Integration</span></div>
+    <div class="stat-card"><span class="stat-num">Real-Time</span><span class="stat-label">Data Fusion</span></div>
+  </div>
+  <h3>From Troposcatter to Network-Centric Warfare</h3>
+  <p>The IAF adopted network-centric warfare in 2010 with the induction of the Air Force Network (AFNET), replacing the 1950s-era troposcatter communication system. AFNET formed the foundation for the Integrated Air Command and Control System (IACCS), which coordinates and integrates all air defence assets into a unified operational network.</p>
+  <h3>AFNET &mdash; The Digital Backbone</h3>
+  <p>AFNET replaced the old troposcatter system with a high-speed fibre-optic and satellite-based communication network. It connects ground radars, airborne sensors (AWACS), command centres, and weapon systems into a single digital network, enabling real-time information sharing and decision-making.</p>
+  <div class="key-fact">
+    <strong>Key Fact:</strong> Before AFNET, the IAF used troposcatter communication from the 1950s, where the Earth&rsquo;s topography was used to relay radio waves. AFNET revolutionised the approach to warfare by enabling real-time network-centric operations.
+  </div>
+  <h3>IACCS &mdash; The Integration Hub</h3>
+  <p>The IACCS is the IAF&rsquo;s central nervous system for air operations. It integrates:</p>
+  <ul>
+    <li><strong>Ground Radars:</strong> All Indian radar networks providing surveillance data</li>
+    <li><strong>Airborne Sensors:</strong> AWACS and other surveillance aircraft</li>
+    <li><strong>Fighter Aircraft:</strong> Real-time data links to Su-30MKI, Rafale, Tejas formations</li>
+    <li><strong>Air Defence Systems:</strong> S-400, MRSAM, Akash batteries</li>
+    <li><strong>Army &amp; Navy:</strong> Integration with Akashteer (Army) and Trigun (Navy) networks</li>
+  </ul>
+  <h3>Multi-Force Integration</h3>
+  <div class="info-box blue">
+    <p>The IAF doctrine emphasises integrating sensor systems from all three services &mdash; IAF, Army, and Navy &mdash; to achieve timely early warning and strengthen the surveillance and command-and-control network. The integration of Akashteer (Army), Trigun (Navy), and IACCS (IAF) creates a unified air picture that enables faster decision-making and shorter sensor-to-shooter loops.</p>
+  </div>
+  <h3>Key Enablers</h3>
+  <table>
+    <tr><th>System</th><th>Service</th><th>Role</th></tr>
+    <tr><td>AFNET</td><td>IAF</td><td>Digital backbone communication network</td></tr>
+    <tr><td>IACCS</td><td>IAF</td><td>Integrated air command and control</td></tr>
+    <tr><td>Akashteer</td><td>Army</td><td>Ground-based air defence integration</td></tr>
+    <tr><td>Trigun</td><td>Navy</td><td>Naval network integration</td></tr>
+    <tr><td>Sanjay</td><td>All</td><td>Battlefield surveillance system</td></tr>
+    <tr><td>Tarang Shakti</td><td>All</td><td>Electronic warfare system</td></tr>
+  </table>
+  <h3>Operational Impact</h3>
+  <p>Network-centric warfare transforms the IAF from a collection of individual platforms into a unified fighting force. During Operation Sindoor, the IACCS enabled real-time coordination of S-400, MRSAM, Akash, and fighter aircraft, creating a seamless kill chain that neutralized hundreds of incoming threats.</p>
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>Network-centric warfare is the glue that binds the IAF&rsquo;s diverse platforms into an integrated fighting force. AFNET provides the digital backbone, IACCS serves as the command hub, and integration with Army (Akashteer) and Navy (Trigun) networks creates a unified air picture. This capability proved decisive during Operation Sindoor, enabling real-time coordination across all defence layers.</p>
+  </div>
+  <div class="page-num">18</div>
+</div>
+
+<!-- CHAPTER 19 -->
+<div class="page" id="ch19">
+  <h2 class="chapter-title"><span class="ch-num">19</span> Aircraft Comparison Table &amp; ASCII Diagrams</h2>
+
+  <h3>Fighter Fleet Comparison</h3>
+  <table>
+    <tr><th>Platform</th><th>Gen</th><th>Max Speed</th><th>Radius</th><th>Payload</th><th>Fleet Size</th><th>Unit Cost</th></tr>
+    <tr><td>Sukhoi Su-30MKI</td><td>4</td><td>Mach 2.0</td><td>1,500 km</td><td>8,130 kg</td><td>~260</td><td>~$50M</td></tr>
+    <tr><td>Dassault Rafale C</td><td>4.5</td><td>Mach 1.8</td><td>1,850 km</td><td>9,500 kg</td><td>36</td><td>~$243M</td></tr>
+    <tr><td>HAL Tejas Mk1A</td><td>4+</td><td>Mach 1.6</td><td>500 km</td><td>3,500 kg</td><td>180 (order)</td><td>~$38M</td></tr>
+    <tr><td>MiG-29UPG</td><td>4</td><td>Mach 2.25</td><td>1,430 km</td><td>4,000 kg</td><td>~50</td><td>N/A</td></tr>
+    <tr><td>Mirage 2000-5</td><td>4</td><td>Mach 2.2</td><td>1,480 km</td><td>6,300 kg</td><td>&lt;50</td><td>N/A</td></tr>
+    <tr><td>Jaguar DARIN III</td><td>3</td><td>Mach 1.3</td><td>850 km</td><td>4,750 kg</td><td>~120</td><td>N/A</td></tr>
+    <tr><td>HAL AMCA (future)</td><td>5</td><td>Mach 1.8+</td><td>TBD</td><td>TBD</td><td>0</td><td>TBD</td></tr>
+    <tr><td>HAL TEDBF (future)</td><td>4.5+</td><td>Mach 1.8</td><td>TBD</td><td>TBD</td><td>0</td><td>TBD</td></tr>
+  </table>
+
+  <h3>Helicopter Fleet Comparison</h3>
+  <table>
+    <tr><th>Platform</th><th>Role</th><th>Max Speed</th><th>Payload</th><th>Fleet Size</th><th>Origin</th></tr>
+    <tr><td>AH-64E Apache</td><td>Attack</td><td>284 km/h</td><td>Anti-armour</td><td>22</td><td>USA</td></tr>
+    <tr><td>CH-47F Chinook</td><td>Heavy Lift</td><td>315 km/h</td><td>10,886 kg</td><td>15</td><td>USA</td></tr>
+    <tr><td>ALH Dhruv</td><td>Multi-Role</td><td>295 km/h</td><td>1,500 kg</td><td>250+</td><td>India</td></tr>
+    <tr><td>LCH Prachand</td><td>Attack</td><td>285 km/h</td><td>Light Attack</td><td>15 (order)</td><td>India</td></tr>
+    <tr><td>Rudra (Dhruv WSI)</td><td>Armed</td><td>295 km/h</td><td>Weapons Pylons</td><td>50+ (order)</td><td>India</td></tr>
+  </table>
+
+  <h3>Transport Fleet Comparison</h3>
+  <table>
+    <tr><th>Platform</th><th>Role</th><th>Payload</th><th>Range</th><th>Fleet Size</th></tr>
+    <tr><td>C-17 Globemaster III</td><td>Strategic Airlift</td><td>77 tonnes</td><td>4,400 km</td><td>11</td></tr>
+    <tr><td>C-130J-30 Super Hercules</td><td>Tactical Airlift</td><td>20 tonnes</td><td>3,300 km</td><td>12</td></tr>
+    <tr><td>C-295MW</td><td>Tactical Transport</td><td>9 tonnes</td><td>2,400 km</td><td>56 (order)</td></tr>
+  </table>
+
+  <h3>IAF Force Structure &mdash; ASCII Overview</h3>
+  <div class="ascii-diagram">
+IAF COMBAT SQUADRON DISTRIBUTION (~29 Active Squadrons)
+================================================================
+
+HEAVY FIGHTERS (Air Superiority &amp; Deep Strike)
+  +-------------------------------------------------------+
+  | Su-30MKI    ████████████████████████████████  ~260    | 12 Squadrons
+  | Rafale      ████                                 36    |  2 Squadrons
+  +-------------------------------------------------------+
+
+MEDIUM FIGHTERS
+  +-------------------------------------------------------+
+  | MiG-29UPG   ██████                                ~50  |  3 Squadrons
+  | Mirage 2000 █████                                 &lt;50  |  2 Squadrons
+  +-------------------------------------------------------+
+
+LIGHT FIGHTERS
+  +-------------------------------------------------------+
+  | Tejas Mk1   ████                                   ~20  |  2 Squadrons
+  | Tejas Mk1A  (180 on order - ramping up)              |
+  +-------------------------------------------------------+
+
+DEEP ATTACK
+  +-------------------------------------------------------+
+  | Jaguar D-III ████████████                         ~120  |  4 Squadrons
+  +-------------------------------------------------------+
+
+FORCE MULTIPLIERS
+  +-------------------------------------------------------+
+  | AWACS:     3x Phalcon (A-50EI)                         |
+  | Tankers:   6x Il-78 MKI                               |
+  +-------------------------------------------------------+
+
+HELICOPTER FORCE
+  +-------------------------------------------------------+
+  | Attack:    22x Apache AH-64E                           |
+  |            15x LCH Prachand (on order: 156)            |
+  | Heavy Lift: 15x Chinook CH-47F                         |
+  | Multi-Role: 250+ ALH Dhruv                             |
+  +-------------------------------------------------------+
+
+AIR DEFENCE
+  +-------------------------------------------------------+
+  | S-400:  400 km range (Outer Layer)                     |
+  | MRSAM:  70-100 km range (Mid Layer)                    |
+  | Akash:  25-45 km range (Inner Layer)                   |
+  | C-UAS:  Point Defence (Close-in)                       |
+  +-------------------------------------------------------+
+  </div>
+
+  <h3>Radar &amp; Sensor Comparison</h3>
+  <table>
+    <tr><th>Platform</th><th>Radar</th><th>Type</th><th>EW Suite</th></tr>
+    <tr><td>Su-30MKI</td><td>N011M Bars</td><td>PESA</td><td>Elta EL/M-8222 + DRDO</td></tr>
+    <tr><td>Rafale</td><td>Thales RBE2</td><td>AESA</td><td>SPECTRA</td></tr>
+    <tr><td>Tejas Mk1</td><td>EL/M-2032</td><td>Pulse-Doppler</td><td>Basic EW suite</td></tr>
+    <tr><td>Tejas Mk1A</td><td>Uttam AESA</td><td>AESA</td><td>Integrated EW</td></tr>
+    <tr><td>Tejas Mk2</td><td>Uttam AESA (Enhanced)</td><td>AESA</td><td>Advanced indigenous</td></tr>
+    <tr><td>MiG-29UPG</td><td>Zhuk-ME</td><td>Pulse-Doppler</td><td>SAP-518 jammer</td></tr>
+    <tr><td>Mirage 2000-5</td><td>Thales RDY-2</td><td>Pulse-Doppler</td><td>ICMS Mk3</td></tr>
+    <tr><td>HAL AMCA</td><td>AESA (TBD)</td><td>AESA</td><td>5th Gen EW</td></tr>
+  </table>
+
+  <div class="chapter-summary">
+    <h4>Chapter Summary</h4>
+    <p>The IAF operates a diverse fleet spanning three generations of fighters, from the 4th-gen Su-30MKI to the 4.5-gen Rafale and future 5th-gen AMCA. This comparison demonstrates how each platform fills a specific role: Su-30MKI for heavy air superiority, Rafale for omni-role precision, Tejas for indigenous numbers, and legacy platforms being phased out as new inductions ramp up.</p>
+  </div>
+  <div class="page-num">19</div>
+</div>
+
+<!-- CHAPTER 20 -->
+<div class="page" id="ch20">
+  <h2 class="chapter-title"><span class="ch-num">20</span> Summary &amp; Future of IAF</h2>
+
+  <h3>The IAF Transformation &mdash; By the Numbers</h3>
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-num">$47B+</span><span class="stat-label">Total Modernisation Investment</span></div>
+    <div class="stat-card"><span class="stat-num">114</span><span class="stat-label">Additional Rafales (MRFA)</span></div>
+    <div class="stat-card"><span class="stat-num">180</span><span class="stat-label">Tejas Mk1A Contracted</span></div>
+    <div class="stat-card"><span class="stat-num">~200</span><span class="stat-label">Su-30MKI Upgrades</span></div>
+  </div>
+
+  <h3>Current Strengths</h3>
+  <ul>
+    <li><strong>Operational Experience:</strong> Proven in Operation Sindoor (2025) with integrated multi-layered air defence</li>
+    <li><strong>Platform Diversity:</strong> Russian, French, American, and indigenous platforms providing strategic flexibility</li>
+    <li><strong>Air Defence:</strong> World-class multi-layered shield (S-400 + MRSAM + Akash + C-UAS) proven in combat</li>
+    <li><strong>Force Multipliers:</strong> AWACS, tankers, and network-centric warfare providing disproportionate capability</li>
+    <li><strong>Indigenous Capability:</strong> Growing HAL production base with Tejas, Dhruv, and Prachand</li>
+  </ul>
+
+  <h3>Current Challenges</h3>
+  <ul>
+    <li><strong>Squadron Deficit:</strong> ~29 squadrons vs. 42 sanctioned &mdash; a 12-squadron gap</li>
+    <li><strong>Production Delays:</strong> GE F404 engine supply issues impacting Tejas Mk1A deliveries</li>
+    <li><strong>Aging Fleet:</strong> MiG-29, Mirage 2000, and Jaguar phasing out faster than replacements arrive</li>
+    <li><strong>Trainer Shortage:</strong> Only 74 PC-7 MKIIs vs. 181 required &mdash; limiting pilot production</li>
+    <li><strong>Two-Front Threat:</strong> Operating against both China (1,200+ fighters) and Pakistan (450+ fighters)</li>
+  </ul>
+
+  <h3>The Path to 42 Squadrons</h3>
+  <div class="info-box green">
+    <p>The IAF&rsquo;s recovery plan hinges on three pillars:</p>
+    <p><strong>1. Tejas Mk1A Scale-up:</strong> 180 aircraft, ramping to 24/year &mdash; the volume play<br>
+    <strong>2. MRFA/Rafale Expansion:</strong> 114 additional jets &mdash; the qualitative edge<br>
+    <strong>3. Super Sukhoi Upgrade:</strong> 200 Su-30MKIs modernised &mdash; fleet continuity<br>
+    <strong>4. AMCA Development:</strong> 7 squadrons of 5th-gen fighters by late 2030s</p>
+  </div>
+
+  <h3>Timeline &mdash; The Road Ahead</h3>
+  <table>
+    <tr><th>Timeframe</th><th>Expected Development</th></tr>
+    <tr><td>2026&ndash;28</td><td>Tejas Mk1A deliveries begin; MRFA contract signing</td></tr>
+    <tr><td>2028&ndash;30</td><td>AMCA first flight; Tejas Mk2 prototype rollout</td></tr>
+    <tr><td>2030&ndash;35</td><td>Rafale 114 deliveries; AMCA testing (1,800 sorties)</td></tr>
+    <tr><td>2035&ndash;40</td><td>AMCA squadron induction; Super Sukhoi Phase 2</td></tr>
+    <tr><td>2040+</td><td>Target 42 squadrons; 5th-gen fleet operational</td></tr>
+  </table>
+
+  <h3>Strategic Outlook</h3>
+  <p>India&rsquo;s fighter recapitalization represents the most significant single-generation modernization of any Asian air force outside China in this decade. Over &rsquo;4.5 lakh crore (~$52 billion) in active or approved procurement &mdash; Rafale, Tejas Mk1A, Su-30MKI upgrades, AMCA, and Tedbf &mdash; is reshaping the IAF into a modern, networked, and increasingly indigenous force.</p>
+
+  <div class="ascii-diagram">
+IAF FLEET TRANSITION TIMELINE
+================================================================
+
+PRESENT (2026)                              FUTURE (2040+)
++------------------------------------------+------------------------------------------+
+| Su-30MKI ~260 ──► Super Sukhoi Upgrade   | 200+ Modernised Su-30MKI                 |
+| Rafale    36   ──► MRFA +114             | 150 Rafale (36 + 114)                    |
+| Tejas Mk1  ~20 ──► Mk1A 180 + Mk2       | 200+ Tejas Mk1A/Mk2                      |
+| MiG-29    ~50  ──► Phased Out           | Replaced by Tejas Mk2                    |
+| Mirage    &lt;50  ──► Phased Out           | Replaced by Rafale/Tejas                 |
+| Jaguar    ~120 ──► Phased Out           | Replaced by Su-30MKI/Rafale              |
+| AMCA (dev)    ──► 7 Squadrons           | 150+ AMCA 5th-gen fighters               |
+| TEDBF (dev)   ──► 80+ Naval             | Carrier-based fleet                      |
++------------------------------------------+------------------------------------------+
+
+FORCE STRUCTURE EVOLUTION
+  Current: ~29 Squadrons ──────────► Target: 42+ Squadrons
+           ████████████████                   ████████████████████████████
+  +-------------------------------------------------------------------+
+  |  12-Squadron Gap = ~200 Aircraft (The core challenge)              |
+  +-------------------------------------------------------------------+
+  </div>
+
+  <h3>Final Assessment</h3>
+  <p>The IAF is at a critical inflection point. The $47+ billion modernization programme is well-funded and strategically coherent, but timelines remain the enemy. AMCA won&rsquo;t fly operationally until the late 2030s, Tejas Mk1A deliveries are behind schedule, and the Rafale 114-jet order will take years to execute. In the interim, the IAF must fly under its sanctioned strength, relying on the proven Su-30MKI fleet, the qualitative edge of the Rafale, and the growing numbers of Tejas to bridge the gap.</p>
+
+  <div class="info-box yellow">
+    <h4>The Bottom Line</h4>
+    <p>The IAF&rsquo;s transformation is real, well-funded, and strategically coherent. The bet is that indigenous production, multi-source procurement, and generational platform overlap can close a 12-squadron gap before China&rsquo;s fifth-generation fleet achieves the kind of qualitative overmatch that makes the numbers irrelevant. The outcome will determine India&rsquo;s air power posture for the next 40 years.</p>
+  </div>
+
+  <div class="chapter-summary">
+    <h4>Book Summary</h4>
+    <p>This 20-chapter reference has covered every major platform in the IAF inventory: from the 260-strong Su-30MKI backbone to the qualitatively superior Rafale, the indigenous Tejas programme, future AMCA and TEDBF fighters, the world-class helicopter fleet, strategic transport, the critical training pipeline, multi-layered air defence, and the network-centric warfare architecture that binds it all together. The IAF stands at a defining moment &mdash; the decisions made in this decade will shape Indian air power through the mid-21st century.</p>
+  </div>
+
+  <div style="text-align: center; margin-top: 40px; padding: 30px; background: var(--card-bg); border-radius: 10px; border: 1px solid var(--border);">
+    <p style="font-size: 18px; font-weight: 700; color: var(--orange); margin-bottom: 10px;">MissileX RocketSpace Research</p>
+    <p style="color: var(--text-dim); margin-bottom: 15px;">Defence Analysis &amp; Aerospace Intelligence</p>
+    <button class="download-btn" onclick="window.print()">&#11015; Download / Print This Book as PDF</button>
+    <p style="color: var(--text-dim); font-size: 12px; margin-top: 15px;">&copy; 2026 MissileX RocketSpace Research. Data sourced from Defence Standard, Times of India, The Hindu, Boeing India, IDRW, The Defense Watch, and Indian MoD.</p>
+  </div>
+
+  <div class="page-num">20</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARMORED VEHICLES & WEAPONS - Indian Army's Ground Warfare Arsenal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        :root {
+            --navy: #0a1628;
+            --navy-light: #12233d;
+            --navy-lighter: #1a3055;
+            --orange: #ff6b00;
+            --orange-dark: #e55e00;
+            --orange-glow: rgba(255, 107, 0, 0.3);
+            --text-primary: #e8eaf0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #1e3a5f;
+            --card-bg: rgba(18, 35, 61, 0.8);
+            --key-fact-bg: rgba(255, 107, 0, 0.08);
+            --key-fact-border: rgba(255, 107, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--navy);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .book-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Cover Page */
+        .cover-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(180deg, var(--navy) 0%, var(--navy-light) 50%, var(--navy) 100%);
+            border: 2px solid var(--orange);
+            border-radius: 8px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+        }
+
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--orange), transparent);
+        }
+
+        .cover-page::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--orange), transparent);
+        }
+
+        .cover-emblem {
+            font-size: 80px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px var(--orange-glow));
+        }
+
+        .cover-title {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px var(--orange-glow);
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--text-primary);
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .cover-divider {
+            width: 200px;
+            height: 2px;
+            background: var(--orange);
+            margin: 30px auto;
+        }
+
+        .cover-author {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .cover-edition {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        /* Table of Contents */
+        .toc-page {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 50px 40px;
+            margin-bottom: 40px;
+            page-break-after: always;
+        }
+
+        .toc-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--orange);
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .toc-list {
+            list-style: none;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .toc-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(30, 58, 95, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toc-list li:last-child {
+            border-bottom: none;
+        }
+
+        .toc-chapter-num {
+            color: var(--orange);
+            font-weight: 700;
+            margin-right: 15px;
+            font-size: 14px;
+            min-width: 30px;
+        }
+
+        .toc-chapter-title {
+            flex: 1;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .toc-page-num {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-left: 15px;
+        }
+
+        /* Chapter Styling */
+        .chapter {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 50px 40px;
+            margin-bottom: 40px;
+            page-break-after: always;
+            position: relative;
+        }
+
+        .chapter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--orange), transparent);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .chapter-number {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+        }
+
+        .chapter-title {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .chapter-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .chapter-divider {
+            width: 80px;
+            height: 3px;
+            background: var(--orange);
+            margin-bottom: 30px;
+        }
+
+        .chapter h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--orange);
+            margin: 30px 0 15px 0;
+        }
+
+        .chapter h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 20px 0 10px 0;
+        }
+
+        .chapter p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Key Facts Box */
+        .key-facts {
+            background: var(--key-fact-bg);
+            border: 1px solid var(--key-fact-border);
+            border-left: 4px solid var(--orange);
+            border-radius: 6px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .key-facts-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .key-facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .key-fact-item {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .key-fact-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 80px;
+        }
+
+        .key-fact-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ASCII Diagram */
+        .ascii-diagram {
+            background: rgba(10, 22, 40, 0.9);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 25px;
+            margin: 25px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.4;
+            color: #00ff88;
+        }
+
+        .ascii-diagram pre {
+            white-space: pre;
+            margin: 0;
+        }
+
+        .ascii-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Comparison Table */
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .comparison-table thead {
+            background: var(--navy);
+        }
+
+        .comparison-table th {
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 700;
+            color: var(--orange);
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--orange);
+            white-space: nowrap;
+        }
+
+        .comparison-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .comparison-table tbody tr:hover {
+            background: rgba(255, 107, 0, 0.05);
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Chapter Summary */
+        .chapter-summary {
+            background: rgba(255, 107, 0, 0.05);
+            border: 1px solid rgba(255, 107, 0, 0.2);
+            border-radius: 6px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .chapter-summary-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .chapter-summary p {
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        /* Lists */
+        .chapter ul, .chapter ol {
+            margin: 15px 0;
+            padding-left: 25px;
+            color: var(--text-secondary);
+        }
+
+        .chapter li {
+            margin-bottom: 8px;
+            line-height: 1.7;
+        }
+
+        .chapter li strong {
+            color: var(--text-primary);
+        }
+
+        /* Highlighted Stats */
+        .stat-highlight {
+            display: inline-block;
+            background: rgba(255, 107, 0, 0.15);
+            color: var(--orange);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: #1a1a1a;
+                font-size: 11pt;
+            }
+
+            .book-container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .cover-page, .chapter, .toc-page {
+                background: white;
+                border: 1px solid #ccc;
+                page-break-after: always;
+                break-after: page;
+            }
+
+            .cover-page {
+                min-height: auto;
+                padding: 100px 40px;
+            }
+
+            .cover-title {
+                color: #0a1628;
+                text-shadow: none;
+            }
+
+            .cover-emblem {
+                filter: none;
+            }
+
+            .chapter-title {
+                color: #0a1628;
+            }
+
+            .chapter h3 {
+                color: #0a1628;
+            }
+
+            .chapter p, .chapter li {
+                color: #333;
+            }
+
+            .key-facts {
+                background: #f8f8f8;
+                border-color: #ff6b00;
+            }
+
+            .key-fact-value {
+                color: #1a1a1a;
+            }
+
+            .key-fact-label {
+                color: #666;
+            }
+
+            .ascii-diagram {
+                background: #f5f5f5;
+                color: #006400;
+                border-color: #ccc;
+            }
+
+            .comparison-table th {
+                background: #f0f0f0;
+                color: #0a1628;
+            }
+
+            .comparison-table td {
+                color: #333;
+                border-color: #ddd;
+            }
+
+            .chapter-summary {
+                background: #f8f8f8;
+            }
+
+            .download-btn {
+                display: none;
+            }
+
+            .toc-list li {
+                border-color: #ddd;
+            }
+        }
+
+        /* Download Button */
+        .download-btn {
+            display: block;
+            width: 280px;
+            margin: 40px auto;
+            padding: 16px 32px;
+            background: var(--orange);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .download-btn:hover {
+            background: var(--orange-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--orange-glow);
+        }
+
+        /* Footer */
+        .book-footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 13px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cover-title {
+                font-size: 28px;
+                letter-spacing: 2px;
+            }
+
+            .cover-subtitle {
+                font-size: 18px;
+            }
+
+            .chapter {
+                padding: 30px 20px;
+            }
+
+            .chapter-title {
+                font-size: 24px;
+            }
+
+            .key-facts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+
+        <!-- COVER PAGE -->
+        <div class="cover-page">
+            <div class="cover-emblem">&#9876;</div>
+            <div class="cover-title">ARMORED VEHICLES &amp; WEAPONS</div>
+            <div class="cover-subtitle">Indian Army's Ground Warfare Arsenal</div>
+            <div class="cover-divider"></div>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 40px; font-size: 15px; line-height: 1.8;">
+                A Comprehensive Technical Reference on India's Armored Corps, Main Battle Tanks, 
+                Infantry Combat Vehicles, Artillery Systems, Air Defence, Army Aviation, 
+                and the Future of Ground Warfare
+            </p>
+            <div class="cover-author">MissileX RocketSpace Research</div>
+            <div class="cover-edition">2026 Edition &mdash; Comprehensive Reference Guide</div>
+        </div>
+
+        <!-- TABLE OF CONTENTS -->
+        <div class="toc-page">
+            <div class="toc-title">Table of Contents</div>
+            <ul class="toc-list">
+                <li><span class="toc-chapter-num">01</span><span class="toc-chapter-title">History of the Indian Armoured Corps</span></li>
+                <li><span class="toc-chapter-num">02</span><span class="toc-chapter-title">T-90S Bhishma &mdash; Main Battle Tank</span></li>
+                <li><span class="toc-chapter-num">03</span><span class="toc-chapter-title">Arjun MK1 &mdash; Indigenous MBT with Kanchan Armor</span></li>
+                <li><span class="toc-chapter-num">04</span><span class="toc-chapter-title">Arjun MK1A &mdash; Enhanced Variant</span></li>
+                <li><span class="toc-chapter-num">05</span><span class="toc-chapter-title">T-72 Ajeya &mdash; Upgraded Fleet</span></li>
+                <li><span class="toc-chapter-num">06</span><span class="toc-chapter-title">BMP-2 Sarath &mdash; Infantry Combat Vehicle</span></li>
+                <li><span class="toc-chapter-num">07</span><span class="toc-chapter-title">K9 Vajra-T &mdash; Self-Propelled Howitzer</span></li>
+                <li><span class="toc-chapter-num">08</span><span class="toc-chapter-title">Dhanush Artillery Gun &mdash; Indigenous Bofors</span></li>
+                <li><span class="toc-chapter-num">09</span><span class="toc-chapter-title">ATAGS &mdash; Advanced Towed Artillery Gun System</span></li>
+                <li><span class="toc-chapter-num">10</span><span class="toc-chapter-title">Nag Missile Carrier (NAMICA)</span></li>
+                <li><span class="toc-chapter-num">11</span><span class="toc-chapter-title">DRDO Anti-Tank Mines &amp; Mine Warfare</span></li>
+                <li><span class="toc-chapter-num">12</span><span class="toc-chapter-title">Infantry Combat Vehicles &mdash; The Future ICV</span></li>
+                <li><span class="toc-chapter-num">13</span><span class="toc-chapter-title">Protected Vehicles &mdash; Mine-Resistant Platforms</span></li>
+                <li><span class="toc-chapter-num">14</span><span class="toc-chapter-title">Bridging Equipment &amp; Combat Engineering</span></li>
+                <li><span class="toc-chapter-num">15</span><span class="toc-chapter-title">Army Aviation Corps (Rudra, Prachand)</span></li>
+                <li><span class="toc-chapter-num">16</span><span class="toc-chapter-title">Air Defence Systems (Akash, L70, ZU-23)</span></li>
+                <li><span class="toc-chapter-num">17</span><span class="toc-chapter-title">Communication &amp; C4ISR Systems</span></li>
+                <li><span class="toc-chapter-num">18</span><span class="toc-chapter-title">Night Vision &amp; Thermal Imaging</span></li>
+                <li><span class="toc-chapter-num">19</span><span class="toc-chapter-title">Vehicle Comparison Table &amp; ASCII Diagrams</span></li>
+                <li><span class="toc-chapter-num">20</span><span class="toc-chapter-title">Summary &amp; Future of Indian Army Ground Systems</span></li>
+            </ul>
+        </div>
+
+        <!-- CHAPTER 1: History of Indian Armoured Corps -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 01</div>
+            <div class="chapter-title">History of the Indian Armoured Corps</div>
+            <div class="chapter-subtitle">From Colonial Legacy to Modern Battlefield Dominance</div>
+            <div class="chapter-divider"></div>
+
+            <p>The Indian Armoured Corps is one of the oldest and most prestigious combat arms of the Indian Army, with a lineage that traces back to the British Indian Army's cavalry regiments. Its evolution from horse-mounted cavalry to a modern, technology-driven armored force reflects the broader transformation of Indian military capability over the past century.</p>
+
+            <h3>Colonial Origins &amp; Early Armored Units</h3>
+            <p>The genesis of India's armored forces lies in the reorganization of cavalry regiments during World War I. The first armored cars were introduced in 1915 when Rolls-Royce Silver Ghost cars were fitted with armoured bodies and Maxim guns for operations in Mesopotamia and the North-West Frontier. By 1928, the first tank unit&mdash;the Scinde Horse&mdash;was equipped with Vickers Medium Mark I tanks.</p>
+            <p>During World War II, Indian armored units played a significant role in the North African and Burma campaigns. The 254th Indian Tank Brigade, equipped with M3 Lee and later Sherman tanks, contributed to the battles of Kohima and Imphal. The Indian Armoured Corps Centre and School was formally established at Ahmednagar in 1943, which remains its spiritual home today.</p>
+
+            <h3>Post-Independence Expansion</h3>
+            <p>After independence in 1947, the Indian Army rapidly modernized its armored formations. The Vijayanta (based on the British Vickers MBT) was the first Indian-produced tank, manufactured at the Heavy Vehicles Factory (HVF) in Avadi from 1965. The 1965 and 1971 wars with Pakistan saw Indian armored units equipped with Centurion and T-54/55 tanks proving their mettle in the deserts of Rajasthan and the plains of Punjab.</p>
+
+            <h3>The T-72 Era &amp; Modernization</h3>
+            <p>The induction of the Soviet-origin T-72M1 in 1979, locally designated as the <strong>Ajeya</strong> (meaning "Unconquerable"), marked a quantum leap in Indian armored capability. Over 2,400 T-72s were either imported or manufactured under license at HVF Avadi, making it the backbone of Indian armored formations for four decades. The tank featured a 125mm smoothbore gun with an autoloader, reducing crew requirements to three personnel.</p>
+
+            <h3>The Bhishma Era</h3>
+            <p>In 2001, India signed its first contract for 310 T-90S tanks from Russia, with the locally assembled variant designated as <strong>Bhishma</strong> (named after the legendary warrior of the Mahabharata). As of 2026, India operates approximately 2,078 T-90S Bhishma tanks, with over 1,000 manufactured indigenously at HVF Avadi. The 1,000th indigenous T-90 was delivered in May 2026, marking a significant milestone in Atmanirbhar Bharat.</p>
+
+            <h3>Indigenous Development: The Arjun Program</h3>
+            <p>The DRDO's Arjun Main Battle Tank program, initiated in 1974, aimed to develop a fully indigenous tank. After decades of development, the Arjun MK1 entered service in 2004 with 124 units. The tank features the unique Kanchan composite armor and a 120mm rifled gun. The enhanced Arjun MK1A, with 72 new improvements, is currently entering production with 118 units on order.</p>
+
+            <h3>Current Force Structure</h3>
+            <p>As of 2026, the Indian Army's Armoured Corps operates approximately <span class="stat-highlight">4,600+</span> main battle tanks across three primary platforms:</p>
+            <ul>
+                <li><strong>T-90S Bhishma:</strong> ~2,078 units (primary MBT)</li>
+                <li><strong>T-72 Ajeya:</strong> ~2,410 units (being upgraded with new engines and thermal imaging)</li>
+                <li><strong>Arjun MK1/MK1A:</strong> 124 units in service + 118 MK1A on order</li>
+            </ul>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>The Indian Armoured Corps has evolved from colonial cavalry regiments into a formidable modern force. From the Vijayanta to the T-72 Ajeya, T-90S Bhishma, and indigenous Arjun MBT, the corps has continuously modernized while maintaining its operational edge across diverse terrains from the Thar Desert to the Himalayan heights.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 2: T-90S Bhishma -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 02</div>
+            <div class="chapter-title">T-90S Bhishma &mdash; Main Battle Tank</div>
+            <div class="chapter-subtitle">The Backbone of Indian Armored Formations &mdash; 125mm Smoothbore Power</div>
+            <div class="chapter-divider"></div>
+
+            <p>The T-90S Bhishma is the primary main battle tank of the Indian Army, a variant of the Russian T-90S specifically tailored for Indian service requirements. Named after the legendary guardian warrior of the Mahabharata, the Bhishma represents the most modern and capable tank in India's armored arsenal, combining devastating firepower, advanced protection, and proven mobility.</p>
+
+            <div class="key-facts">
+                <div class="key-facts-title">Key Specifications</div>
+                <div class="key-facts-grid">
+                    <div class="key-fact-item"><span class="key-fact-label">Weight:</span><span class="key-fact-value">46.5 Tonnes</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Crew:</span><span class="key-fact-value">3 (Commander, Gunner, Driver)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Length:</span><span class="key-fact-value">9.53 m (gun forward)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Width:</span><span class="key-fact-value">3.78 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Height:</span><span class="key-fact-value">2.22 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Engine:</span><span class="key-fact-value">V-92S2 Diesel, 1,000 HP</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Power/Weight:</span><span class="key-fact-value">21.5 HP/tonne</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Max Speed:</span><span class="key-fact-value">60 km/h (road)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Range:</span><span class="key-fact-value">550 km (road)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Main Gun:</span><span class="key-fact-value">125mm 2A46M Smoothbore</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Rate of Fire:</span><span class="key-fact-value">8 rounds/minute</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Ammunition:</span><span class="key-fact-value">42 rounds</span></div>
+                </div>
+            </div>
+
+            <h3>Armament</h3>
+            <p>The T-90S Bhishma is armed with the <strong>125mm 2A46M smoothbore gun</strong>, stabilized in two axes and fitted with a thermal sleeve. The gun features an automatic loader that allows a sustained rate of fire of 8 rounds per minute. It can fire a variety of ammunition including APFSDS (Armour-Piercing Fin-Stabilized Discarding Sabot), HEAT (High-Explosive Anti-Tank), HE-FRAG (High-Explosive Fragmentation), and the <strong>9M119 Refleks</strong> (NATO: AT-11 Sniper) anti-tank guided missile system, effective against targets up to 4,000 meters.</p>
+            <p>Secondary armament includes a 7.62mm PKT coaxial machine gun and a 12.7mm Kord anti-aircraft machine gun mounted on the commander's cupola, providing protection against both ground targets and low-flying aircraft.</p>
+
+            <h3>Protection Systems</h3>
+            <p>The Bhishma employs a multi-layered protection system. The primary armor consists of composite armor arrays integrated into the welded turret and hull. This is supplemented by third-generation <strong>Kontakt-5 Explosive Reactive Armor (ERA)</strong>, which provides protection against both kinetic energy penetrators and shaped charge warheads. The turret frontal arc achieves an estimated <strong>920mm RHAe</strong> (Rolled Homogeneous Armour equivalent) against HEAT rounds.</p>
+            <p>The tank is equipped with an NBC (Nuclear, Biological, Chemical) protection system, smoke grenade launchers, and a fire suppression system. Unlike Russian domestic variants, Indian T-90S tanks do not carry the Shtora-1 infrared countermeasure system, as India opted for the Kontakt-5 ERA package instead.</p>
+
+            <h3>Fire Control &amp; Optics</h3>
+            <p>The T-90S features the 1A43 day fire control system, which includes a 1G46 day sight/rangefinder with missile guidance channel, a 2E42-4 armament stabilizer, a 1V528 ballistic computer, and a DVE-BS wind gauge. The commander utilizes a TKN-4S (Agat-S) day/night sight with identification ranges of 800m (day) and 700m (night). French-origin Catherine thermal imagers from Thales are fitted on Indian variants, providing enhanced night-fighting capability.</p>
+
+            <div class="ascii-diagram">
+                <div class="ascii-label">T-90S Bhishma &mdash; Side Profile Schematic</div>
+<pre>
+                    _______________
+                   /   TURRET      \________
+                  / ________________________\____
+                 / /  125mm GUN  /          [CMD] \
+    ___________ / /_____________/   ___   ___      \
+   |  KONTAKT-5 ERA           |  /  7.62mm MG    |
+   |  ________________________| |   ____________  |
+   | |  COMPOSITE ARMOR       | |  |            | |
+   | |                        | |  |  KORD MG   | |
+   | |________________________| |  |____________| |
+   |                            |                  |
+   |  HULL          [DRIVER]   |   [AUTOMATIC     |
+   |  ________________________ |    LOADER]       |
+   | |                        | |   ____________  |
+   | |   V-92S2 ENGINE        | |  |            | |
+   | |   1,000 HP DIESEL      | |  |  42 RDS    | |
+   | |________________________| |  |____________| |
+   |____________________________|__________________|
+        ||                    ||
+     [TRACK]              [TRACK]
+   6 ROAD WHEELS        6 ROAD WHEELS
+
+   ARMAMENT:
+   Main:     125mm 2A46M Smoothbore (Autoloader)
+   Coaxial:  7.62mm PKT
+   AA Gun:   12.7mm Kord
+   ATGM:     9M119 Refleks (4,000m range)
+</pre>
+            </div>
+
+            <h3>Production &amp; Fleet Status</h3>
+            <p>India initially contracted 310 T-90S tanks in 2001, followed by additional batches in 2006, 2007, and a major contract in 2019 for 464 tanks worth $2.8 billion. In May 2026, Armoured Vehicles Nigam Limited (AVNL) delivered the 1,000th indigenous T-90 Bhishma to the Indian Army. The total fleet stands at approximately 2,078 units, with ongoing overhaul programs to maintain operational readiness. The Bhishma Mk.3 variant was unveiled in May 2024 with further upgrades.</p>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>The T-90S Bhishma is the most numerous and capable MBT in Indian service, with over 2,000 units providing the backbone of armored operations. Its combination of 125mm firepower, Kontakt-5 ERA protection, and proven reliability across desert and high-altitude terrains makes it a formidable battlefield asset. With indigenous production exceeding 1,000 units and ongoing overhaul programs, the Bhishma will remain central to Indian armored doctrine for decades.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 3: Arjun MK1 -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 03</div>
+            <div class="chapter-title">Arjun MK1 &mdash; Indigenous MBT</div>
+            <div class="chapter-subtitle">Kanchan Armor &amp; India's Indigenous Tank Design</div>
+            <div class="chapter-divider"></div>
+
+            <p>The Arjun Main Battle Tank represents India's first fully indigenous MBT design, developed by the Defence Research and Development Organisation (DRDO) through its Combat Vehicles Research and Development Establishment (CVRDE). Named after the legendary warrior prince of the Mahabharata, the Arjun was designed to give India self-reliance in armored vehicle production and to match or exceed contemporary main battle tanks worldwide.</p>
+
+            <div class="key-facts">
+                <div class="key-facts-title">Key Specifications</div>
+                <div class="key-facts-grid">
+                    <div class="key-fact-item"><span class="key-fact-label">Weight:</span><span class="key-fact-value">58.5 Tonnes</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Crew:</span><span class="key-fact-value">4 (Commander, Gunner, Loader, Driver)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Length:</span><span class="key-fact-value">10.64 m (gun forward)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Width:</span><span class="key-fact-value">3.864 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Height:</span><span class="key-fact-value">3.03 m (with AD gun mount)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Engine:</span><span class="key-fact-value">MTU 838 KA 501, 1,400 HP</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Power/Weight:</span><span class="key-fact-value">24 HP/tonne</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Max Speed:</span><span class="key-fact-value">70 km/h (road)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Range:</span><span class="key-fact-value">450 km</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Main Gun:</span><span class="key-fact-value">120mm Rifled Gun</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Rate of Fire:</span><span class="key-fact-value">6-8 rounds/minute</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Ammunition:</span><span class="key-fact-value">39 rounds (FSAPDS/HESH)</span></div>
+                </div>
+            </div>
+
+            <h3>The Kanchan Armor System</h3>
+            <p>The Arjun MK1 is protected by an indigenous composite armor known as <strong>Kanchan armor</strong>, designed and developed by the Defence Metallurgical Research Laboratory (DMRL) in Kanchanbagh, Hyderabad. The armor consists of composite panels sandwiched between rolled homogeneous armor (RHA), capable of defeating both APFSDS and HEAT rounds. Kanchan armor is believed to be comparable to the British Chobham armor in terms of protection levels, though exact specifications remain classified.</p>
+            <p>The Advanced Laser Warning Countermeasure System (ALWCS) with four laser warning receivers mounted on the turret provides 360-degree protection against laser-guided threats. Upon detection, the system automatically launches smoke grenades to mask the tank from laser rangefinders and designators.</p>
+
+            <h3>Firepower</h3>
+            <p>The Arjun MK1 is armed with a <strong>120mm rifled main gun</strong>, capable of firing FSAPDS (Fin-Stabilized Armour-Piercing Discarding Sabot) and HESH (High-Explosive Squash Head) ammunition. The gun achieves a rate of fire of 6-8 rounds per minute and can engage targets at ranges exceeding 3,000 meters. The integrated fire control system (IFCS), developed by Bharat Electronics Limited (BEL), features a digital ballistic computer providing quick target acquisition with "first round, first hit" probability.</p>
+            <p>Secondary armament includes a 7.62mm coaxial machine gun and a 12.7mm NSV anti-aircraft heavy machine gun mounted on the turret.</p>
+
+            <h3>Mobility &amp; Power Pack</h3>
+            <p>The Arjun MK1 is powered by a German-origin MTU 838 KA 501 V10 turbocharged diesel engine producing 1,400 horsepower. This gives the tank a power-to-weight ratio of 24 HP/tonne and a top road speed of 70 km/h. The hydropneumatic suspension system provides excellent cross-country mobility and a smooth ride over rough terrain. The tank can ford depths up to 1.4 meters unprepared and 2.15 meters with preparation.</p>
+
+            <h3>Operational History</h3>
+            <p>The first 124 Arjun MK1 tanks were produced at the Heavy Vehicles Factory (HVF) in Avadi between 2004 and 2012. In 2010, comparative trials were conducted between the Arjun MK1 and the T-90 Bhishma in the Rajasthan desert, where the Arjun demonstrated superior firepower and armor protection. The tank has been designated as the "Desert Ferrari" by tank experts for its cross-country performance.</p>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>The Arjun MK1 represents India's achievement in indigenous tank design, featuring the unique Kanchan composite armor, a 120mm rifled gun, and a 1,400 HP MTU engine. While its 58.5-tonne weight limits its deployment to certain operational theaters, the tank has proven its capabilities in desert warfare and serves as a platform for further indigenous development.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 4: Arjun MK1A -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 04</div>
+            <div class="chapter-title">Arjun MK1A &mdash; Enhanced Variant</div>
+            <div class="chapter-subtitle">72 Improvements &mdash; The Next Generation of Indigenous Armor</div>
+            <div class="chapter-divider"></div>
+
+            <p>The Arjun MK1A represents a significant evolutionary leap over the original Arjun MK1, incorporating <strong>72 new improvements</strong> across firepower, mobility, protection, and survivability. Developed by CVRDE and multiple DRDO laboratories, the MK1A addresses the limitations identified during service with the Indian Army and incorporates battlefield lessons for 21st-century warfare.</p>
+
+            <div class="key-facts">
+                <div class="key-facts-title">Key Specifications</div>
+                <div class="key-facts-grid">
+                    <div class="key-fact-item"><span class="key-fact-label">Weight:</span><span class="key-fact-value">68 Tonnes</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Crew:</span><span class="key-fact-value">4</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Length:</span><span class="key-fact-value">10.642 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Width:</span><span class="key-fact-value">3.950 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Height:</span><span class="key-fact-value">3.182 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Engine:</span><span class="key-fact-value">MTU 1,400 HP (DATRAN 1,500 HP planned)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Power/Weight:</span><span class="key-fact-value">20.59 HP/tonne</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Max Speed:</span><span class="key-fact-value">58 km/h (road)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Main Gun:</span><span class="key-fact-value">120mm Rifled</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Indigenous Content:</span><span class="key-fact-value">54.3%</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Order:</span><span class="key-fact-value">118 units (Sept 2021)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Contract Value:</span><span class="key-fact-value">$1.02 billion</span></div>
+                </div>
+            </div>
+
+            <h3>Key Upgrades Over MK1</h3>
+            <p>The MK1A features a completely redesigned turret with improved Kanchan armor and Explosive Reactive Armor (ERA MK-II) panels on the turret, hull glacis, and side skirts. This enhanced protection package is specifically designed to defeat large-caliber kinetic energy projectiles. The indigenous content has been increased from 41% in the MK1 to <strong>54.3%</strong> in the MK1A.</p>
+
+            <h4>Firepower Improvements</h4>
+            <ul>
+                <li>Integrated Commander's Panoramic Advanced Sight (COAPS) providing hunter-killer capability</li>
+                <li>Auto-target tracker for rapid target acquisition</li>
+                <li>Improved ammunition with better penetration characteristics</li>
+                <li>Remote-operated 12.7mm NSV anti-aircraft machine gun (operated from inside the turret)</li>
+                <li>Enhanced thermal imaging and night vision systems</li>
+            </ul>
+
+            <h4>Mobility Upgrades</h4>
+            <ul>
+                <li>Automatic gear system replacing manual transmission</li>
+                <li>Upgraded suspension system including final drive, tracks, and sprockets</li>
+                <li>Safer ammunition storage racks with improved fire suppression</li>
+                <li>Future integration of indigenous DATRAN 1,500 HP engine (replacing MTU)</li>
+            </ul>
+
+            <h3>Engine Transition &amp; Self-Reliance</h3>
+            <p>A critical development in the MK1A program is the planned replacement of the German MTU engine with the indigenous <strong>DATRAN 1,500 HP turbocharged diesel engine</strong>, being developed by DRDO and BEML. This became necessary following the disruption of MTU Friedrichshafen's supply chain. BEML successfully test-fired the indigenous engine in March 2024, marking a transformative moment for India's armored vehicle program.</p>
+
+            <h3>Production &amp; Induction</h3>
+            <p>On 23 September 2021, the Indian Army signed a contract for 118 Arjun MK1A tanks worth Rs 7,523 crore ($1.02 billion) with the first five units due for delivery within 30 months. The production is expected to create manufacturing opportunities for over 200 Indian vendors, including MSMEs. As of 2026, prototype validation is underway with first deliveries expected by late 2026.</p>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>The Arjun MK1A is a comprehensive upgrade incorporating 72 improvements including enhanced Kanchan armor with ERA, hunter-killer sights, automatic transmission, and future indigenous engines. With 118 units on order and 54.3% indigenous content, it represents India's commitment to self-reliance in armored vehicle technology.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 5: T-72 Ajeya -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 05</div>
+            <div class="chapter-title">T-72 Ajeya &mdash; Upgraded Fleet</div>
+            <div class="chapter-subtitle">The Four-Decade Workhorse &mdash; Modernization Through Project Rhino</div>
+            <div class="chapter-divider"></div>
+
+            <p>The T-72 Ajeya has been the backbone of Indian armored formations since its induction in 1979. Designated as the "Unconquerable," this Soviet-origin main battle tank has undergone multiple upgrade programs to maintain its relevance on the modern battlefield. With approximately 2,410 units in service, the T-72 remains the most numerous tank in the Indian Army's inventory.</p>
+
+            <div class="key-facts">
+                <div class="key-facts-title">Key Specifications</div>
+                <div class="key-facts-grid">
+                    <div class="key-fact-item"><span class="key-fact-label">Weight:</span><span class="key-fact-value">43 Tonnes</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Crew:</span><span class="key-fact-value">3</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Length:</span><span class="key-fact-value">9.53 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Width:</span><span class="key-fact-value">3.59 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Height:</span><span class="key-fact-value">2.19 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Engine (Orig):</span><span class="key-fact-value">V-46 Diesel, 780 HP</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Engine (New):</span><span class="key-fact-value">1,000 HP Powerpack</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Max Speed:</span><span class="key-fact-value">60 km/h</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Main Gun:</span><span class="key-fact-value">125mm D-81 Smoothbore</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Rate of Fire:</span><span class="key-fact-value">8 rounds/minute (autoloader)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Ammunition:</span><span class="key-fact-value">44 rounds (22 in autoloader)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Fleet Size:</span><span class="key-fact-value">~2,410 units</span></div>
+                </div>
+            </div>
+
+            <h3>Variants in Indian Service</h3>
+            <ul>
+                <li><strong>Ajeya MK1:</strong> Indian version of the T-72M1, manufactured under license at HVF Avadi. First rolled out in 1987.</li>
+                <li><strong>Ajeya MK2:</strong> Features Explosive Reactive Armor (ERA) and banks of 6 smoke grenade launchers on each side of the turret.</li>
+                <li><strong>Combat Improved Ajeya:</strong> Comprehensive upgrade program addressing fire control systems, protection, and mobility.</li>
+            </ul>
+
+            <h3>Project Rhino &amp; Modernization</h3>
+            <p>Due to delays in the indigenous Arjun program, the Indian government approved <strong>Project Rhino</strong> in 1986 to modernize the T-72 fleet. The primary focus was upgrading the fire control system, regarded as the most critical deficiency. The upgrade program includes:</p>
+            <ul>
+                <li><strong>New 1,000 HP engines:</strong> In March 2025, India signed a $248 million contract with Russia's Rosoboronexport for 1,000 new 1,000-horsepower engines to replace the original 780 HP powerplants.</li>
+                <li><strong>Thermal Imaging Fire Control System (TIFCS):</strong> Indo-Israeli technology developed by Alpha-Exec Defence & Aerospace (joint venture of Alpha Defence and Elbit Systems). As of February 2026, 96 tanks have been fitted with TIFCS.</li>
+                <li><strong>ERA Protection:</strong> Integration of Kontakt ERA blocks on turret and hull.</li>
+                <li><strong>Zero-Hour Overhaul:</strong> Vehicle Factory Jabalpur completed pilot overhauls restoring tanks to factory-fresh condition.</li>
+            </ul>
+
+            <h3>Future Plans</h3>
+            <p>The Indian Army plans to retain approximately 50% of its T-72 fleet (around 1,200 tanks) until the Future Ready Combat Vehicle (FRCV) program begins induction around 2030. The upgraded T-72s with new engines and thermal imaging systems will continue to serve in second-line roles potentially until 2040.</p>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>The T-72 Ajeya, with 2,410 units, remains the most numerous tank in Indian service. Through Project Rhino and ongoing modernization efforts including new 1,000 HP engines, thermal imaging fire control systems, and ERA protection, the fleet is being extended to serve until 2040 while awaiting the indigenous FRCV program.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 6: BMP-2 Sarath -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 06</div>
+            <div class="chapter-title">BMP-2 Sarath &mdash; Infantry Combat Vehicle</div>
+            <div class="chapter-subtitle">Chariot of Victory &mdash; The Mechanized Infantry Workhorse</div>
+            <div class="chapter-divider"></div>
+
+            <p>The BMP-2 Sarath (meaning "Chariot of Victory" or "Swift") is a license-built Soviet-origin infantry combat vehicle that forms the backbone of the Indian Army's mechanized infantry. Produced at Ordnance Factory Medak since 1987, the Sarath provides armored mobility and direct fire support for infantry sections operating alongside main battle tanks. Over 1,900 BMP-2s are currently in Indian service, making it one of the largest BMP-2 fleets globally.</p>
+
+            <div class="key-facts">
+                <div class="key-facts-title">Key Specifications</div>
+                <div class="key-facts-grid">
+                    <div class="key-fact-item"><span class="key-fact-label">Weight:</span><span class="key-fact-value">14 Tonnes</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Crew:</span><span class="key-fact-value">3 + 7 Troops</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Length:</span><span class="key-fact-value">6.858 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Width:</span><span class="key-fact-value">3.15 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Height:</span><span class="key-fact-value">2.077 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Engine:</span><span class="key-fact-value">UTD-20 Diesel, 300 HP</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Max Speed:</span><span class="key-fact-value">65 km/h (road) / 7 km/h (water)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Range:</span><span class="key-fact-value">550-600 km</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Main Gun:</span><span class="key-fact-value">30mm 2A42 Autocannon</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">ATGM:</span><span class="key-fact-value">9M113 Konkurs (4,000m)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Coaxial:</span><span class="key-fact-value">7.62mm PKT</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Ammunition:</span><span class="key-fact-value">500 (30mm) / 2,000 (7.62mm)</span></div>
+                </div>
+            </div>
+
+            <h3>Armament</h3>
+            <p>The BMP-2 features an enlarged two-man turret mounting a <strong>30mm 2A42 automatic cannon</strong> with a double-baffle muzzle brake. The gun has an elevation range of -5 to +75 degrees, enabling engagement of both ground targets and low-flying aircraft. The two-plane stabilizer allows accurate fire while moving. A coaxial 7.62mm PKT machine gun supplements the main armament.</p>
+            <p>For anti-tank capability, the vehicle is equipped with a roof-mounted 9P135M launcher capable of firing <strong>9M113 Konkurs</strong> (NATO: AT-5 Spandrel) anti-tank guided missiles with a range of 4,000 meters. The BMP-2 carries 4 missiles in ready-to-fire and storage configuration.</p>
+
+            <h3>Amphibious Capability</h3>
+            <p>The BMP-2 is fully amphibious, capable of crossing water obstacles at speeds up to 7 km/h using track propulsion. An anti-flooding system protects the engine during amphibious operations. The vehicle can ford depths up to 1.2 meters unprepared and can swim with minimal preparation.</p>
+
+            <h3>Indian Variants</h3>
+            <ul>
+                <li><strong>BMP-2 Sarath:</strong> Standard license-built IFV</li>
+                <li><strong>NAMICA:</strong> Nag Missile Carrier variant with retractable ATGM launcher</li>
+                <li><strong>Akash SAM Carrier:</strong> Modified chassis for Akash surface-to-air missile system</li>
+                <li><strong>AERV:</strong> Armoured Engineer Reconnaissance Vehicle for riverbed survey</li>
+                <li><strong>Carrier Mortar Tracked:</strong> 220 units in service with mortar systems</li>
+                <li><strong>NBC Reconnaissance Vehicle:</strong> Chemical/biological detection variant</li>
+            </ul>
+
+            <h3>Upgrade Programs</h3>
+            <p>The Indian Army is upgrading its BMP-2 fleet with improved fire control systems, thermal imaging sights, and enhanced armor packages including Kanchan armor modifications and slat armor for urban warfare protection. The Futuristic Infantry Combat Vehicle (FICV) program aims to eventually replace the BMP-2 with a next-generation platform.</p>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>The BMP-2 Sarath, with 1,900+ units, has been the mechanized infantry workhorse since 1987. Armed with a 30mm autocannon and Konkurs ATGMs, it provides armored mobility and fire support. Multiple Indian variants including NAMICA and Akash demonstrate the platform's versatility, while upgrade programs extend its service life.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 7: K9 Vajra-T -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 07</div>
+            <div class="chapter-title">K9 Vajra-T &mdash; Self-Propelled Howitzer</div>
+            <div class="chapter-subtitle">Thunderbolt &mdash; 155mm/52 Caliber Tracked Artillery Power</div>
+            <div class="chapter-divider"></div>
+
+            <p>The K9 Vajra-T is a 155mm/52 caliber tracked self-propelled howitzer that represents a quantum leap in Indian Army artillery capability. Based on the South Korean K9 Thunder platform, the Vajra-T (Sanskrit for "Thunderbolt") has been customized for Indian operational requirements, including desert warfare. Manufactured by Larsen &amp; Toubro (L&T) at their Hazira facility in Gujarat under the Make in India initiative, the K9 Vajra-T is the first major self-propelled artillery system in Indian service.</p>
+
+            <div class="key-facts">
+                <div class="key-facts-title">Key Specifications</div>
+                <div class="key-facts-grid">
+                    <div class="key-fact-item"><span class="key-fact-label">Weight:</span><span class="key-fact-value">47 Tonnes</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Crew:</span><span class="key-fact-value">5</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Length:</span><span class="key-fact-value">12.0 m (gun forward)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Width:</span><span class="key-fact-value">3.4 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Engine:</span><span class="key-fact-value">MTU 881 Ka-500, 1,000 HP</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Max Speed:</span><span class="key-fact-value">67 km/h</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Range:</span><span class="key-fact-value">360-450 km</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Main Gun:</span><span class="key-fact-value">155mm/52 Caliber</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Fire Range:</span><span class="key-fact-value">40 km (standard) / 50 km (ERFB)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Rate of Fire:</span><span class="key-fact-value">6-8 rounds/minute (burst)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Ammunition:</span><span class="key-fact-value">48 rounds</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Fleet Size:</span><span class="key-fact-value">100 delivered + 100 on order</span></div>
+                </div>
+            </div>
+
+            <h3>Firepower &amp; Ammunition</h3>
+            <p>The K9 Vajra-T fires the full range of NATO-standard 155mm ammunition including HE-FRAG, smoke, illumination, and precision-guided rounds. The 52-caliber barrel provides enhanced muzzle velocity and extended range compared to shorter 39-caliber systems. The system can fire up to 40 km with standard ammunition and up to 50 km with extended-range projectiles. In burst mode, it achieves a rate of fire of 6-8 rounds per minute.</p>
+
+            <h3>Shoot-and-Scoot Capability</h3>
+            <p>A defining feature of the K9 Vajra-T is its ability to execute "shoot-and-scoot" tactics. The system can deploy from marching order, fire a mission, and displace in under 60 seconds, minimizing vulnerability to counter-battery fire. The hydropneumatic suspension system and 1,000 HP MTU engine provide excellent cross-country mobility.</p>
+
+            <h3>Indian Customization</h3>
+            <p>The K9 Vajra-T features several modifications for Indian conditions including enhanced air filtration for desert operations, improved cooling systems, and compatibility with Indian ammunition. The system has proven its capability in exercises across the Thar Desert and along the western border.</p>
+
+            <h3>Production &amp; Fleet Expansion</h3>
+            <p>The first order for 100 units was placed in May 2017 worth Rs 4,500 crore, with all units delivered by February 2021. A follow-on order for 100 additional units was signed in 2024 worth Rs 7,629 crore. As of 2026, the Indian Army is preparing to procure <strong>300 more K9 Vajra-T</strong> guns under a proposed Rs 23,000 crore program, which would bring the total fleet to approximately 400 units&mdash;one of the largest self-propelled howitzer forces globally.</p>
+
+            <div class="ascii-diagram">
+                <div class="ascii-label">K9 Vajra-T Self-Propelled Howitzer &mdash; Side Profile</div>
+<pre>
+              ________________________________
+             /        TURRET                  \
+            / ________________________________\________
+           / /    155mm/52 CAL GUN            [CMD]   \
+          / /_______________________________________   \
+         / /                                         \  \
+    ____/ /    [AUTOLOADER - 48 ROUNDS]              \  \
+   |  ____________________________________________    |  |
+   | |                                            |   |  |
+   | |            HULL                            |   |  |
+   | |                                            |   |  |
+   | |   MTU 881 Ka-500 ENGINE    [AMMO STORAGE]  |   |  |
+   | |   1,000 HP DIESEL          ____________    |   |  |
+   | |                           |            |   |   |  |
+   | |___________________________|____________|   |   |  |
+   |______________________________________________|   |  |
+        ||     [6 ROAD WHEELS]                ||       |  |
+        ||____________________________________||       |  |
+                                                         
+   FIRE SUPPORT:
+   Range: 40 km (std) | 50 km (ERFB) | 70 km (Ramjet)
+   Burst: 8 rds/min   | Sustained: 3 rds/min
+   Deploy time: <60 sec | Displace: <60 sec
+</pre>
+            </div>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>The K9 Vajra-T provides the Indian Army with a modern, mobile 155mm/52 caliber self-propelled howitzer with 40-50 km range and shoot-and-scoot capability. With 200 units delivered/ordered and plans for 400 total, it is transforming Indian artillery doctrine for rapid, precision fire support.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 8: Dhanush -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 08</div>
+            <div class="chapter-title">Dhanush Artillery Gun</div>
+            <div class="chapter-subtitle">India's Indigenous Bofors &mdash; 155mm/45 Caliber Towed Howitzer</div>
+            <div class="chapter-divider"></div>
+
+            <p>The Dhanush (meaning "Bow" in Sanskrit) is India's first fully indigenous 155mm towed howitzer, derived from the proven Swedish FH-77B Bofors design. Developed by the Ordnance Factory Board (now Armoured Vehicles Nigam Limited), the Dhanush addresses the critical need for a modern, domestically produced artillery gun following the Bofors controversy that stalled Indian artillery procurement for decades.</p>
+
+            <div class="key-facts">
+                <div class="key-facts-title">Key Specifications</div>
+                <div class="key-facts-grid">
+                    <div class="key-fact-item"><span class="key-fact-label">Weight:</span><span class="key-fact-value">13.2 Tonnes</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Crew:</span><span class="key-fact-value">6-8</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Caliber:</span><span class="key-fact-value">155mm/45 Caliber</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Range:</span><span class="key-fact-value">30 km (standard) / 40 km (ERFB)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Rate of Fire:</span><span class="key-fact-value">5 rounds/minute (burst)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Ammunition:</span><span class="key-fact-value">NATO standard 155mm</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Towing:</span><span class="key-fact-value">Tractor or prime mover</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Deployed:</span><span class="key-fact-value">114 units + 300 on order</span></div>
+                </div>
+            </div>
+
+            <h3>Development Heritage</h3>
+            <p>The Dhanush is an improved version of the FH-77B Bofors, 144 of which were acquired by India between 1987-1991. The upgrade program incorporated significant improvements including an indigenously developed fire control system, improved barrel life, enhanced ammunition handling, and compatibility with a wider range of 155mm ammunition including ERFB (Extended Range Full Bore) rounds.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Digital Fire Control System:</strong> Indigenous ballistic computer and navigation system for accurate targeting</li>
+                <li><strong>Improved Barrel:</strong> Enhanced metallurgy providing extended barrel life of 2,500+ rounds</li>
+                <li><strong>Ammunition Compatibility:</strong> Fires all NATO-standard 155mm ammunition including smart shells</li>
+                <li><strong>Automated Laying:</strong> Hydraulic rammer and electronic firing system</li>
+                <li><strong>Rapid Deployment:</strong> Can be brought into action in under 3 minutes</li>
+            </ul>
+
+            <h3>Smart Shell Integration</h3>
+            <p>The Dhanush is being made compatible with ramjet-propelled artillery shells developed in collaboration with IIT Madras. These precision-guided munitions achieve a Circular Error Probable (CEP) of 10 meters compared to 500 meters for conventional shells, extending effective range from approximately 30 km to 55 km.</p>
+
+            <h3>Production Status</h3>
+            <p>The Indian Army has nearly completed delivery of its initial 114 Dhanush guns, with the final batch expected in 2026. In a major boost, the government is preparing to place a fresh order for <strong>300 additional Dhanush guns</strong> to equip 15 new artillery regiments, bringing the total fleet to approximately 414 guns.</p>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>The Dhanush represents India's indigenous artillery renaissance, offering a modern 155mm/45 caliber towed howitzer with digital fire control and smart shell compatibility. With 114 units delivered and 300 more on order, it is forming the backbone of Indian medium artillery along both the western and northern borders.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 9: ATAGS -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 09</div>
+            <div class="chapter-title">ATAGS &mdash; Advanced Towed Artillery Gun System</div>
+            <div class="chapter-subtitle">Record-Breaking 155mm/52 Caliber &mdash; Amogh Enters Service</div>
+            <div class="chapter-divider"></div>
+
+            <p>The Advanced Towed Artillery Gun System (ATAGS), named <strong>Amogh</strong> in Indian Army service, is a 155mm/52 caliber towed howitzer developed by DRDO's Armament Research and Development Establishment (ARDE) in partnership with Tata Advanced Systems (TASL) and Kalyani Strategic Systems (KSSL). The ATAGS has achieved the distinction of firing at the longest range ever recorded by any artillery gun in its class.</p>
+
+            <div class="key-facts">
+                <div class="key-facts-title">Key Specifications</div>
+                <div class="key-facts-grid">
+                    <div class="key-fact-item"><span class="key-fact-label">Caliber:</span><span class="key-fact-value">155mm/52 Caliber</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Range:</span><span class="key-fact-value">48 km (standard) / 70 km (Ramjet)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Chamber Volume:</span><span class="key-fact-value">25 Liters</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Mobility:</span><span class="key-fact-value">20 km/h towed</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Rate of Fire:</span><span class="key-fact-value">5 rounds in 62 seconds</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Drive System:</span><span class="key-fact-value">All-Electric Drive</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Order:</span><span class="key-fact-value">307 units (Rs 6,900 crore)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">First Delivery:</span><span class="key-fact-value">February 2027</span></div>
+                </div>
+            </div>
+
+            <h3>Record-Breaking Performance</h3>
+            <p>The ATAGS set a world record by achieving the highest range ever by any 155mm artillery gun in its category. The system's 25-liter chamber volume allows higher propellant charges, enabling ranges of 48 km with standard ammunition&mdash;exceeding the M777 (Zone 5), other international contenders (Zone 6), and achieving Zone 7 with the Bi-Modular Charge System (BMCS). With ramjet-propelled shells, the range extends to approximately <strong>70 km</strong>.</p>
+
+            <h3>All-Electric Drive Innovation</h3>
+            <p>The ATAGS is the first artillery system globally to utilize an all-electric drive for all its laying and loading functions, eliminating the need for traditional hydraulic systems. This provides faster response times, reduced maintenance, and greater reliability in extreme temperatures&mdash;particularly important for operations in the Thar Desert and high-altitude regions.</p>
+
+            <h3>Production Partnership</h3>
+            <p>In March 2025, the Indian Ministry of Defence signed a landmark Rs 6,900 crore contract for 307 ATAGS units. The order is split between <strong>Bharat Forge (184 guns)</strong> and <strong>Tata Advanced Systems (123 guns)</strong>, marking the largest private-sector artillery contract in Indian defence history. The first regiment is slated to achieve operational readiness by February 2027.</p>
+
+            <h3>Future Variants</h3>
+            <ul>
+                <li><strong>Mounted Gun System (MGS):</strong> ATAGS mounted on 8x8 BEML High Mobility Vehicle, weighing 30 tonnes for rapid deployment</li>
+                <li><strong>Truck-Mounted Howitzer:</strong> Capable of firing 6 rounds per minute and relocating in under 90 seconds</li>
+                <li><strong>105mm Mounted Gun System:</strong> 200 units planned for mountain and paradroppable roles</li>
+            </ul>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>The ATAGS Amogh has set world records with 48-70 km range and features the first all-electric drive in artillery. With 307 units ordered from private sector manufacturers Bharat Forge and Tata Advanced Systems, it represents a new era of indigenous artillery capability and private-sector defence manufacturing.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 10: NAMICA -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 10</div>
+            <div class="chapter-title">Nag Missile Carrier (NAMICA)</div>
+            <div class="chapter-subtitle">The Tank Buster &mdash; India's Third-Generation ATGM Platform</div>
+            <div class="chapter-divider"></div>
+
+            <p>The NAMICA (Nag Missile Carrier) is a purpose-built tank destroyer based on a modified BMP-2 chassis, designed as the launch platform for the Nag third-generation fire-and-forget anti-tank guided missile (ATGM). Developed by DRDO's Defence Research and Development Laboratory (DRDL) and produced by Bharat Dynamics Limited (BDL), the NAMICA-Nag combination (designated NAMIS) provides Indian mechanized infantry with devastating anti-armor capability.</p>
+
+            <div class="key-facts">
+                <div class="key-facts-title">Nag Missile Specifications</div>
+                <div class="key-facts-grid">
+                    <div class="key-fact-item"><span class="key-fact-label">Type:</span><span class="key-fact-value">3rd Gen Fire-and-Forget ATGM</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Weight:</span><span class="key-fact-value">42 kg</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Length:</span><span class="key-fact-value">1.83 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Diameter:</span><span class="key-fact-value">0.15 m</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Range:</span><span class="key-fact-value">500m - 4 km (Nag) / 20 km (Mk2)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Warhead:</span><span class="key-fact-value">Tandem-HEAT (900mm+ RHA)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Seeker:</span><span class="key-fact-value">Imaging Infrared (IIR)</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Speed:</span><span class="key-fact-value">230 m/s</span></div>
+                </div>
+            </div>
+
+            <h3>NAMICA Vehicle</h3>
+            <p>The NAMICA is a stretched variant of the license-built BMP-2 with additional road wheels. It features a retractable armored launcher containing <strong>12 launch tubes</strong> (8 in ready-to-fire mode, 4 in storage). The vehicle is equipped with electro-optical systems including a thermal imager and laser rangefinder for target acquisition, providing day-night operational capability.</p>
+            <p>Each launcher can fire four missiles in one minute. The NAMICA carries a total of 12 missiles, with 8 ready to fire and 4 in reserve storage. The vehicle maintains amphibious capability inherited from the BMP-2 platform.</p>
+
+            <h3>Nag Missile Capabilities</h3>
+            <ul>
+                <li><strong>Fire-and-Forget:</strong> Locks onto target before launch using IIR seeker, requiring no further guidance</li>
+                <li><strong>Top Attack Mode:</strong> Missile climbs after launch and dives onto target from above, defeating ERA</li>
+                <li><strong>Direct Attack Mode:</strong> Lower altitude approach for direct engagement</li>
+                <li><strong>Night Capability:</strong> Full operational capability in all weather and lighting conditions</li>
+                <li><strong>Tandem Warhead:</strong> Defeats composite armor and Explosive Reactive Armor</li>
+            </ul>
+
+            <h3>Nag Mk2 &amp; Future Plans</h3>
+            <p>The Nag Mk2 features an upgraded electro-optical/IR seeker and a new nose-mounted millimeter wave active radar homing (MMW) seeker, extending range to <strong>15-20 km</strong>. In October 2025, the Defence Acquisition Council cleared procurement of 107 NAMICA Mk2 carriers and 2,408 Nag Mk2 missiles worth approximately Rs 1,800 crore.</p>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>The NAMICA-Nag system provides India with indigenous third-generation fire-and-forget anti-tank capability. With 12 ready-to-fire missiles per vehicle, IIR guidance, and tandem warheads capable of defeating 900mm+ armor, it forms the primary dedicated anti-tank platform. The Nag Mk2 extends range to 20 km with MMW radar seeker.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 11: DRDO Anti-Tank Mines -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 11</div>
+            <div class="chapter-title">DRDO Anti-Tank Mines &amp; Mine Warfare</div>
+            <div class="chapter-subtitle">Area Denial &amp; Battlefield Obstacle Systems</div>
+            <div class="chapter-divider"></div>
+
+            <p>Mine warfare remains a critical component of Indian Army defensive doctrine, providing area denial, channelization of enemy armor, and protective barriers for vital installations. DRDO has developed a range of indigenous anti-tank and anti-personnel mines to replace aging inventory and counter evolving battlefield threats.</p>
+
+            <h3>Anti-Tank Mine Systems</h3>
+            <p>The Indian Army operates several types of anti-tank mines including the <strong>TM-83</strong> (electronic influence mine), <strong>TM-89</strong> (multiple choice fuze), and various pressure-activated mines. DRDO has developed the <strong>NM-13</strong> anti-tank mine with an advanced electronic fuze capable of being programmed for different trigger mechanisms.</p>
+
+            <h3>Mechanical Minefield Marking Equipment</h3>
+            <p>The Mechanical Minefield Marking Equipment Mk-II, developed by DRDO's Research &amp; Development Establishment (Engineers), is designed for automated minefield marking and recording. Manufactured by BEML, this system entered service in August 2025 with the Corps of Engineers.</p>
+
+            <h3>Counter-Mine Operations</h3>
+            <p>The Indian Army maintains a suite of counter-mine systems including the Hydrema mine-clearing vehicle (24 units from Denmark) and indigenous mine rollers mounted on T-72 chassis. The KMT-7 and KMT-8 mine-clearing systems are fitted to T-72 and T-90 tanks for route breaching operations.</p>
+
+            <h3>Mine Warfare Doctrine</h3>
+            <p>Indian mine warfare doctrine emphasizes:</p>
+            <ul>
+                <li><strong>Defensive Mining:</strong> Protecting approaches to vital installations and defensive positions</li>
+                <li><strong>Obs constructive Mining:</strong> Rapidly emplacing mines to delay enemy offensive operations</li>
+                <li><strong>Counter-Mobility:</strong> Denying ground to enemy armored formations in border areas</li>
+                <li><strong>Intelligent Mines:</strong> Development of programmable, self-destruct, and command-controlled mines</li>
+            </ul>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>DRDO's mine warfare systems include advanced anti-tank mines, mechanical marking equipment, and counter-mine platforms. These systems provide the Indian Army with comprehensive area denial and battlefield obstacle capabilities along both the western and northern borders.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 12: Future ICV -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 12</div>
+            <div class="chapter-title">Infantry Combat Vehicles &mdash; The Future ICV</div>
+            <div class="chapter-subtitle">FICV Program &mdash; Next-Generation Mechanized Infantry</div>
+            <div class="chapter-divider"></div>
+
+            <p>The Futuristic Infantry Combat Vehicle (FICV) program represents one of the Indian Army's most ambitious modernization efforts, aimed at replacing the aging fleet of over 1,500 BMP-2 Sarath ICVs with a next-generation, fully indigenous platform. This program is critical for maintaining the Indian Army's mechanized warfare capability against evolving threats.</p>
+
+            <h3>Why FICV is Needed</h3>
+            <p>The BMP-2 fleet, while upgraded, has been in service since 1987 and faces increasing obsolescence in its electronics, protection, and firepower systems. Modern battlefield requirements demand:</p>
+            <ul>
+                <li>Enhanced ballistic and mine protection</li>
+                <li>Integrated anti-tank guided missile systems</li>
+                <li>Advanced situational awareness systems</li>
+                <li>Network-centric warfare capability</li>
+                <li>Improved power-to-weight ratio for high-altitude operations</li>
+            </ul>
+
+            <h3>FICV Requirements</h3>
+            <p>The Indian Army's FICV specifications include:</p>
+            <ul>
+                <li><strong>Weight:</strong> 18-25 tonnes class</li>
+                <li><strong>Crew:</strong> 3 + 8 dismounts</li>
+                <li><strong>Armament:</strong> 30-40mm autocannon with co-axial MG and ATGM</li>
+                <li><strong>Protection:</strong> STANAG 4569 Level 4+ with mine protection</li>
+                <li><strong>Engine:</strong> 600+ HP with automatic transmission</li>
+                <li><strong>Network-Centric:</strong> C4ISR integration with digital battlefield management</li>
+                <li><strong>Amphibious:</strong> Full water crossing capability</li>
+            </ul>
+
+            <h3>Program Status</h3>
+            <p>The FICV program is under the Indian IDDM (Indian Designed Developed and Manufactured) category. Multiple Indian companies including Tata Advanced Systems, L&T, Mahindra Defence, and Bharat Forge are competing for the program. The initial order is expected to be for 1,500+ vehicles with a total program value exceeding Rs 50,000 crore.</p>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>The FICV program aims to replace 1,500+ BMP-2s with a modern, indigenous infantry combat vehicle featuring enhanced protection, firepower, and network-centric capability. Under the IDDM category, it represents a major step toward self-reliance in mechanized infantry platforms.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 13: Protected Vehicles -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 13</div>
+            <div class="chapter-title">Protected Vehicles &mdash; Mine-Resistant Platforms</div>
+            <div class="chapter-subtitle">MRAP &amp; Counter-IED Vehicles for Force Protection</div>
+            <div class="chapter-divider"></div>
+
+            <p>The proliferation of improvised explosive devices (IEDs) and mine threats in counter-insurgency and counter-terrorism operations has driven the Indian Army to acquire specialized mine-resistant vehicles. These platforms provide vital force protection for troops operating in threat-dense environments.</p>
+
+            <h3>Indian MRAP Fleet</h3>
+            <p>The Indian Army operates several mine-resistant platforms:</p>
+            <ul>
+                <li><strong>CAT/APC (Mine Protected Vehicle):</strong> Indigenous development by BEML with V-shaped hull for blast deflection</li>
+                <li><strong>Tata Kestrel:</strong> 8x8 wheeled IFV/APC with modular armor, 15 units in service with 9 on order</li>
+                <li><strong>Mahindra Marksman:</strong> Light armored vehicle for patrol and convoy protection</li>
+                <li><strong>Aditya MPV:</strong> Mine-protected vehicle based on Tatra chassis</li>
+            </ul>
+
+            <h3>Design Philosophy</h3>
+            <p>Indian MRAP vehicles incorporate:</p>
+            <ul>
+                <li><strong>V-Shaped Hull:</strong> Deflects blast energy away from crew compartment</li>
+                <li><strong>Composite Armor:</strong> Multi-layered protection against small arms and shrapnel</li>
+                <li><strong>Suspended Seats:</strong> Blast-attenuating seats for crew and passengers</li>
+                <li><strong>Run-Flat Tires:</strong> Continued mobility after tire damage</li>
+                <li><strong>Central Tire Inflation:</strong> Adjustable pressure for different terrain types</li>
+            </ul>
+
+            <h3>Future Requirements</h3>
+            <p>The Indian Army is exploring next-generation protected vehicles with enhanced protection against larger IEDs, integrated electronic warfare systems for jamming remote-controlled IEDs, and autonomous convoy capability for reduced personnel exposure.</p>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>Indian Army protected vehicles including the CAT, Tata Kestrel, and Mahindra Marksman provide essential force protection against mines and IEDs. With V-shaped hulls, composite armor, and blast-attenuating systems, these platforms safeguard troops in counter-insurgency and convoy protection operations.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 14: Bridging Equipment -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 14</div>
+            <div class="chapter-title">Bridging Equipment &amp; Combat Engineering</div>
+            <div class="chapter-subtitle">Kartik BLT, DRDO Sarvatra &amp; Mobile Bridging Systems</div>
+            <div class="chapter-divider"></div>
+
+            <p>Combat engineering and bridging equipment are essential enablers for Indian Army offensive operations, allowing armored and mechanized forces to cross rivers, canals, and obstacles. India has developed several indigenous bridging systems to meet its unique operational requirements across diverse riverine terrain.</p>
+
+            <h3>Cartik Armoured Vehicle Launched Bridge (BLT)</h3>
+            <p>The Kartik BLT is based on the Vijayanta tank chassis, carrying a 20-meter bridge with Military Load Classification (MLC) Class 60. This system can bridge gaps up to 20 meters wide while supporting the weight of main battle tanks crossing water obstacles and trenches.</p>
+
+            <h3>DRDO Sarvatra Bridging System</h3>
+            <p>The Sarvatra is a truck-mounted, multi-span mobile bridging system manufactured by BEML. Mounted on 8x8 high-mobility vehicles, the system can create bridge spans across water obstacles and dry gaps. The Indian Army operates approximately 50 Sarvatra systems for rapid bridge deployment in operational areas.</p>
+
+            <h3>L&amp;T Modular Bridge</h3>
+            <p>The L&T Modular Bridge is a truck-mounted, single-span mobile bridging system capable of spanning 46 meters. Each set consists of 7 carrier vehicles based on 8x8 HMVs and 2 launcher vehicles based on 10x10 HMVs. The system was developed by DRDO and manufactured by L&amp;T, with 41 sets on order for the Indian Army.</p>
+
+            <h3>Additional Engineering Assets</h3>
+            <ul>
+                <li><strong>Armoured Recovery Vehicles (ARV):</strong> VT-72B and T-80-based ARVs for battlefield recovery</li>
+                <li><strong>Dozers:</strong> T-72 and T-90 based dozer variants for obstacle breaching</li>
+                <li><strong>Excavators:</strong> BEML excavators for field fortification and construction</li>
+            </ul>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>Indian Army bridging equipment including the Kartik BLT, DRDO Sarvatra, and L&amp;T Modular Bridge systems provide essential gap-crossing capability for armored formations. These systems enable rapid deployment of 20-46 meter bridges supporting MLC 60+ loads.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 15: Army Aviation Corps -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 15</div>
+            <div class="chapter-title">Army Aviation Corps</div>
+            <div class="chapter-subtitle">Rudra, Prachand &mdash; Rotary Wing Combat Power</div>
+            <div class="chapter-divider"></div>
+
+            <p>The Indian Army Aviation Corps provides integral aviation support to ground formations, conducting attack helicopter operations, reconnaissance, casualty evacuation, and logistical support. The corps has undergone significant expansion with the induction of indigenous platforms including the HAL Rudra and Light Combat Helicopter (LCH) Prachand.</p>
+
+            <h3>HAL Rudra (ALH WSI)</h3>
+            <p>The Rudra is the Weapon System Integrated variant of the HAL Dhruv Advanced Light Helicopter, serving as India's first indigenously produced armed helicopter. Inducted from 2013, the Rudra features:</p>
+            <ul>
+                <li><strong>Armament:</strong> 20mm turret gun, 70mm rocket pods, Helina anti-tank missiles</li>
+                <li><strong>Capacity:</strong> Up to 8 Helina ATGMs or 4 Mistral air-to-air missiles</li>
+                <li><strong>Engine:</strong> Twin HAL/Turbomeca Shakti turboshaft engines</li>
+                <li><strong>Speed:</strong> 270 km/h (max continuous), 300 km/h (never exceed)</li>
+                <li><strong>Range:</strong> 660 km</li>
+                <li><strong>Fleet:</strong> 75+ units in Army service, 14-16 in IAF</li>
+            </ul>
+
+            <h3>HAL LCH Prachand</h3>
+            <p>The Prachand (meaning "Fierce") is India's first indigenous light combat helicopter, specifically designed for high-altitude warfare. Inducted into IAF in October 2022 and Army in 2023, it features:</p>
+            <ul>
+                <li><strong>Operational Altitude:</strong> Can operate from bases above 5,000 meters (16,400 ft), including Siachen region</li>
+                <li><strong>Armament:</strong> 20mm turret gun, air-to-air missiles, anti-tank guided missiles, 70mm rockets</li>
+                <li><strong>Weight:</strong> 5,800 kg (max take-off)</li>
+                <li><strong>Speed:</strong> 268 km/h</li>
+                <li><strong>Range:</strong> 550 km</li>
+                <li><strong>Order:</strong> 114 (Army) + 62 (IAF) = 176 total</li>
+            </ul>
+
+            <h3>Fleet Composition</h3>
+            <p>The Army Aviation Corps operates multiple helicopter types across numerous squadrons:</p>
+            <ul>
+                <li><strong>Dhruv Utility:</strong> Multiple squadrons for logistics, CASEVAC, and VIP transport</li>
+                <li><strong>Rudra ALH-WSI:</strong> Armed squadrons for close air support and anti-tank operations</li>
+                <li><strong>Prachand LCH:</strong> High-altitude attack squadrons (351 squadron at Missamari)</li>
+                <li><strong>AH-64E Apache:</strong> 6 units for heavy attack operations (451 squadron at Jodhpur)</li>
+                <li><strong>Cheetah/Chetak:</strong> Legacy utility helicopters for high-altitude logistics</li>
+            </ul>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>The Army Aviation Corps operates a growing fleet of indigenous Rudra and Prachand helicopters alongside Apache heavy attack helicopters. With 101+ attack helicopters planned and high-altitude capability through Prachand, the corps provides integral aviation combat power to ground formations across all terrains.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 16: Air Defence Systems -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 16</div>
+            <div class="chapter-title">Air Defence Systems</div>
+            <div class="chapter-subtitle">Akash, L70, ZU-23 &mdash; Multi-Layered Air Defence</div>
+            <div class="chapter-divider"></div>
+
+            <p>Indian Army air defence provides multi-layered protection against aerial threats including aircraft, cruise missiles, drones, and helicopters. The system ranges from short-range gun-based systems to medium-range surface-to-air missile systems, creating a comprehensive air defence umbrella.</p>
+
+            <h3>Akash Surface-to-Air Missile System</h3>
+            <div class="key-facts">
+                <div class="key-facts-title">Akash Specifications</div>
+                <div class="key-facts-grid">
+                    <div class="key-fact-item"><span class="key-fact-label">Range:</span><span class="key-fact-value">4.5 - 25 km</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Altitude:</span><span class="key-fact-value">100m - 20 km</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Speed:</span><span class="key-fact-value">Mach 2.8 - 3.5</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Weight:</span><span class="key-fact-value">720 kg</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Guidance:</span><span class="key-fact-value">Command Guidance + Ramjet</span></div>
+                    <div class="key-fact-item"><span class="key-fact-label">Coverage:</span><span class="key-fact-value">2,000 km² per battery</span></div>
+                </div>
+            </div>
+            <p>The Akash is a medium-range, mobile surface-to-air missile system developed by DRDO. The system can simultaneously engage multiple targets in group or autonomous mode with built-in ECCM features. The upgraded Akash Prime variant was successfully tested at 15,000 ft altitude in Ladakh in July 2025. India has exported the Akash to Armenia, with the first battery delivered in November 2024.</p>
+
+            <h3>L70 40mm Anti-Aircraft Gun</h3>
+            <p>The L70 is a Swedish Bofors-origin 40mm anti-aircraft gun that has been extensively upgraded with modern fire control systems. India has inducted over <strong>1,000 L70 guns</strong>, making it the most widely used air defence gun in the armed forces. The upgraded L70 features:</p>
+            <ul>
+                <li>Electro-Optical Fire Control System with auto-tracking</li>
+                <li>X-band radar for autonomous drone detection and tracking</li>
+                <li>Video tracking for visual target confirmation</li>
+                <li>Firing rate of 240-330 rounds/minute with 4 km effective range</li>
+            </ul>
+
+            <h3>ZU-23 Twin-Barrel 23mm Gun</h3>
+            <p>The Soviet-origin ZU-23-2 is a towed twin 23mm anti-aircraft gun providing close-range air defence. With an effective range of 2.5 km against air targets and 2 km against ground targets, it is frequently used to shield static installations against low-flying threats including drones.</p>
+
+            <h3>ZSU-23-4 Schilka</h3>
+            <p>The radar-guided Schilka with four 23mm cannons provides mobile air defence for armored formations. Modernized variants incorporate advanced fire-control systems and proximity-fuse ammunition, with a firing rate of 4,000 rounds/minute against drones, helicopters, and light armor.</p>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>Indian Army air defence spans multiple layers: Akash SAM (25 km), L70 40mm guns (1,000+ units), ZU-23 23mm guns, and modernized Schilka systems. This multi-tiered architecture provides protection against aircraft, cruise missiles, and the growing drone threat across all operational theaters.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 17: C4ISR Systems -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 17</div>
+            <div class="chapter-title">Communication &amp; C4ISR Systems</div>
+            <div class="chapter-subtitle">Command, Control, Communications, Computers, Intelligence, Surveillance &amp; Reconnaissance</div>
+            <div class="chapter-divider"></div>
+
+            <p>C4ISR systems form the nervous system of the Indian Army, enabling real-time command and control, intelligence gathering, and battlefield situational awareness. The Indian Army has invested significantly in modernizing its C4ISR architecture to support network-centric warfare capabilities.</p>
+
+            <h3>Communication Systems</h3>
+            <p>The Indian Army operates a layered communication architecture:</p>
+            <ul>
+                <li><strong>Tactical Radios:</strong> Software-defined radios (SDRs) providing secure, jam-resistant voice and data communications</li>
+                <li><strong>Satellite Communication:</strong> GSAT-series military satellites providing beyond-line-of-sight connectivity</li>
+                <li><strong>Battlefield Management System:</strong> Integrated digital system for real-time tracking of friendly forces</li>
+                <li><strong>Troposcatter:</strong> Long-range communication systems for terrain-masked areas</li>
+            </ul>
+
+            <h3>Surveillance &amp; Reconnaissance</h3>
+            <ul>
+                <li><strong>Swathi Weapon Locating Radar:</strong> Indian-developed WLR for counter-battery fire detection, deployed along borders</li>
+                <li><strong>Battlefield Surveillance Radars:</strong> Portable X-band and L-band radars for ground surveillance</li>
+                <li><strong>EO Nodes:</strong> DRDO's Electro-Optical nodes for border surveillance with thermal imaging</li>
+                <li><strong>Heron UAVs:</strong> Medium-altitude long-endurance drones for persistent ISR</li>
+            </ul>
+
+            <h3>Digital Battlefield Management</h3>
+            <p>The Indian Army is developing an integrated Battlefield Management System (BMS) that will connect all combat platforms, command posts, and support elements in a unified digital network. This system will enable real-time sharing of targeting data, friendly force locations, and threat information across the tactical battlefield.</p>
+
+            <h3>Integration Challenges</h3>
+            <p>Key challenges include ensuring interoperability between legacy Soviet-origin systems and modern digital platforms, maintaining communication security against electronic warfare threats, and providing reliable connectivity in the extreme terrain of high-altitude areas like Ladakh and Siachen.</p>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>Indian Army C4ISR encompasses tactical radios, satellite communications, weapon locating radars, EO surveillance nodes, and developing Battlefield Management Systems. These systems provide the digital backbone for network-centric warfare and real-time battlefield situational awareness.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 18: Night Vision & Thermal -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 18</div>
+            <div class="chapter-title">Night Vision &amp; Thermal Imaging</div>
+            <div class="chapter-subtitle">Electro-Optical Systems &mdash; Seeing Through the Darkness</div>
+            <div class="chapter-divider"></div>
+
+            <p>Night vision and thermal imaging systems provide the Indian Army with 24-hour operational capability, enabling effective combat operations during darkness, adverse weather, and obscured visibility conditions. India has invested heavily in both imported and indigenous electro-optical systems.</p>
+
+            <h3>Thermal Imaging Systems</h3>
+            <p>Indian Army thermal imaging platforms include:</p>
+            <ul>
+                <li><strong>TIFCS (Thermal Imaging Fire Control System):</strong> Indo-Israeli system being fitted to T-72 tanks, 96 units completed as of February 2026</li>
+                <li><strong>Catherine Thermal Imagers:</strong> French Thales-origin thermal sights on T-90S Bhishma tanks</li>
+                <li><strong>DRDO EO Node:</strong> Border surveillance thermal imaging towers</li>
+                <li><strong>BEL IPSS:</strong> Integrated Perimeter Security System for camps and border posts</li>
+            </ul>
+
+            <h3>Night Vision Devices</h3>
+            <p>Individual and vehicle-mounted night vision capabilities:</p>
+            <ul>
+                <li><strong>MKU Night Vision Sights:</strong> Gen-3 image intensifier sights for SIG 716 assault rifles, Rs 659 crore contract signed in 2025, enabling engagement up to 500 meters in starlit conditions</li>
+                <li><strong>NETRO NB-3101 NVGs:</strong> Generation-3 night vision goggles for IAF pilots on LCH Prachand and LUH platforms</li>
+                <li><strong>Vehicle Sights:</strong> Thermal and image-intensifier sights for tank commanders, gunners, and drivers</li>
+                <li><strong>Weapon-Mounted Sights:</strong> Clip-on thermal imagers for infantry weapons</li>
+            </ul>
+
+            <h3>Future Development</h3>
+            <p>DRDO and Indian industry are developing next-generation fused night vision systems that combine image intensification with thermal imaging, providing enhanced situational awareness. Integration with augmented reality headsets and digital command systems will create soldier-level network-centric warfare capability.</p>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>Indian Army night vision and thermal imaging encompasses vehicle-mounted TIFCS for tanks, individual Gen-3 NVDs for infantry, border surveillance EO nodes, and developing fused vision systems. These provide 24-hour operational capability across all platforms and terrains.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 19: Comparison Tables & ASCII Diagrams -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 19</div>
+            <div class="chapter-title">Vehicle Comparison Tables &amp; ASCII Diagrams</div>
+            <div class="chapter-subtitle">Technical Comparison of Indian Army's Major Ground Platforms</div>
+            <div class="chapter-divider"></div>
+
+            <h3>Main Battle Tank Comparison</h3>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Specification</th>
+                            <th>T-90S Bhishma</th>
+                            <th>Arjun MK1</th>
+                            <th>Arjun MK1A</th>
+                            <th>T-72 Ajeya</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Weight</td><td>46.5 t</td><td>58.5 t</td><td>68 t</td><td>43 t</td></tr>
+                        <tr><td>Crew</td><td>3</td><td>4</td><td>4</td><td>3</td></tr>
+                        <tr><td>Engine</td><td>V-92S2, 1,000 HP</td><td>MTU, 1,400 HP</td><td>MTU/DATRAN, 1,400/1,500 HP</td><td>V-46, 780 HP (1,000 HP upgraded)</td></tr>
+                        <tr><td>Power/Weight</td><td>21.5 HP/t</td><td>24 HP/t</td><td>20.6 HP/t</td><td>19 HP/t (23 upgraded)</td></tr>
+                        <tr><td>Max Speed</td><td>60 km/h</td><td>70 km/h</td><td>58 km/h</td><td>60 km/h</td></tr>
+                        <tr><td>Main Gun</td><td>125mm Smoothbore</td><td>120mm Rifled</td><td>120mm Rifled</td><td>125mm Smoothbore</td></tr>
+                        <tr><td>Autoloader</td><td>Yes</td><td>No</td><td>No</td><td>Yes</td></tr>
+                        <tr><td>Ammunition</td><td>42 rds</td><td>39 rds</td><td>39 rds</td><td>44 rds</td></tr>
+                        <tr><td>ATGM Capable</td><td>Yes (Refleks)</td><td>No</td><td>No</td><td>No</td></tr>
+                        <tr><td>ERA</td><td>Kontakt-5</td><td>No</td><td>ERA MK-II</td><td>Kontakt (Mk2)</td></tr>
+                        <tr><td>Armor</td><td>Composite + ERA</td><td>Kanchan Composite</td><td>Improved Kanchan + ERA</td><td>Composite (upgraded)</td></tr>
+                        <tr><td>Units</td><td>~2,078</td><td>124</td><td>118 on order</td><td>~2,410</td></tr>
+                        <tr><td>Origin</td><td>Russia (license-built)</td><td>India (DRDO)</td><td>India (DRDO)</td><td>USSR (license-built)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Artillery System Comparison</h3>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Specification</th>
+                            <th>K9 Vajra-T</th>
+                            <th>Dhanush</th>
+                            <th>ATAGS Amogh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Type</td><td>Tracked SP Howitzer</td><td>Towed Howitzer</td><td>Towed Howitzer</td></tr>
+                        <tr><td>Caliber</td><td>155mm/52 cal</td><td>155mm/45 cal</td><td>155mm/52 cal</td></tr>
+                        <tr><td>Range</td><td>40-50 km</td><td>30-40 km</td><td>48-70 km</td></tr>
+                        <tr><td>Rate of Fire</td><td>6-8 rds/min</td><td>5 rds/min (burst)</td><td>5 rds in 62 sec</td></tr>
+                        <tr><td>Crew</td><td>5</td><td>6-8</td><td>6-8</td></tr>
+                        <tr><td>Weight</td><td>47 t</td><td>13.2 t</td><td>~18 t</td></tr>
+                        <tr><td>Drive</td><td>1,000 HP Diesel</td><td>Towed</td><td>All-Electric</td></tr>
+                        <tr><td>Shoot &amp; Scoot</td><td>Yes (&lt;60 sec)</td><td>No</td><td>No</td></tr>
+                        <tr><td>Chamber Volume</td><td>23 L</td><td>23 L</td><td>25 L</td></tr>
+                        <tr><td>Deployed/Ordered</td><td>200 units</td><td>114 + 300 on order</td><td>307 on order</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Army Aviation Comparison</h3>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Specification</th>
+                            <th>HAL Rudra</th>
+                            <th>LCH Prachand</th>
+                            <th>AH-64E Apache</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Type</td><td>Armed Utility</td><td>Light Combat</td><td>Attack</td></tr>
+                        <tr><td>Max TOW</td><td>5,500 kg</td><td>5,800 kg</td><td>10,433 kg</td></tr>
+                        <tr><td>Speed</td><td>270 km/h</td><td>268 km/h</td><td>296 km/h</td></tr>
+                        <tr><td>Range</td><td>660 km</td><td>550 km</td><td>476 km</td></tr>
+                        <tr><td>Ceiling</td><td>20,000 ft</td><td>21,300 ft</td><td>21,000 ft</td></tr>
+                        <tr><td>Main Gun</td><td>20mm Turret</td><td>20mm Turret</td><td>30mm Chain Gun</td></tr>
+                        <tr><td>ATGM</td><td>Helina (8)</td><td>Helina/Dhruvastra</td><td>Hellfire (16)</td></tr>
+                        <tr><td>AAM</td><td>Mistral (4)</td><td>Mistral</td><td>Stinger (4)</td></tr>
+                        <tr><td>High-Alt Optimized</td><td>No</td><td>Yes (5,000m+)</td><td>No</td></tr>
+                        <tr><td>Fleet (Army)</td><td>75+</td><td>114 on order</td><td>6</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ascii-diagram">
+                <div class="ascii-label">Indian Army Ground Warfare Order of Battle (Simplified)</div>
+<pre>
+╔══════════════════════════════════════════════════════════════════╗
+║              INDIAN ARMY GROUND WARFARE ARSENAL                 ║
+╠══════════════════════════════════════════════════════════════════╣
+║                                                                  ║
+║  ARMORED CORPS (4,600+ MBTs)                                     ║
+║  ├── T-90S Bhishma .............. 2,078 units  [PRIMARY MBT]     ║
+║  ├── T-72 Ajeya .................. 2,410 units  [BEING UPGRADED] ║
+║  ├── Arjun MK1 .................... 124 units  [INDIGENOUS]       ║
+║  └── Arjun MK1A .................. 118 on order [72 UPGRADES]     ║
+║                                                                  ║
+║  MECHANIZED INFANTRY (1,900+ ICVs)                                ║
+║  ├── BMP-2 Sarath ............... 1,900+ units [WORKHORSE]       ║
+║  └── FICV ........................... TBD [FUTURE REPLACEMENT]    ║
+║                                                                  ║
+║  ARTILLERY (1,55mm STANDARDIZATION)                               ║
+║  ├── K9 Vajra-T (SP) ........... 200 units  [400 PLANNED]       ║
+║  ├── Dhanush (Towed) ........... 114 units  [414 PLANNED]       ║
+║  ├── ATAGS Amogh (Towed) ...... 307 on order [WORLD RECORD]      ║
+║  └── M777 (Ultra-Light) ........ 145 units  [HIGH ALTITUDE]      ║
+║                                                                  ║
+║  ANTI-TANK SYSTEMS                                                ║
+║  ├── NAMICA + Nag ATGM ......... 13 + 107 Mk2 on order           ║
+║  └── Helina (Air-launched) ..... On Rudra &amp; Prachand              ║
+║                                                                  ║
+║  ARMY AVIATION (199 ATTACK HELICOPTERS PLANNED)                   ║
+║  ├── Prachand LCH .............. 114 on order [HIGH ALT]          ║
+║  ├── Rudra ALH-WSI ............. 75+ units  [ARMED UTILITY]      ║
+║  └── AH-64E Apache .............. 6 units    [HEAVY ATTACK]       ║
+║                                                                  ║
+║  AIR DEFENCE                                                      ║
+║  ├── Akash SAM .................. Multiple batteries [25 KM]      ║
+║  ├── L70 40mm .................. 1,000+ guns [DRONE DEFENCE]      ║
+║  └── ZU-23 23mm ................. Multiple units [CLOSE RANGE]    ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+</pre>
+            </div>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>The comparison tables and diagrams provide a comprehensive technical overview of India's ground warfare platforms, from MBTs to artillery, aviation, and air defence. The ASCII order-of-battle diagram illustrates the scale and diversity of the Indian Army's ground arsenal.</p>
+            </div>
+        </div>
+
+        <!-- CHAPTER 20: Summary & Future -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 20</div>
+            <div class="chapter-title">Summary &amp; Future of Indian Army Ground Systems</div>
+            <div class="chapter-subtitle">The Road to Atmanirbhar Bharat in Ground Warfare</div>
+            <div class="chapter-divider"></div>
+
+            <p>The Indian Army's ground warfare arsenal stands at a pivotal juncture, balancing the modernization of legacy platforms with the induction of next-generation indigenous systems. This chapter synthesizes the current state and charts the future trajectory of Indian ground combat capability.</p>
+
+            <h3>Current Force Summary</h3>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Platform</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>MBT</td><td>T-90S Bhishma</td><td>~2,078</td><td>Primary, being overhauled</td></tr>
+                        <tr><td>MBT</td><td>T-72 Ajeya</td><td>~2,410</td><td>Upgrading to 1,000 HP engine</td></tr>
+                        <tr><td>MBT</td><td>Arjun MK1/MK1A</td><td>124 + 118</td><td>MK1A entering production</td></tr>
+                        <tr><td>ICV</td><td>BMP-2 Sarath</td><td>1,900+</td><td>Being replaced by FICV</td></tr>
+                        <tr><td>SPG</td><td>K9 Vajra-T</td><td>200</td><td>Expanding to 400</td></tr>
+                        <tr><td>Towed</td><td>Dhanush</td><td>114</td><td>Expanding to 414</td></tr>
+                        <tr><td>Towed</td><td>ATAGS Amogh</td><td>0</td><td>307 on order (2027)</td></tr>
+                        <tr><td>Towed</td><td>M777</td><td>145</td><td>Operational</td></tr>
+                        <tr><td>ATGM</td><td>NAMICA + Nag</td><td>13</td><td>107 + 2,408 missiles ordered</td></tr>
+                        <tr><td>Helo</td><td>Prachand LCH</td><td>~10</td><td>114 on order (Army)</td></tr>
+                        <tr><td>Helo</td><td>Rudra ALH-WSI</td><td>75+</td><td>Operational</td></tr>
+                        <tr><td>Helo</td><td>AH-64E Apache</td><td>6</td><td>Operational</td></tr>
+                        <tr><td>SAM</td><td>Akash</td><td>Multiple</td><td>Being upgraded to Akash Prime</td></tr>
+                        <tr><td>AA Gun</td><td>L70</td><td>1,000+</td><td>Upgraded with EO fire control</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Key Modernization Programs</h3>
+            <ul>
+                <li><strong>Future Ready Combat Vehicle (FRCV):</strong> Next-generation MBT to replace T-72 fleet from 2030, targeting 1,770 units to serve for 35-45 years</li>
+                <li><strong>Futuristic Infantry Combat Vehicle (FICV):</strong> 1,500+ units to replace BMP-2, under Indian IDDM category</li>
+                <li><strong>FMBT (Future Main Battle Tank):</strong> Further development of Arjun platform with &lt;55 tonne target, 120mm smoothbore, DATRAN 1,500 HP engine, and active protection systems</li>
+                <li><strong>Zorawar Light Tank:</strong> 25-tonne light tank for high-altitude operations, 354 units planned, joint DRDO-L&T development</li>
+                <li><strong>Project Rhino (T-72 Upgrade):</strong> New 1,000 HP engines, thermal imaging FCS, ERA protection for extended service life to 2040</li>
+                <li><strong>Towed Gun System (TGS):</strong> 400-1,200 units as eventual mainstay towed artillery</li>
+            </ul>
+
+            <h3>Atmanirbhar Bharat Impact</h3>
+            <p>The self-reliance initiative has transformed Indian defence manufacturing:</p>
+            <ul>
+                <li><strong>Indigenous Production:</strong> Over 1,000 T-90 tanks manufactured at HVF Avadi</li>
+                <li><strong>Private Sector Entry:</strong> Bharat Forge, Tata Advanced Systems, and L&amp;T producing artillery and armored vehicles</li>
+                <li><strong>Engine Development:</strong> DATRAN 1,500 HP indigenous engine replacing foreign powerplants</li>
+                <li><strong>Missile Systems:</strong> Nag, Helina, Akash all indigenous designs</li>
+                <li><strong>Night Vision:</strong> MKU and BEL producing Gen-3 NVDs domestically</li>
+            </ul>
+
+            <h3>Strategic Implications</h3>
+            <p>The modernization of India's ground warfare arsenal addresses several strategic imperatives:</p>
+            <ul>
+                <li><strong>Two-Front Preparedness:</strong> Maintaining capability against both Pakistan and China</li>
+                <li><strong>High-Altitude Warfare:</strong> Zorawar light tank and Prachand LCH for Ladakh/Siachen</li>
+                <li><strong>Desert Warfare:</strong> K9 Vajra-T and upgraded T-72s for Rajasthan sector</li>
+                <li><strong>Counter-Insurgency:</strong> Protected vehicles and night vision for internal security</li>
+                <li><strong>Drone Defence:</strong> Upgraded L70 guns and integrated counter-UAS systems</li>
+            </ul>
+
+            <h3>Challenges Ahead</h3>
+            <ul>
+                <li><strong>Engine Self-Reliance:</strong> Completing transition to indigenous DATRAN engines</li>
+                <li><strong>Weight Management:</strong> Arjun platform remains heavy for certain operational theaters</li>
+                <li><strong>Integration:</strong> Ensuring interoperability between diverse platform generations</li>
+                <li><strong>Budget:</strong> Funding modernization while maintaining operational readiness</li>
+                <li><strong>Timeline:</strong> Accelerating induction schedules to match evolving threats</li>
+            </ul>
+
+            <div class="chapter-summary">
+                <div class="chapter-summary-title">Chapter Summary</div>
+                <p>India's ground warfare arsenal is undergoing its most comprehensive transformation since independence. With over 4,600 MBTs, 1,900+ ICVs, modern artillery including K9 Vajra-T and ATAGS, growing attack helicopter fleets, and multi-layered air defence, the Indian Army maintains one of the world's most capable ground forces. The shift toward indigenous platforms under Atmanirbhar Bharat ensures long-term self-reliance while maintaining combat readiness against evolving threats.</p>
+            </div>
+        </div>
+
+        <!-- DOWNLOAD BUTTON -->
+        <button class="download-btn" onclick="window.print()">&#128438; Download / Print Book (PDF)</button>
+
+        <!-- FOOTER -->
+        <div class="book-footer">
+            <p><strong>ARMORED VEHICLES &amp; WEAPONS</strong> &mdash; Indian Army's Ground Warfare Arsenal</p>
+            <p>MissileX RocketSpace Research &bull; 2026 Edition</p>
+            <p style="margin-top: 10px; color: var(--text-muted);">This document is for educational and reference purposes. All specifications are based on publicly available information.</p>
+        </div>
+
+    </div>
+</body>
+</html>

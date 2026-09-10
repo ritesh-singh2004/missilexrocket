@@ -1,0 +1,1142 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Launch Vehicles & Satellites - India's Space Transportation & Orbital Infrastructure</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy-light:#0f1f3a;--navy-lighter:#152744;--orange:#ff6b00;--orange-dark:#e55a00;--orange-light:#ff8533;--text-primary:#e8ecf1;--text-secondary:#9aa5b4;--text-muted:#6b7a8d;--border-color:#1e3350;--card-bg:#0d1a2f;--success:#00c853;--info:#2196f3}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--navy);color:var(--text-primary);line-height:1.7;font-size:16px}
+.header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 50%,#0d2040 100%);border-bottom:3px solid var(--orange);padding:30px 0;text-align:center;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 20% 50%,rgba(255,107,0,.08) 0%,transparent 50%),radial-gradient(circle at 80% 50%,rgba(255,107,0,.05) 0%,transparent 50%)}
+.header-content{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 20px}
+.header h1{font-size:2.2em;font-weight:900;color:#fff;letter-spacing:-.5px;margin-bottom:8px}
+.header h1 span{color:var(--orange)}
+.header .subtitle{font-size:1.1em;color:var(--text-secondary);font-weight:400;margin-bottom:15px}
+.header .author{font-size:.9em;color:var(--orange);font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.nav-bar{background:var(--navy-light);border-bottom:1px solid var(--border-color);padding:12px 0;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+.nav-links a{color:var(--text-secondary);text-decoration:none;font-size:.75em;padding:4px 10px;border-radius:4px;transition:all .2s;white-space:nowrap}
+.nav-links a:hover{background:var(--orange);color:#fff}
+.download-btn{background:var(--orange);color:#fff;border:none;padding:8px 20px;border-radius:6px;font-family:'Inter',sans-serif;font-size:.85em;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
+.download-btn:hover{background:var(--orange-dark);transform:translateY(-1px)}
+.main-content{max-width:900px;margin:0 auto;padding:40px 20px}
+.chapter{margin-bottom:60px;page-break-after:always;padding-bottom:40px;border-bottom:1px solid var(--border-color)}
+.chapter:last-child{border-bottom:none}
+.chapter-number{display:inline-block;background:var(--orange);color:#fff;font-size:.75em;font-weight:700;padding:4px 14px;border-radius:4px;margin-bottom:12px;letter-spacing:1px;text-transform:uppercase}
+.chapter h2{font-size:1.8em;font-weight:800;color:#fff;margin-bottom:20px;line-height:1.3}
+.chapter h3{font-size:1.3em;font-weight:700;color:var(--orange);margin:30px 0 12px 0;padding-bottom:6px;border-bottom:2px solid var(--border-color)}
+.chapter h4{font-size:1.05em;font-weight:600;color:var(--text-primary);margin:20px 0 8px 0}
+.chapter p{margin-bottom:14px;color:var(--text-secondary)}
+.key-fact{background:linear-gradient(135deg,var(--navy-lighter) 0%,var(--navy-light) 100%);border-left:4px solid var(--orange);border-radius:0 8px 8px 0;padding:18px 22px;margin:20px 0}
+.key-fact h4{color:var(--orange);font-size:.85em;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;border:none;padding:0}
+.key-fact ul{list-style:none;padding:0}
+.key-fact li{padding:4px 0;color:var(--text-primary);font-size:.95em}
+.key-fact li::before{content:'▸ ';color:var(--orange);font-weight:bold}
+.spec-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.9em;border-radius:8px;overflow:hidden;border:1px solid var(--border-color)}
+.spec-table thead{background:var(--orange);color:#fff}
+.spec-table th{padding:12px 16px;text-align:left;font-weight:600;font-size:.9em}
+.spec-table td{padding:10px 16px;border-bottom:1px solid var(--border-color);color:var(--text-primary)}
+.spec-table tbody tr:nth-child(even){background:var(--navy-lighter)}
+.spec-table tbody tr:hover{background:rgba(255,107,0,.08)}
+.comparison-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.82em;border-radius:8px;overflow:hidden;border:1px solid var(--border-color)}
+.comparison-table thead{background:var(--orange);color:#fff}
+.comparison-table th{padding:10px 12px;text-align:center;font-weight:600}
+.comparison-table td{padding:8px 12px;border-bottom:1px solid var(--border-color);text-align:center;color:var(--text-primary)}
+.comparison-table tbody tr:nth-child(even){background:var(--navy-lighter)}
+.comparison-table tbody td:first-child{text-align:left;font-weight:500;color:var(--orange)}
+.ascii-diagram{background:var(--navy-lighter);border:1px solid var(--border-color);border-radius:8px;padding:20px;margin:20px 0;overflow-x:auto}
+.ascii-diagram pre{font-family:'Courier New',monospace;font-size:.8em;line-height:1.5;color:var(--orange);white-space:pre;margin:0}
+.ascii-diagram .caption{text-align:center;color:var(--text-muted);font-size:.8em;margin-top:10px;font-style:italic}
+.chapter-summary{background:linear-gradient(135deg,rgba(255,107,0,.1) 0%,rgba(255,107,0,.03) 100%);border:1px solid rgba(255,107,0,.2);border-radius:8px;padding:20px 24px;margin:30px 0}
+.chapter-summary h4{color:var(--orange);font-size:.85em;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+.chapter-summary p{color:var(--text-primary);margin-bottom:6px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:20px 0}
+.stat-card{background:var(--navy-lighter);border:1px solid var(--border-color);border-radius:8px;padding:20px;text-align:center}
+.stat-card .stat-number{font-size:2em;font-weight:800;color:var(--orange)}
+.stat-card .stat-label{font-size:.8em;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.toc{background:var(--card-bg);border:1px solid var(--border-color);border-radius:8px;padding:30px;margin:30px 0}
+.toc h3{color:var(--orange);font-size:1.1em;margin-bottom:16px;border:none;padding:0}
+.toc ol{padding-left:20px}
+.toc li{padding:6px 0;color:var(--text-secondary);font-size:.95em}
+.toc a{color:var(--text-secondary);text-decoration:none;transition:color .2s}
+.toc a:hover{color:var(--orange)}
+.footer{background:var(--navy-light);border-top:3px solid var(--orange);padding:30px 20px;text-align:center;margin-top:60px}
+.footer p{color:var(--text-muted);font-size:.85em;margin:4px 0}
+.footer .author-footer{color:var(--orange);font-weight:600;font-size:.95em}
+@media print{body{background:#fff;color:#1a1a1a;font-size:11pt}.nav-bar,.download-btn{display:none!important}.header{background:#fff;border-bottom:3px solid var(--orange);padding:20px 0}.header h1,.header h2{color:#1a1a1a}.header h1 span{color:var(--orange)}.header .subtitle{color:#555}.chapter{page-break-after:always;page-break-inside:avoid;border-bottom:none}.chapter h2{color:#1a1a1a}.chapter h3{color:var(--orange)}.chapter p,.chapter li{color:#333}.key-fact{background:#f8f8f8;border-left:4px solid var(--orange)}.key-fact li{color:#1a1a1a}.spec-table th{background:var(--orange);color:#fff}.spec-table td{color:#333;border-color:#ddd}.spec-table tbody tr:nth-child(even){background:#f5f5f5}.ascii-diagram{background:#f5f5f5;border-color:#ddd}.ascii-diagram pre{color:#333}.chapter-summary{background:#fff8f0;border-color:rgba(255,107,0,.3)}.chapter-summary p{color:#333}.stat-card{background:#f5f5f5;border-color:#ddd}.stat-card .stat-number{color:var(--orange)}.toc{background:#f5f5f5;border-color:#ddd}.footer{background:#f5f5f5;border-top:3px solid var(--orange)}a{color:#333;text-decoration:none}}
+@media(max-width:768px){.header h1{font-size:1.5em}.nav-inner{flex-direction:column;align-items:stretch}.nav-links{justify-content:center}.download-btn{text-align:center}.chapter h2{font-size:1.4em}.stats-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header class="header">
+<div class="header-content">
+<h1>LAUNCH VEHICLES <span>&</span> SATELLITES</h1>
+<p class="subtitle">India's Space Transportation & Orbital Infrastructure</p>
+<p class="author">MissileX RocketSpace Research</p>
+</div>
+</header>
+<nav class="nav-bar">
+<div class="nav-inner">
+<div class="nav-links">
+<a href="#ch1">Ch1</a><a href="#ch2">Ch2</a><a href="#ch3">Ch3</a><a href="#ch4">Ch4</a><a href="#ch5">Ch5</a><a href="#ch6">Ch6</a><a href="#ch7">Ch7</a><a href="#ch8">Ch8</a><a href="#ch9">Ch9</a><a href="#ch10">Ch10</a><a href="#ch11">Ch11</a><a href="#ch12">Ch12</a><a href="#ch13">Ch13</a><a href="#ch14">Ch14</a><a href="#ch15">Ch15</a><a href="#ch16">Ch16</a><a href="#ch17">Ch17</a><a href="#ch18">Ch18</a><a href="#ch19">Ch19</a><a href="#ch20">Ch20</a>
+</div>
+<button class="download-btn" onclick="window.print()">&#11015; Download PDF</button>
+</div>
+</nav>
+<main class="main-content">
+<div class="toc">
+<h3>Table of Contents</h3>
+<ol>
+<li><a href="#ch1">History of Indian Launch Vehicles — SLV-3 to LVM3</a></li>
+<li><a href="#ch2">PSLV — Polar Satellite Launch Vehicle</a></li>
+<li><a href="#ch3">GSLV — Geosynchronous Satellite Launch Vehicle</a></li>
+<li><a href="#ch4">GSLV Mk III / LVM3 — Heavy Lift Vehicle</a></li>
+<li><a href="#ch5">SSLV — Small Satellite Launch Vehicle</a></li>
+<li><a href="#ch6">PSLV Configuration & Stages (Detailed)</a></li>
+<li><a href="#ch7">GSLV Configuration & Stages (Detailed)</a></li>
+<li><a href="#ch8">LVM3 Configuration & Stages (Detailed)</a></li>
+<li><a href="#ch9">Cryogenic Engine Technology (CE-7.5, CE-20)</a></li>
+<li><a href="#ch10">Solid Rocket Motor Technology (HTPB Propellant)</a></li>
+<li><a href="#ch11">Liquid Propulsion — Vikas Engine</a></li>
+<li><a href="#ch12">Communication Satellites (INSAT/GSAT)</a></li>
+<li><a href="#ch13">Remote Sensing Satellites (IRS/Cartosat/RISAT)</a></li>
+<li><a href="#ch14">Navigation Satellites (NavIC/IRNSS)</a></li>
+<li><a href="#ch15">Chandrayaan Missions (1, 2, 3)</a></li>
+<li><a href="#ch16">Mangalyaan — Mars Orbiter Mission</a></li>
+<li><a href="#ch17">Chandrayaan-3 — Vikram Lander & Pragyan Rover</a></li>
+<li><a href="#ch18">Upcoming Missions (Gaganyaan, Shukrayaan)</a></li>
+<li><a href="#ch19">Launch Vehicle Comparison & ASCII Diagrams</a></li>
+<li><a href="#ch20">Summary & Future of Indian Space Programme</a></li>
+</ol>
+</div>
+<!-- Chapter 1 -->
+<section class="chapter" id="ch1">
+<div class="chapter-number">Chapter 1</div>
+<h2>History of Indian Launch Vehicles — SLV-3 to LVM3</h2>
+<p>India's journey into launch vehicle development began in the early 1970s under the visionary leadership of Dr. Vikram Sarabhai and later Dr. A.P.J. Abdul Kalam. From a small sounding rocket launch in 1963, India has built an indigenous family of launch vehicles capable of deploying payloads ranging from micro-satellites to heavy communication satellites and interplanetary probes.</p>
+<div class="key-fact">
+<h4>Key Milestones</h4>
+<ul>
+<li><strong>1963:</strong> First sounding rocket (RH-75) launched from Thumba, Kerala</li>
+<li><strong>1979:</strong> SLV-3 first test flight (partially successful)</li>
+<li><strong>1980:</strong> SLV-3 first successful launch — India became 6th spacefaring nation</li>
+<li><strong>1987:</strong> ASLV first developmental flight</li>
+<li><strong>1993:</strong> PSLV first flight (unsuccessful debut)</li>
+<li><strong>1994:</strong> PSLV first successful launch — beginning of the "Workhorse" era</li>
+<li><strong>2001:</strong> GSLV first developmental flight (D1)</li>
+<li><strong>2014:</strong> LVM3-X/CARE first experimental flight</li>
+<li><strong>2017:</strong> GSLV Mk III-D1 first developmental flight with GSAT-19</li>
+<li><strong>2022:</strong> SSLV first developmental flight</li>
+</ul>
+</div>
+<h3>SLV-3: The Pioneer (1979–1983)</h3>
+<p>Satellite Launch Vehicle-3 (SLV-3) was India's first experimental satellite launch vehicle. It was an all-solid, four-stage vehicle weighing 17 tonnes with a height of 22m, capable of placing 40 kg class payloads into Low Earth Orbit (LEO). The project was conceived and led by Dr. A.P.J. Abdul Kalam, who later became the President of India.</p>
+<p>SLV-3 employed an open-loop guidance system with a stored pitch programme. The first flight on August 10, 1979 was only partially successful. On July 18, 1980, SLV-3 successfully placed Rohini RS-1 into orbit, making India the sixth member of the exclusive club of space-faring nations.</p>
+<h3>ASLV: The Bridge (1987–1994)</h3>
+<p>The Augmented Satellite Launch Vehicle (ASLV) was a low-cost intermediate vehicle built on experience from SLV-3. It demonstrated strap-on technology and was designed to place 150 kg class payloads into LEO. ASLV had five flights between 1987 and 1994.</p>
+<h3>PSLV: The Workhorse (1993–Present)</h3>
+<p>The Polar Satellite Launch Vehicle was the third generation Indian launch vehicle and the first to be equipped with liquid stages. After its unsuccessful debut in September 1993, PSLV emerged as the most reliable and versatile launch vehicle with over 60 missions and an outstanding success rate.</p>
+<h3>GSLV: The Cryogenic Challenge (2001–Present)</h3>
+<p>The Geosynchronous Satellite Launch Vehicle represented India's entry into heavy-lift capability. Initially using Russian cryogenic stages, GSLV faced numerous setbacks before India successfully developed its own indigenous cryogenic engine.</p>
+<h3>LVM3: India's Heavy Lifter (2014–Present)</h3>
+<p>Formerly known as GSLV Mk III, LVM3 is ISRO's heavy-lift launch vehicle with 4,000 kg GTO and 10,000 kg LEO capability. It has completed 7+ successful missions, including Chandrayaan-2 and Chandrayaan-3.</p>
+<h3>SSLV: The Newcomer (2022–Present)</h3>
+<p>The Small Satellite Launch Vehicle caters to the growing demand for small satellite launches at 34m tall with 120t lift-off mass.</p>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>India's launch vehicle programme has evolved from the 40kg-capable SLV-3 to the 4-tonne GTO-capable LVM3 in just four decades. Today, ISRO operates a diverse fleet covering payloads from 10 kg to 10,000 kg.</p>
+</div>
+</section>
+
+<!-- Chapter 2 -->
+<section class="chapter" id="ch2">
+<div class="chapter-number">Chapter 2</div>
+<h2>PSLV — Polar Satellite Launch Vehicle</h2>
+<p>The Polar Satellite Launch Vehicle (PSLV) is India's third-generation launch vehicle and the first to be equipped with liquid stages. After its first successful launch in October 1994, PSLV emerged as the reliable and versatile workhorse of ISRO. It launches satellites into SSPO, LEO, GTO, and deep space missions.</p>
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-number">44.4m</div><div class="stat-label">Height</div></div>
+<div class="stat-card"><div class="stat-number">2.8m</div><div class="stat-label">Diameter</div></div>
+<div class="stat-card"><div class="stat-number">320t</div><div class="stat-label">Lift-off Mass (XL)</div></div>
+<div class="stat-card"><div class="stat-number">4</div><div class="stat-label">Stages</div></div>
+</div>
+<h3>Variants</h3>
+<table class="spec-table">
+<thead><tr><th>Variant</th><th>Strap-ons</th><th>Lift-off Mass</th><th>Payload to SSO</th><th>Payload to GTO</th></tr></thead>
+<tbody>
+<tr><td>PSLV-CA (Core Alone)</td><td>0</td><td>230t</td><td>1,100 kg</td><td>—</td></tr>
+<tr><td>PSLV-DL</td><td>2</td><td>260t</td><td>1,350 kg</td><td>—</td></tr>
+<tr><td>PSLV-QL</td><td>4</td><td>290t</td><td>1,550 kg</td><td>—</td></tr>
+<tr><td>PSLV-XL</td><td>6</td><td>320t</td><td>1,750 kg</td><td>1,425 kg</td></tr>
+</tbody>
+</table>
+<h3>Key Achievements</h3>
+<div class="key-fact">
+<h4>Notable PSLV Missions</h4>
+<ul>
+<li><strong>Chandrayaan-1 (2008):</strong> India's first lunar mission</li>
+<li><strong>Mars Orbiter Mission (2013):</strong> India's first interplanetary mission</li>
+<li><strong>PSLV-C37 (2017):</strong> Record 104 satellites in a single launch</li>
+<li><strong>Aditya-L1 (2023):</strong> India's first solar observation mission</li>
+<li><strong>SPADEX (2024):</strong> Space docking experiment</li>
+</ul>
+</div>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>PSLV is ISRO's most prolific launch vehicle with over 60 missions. Its four-stage design (Solid-Liquid-Solid-Liquid) provides versatility across multiple orbit types, making it one of the most cost-effective and reliable launchers globally.</p>
+</div>
+</section>
+
+<!-- Chapter 3 -->
+<section class="chapter" id="ch3">
+<div class="chapter-number">Chapter 3</div>
+<h2>GSLV — Geosynchronous Satellite Launch Vehicle</h2>
+<p>The Geosynchronous Satellite Launch Vehicle (GSLV) is India's largest fourth-generation launch vehicle. It is a three-stage vehicle with four liquid strap-ons, a solid rocket motor first stage, and a cryogenic upper stage. GSLV primarily serves 2-tonne class communication satellite missions to GTO.</p>
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-number">49.1m</div><div class="stat-label">Height</div></div>
+<div class="stat-card"><div class="stat-number">3.4m</div><div class="stat-label">Diameter</div></div>
+<div class="stat-card"><div class="stat-number">414t</div><div class="stat-label">Lift-off Mass</div></div>
+<div class="stat-card"><div class="stat-number">2.5t</div><div class="stat-label">Payload to GTO</div></div>
+</div>
+<h3>The Cryogenic Challenge</h3>
+<p>India initially planned to acquire cryogenic engines from Russia, but international sanctions prevented the transfer. This led India to develop its own cryogenic engine — the CE-7.5 — a journey that took nearly two decades and multiple failures before success.</p>
+<h3>GSLV Mission History</h3>
+<table class="spec-table">
+<thead><tr><th>Flight</th><th>Date</th><th>Payload</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>GSLV-D1</td><td>Apr 2001</td><td>GSAT-1</td><td style="color:var(--success)">Success</td></tr>
+<tr><td>GSLV-F02</td><td>Jul 2006</td><td>INSAT-4C</td><td style="color:#f44336">Failure</td></tr>
+<tr><td>GSLV-D3</td><td>Apr 2010</td><td>GSAT-4</td><td style="color:#f44336">Failure</td></tr>
+<tr><td>GSLV-D5</td><td>Jan 2014</td><td>GSAT-14</td><td style="color:var(--success)">Success</td></tr>
+<tr><td>GSLV-F14</td><td>Feb 2024</td><td>INSAT-3DS</td><td style="color:var(--success)">Success</td></tr>
+</tbody>
+</table>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>GSLV represents India's entry into the cryogenic launch vehicle class, with 2.5-tonne GTO capability. Despite early failures, the indigenous cryogenic stage has been proven reliable since 2014.</p>
+</div>
+</section>
+
+<!-- Chapter 4 -->
+<section class="chapter" id="ch4">
+<div class="chapter-number">Chapter 4</div>
+<h2>GSLV Mk III / LVM3 — Heavy Lift Vehicle</h2>
+<p>LVM3 (Launch Vehicle Mark-3) is ISRO's heavy-lift launch vehicle with 4,000 kg GTO and 10,000 kg LEO capability. It features two massive S200 solid strap-on boosters, an L110 liquid core stage, and the C25 cryogenic upper stage.</p>
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-number">43.5m</div><div class="stat-label">Height</div></div>
+<div class="stat-card"><div class="stat-number">4.0m</div><div class="stat-label">Diameter</div></div>
+<div class="stat-card"><div class="stat-number">640t</div><div class="stat-label">Lift-off Mass</div></div>
+<div class="stat-card"><div class="stat-number">5.0m</div><div class="stat-label">Payload Fairing</div></div>
+</div>
+<div class="ascii-diagram">
+<pre>
+                    ╔═══════╗
+                    ║  C25  ║  Cryogenic Upper Stage
+                    ║(CE-20)║  28t LOX/LH2
+                    ╚═══╤═══╝
+                  ╔═════╧═════╗
+                  ║  L110     ║  Liquid Core Stage
+                  ║ (2xVikas) ║  115t UH25/N2O4
+                  ╚═════╤═════╝
+                ╔═══════╧═══════╗
+           ╔════╝               ╚════╗
+           ║  S200              S200  ║  Solid Strap-ons
+           ║  (205t HTPB)  (205t HTPB)║  26.22m each
+           ╚════╗               ╔════╝
+                ╚═══════╤═══════╝
+                    ╔═══╧═══╗
+                    ║Payload║  5m Fairing
+                    ╚═══════╝
+</pre>
+<div class="caption">LVM3 Vehicle Architecture</div>
+</div>
+<h3>Stages Overview</h3>
+<table class="spec-table">
+<thead><tr><th>Stage</th><th>Type</th><th>Propellant</th><th>Propellant Mass</th><th>Engine</th><th>Thrust</th></tr></thead>
+<tbody>
+<tr><td>2 x S200</td><td>Solid Strap-on</td><td>HTPB</td><td>205t each</td><td>S200 Solid Motor</td><td>5,150 kN each</td></tr>
+<tr><td>L110</td><td>Liquid Core</td><td>UH25 + N2O4</td><td>115t</td><td>2 x Vikas</td><td>1,600 kN</td></tr>
+<tr><td>C25</td><td>Cryogenic Upper</td><td>LOX + LH2</td><td>28t</td><td>CE-20</td><td>200 kN</td></tr>
+</tbody>
+</table>
+<h3>LVM3 Mission Record</h3>
+<div class="key-fact">
+<h4>Flight History (7+ Successes)</h4>
+<ul>
+<li><strong>LVM3-X/CARE (2014):</strong> First experimental flight</li>
+<li><strong>GSLV MkIII-D1 (2017):</strong> GSAT-19 to GTO — first developmental flight</li>
+<li><strong>GSLV MkIII-M1 / Chandrayaan-2 (2019):</strong> Lunar mission</li>
+<li><strong>LVM3-M2 / OneWeb India-1 (2022):</strong> 36 OneWeb satellites to LEO</li>
+<li><strong>LVM3-M4 / Chandrayaan-3 (2023):</strong> Lunar landing mission</li>
+<li><strong>LVM3-M5 / CMS-03 (2025):</strong> Heaviest Indian communication satellite</li>
+</ul>
+</div>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>LVM3 is India's most powerful operational launch vehicle with a 640-tonne lift-off mass. Its three-stage configuration delivers 4,000 kg to GTO and 10,000 kg to LEO, proven across 7+ successful missions.</p>
+</div>
+</section>
+
+<!-- Chapter 5 -->
+<section class="chapter" id="ch5">
+<div class="chapter-number">Chapter 5</div>
+<h2>SSLV — Small Satellite Launch Vehicle</h2>
+<p>The Small Satellite Launch Vehicle (SSLV) is ISRO's newest launch vehicle, designed for the growing global demand for small satellite launches. It provides low-cost, quick-turnaround access to space with minimal infrastructure.</p>
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-number">34m</div><div class="stat-label">Height</div></div>
+<div class="stat-card"><div class="stat-number">2.0m</div><div class="stat-label">Diameter</div></div>
+<div class="stat-card"><div class="stat-number">120t</div><div class="stat-label">Lift-off Mass</div></div>
+<div class="stat-card"><div class="stat-number">500kg</div><div class="stat-label">Payload to LEO</div></div>
+</div>
+<h3>Vehicle Configuration</h3>
+<table class="spec-table">
+<thead><tr><th>Stage</th><th>Propellant</th><th>Propellant Mass</th><th>Thrust (Vac)</th><th>Burn Time</th></tr></thead>
+<tbody>
+<tr><td>SS1</td><td>HTPB Solid</td><td>87t</td><td>2,496 kN</td><td>94.3 sec</td></tr>
+<tr><td>SS2</td><td>HTPB Solid</td><td>7.7t</td><td>234.2 kN</td><td>113.1 sec</td></tr>
+<tr><td>SS3</td><td>HTPB Solid</td><td>4.5t</td><td>160 kN</td><td>106.9 sec</td></tr>
+<tr><td>VTM</td><td>MMH + MON-3</td><td>—</td><td>50N x 16</td><td>—</td></tr>
+</tbody>
+</table>
+<h3>Flight History</h3>
+<table class="spec-table">
+<thead><tr><th>Mission</th><th>Date</th><th>Payload</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>SSLV-D1</td><td>Aug 2022</td><td>EOS-02</td><td style="color:#f44336">Partial Failure</td></tr>
+<tr><td>SSLV-D2</td><td>Feb 2023</td><td>EOS-07</td><td style="color:var(--success)">Success</td></tr>
+<tr><td>SSLV-D3</td><td>Aug 2024</td><td>EOS-08</td><td style="color:var(--success)">Success</td></tr>
+</tbody>
+</table>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>SSLV is a three-stage solid-propulsion launch vehicle with a liquid VTM, designed for the small satellite market. After an initial setback, SSLV has achieved two consecutive successes and is being transferred to industry for commercial production.</p>
+</div>
+</section>
+<!-- Chapter 6 -->
+<section class="chapter" id="ch6">
+<div class="chapter-number">Chapter 6</div>
+<h2>PSLV Configuration & Stages (Detailed)</h2>
+<p>PSLV is configured as a four-stage vehicle with alternating solid and liquid propulsion stages. The vehicle stands 44.4 meters tall with a diameter of 2.8 meters and a lift-off mass of 320 tonnes (XL variant).</p>
+<div class="ascii-diagram">
+<pre>
+    ╔══════════════╗
+    ║  Payload     ║  <= 1,750 kg (SSO)
+    ║  Fairing     ║
+    ╠══════════════╣
+    ║   PS4        ║  4th Stage: Liquid
+    ║  2xPS4       ║  MMH + MON
+    ║  Engine      ║  14.7 kN thrust
+    ╠══════════════╣
+    ║   PS3        ║  3rd Stage: Solid
+    ║   S7 Motor   ║  HTPB Propellant
+    ║              ║  240 kN thrust
+    ╠══════════════╣
+    ║   PS2        ║  2nd Stage: Liquid
+    ║  Vikas Engine║  UDMH + N2O4
+    ║              ║  799 kN thrust
+    ╠══════════════╣
+    ║  ╔══╗  ╔══╗ ║  1st Stage: Solid
+    ║  ║S12║  ║S12║ ║  S139 + 6 Strap-ons
+    ║  ║  ║  ║  ║ ║  HTPB Propellant
+    ║  ╚══╝  ╚══╝ ║  4,800+ kN total
+    ║     S139     ║
+    ╚══════╤═══════╝
+           ║
+    ╔══════╧═══════╗
+    ║  6x PSOM-XL  ║  Strap-on Motors
+    ║  (XL Variant)║  12t HTPB each
+    ╚══════════════╝
+</pre>
+<div class="caption">PSLV-XL Detailed Stage Configuration</div>
+</div>
+<h3>Stage 1: PS1 — S139 Solid Rocket Motor</h3>
+<p>The first stage consists of the S139 solid rocket motor augmented by strap-on boosters. The S139 contains 139 tonnes of HTPB propellant and provides approximately 4,800 kN of thrust at liftoff.</p>
+<table class="spec-table">
+<thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Motor Designation</td><td>S139</td></tr>
+<tr><td>Propellant</td><td>HTPB-based Solid</td></tr>
+<tr><td>Propellant Mass</td><td>138.2 tonnes</td></tr>
+<tr><td>Thrust</td><td>~4,800 kN</td></tr>
+<tr><td>Length</td><td>20 m</td></tr>
+<tr><td>Diameter</td><td>2.8 m</td></tr>
+</tbody>
+</table>
+<h3>Strap-on Boosters (PSOM-XL)</h3>
+<p>The XL variant uses six PSOM-XL strap-on motors, each carrying 12 tonnes of HTPB propellant. Four are ground-lit and two are air-lit. Each strap-on produces approximately 719 kN of thrust.</p>
+<h3>Stage 2: PS2 — Vikas Liquid Engine</h3>
+<p>The second stage is powered by the Vikas engine, using UDMH as fuel and N2O4 as oxidizer — a hypergolic combination that ignites on contact.</p>
+<table class="spec-table">
+<thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Engine</td><td>Vikas (Vikas-2B)</td></tr>
+<tr><td>Propellant</td><td>UH25 + N2O4</td></tr>
+<tr><td>Propellant Mass</td><td>41.8 tonnes</td></tr>
+<tr><td>Thrust</td><td>799 kN (vacuum)</td></tr>
+<tr><td>Specific Impulse</td><td>293 sec</td></tr>
+</tbody>
+</table>
+<h3>Stage 3: PS3 — S7 Solid Motor</h3>
+<p>The third stage is a solid rocket motor using HTPB propellant, providing 240 kN of thrust after the atmospheric phase of the launch.</p>
+<h3>Stage 4: PS4 — Liquid Upper Stage</h3>
+<p>The fourth and final stage uses two PS4 liquid engines, providing precise orbital injection capability. The PS4 stage is restartable, enabling multiple orbit insertion missions.</p>
+<table class="spec-table">
+<thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Engines</td><td>2 x PS-4</td></tr>
+<tr><td>Propellant</td><td>MMH + MON-3</td></tr>
+<tr><td>Propellant Mass</td><td>1.6–2.5 tonnes</td></tr>
+<tr><td>Thrust</td><td>7.3 x 2 = 14.6 kN</td></tr>
+<tr><td>Restart Capability</td><td>Yes</td></tr>
+</tbody>
+</table>
+<div class="key-fact">
+<h4>PS4 as POEM</h4>
+<p>ISRO has innovatively repurposed the spent PS4 stage as POEM (PSLV Orbital Experimental Module), providing a low-cost space platform for microgravity experiments.</p>
+</div>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>PSLV's four-stage configuration provides high initial thrust and precise orbital injection. The restartable PS4 stage enables multi-orbit deployments, and its reuse as POEM demonstrates ISRO's cost-effective approach.</p>
+</div>
+</section>
+
+<!-- Chapter 7 -->
+<section class="chapter" id="ch7">
+<div class="chapter-number">Chapter 7</div>
+<h2>GSLV Configuration & Stages (Detailed)</h2>
+<p>GSLV is configured as a three-stage vehicle with four liquid strap-on boosters. It stands 49.13 meters tall with a diameter of 3.4 meters and a lift-off mass of 414.75 tonnes.</p>
+<div class="ascii-diagram">
+<pre>
+              ╔══════════════╗
+              ║  Payload     ║  <= 2,500 kg (GTO)
+              ║  Fairing     ║
+              ╠══════════════╣
+              ║   GS3/CUS    ║  3rd Stage: Cryogenic
+              ║  CE-7.5      ║  LOX + LH2
+              ║  Engine      ║  75 kN thrust
+              ╠══════════════╣
+              ║   GS2        ║  2nd Stage: Liquid
+              ║  Vikas Engine║  UH25 + N2O4
+              ╠══════════════╣
+    ╔══╗      ║  4x Vikas    ║  Liquid Strap-ons
+    ║L40║     ║  Strap-ons   ║  40t propellant each
+    ╚══╝      ╚══════╤═══════╝
+    ╔══╗             ║
+    ║L40║     ╔══════╧═══════╗
+    ╚══╝     ║  S139 Solid  ║  139t HTPB
+             ╚══════════════╝
+</pre>
+<div class="caption">GSLV Mk II Vehicle Architecture</div>
+</div>
+<h3>First Stage: S139 + 4 x L40 Strap-ons</h3>
+<p>The first stage combines the S139 solid rocket motor with four L40 liquid strap-on boosters. Each L40 carries 40 tonnes of UH25/N2O4 propellant.</p>
+<table class="spec-table">
+<thead><tr><th>Component</th><th>Propellant</th><th>Mass</th><th>Thrust</th></tr></thead>
+<tbody>
+<tr><td>S139 Core</td><td>HTPB Solid</td><td>139t</td><td>~4,800 kN</td></tr>
+<tr><td>4 x L40</td><td>UH25 + N2O4</td><td>40t each</td><td>677.7 kN each</td></tr>
+</tbody>
+</table>
+<h3>Third Stage: Cryogenic Upper Stage (CUS)</h3>
+<p>The cryogenic upper stage uses the CE-7.5 engine with liquid hydrogen and liquid oxygen, providing 75 kN thrust and approximately 454 seconds specific impulse.</p>
+<table class="spec-table">
+<thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Engine</td><td>CE-7.5</td></tr>
+<tr><td>Propellant</td><td>LH2 + LOX</td></tr>
+<tr><td>Propellant Mass</td><td>15 tonnes</td></tr>
+<tr><td>Thrust</td><td>75 kN</td></tr>
+<tr><td>Specific Impulse</td><td>~454 sec</td></tr>
+</tbody>
+</table>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>GSLV's three-stage configuration with four liquid strap-ons delivers 2,500 kg to GTO. The cryogenic stage was a major technological milestone for India's space programme.</p>
+</div>
+</section>
+
+<!-- Chapter 8 -->
+<section class="chapter" id="ch8">
+<div class="chapter-number">Chapter 8</div>
+<h2>LVM3 Configuration & Stages (Detailed)</h2>
+<p>LVM3 is configured as a three-stage vehicle with two solid strap-on boosters (S200), a liquid core stage (L110), and a cryogenic upper stage (C25). At 640t lift-off weight, it is ISRO's most powerful launch vehicle.</p>
+<h3>Stage 1: S200 Solid Strap-on Boosters</h3>
+<p>The S200 boosters are among the largest solid rocket boosters in the world. Each is 3.2m diameter, consisting of three segments of M250 motor case loaded with 205 tonnes of HTPB-based propellant.</p>
+<table class="spec-table">
+<thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Motor Designation</td><td>S200</td></tr>
+<tr><td>Diameter</td><td>3.2 m</td></tr>
+<tr><td>Length</td><td>26.22 m</td></tr>
+<tr><td>Propellant</td><td>HTPB-based Solid</td></tr>
+<tr><td>Propellant Mass</td><td>205 tonnes each</td></tr>
+<tr><td>Segments</td><td>3 (M250 motor case)</td></tr>
+<tr><td>Thrust</td><td>~5,150 kN each</td></tr>
+</tbody>
+</table>
+<h3>Stage 2: L110 Liquid Core Stage</h3>
+<p>The L110 core stage uses twin Vikas engines with 115 tonnes of liquid propellant (UH25 + N2O4). It ignites at 41.5 km altitude and burns for approximately 200 seconds.</p>
+<table class="spec-table">
+<thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Engines</td><td>2 x Vikas</td></tr>
+<tr><td>Propellant</td><td>UH25 + N2O4</td></tr>
+<tr><td>Propellant Mass</td><td>115.9 tonnes</td></tr>
+<tr><td>Thrust</td><td>1,600 kN</td></tr>
+<tr><td>Burn Time</td><td>~200 sec</td></tr>
+</tbody>
+</table>
+<h3>Stage 3: C25 Cryogenic Upper Stage</h3>
+<p>The C25 is powered by CE-20, India's largest cryogenic engine, carrying 28 tonnes of LOX/LH2 and producing 200 kN of thrust.</p>
+<table class="spec-table">
+<thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Engine</td><td>CE-20</td></tr>
+<tr><td>Propellant</td><td>LOX + LH2</td></tr>
+<tr><td>Propellant Mass</td><td>28.55 tonnes</td></tr>
+<tr><td>Thrust</td><td>200 kN (vacuum)</td></tr>
+<tr><td>Specific Impulse</td><td>~443 sec</td></tr>
+</tbody>
+</table>
+<h3>LVM3 Mission Profile</h3>
+<div class="ascii-diagram">
+<pre>
+  Flight Sequence (Nominal):
+  T+0s        S200 Ignition (Simultaneous)
+  T+130s      S200 Separation
+  T+131s      L110 Ignition (at 41.5 km)
+  T+331s      L110 Burnout / Separation
+  T+332s      C25 Ignition
+  T+974s      C25 Cutoff — Orbit Injection
+  T+974s      Satellite Separation (180x36,000 km GTO)
+</pre>
+<div class="caption">LVM3 Nominal Flight Profile Timeline</div>
+</div>
+<div class="key-fact">
+<h4>LVM3 Upgrades in Progress</h4>
+<ul>
+<li><strong>Semi-cryogenic engine:</strong> SE2000 (200t thrust) under development</li>
+<li><strong>C32 stage:</strong> Upgraded cryogenic stage with 32t propellant</li>
+<li><strong>Target:</strong> GTO payload to increase from 4,000 to 5,200 kg</li>
+<li><strong>First semi-cryo LVM3 flight:</strong> Planned for Q1 2027</li>
+</ul>
+</div>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>LVM3 represents the pinnacle of Indian launch vehicle technology. At 640t lift-off mass with dual S200 boosters, twin-Vikas L110 core, and C25 cryogenic stage, it has proven itself across 7+ successful missions.</p>
+</div>
+</section>
+
+<!-- Chapter 9 -->
+<section class="chapter" id="ch9">
+<div class="chapter-number">Chapter 9</div>
+<h2>Cryogenic Engine Technology — CE-7.5 & CE-20</h2>
+<p>Cryogenic propulsion represents the highest efficiency rocket engine technology, using liquefied gases stored at extremely low temperatures (below 123K). India's journey to master cryogenic technology spanned over two decades.</p>
+<h3>What is Cryogenic Propulsion?</h3>
+<p>Cryogenic propulsion uses liquid hydrogen (LH2, boiling point 20K) as fuel and liquid oxygen (LOX, boiling point 90K) as oxidizer. This combination provides a specific impulse of 450–460 seconds.</p>
+<div class="key-fact">
+<h4>Specific Impulse Comparison</h4>
+<ul>
+<li><strong>Solid Propellant (HTPB):</strong> 260–275 seconds</li>
+<li><strong>Earth-Storable Liquid (UDMH/N2O4):</strong> 280–315 seconds</li>
+<li><strong>Semi-cryogenic (LOX/Kerosene):</strong> 300–350 seconds</li>
+<li><strong>Cryogenic (LOX/LH2):</strong> 450–460 seconds — Highest efficiency</li>
+</ul>
+</div>
+<h3>CE-7.5 — First Indigenous Cryogenic Engine</h3>
+<table class="spec-table">
+<thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Propellant</td><td>LOX + LH2</td></tr>
+<tr><td>Thrust</td><td>75 kN</td></tr>
+<tr><td>Specific Impulse</td><td>~454 seconds</td></tr>
+<tr><td>Cycle</td><td>Gas Generator Cycle</td></tr>
+<tr><td>Propellant Loading</td><td>15 tonnes</td></tr>
+<tr><td>Used In</td><td>GSLV CUS</td></tr>
+</tbody>
+</table>
+<h3>CE-20 — India's Largest Cryogenic Engine</h3>
+<table class="spec-table">
+<thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Propellant</td><td>LOX + LH2</td></tr>
+<tr><td>Thrust</td><td>200 kN (range: 180–220 kN)</td></tr>
+<tr><td>Specific Impulse</td><td>~443 seconds</td></tr>
+<tr><td>Cycle</td><td>Gas Generator Cycle</td></tr>
+<tr><td>Propellant Loading</td><td>28 tonnes</td></tr>
+<tr><td>Restart Capability</td><td>Single start (multiple restart in development)</td></tr>
+</tbody>
+</table>
+<div class="key-fact">
+<h4>CE-20 Development History</h4>
+<ul>
+<li><strong>2017:</strong> First flight on GSLV MkIII-D1 — GSAT-19</li>
+<li><strong>2019:</strong> Chandrayaan-2 mission</li>
+<li><strong>2022:</strong> Uprated to 21.8t thrust</li>
+<li><strong>2023:</strong> Chandrayaan-3 — successful lunar landing</li>
+<li><strong>2025:</strong> Qualified for Gaganyaan human-rated missions</li>
+<li><strong>2025:</strong> Boot-strap mode start demonstrated — world first</li>
+</ul>
+</div>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>India developed two indigenous cryogenic engines: CE-7.5 (75 kN) and CE-20 (200 kN). The CE-20 was recently qualified for Gaganyaan and demonstrated a world-first boot-strap mode start capability.</p>
+</div>
+</section>
+<!-- Chapter 10 -->
+<section class="chapter" id="ch10">
+<div class="chapter-number">Chapter 10</div>
+<h2>Solid Rocket Motor Technology — HTPB Propellant</h2>
+<p>Solid rocket motors form the foundation of India's launch vehicle programme. From SLV-3's all-solid design to the massive S200 boosters of LVM3, solid propulsion has been ISRO's most proven technology.</p>
+<h3>HTPB Propellant Composition</h3>
+<div class="key-fact">
+<h4>HTPB Propellant</h4>
+<ul>
+<li><strong>Fuel:</strong> HTPB binder (hydroxyl-terminated polybutadiene rubber)</li>
+<li><strong>Oxidizer:</strong> Ammonium Perchlorate (AP) — 68-70% by weight</li>
+<li><strong>Metal Fuel:</strong> Aluminum powder (18-20% by weight)</li>
+<li><strong>Curing Agent:</strong> Isocyanate</li>
+<li><strong>Properties:</strong> Safe to handle, stable during storage, reliable ignition</li>
+</ul>
+</div>
+<h3>Solid Motors Across Indian Launch Vehicles</h3>
+<table class="spec-table">
+<thead><tr><th>Motor</th><th>Vehicle</th><th>Propellant Mass</th><th>Thrust</th><th>Diameter</th></tr></thead>
+<tbody>
+<tr><td>S12 (PSOM-XL)</td><td>PSLV-XL Strap-on</td><td>12t each</td><td>719 kN</td><td>1.0m</td></tr>
+<tr><td>S139</td><td>PSLV First Stage</td><td>138.2t</td><td>~4,800 kN</td><td>2.8m</td></tr>
+<tr><td>S7</td><td>PSLV Third Stage</td><td>7.65t</td><td>240 kN</td><td>2.0m</td></tr>
+<tr><td>S139</td><td>GSLV First Stage</td><td>139t</td><td>~4,800 kN</td><td>2.8m</td></tr>
+<tr><td>S200</td><td>LVM3 Strap-on (x2)</td><td>205t each</td><td>5,150 kN each</td><td>3.2m</td></tr>
+<tr><td>SS1</td><td>SSLV First Stage</td><td>87t</td><td>2,496 kN</td><td>2.0m</td></tr>
+</tbody>
+</table>
+<h3>Advantages of Solid Propulsion</h3>
+<div class="key-fact">
+<h4>Design Features</h4>
+<ul>
+<li><strong>Motor Case:</strong> High-strength steel or composite overwrapped</li>
+<li><strong>Propellant Grain:</strong> Internal geometry controls thrust profile</li>
+<li><strong>Nozzle:</strong> Movable nozzle for thrust vector control (TVC)</li>
+<li><strong>Igniter:</strong> Pyrogen-based reliable ignition system</li>
+<li><strong>High Thrust-to-Weight Ratio:</strong> Essential for liftoff</li>
+</ul>
+</div>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>Solid rocket motors using HTPB propellant form the backbone of Indian launch vehicles. The S200, at 205 tonnes of propellant, is among the largest solid rocket boosters in the world.</p>
+</div>
+</section>
+
+<!-- Chapter 11 -->
+<section class="chapter" id="ch11">
+<div class="chapter-number">Chapter 11</div>
+<h2>Liquid Propulsion — The Vikas Engine</h2>
+<p>The Vikas engine is the workhorse of Indian liquid propulsion, powering multiple stages across PSLV, GSLV, and LVM3. Named after Vikram Sarabhai, this family of hypergolic liquid-fuelled engines has been in development since the 1970s.</p>
+<h3>Engine Specifications</h3>
+<table class="spec-table">
+<thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Propellant</td><td>UH25 (fuel) + N2O4 (oxidizer)</td></tr>
+<tr><td>Fuel</td><td>UH25 — 75% UDMH + 25% Hydrazine</td></tr>
+<tr><td>Cycle</td><td>Gas Generator Cycle</td></tr>
+<tr><td>Chamber Pressure</td><td>58.5 bar (upgraded)</td></tr>
+<tr><td>Thrust (Vacuum)</td><td>800 kN (upgraded), 725 kN (standard)</td></tr>
+<tr><td>Specific Impulse</td><td>293 seconds</td></tr>
+<tr><td>Gimbal Capability</td><td>Yes — for thrust vector control</td></tr>
+<tr><td>Manufacturer</td><td>Godrej & Boyce, MTAR Technologies</td></tr>
+</tbody>
+</table>
+<h3>Vikas Engine Variants</h3>
+<table class="spec-table">
+<thead><tr><th>Variant</th><th>Use</th><th>Thrust (kN)</th><th>Propellant</th></tr></thead>
+<tbody>
+<tr><td>Vikas-2</td><td>GSLV GS2 / PSLV PS2</td><td>725.0</td><td>UDMH/N2O4</td></tr>
+<tr><td>Vikas-2B</td><td>GSLV Mk.II GS2 / PSLV PS2</td><td>804.5</td><td>UH25/N2O4</td></tr>
+<tr><td>Vikas-X (HTVE)</td><td>LVM3 L110 Stage (twin)</td><td>1,693.6</td><td>UH25/N2O4</td></tr>
+</tbody>
+</table>
+<h3>Applications Across Launch Vehicles</h3>
+<div class="key-fact">
+<h4>Vikas Engine Deployment</h4>
+<ul>
+<li><strong>PSLV PS2 Stage:</strong> Single Vikas, 800 kN, 40t propellant</li>
+<li><strong>GSLV L40 Strap-ons (x4):</strong> Four Vikas, 677–765 kN each, 40t each</li>
+<li><strong>GSLV GS2 Stage:</strong> Single Vikas, 799 kN, 40t propellant</li>
+<li><strong>LVM3 L110 Stage:</strong> Twin Vikas, 1,600 kN total, 115t propellant</li>
+</ul>
+</div>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>The Vikas engine family is the backbone of Indian liquid propulsion, with over 40 years of development. It powers stages across PSLV, GSLV, and LVM3, evolving from 680 kN to 1,600 kN in twin configuration.</p>
+</div>
+</section>
+
+<!-- Chapter 12 -->
+<section class="chapter" id="ch12">
+<div class="chapter-number">Chapter 12</div>
+<h2>Communication Satellites — INSAT/GSAT</h2>
+<p>The Indian National Satellite (INSAT) system, established in 1983, is one of the largest domestic communication satellite systems in the Asia-Pacific region. It provides services in S, C, Extended-C, and Ku-bands.</p>
+<h3>Key Communication Satellites</h3>
+<table class="spec-table">
+<thead><tr><th>Satellite</th><th>Mass</th><th>Transponders</th><th>Launch</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>INSAT-1A</td><td>1,152 kg</td><td>12 C-band</td><td>1982</td><td>First INSAT</td></tr>
+<tr><td>GSAT-8</td><td>3,093 kg</td><td>24 Ku + GAGAN</td><td>2011</td><td>Advanced comms + navigation</td></tr>
+<tr><td>GSAT-11</td><td>5,854 kg</td><td>High Throughput</td><td>2018</td><td>Heaviest ISRO satellite</td></tr>
+<tr><td>GSAT-19</td><td>3,136 kg</td><td>Ka/Ku HTS</td><td>2017</td><td>First launched by LVM3</td></tr>
+<tr><td>GSAT-30</td><td>3,357 kg</td><td>C+Ku</td><td>2020</td><td>Enhanced I-3K bus</td></tr>
+<tr><td>CMS-03</td><td>4,400+ kg</td><td>32 Ka beams</td><td>2025</td><td>Heaviest Indian comms sat</td></tr>
+</tbody>
+</table>
+<h3>GSAT-11 — India's Heaviest Satellite</h3>
+<p>GSAT-11, weighing 5,854 kg, was the heaviest satellite ever built by ISRO when launched in December 2018 on Ariane-5. It provides 10 times the capacity of earlier INSAT satellites.</p>
+<div class="key-fact">
+<h4>INSAT/GSAT Applications</h4>
+<ul>
+<li>Television broadcasting (DD National, regional channels)</li>
+<li>Telecommunications backbone connectivity</li>
+<li>DSNG (Digital Satellite News Gathering)</li>
+<li>DTH (Direct-to-Home) television services</li>
+<li>VSAT networks for banking and enterprise</li>
+<li>Disaster warning systems (cyclone alerts)</li>
+<li>Meteorological imaging (INSAT-3D, 3DS)</li>
+<li>Navigation augmentation (GAGAN)</li>
+<li>Military communications (GSAT-7, 7A, 7B)</li>
+</ul>
+</div>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>India's INSAT/GSAT constellation has over 50 satellites launched since 1982, providing high-throughput capabilities across Ka, Ku, and C bands for telecommunications, broadcasting, and strategic communications.</p>
+</div>
+</section>
+
+<!-- Chapter 13 -->
+<section class="chapter" id="ch13">
+<div class="chapter-number">Chapter 13</div>
+<h2>Remote Sensing Satellites — IRS/Cartosat/RISAT</h2>
+<p>India operates one of the largest constellations of remote sensing satellites in the world, providing critical data for agriculture, water resources, urban planning, and disaster management.</p>
+<h3>Cartosat Series</h3>
+<table class="spec-table">
+<thead><tr><th>Satellite</th><th>Mass</th><th>Resolution</th><th>Launch</th><th>Application</th></tr></thead>
+<tbody>
+<tr><td>Cartosat-1</td><td>1,560 kg</td><td>2.5m stereo</td><td>2005</td><td>DEM generation</td></tr>
+<tr><td>Cartosat-2</td><td>650 kg</td><td>&lt;1m PAN</td><td>2007</td><td>Spot imagery</td></tr>
+<tr><td>Cartosat-3</td><td>1,625 kg</td><td>0.25m</td><td>2019</td><td>High-res Earth observation</td></tr>
+</tbody>
+</table>
+<h3>RISAT — Radar Imaging Satellites</h3>
+<table class="spec-table">
+<thead><tr><th>Satellite</th><th>Mass</th><th>Band</th><th>Launch</th><th>Resolution</th></tr></thead>
+<tbody>
+<tr><td>RISAT-1</td><td>1,858 kg</td><td>C-band SAR</td><td>2012</td><td>1–50m</td></tr>
+<tr><td>RISAT-2B</td><td>615 kg</td><td>X-band SAR</td><td>2019</td><td>0.5m</td></tr>
+<tr><td>RISAT-1A (EOS-04)</td><td>1,710 kg</td><td>C-band SAR</td><td>2022</td><td>1–50m</td></tr>
+</tbody>
+</table>
+<div class="key-fact">
+<h4>Notable Earth Observation Satellites</h4>
+<ul>
+<li><strong>Resourcesat-1/2/2A:</strong> Agriculture monitoring</li>
+<li><strong>Oceansat-1/2:</strong> Ocean color studies</li>
+<li><strong>Megha-Tropiques:</strong> Joint ISRO-CNES tropical weather studies</li>
+<li><strong>EMISAT:</strong> Electronic intelligence satellite</li>
+</ul>
+</div>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>India's remote sensing constellation features Cartosat's sub-meter optical imaging and RISAT's all-weather SAR capability, serving agriculture, urban planning, disaster management, and defence.</p>
+</div>
+</section>
+
+<!-- Chapter 14 -->
+<section class="chapter" id="ch14">
+<div class="chapter-number">Chapter 14</div>
+<h2>Navigation Satellites — NavIC/IRNSS</h2>
+<p>The Indian Regional Navigation Satellite System (IRNSS), branded as NavIC, provides accurate position information within India and 1,500 km around the subcontinent.</p>
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-number">7</div><div class="stat-label">Satellites</div></div>
+<div class="stat-card"><div class="stat-number">&lt;20m</div><div class="stat-label">Accuracy</div></div>
+<div class="stat-card"><div class="stat-number">1,500km</div><div class="stat-label">Service Area</div></div>
+<div class="stat-card"><div class="stat-number">10yr</div><div class="stat-label">Design Life</div></div>
+</div>
+<h3>Constellation Configuration</h3>
+<table class="spec-table">
+<thead><tr><th>Satellite</th><th>Orbit</th><th>Position</th><th>Launch</th><th>Vehicle</th></tr></thead>
+<tbody>
+<tr><td>IRNSS-1A</td><td>GEO</td><td>55E</td><td>Jul 2013</td><td>PSLV-C22</td></tr>
+<tr><td>IRNSS-1B</td><td>GEO</td><td>55E</td><td>Apr 2014</td><td>PSLV-C24</td></tr>
+<tr><td>IRNSS-1C</td><td>GSO</td><td>111.75E</td><td>Oct 2014</td><td>PSLV-C26</td></tr>
+<tr><td>IRNSS-1D</td><td>GSO</td><td>55E</td><td>Mar 2015</td><td>PSLV-C27</td></tr>
+<tr><td>IRNSS-1E</td><td>GSO</td><td>111.75E</td><td>Jan 2016</td><td>PSLV-C31</td></tr>
+<tr><td>IRNSS-1F</td><td>GEO</td><td>32.5E</td><td>Mar 2016</td><td>PSLV-C32</td></tr>
+<tr><td>IRNSS-1G</td><td>GEO</td><td>131E</td><td>Apr 2016</td><td>PSLV-C33</td></tr>
+<tr><td>NVS-01</td><td>GEO</td><td>55E</td><td>May 2023</td><td>GSLV-F12</td></tr>
+</tbody>
+</table>
+<div class="key-fact">
+<h4>NavIC Services</h4>
+<ul>
+<li><strong>SPS:</strong> Standard Positioning Service — L5 and S band</li>
+<li><strong>RS:</strong> Restricted Service — encrypted for defence</li>
+<li><strong>Accuracy:</strong> Better than 20m (95% confidence)</li>
+<li><strong>Timing:</strong> 50 nanoseconds</li>
+<li><strong>Frequencies:</strong> L5 (1176.45 MHz) and S (2492.028 MHz)</li>
+</ul>
+</div>
+<h3>GAGAN</h3>
+<p>GPS Aided Geo Augmented Navigation (GAGAN) is India's Satellite Based Augmentation System for civil aviation, developed jointly by ISRO and AAI.</p>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>NavIC is India's independent navigation constellation of 7 satellites providing sub-20m accuracy. The next-generation NVS series began with NVS-01 in 2023 with enhanced capabilities.</p>
+</div>
+</section>
+<!-- Chapter 15 -->
+<section class="chapter" id="ch15">
+<div class="chapter-number">Chapter 15</div>
+<h2>Chandrayaan Missions — 1, 2, and 3</h2>
+<p>India's Chandrayaan programme represents the country's ambitious lunar exploration initiative, from Chandrayaan-1's groundbreaking discovery of water on the Moon to Chandrayaan-3's historic south pole landing.</p>
+<h3>Chandrayaan-1 (2008–2009)</h3>
+<div class="key-fact">
+<h4>Chandrayaan-1 Mission Profile</h4>
+<ul>
+<li><strong>Launch:</strong> October 22, 2008 on PSLV-C11 XL</li>
+<li><strong>Mass:</strong> 1,380 kg</li>
+<li><strong>Orbit:</strong> 100 km polar orbit around Moon</li>
+<li><strong>Instruments:</strong> 11 (5 Indian, 6 international)</li>
+<li><strong>Key Discovery:</strong> Water molecules on lunar surface (confirmed by NASA M3)</li>
+</ul>
+</div>
+<h3>Chandrayaan-2 (2019)</h3>
+<div class="key-fact">
+<h4>Chandrayaan-2 Mission Profile</h4>
+<ul>
+<li><strong>Launch:</strong> July 22, 2019 on GSLV MkIII-M1</li>
+<li><strong>Mass:</strong> 3,850 kg (combined stack)</li>
+<li><strong>Components:</strong> Orbiter + Vikram Lander + Pragyan Rover</li>
+<li><strong>Status:</strong> Orbiter operational; Vikram lost during landing</li>
+</ul>
+</div>
+<h3>Chandrayaan-3 (2023)</h3>
+<div class="key-fact">
+<h4>Chandrayaan-3 Mission Profile</h4>
+<ul>
+<li><strong>Launch:</strong> July 14, 2023 on LVM3-M4</li>
+<li><strong>Landing:</strong> August 23, 2023 — South polar region</li>
+<li><strong>Components:</strong> Vikram Lander + Pragyan Rover + Propulsion Module</li>
+<li><strong>Status:</strong> Successful — India 4th nation to soft-land on Moon</li>
+</ul>
+</div>
+<h3>Mission Comparison</h3>
+<table class="spec-table">
+<thead><tr><th>Parameter</th><th>Chandrayaan-1</th><th>Chandrayaan-2</th><th>Chandrayaan-3</th></tr></thead>
+<tbody>
+<tr><td>Launch Vehicle</td><td>PSLV-C11 XL</td><td>GSLV MkIII-M1</td><td>LVM3-M4</td></tr>
+<tr><td>Mass</td><td>1,380 kg</td><td>3,850 kg</td><td>3,900 kg</td></tr>
+<tr><td>Configuration</td><td>Orbiter + MIP</td><td>Orbiter + Lander + Rover</td><td>Lander + Rover + PM</td></tr>
+<tr><td>Key Achievement</td><td>Water on Moon</td><td>Orbiter operational</td><td>South pole landing</td></tr>
+</tbody>
+</table>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>The Chandrayaan programme progressed from orbital discovery to historic south pole landing, establishing India as a major lunar exploration power.</p>
+</div>
+</section>
+
+<!-- Chapter 16 -->
+<section class="chapter" id="ch16">
+<div class="chapter-number">Chapter 16</div>
+<h2>Mangalyaan — Mars Orbiter Mission</h2>
+<p>Mangalyaan was India's first interplanetary mission and one of the most cost-effective space missions ever conducted. ISRO became the fourth agency to reach Mars, and the first to do so on its maiden attempt.</p>
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-number">450cr</div><div class="stat-label">Cost (~$74M)</div></div>
+<div class="stat-card"><div class="stat-number">8yr</div><div class="stat-label">Time in Orbit</div></div>
+<div class="stat-card"><div class="stat-number">680M km</div><div class="stat-label">Distance</div></div>
+<div class="stat-card"><div class="stat-number">1st Try</div><div class="stat-label">Success</div></div>
+</div>
+<div class="key-fact">
+<h4>Mangalyaan Specifications</h4>
+<ul>
+<li><strong>Launch:</strong> November 5, 2013 on PSLV-C25 XL</li>
+<li><strong>Launch Mass:</strong> ~1,337 kg (852 kg propellant)</li>
+<li><strong>Mars Orbit Insertion:</strong> September 24, 2014</li>
+<li><strong>Orbit:</strong> 423 km x 80,000 km elliptical</li>
+<li><strong>Power:</strong> Three solar panels, ~840 W</li>
+<li><strong>Main Engine:</strong> 440 N Liquid Apogee Motor</li>
+</ul>
+</div>
+<h3>Scientific Payloads</h3>
+<table class="spec-table">
+<thead><tr><th>Payload</th><th>Objective</th></tr></thead>
+<tbody>
+<tr><td>Mars Color Camera (MCC)</td><td>Surface morphology imaging</td></tr>
+<tr><td>Thermal Infrared Imaging Spectrometer</td><td>Surface temperature mapping</td></tr>
+<tr><td>Methane Sensor for Mars</td><td>Methane detection</td></tr>
+<tr><td>MENCA</td><td>Exospheric composition</td></tr>
+<tr><td>Lyman Alpha Photometer</td><td>Hydrogen/deuterium in exosphere</td></tr>
+</tbody>
+</table>
+<div class="key-fact">
+<h4>Mangalyaan Legacy</h4>
+<ul>
+<li><strong>First-try success:</strong> No other agency succeeded at Mars first try</li>
+<li><strong>Cost-effective:</strong> Less than the movie Gravity ($100M)</li>
+<li><strong>Extended mission:</strong> 8 years vs 6-month design life</li>
+<li><strong>1,000+ images:</strong> Extensive Mars imagery returned</li>
+</ul>
+</div>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>Mangalyaan achieved Mars orbit on its first attempt at just 450 crore, operating for 8 years (16x design life). It proved India can execute complex interplanetary missions cost-effectively.</p>
+</div>
+</section>
+
+<!-- Chapter 17 -->
+<section class="chapter" id="ch17">
+<div class="chapter-number">Chapter 17</div>
+<h2>Chandrayaan-3 — Vikram Lander & Pragyan Rover</h2>
+<p>Chandrayaan-3 successfully landed near the Moon's south pole on August 23, 2023, making India the fourth nation to soft-land on the Moon and the first to land near the south pole.</p>
+<h3>Spacecraft Configuration</h3>
+<table class="spec-table">
+<thead><tr><th>Component</th><th>Mass</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td>Propulsion Module</td><td>~2,148 kg</td><td>Transport to lunar orbit</td></tr>
+<tr><td>Vikram Lander</td><td>~1,752 kg</td><td>Soft landing, surface ops</td></tr>
+<tr><td>Pragyan Rover</td><td>26 kg</td><td>Surface exploration</td></tr>
+</tbody>
+</table>
+<h3>Vikram Lander Instruments</h3>
+<table class="spec-table">
+<thead><tr><th>Payload</th><th>Full Name</th><th>Objective</th></tr></thead>
+<tbody>
+<tr><td>RAMBHA</td><td>Radio Anatomy of Moon Bound Hypersensitive ionosphere and Atmosphere</td><td>Surface charge density</td></tr>
+<tr><td>ChaSTE</td><td>Chandra's Surface Thermo physical Experiment</td><td>Temperature profile</td></tr>
+<tr><td>ILSA</td><td>Instrument for Lunar Seismic Activity</td><td>Seismic measurement</td></tr>
+<tr><td>LRA</td><td>Laser Retroreflector Array (NASA)</td><td>Distance measurement</td></tr>
+</tbody>
+</table>
+<h3>Pragyan Rover</h3>
+<div class="key-fact">
+<h4>Pragyan Specifications</h4>
+<ul>
+<li><strong>Mass:</strong> 26 kg</li>
+<li><strong>Mobility:</strong> 6-wheel rocker-bogie, 1 cm/s</li>
+<li><strong>Range:</strong> Up to 400 meters</li>
+<li><strong>Power:</strong> 50W (solar-powered)</li>
+<li><strong>Payloads:</strong> APXS (elemental composition) + LIBS (spectroscopy)</li>
+</ul>
+</div>
+<div class="ascii-diagram">
+<pre>
+  Vikram Landing Sequence:
+  T-25 min    Rough Braking (1500m)
+  T-20 min    Hazard Detection
+  T-15 min    Fine Braking (800m)
+  T-10 min    Terminal Descent (150m to 0m)
+  T-0         Touchdown
+              Vertical vel: <= 2 m/s
+              Horizontal vel: <= 0.5 m/s
+              Slope: <= 12 degrees
+</pre>
+<div class="caption">Vikram Autonomous Landing Sequence</div>
+</div>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>Chandrayaan-3 achieved a historic south pole landing on August 23, 2023. Vikram carried 4 instruments while Pragyan conducted elemental analysis, demonstrating India's advanced autonomous landing capabilities.</p>
+</div>
+</section>
+
+<!-- Chapter 18 -->
+<section class="chapter" id="ch18">
+<div class="chapter-number">Chapter 18</div>
+<h2>Upcoming Missions — Gaganyaan & Shukrayaan</h2>
+<p>India's space programme is poised for its next great milestones with Gaganyaan (human spaceflight), Shukrayaan (Venus mission), and several other ambitious missions.</p>
+<h3>Gaganyaan — Human Spaceflight</h3>
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Crew</div></div>
+<div class="stat-card"><div class="stat-number">400km</div><div class="stat-label">Altitude</div></div>
+<div class="stat-card"><div class="stat-number">3 days</div><div class="stat-label">Duration</div></div>
+<div class="stat-card"><div class="stat-number">20,193cr</div><div class="stat-label">Budget</div></div>
+</div>
+<div class="key-fact">
+<h4>Gaganyaan Details</h4>
+<ul>
+<li><strong>Vehicle:</strong> Human-Rated LVM3 (HLVM3)</li>
+<li><strong>Crew Module:</strong> 5.3 tonne pressurized habitat</li>
+<li><strong>Service Module:</strong> 2.9 tonne unpressurized bus</li>
+<li><strong>Crew Escape:</strong> Solid motor-based emergency escape</li>
+<li><strong>Target:</strong> First crewed mission Q1 2027</li>
+</ul>
+</div>
+<h4>Astronaut-Designates</h4>
+<table class="spec-table">
+<thead><tr><th>Name</th><th>Rank</th></tr></thead>
+<tbody>
+<tr><td>Group Captain Prasanth Balakrishnan Nair</td><td>IAF</td></tr>
+<tr><td>Group Captain Ajit Krishnan</td><td>IAF</td></tr>
+<tr><td>Group Captain Angad Pratap</td><td>IAF</td></tr>
+<tr><td>Wing Commander Shubhanshu Shukla</td><td>IAF</td></tr>
+</tbody>
+</table>
+<h3>Shukrayaan — Venus Orbiter Mission</h3>
+<div class="key-fact">
+<h4>Shukrayaan-1 Specifications</h4>
+<ul>
+<li><strong>Launch:</strong> March 29, 2028 on LVM3</li>
+<li><strong>Mass:</strong> ~2,500 kg</li>
+<li><strong>Journey:</strong> 112 days to Venus</li>
+<li><strong>Venus Arrival:</strong> July 19, 2028</li>
+<li><strong>Orbit:</strong> 500 x 60,000 km elliptical</li>
+<li><strong>Payloads:</strong> 19 instruments (India + international)</li>
+</ul>
+</div>
+<h3>Other Planned Missions</h3>
+<table class="spec-table">
+<thead><tr><th>Mission</th><th>Target</th><th>Type</th><th>Timeline</th></tr></thead>
+<tbody>
+<tr><td>Chandrayaan-4</td><td>Moon</td><td>Sample Return</td><td>~2028</td></tr>
+<tr><td>LUPEX/Chandrayaan-5</td><td>Moon South Pole</td><td>Indo-Japanese rover</td><td>~2030</td></tr>
+<tr><td>BAS-01</td><td>LEO</td><td>Space Station Module</td><td>2028</td></tr>
+<tr><td>Bharatiya Antariksh Station</td><td>LEO</td><td>5-module Station</td><td>2035</td></tr>
+<tr><td>Mars Lander</td><td>Mars</td><td>Lander + Rover</td><td>Post-2030</td></tr>
+</tbody>
+</table>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>India's upcoming missions include Gaganyaan (human spaceflight 2027), Shukrayaan (Venus 2028), Chandrayaan-4 (sample return), and the Bharatiya Antariksh Station (2035).</p>
+</div>
+</section>
+
+<!-- Chapter 19 -->
+<section class="chapter" id="ch19">
+<div class="chapter-number">Chapter 19</div>
+<h2>Launch Vehicle Comparison & ASCII Diagrams</h2>
+<p>India operates a diverse fleet of launch vehicles, each designed for specific mission requirements.</p>
+<h3>Fleet Comparison</h3>
+<table class="comparison-table">
+<thead><tr><th>Parameter</th><th>PSLV-XL</th><th>GSLV Mk II</th><th>LVM3</th><th>SSLV</th></tr></thead>
+<tbody>
+<tr><td>Height</td><td>44.4 m</td><td>49.13 m</td><td>43.5 m</td><td>34 m</td></tr>
+<tr><td>Diameter</td><td>2.8 m</td><td>3.4 m</td><td>4.0 m</td><td>2.0 m</td></tr>
+<tr><td>Lift-off Mass</td><td>320 t</td><td>415 t</td><td>640 t</td><td>120 t</td></tr>
+<tr><td>Propulsion</td><td>Solid+Liquid</td><td>Solid+Liquid+Cryo</td><td>Solid+Liquid+Cryo</td><td>Solid+Liquid</td></tr>
+<tr><td>Payload GTO</td><td>1,425 kg</td><td>2,500 kg</td><td>4,000 kg</td><td>—</td></tr>
+<tr><td>Payload LEO</td><td>—</td><td>5,000 kg</td><td>10,000 kg</td><td>500 kg</td></tr>
+<tr><td>First Flight</td><td>1993</td><td>2001</td><td>2014</td><td>2022</td></tr>
+<tr><td>Missions</td><td>60+</td><td>18</td><td>8+</td><td>3</td></tr>
+<tr><td>Success Rate</td><td>~95%</td><td>~78%</td><td>100%</td><td>67%</td></tr>
+</tbody>
+</table>
+<h3>Vehicle Height Comparison</h3>
+<div class="ascii-diagram">
+<pre>
+  Vehicle Height:
+  SSLV   |████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░| 34m
+  PSLV   |████████████████░░░░░░░░░░░░░░░░░░░░░| 44.4m
+  LVM3   |███████████████░░░░░░░░░░░░░░░░░░░░░░| 43.5m
+  GSLV   |██████████████████░░░░░░░░░░░░░░░░░░░| 49.13m
+         0m        15m        30m        45m   50m
+</pre>
+<div class="caption">Height Comparison Scale</div>
+</div>
+<h3>Payload to GTO</h3>
+<div class="ascii-diagram">
+<pre>
+  PSLV-XL  |████░░░░░░░░░░░░░░░░░░░░░| 1,425 kg
+  GSLV MkII|██████████░░░░░░░░░░░░░░░| 2,500 kg
+  LVM3     |██████████████████░░░░░░░| 4,000 kg
+           0      1,000  2,000  3,000  4,000 kg
+</pre>
+<div class="caption">GTO Payload Capability</div>
+</div>
+<h3>Lift-off Mass</h3>
+<div class="ascii-diagram">
+<pre>
+  SSLV   |███░░░░░░░░░░░░░░░░░░░░░░░░| 120 tonnes
+  PSLV   |████████░░░░░░░░░░░░░░░░░░░| 320 tonnes
+  GSLV   |███████████░░░░░░░░░░░░░░░░| 415 tonnes
+  LVM3   |█████████████████░░░░░░░░░░| 640 tonnes
+         0       150      300      450   640 t
+</pre>
+<div class="caption">Lift-off Mass Comparison</div>
+</div>
+<div class="chapter-summary">
+<h4>Chapter Summary</h4>
+<p>India's launch vehicle fleet spans from 120-tonne SSLV to 640-tonne LVM3. PSLV remains the most prolific with 60+ missions, while LVM3 has 100% success across 8+ missions.</p>
+</div>
+</section>
+
+<!-- Chapter 20 -->
+<section class="chapter" id="ch20">
+<div class="chapter-number">Chapter 20</div>
+<h2>Summary & Future of Indian Space Programme</h2>
+<p>India's space programme has evolved from a single sounding rocket launch in 1963 to a comprehensive capability encompassing launch vehicles, communication satellites, Earth observation, navigation, and interplanetary exploration.</p>
+<h3>Key Achievements Summary</h3>
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-number">90+</div><div class="stat-label">Total Missions</div></div>
+<div class="stat-card"><div class="stat-number">50+</div><div class="stat-label">Active Satellites</div></div>
+<div class="stat-card"><div class="stat-number">5</div><div class="stat-label">Launch Vehicles</div></div>
+<div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Interplanetary Missions</div></div>
+</div>
+<h3>Launch Vehicle Fleet Evolution</h3>
+<table class="spec-table">
+<thead><tr><th>Era</th><th>Vehicle</th><th>Payload</th><th>Significance</th></tr></thead>
+<tbody>
+<tr><td>1979-1983</td><td>SLV-3</td><td>40 kg LEO</td><td>First launch vehicle</td></tr>
+<tr><td>1987-1994</td><td>ASLV</td><td>150 kg LEO</td><td>Strap-on technology</td></tr>
+<tr><td>1994-Present</td><td>PSLV</td><td>1,750 kg SSO</td><td>Workhorse, 60+ missions</td></tr>
+<tr><td>2001-Present</td><td>GSLV</td><td>2,500 kg GTO</td><td>Cryogenic capability</td></tr>
+<tr><td>2014-Present</td><td>LVM3</td><td>4,000 kg GTO</td><td>Heavy-lift, 100% success</td></tr>
+<tr><td>2022-Present</td><td>SSLV</td><td>500 kg LEO</td><td>Small satellite market</td></tr>
+</tbody>
+</table>
+<h3>Future Roadmap</h3>
+<div class="key-fact">
+<h4>India's Space Vision 2030-2040</h4>
+<ul>
+<li><strong>2027:</strong> Gaganyaan — First Indian human spaceflight</li>
+<li><strong>2028:</strong> Shukrayaan — Venus Orbiter Mission</li>
+<li><strong>2028:</strong> Chandrayaan-4 — Lunar sample return</li>
+<li><strong>2028:</strong> BAS-01 — First space station module</li>
+<li><strong>2030:</strong> LUPEX/Chandrayaan-5 — Indo-Japanese lunar rover</li>
+<li><strong>2035:</strong> Bharatiya Antariksh Station operational</li>
+<li><strong>2035:</strong> Semi-cryogenic powered enhanced LVM3</li>
+<li><strong>2040:</strong> Indian astronauts on the Moon (PM Modi target)</li>
+</ul>
+</div>
+<h3>Technological Developments</h3>
+<div class="key-fact">
+<h4>Key Technologies Under Development</h4>
+<ul>
+<li><strong>Semi-cryogenic Engine (SE2000):</strong> LOX/Kerosene, 200t thrust — will replace Vikas in L110</li>
+<li><strong>C32 Cryogenic Stage:</strong> 32t propellant, 22t thrust — enhancing LVM3</li>
+<li><strong>Reusable Launch Vehicle (RLV):</strong> Winged orbital re-entry vehicle</li>
+<li><strong>NGLV (Next-Gen Launch Vehicle):</strong> LOX/Methane partially reusable</li>
+<li><strong>VTVL Recovery:</strong> Vertical takeoff, vertical landing booster technology</li>
+<li><strong>Space Docking:</strong> SPADEX technology for orbital assembly</li>
+</ul>
+</div>
+<h3>Cost-Effectiveness</h3>
+<p>India's space programme is renowned for its cost-effectiveness. Mangalyaan cost just $74 million (less than the movie Gravity), Chandrayaan-3 cost approximately $75 million, and Gaganyaan is budgeted at $2.4 billion for the entire programme including multiple missions. This cost efficiency, combined with reliable launch vehicles like PSLV and LVM3, positions India as a competitive player in the global commercial launch market.</p>
+<h3>Commercial Space</h3>
+<p>NewSpace India Limited (NSIL), the commercial arm of ISRO, has secured multiple commercial launch contracts including OneWeb constellation launches on LVM3. The opening of India's space sector to private participation through IN-SPACe has created a vibrant ecosystem with over 200 space startups.</p>
+<div class="chapter-summary">
+<h4>Final Summary</h4>
+<p>India's space programme stands at a pivotal moment, transitioning from an applications-focused agency to one capable of human spaceflight, planetary exploration, and commercial services. With a robust fleet of launch vehicles, a comprehensive satellite constellation, and ambitious missions ahead, India is poised to become a leading space power in the coming decades. The journey from a sounding rocket in 1963 to landing on the Moon's south pole in 2023 encapsulates the remarkable progress of Indian space science and engineering.</p>
+</div>
+</section>
+
+</main>
+
+<footer class="footer">
+<p class="author-footer">MissileX RocketSpace Research</p>
+<p>Launch Vehicles & Satellites — India's Space Transportation & Orbital Infrastructure</p>
+<p>© 2026 MissileX RocketSpace Research. All rights reserved.</p>
+<p>Data sourced from ISRO, NASA, and verified space agencies. Last updated 2026.</p>
+</footer>
+
+</body>
+</html>
