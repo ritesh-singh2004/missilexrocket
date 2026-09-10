@@ -348,12 +348,13 @@ nav.scrolled {
     padding: 0 40px;
     background: var(--secondary);
     border-bottom: 3px solid var(--primary);
+    overflow-x: auto;
 }
 
 .nav-links {
     display: flex;
-    gap: 0;
     align-items: stretch;
+    flex-shrink: 0;
 }
 
 .nav-link {
@@ -370,6 +371,7 @@ nav.scrolled {
     display: flex;
     align-items: center;
     gap: 4px;
+    flex-shrink: 0;
 }
 
 .nav-link:hover {
