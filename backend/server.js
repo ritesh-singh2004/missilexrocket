@@ -116,7 +116,7 @@ app.post('/api/auth/register', async (req, res) => {
         </div>
 
         <div style="text-align:center;margin:30px 0;">
-          <a href="http://localhost:5000/index.html#initiatives" style="display:inline-block;background:linear-gradient(135deg,#00d4ff,#0099cc);color:#000;text-decoration:none;padding:14px 40px;border-radius:6px;font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:700;letter-spacing:1px;">
+          <a href="http://localhost:5000/initiatives.html" style="display:inline-block;background:linear-gradient(135deg,#00d4ff,#0099cc);color:#000;text-decoration:none;padding:14px 40px;border-radius:6px;font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:700;letter-spacing:1px;">
             EXPLORE EVENTS
           </a>
         </div>
