@@ -666,9 +666,10 @@ function initNavigation() {
     const h = document.querySelector('.nav-hamburger'), nl = document.querySelector('.nav-links');
     h.addEventListener('click', () => { h.classList.toggle('active'); nl.classList.toggle('active'); });
     document.querySelectorAll('.nav-link, .nav-dropdown-link').forEach(l => l.addEventListener('click', (e) => {
+        const href = l.getAttribute('href');
+        if (href && !href.startsWith('#')) { window.location.href = href; return; }
         e.preventDefault();
         h.classList.remove('active'); nl.classList.remove('active');
-        const href = l.getAttribute('href');
         const target = document.querySelector(href);
         if (target) {
             const offset = 80;

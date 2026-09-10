@@ -1,0 +1,306 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../data/ai-ide.db"
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  name          String
+  password      String
+  avatar        String?
+  role          String    @default("user")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  projects      Project[]
+  conversations Conversation[]
+  agentTasks    AgentTask[]
+  apiKeys       ApiKey[]
+  settings      UserSettings?
+  auditLogs     AuditLog[]
+}
+
+model UserSettings {
+  id            String  @id @default(uuid())
+  userId        String  @unique
+  user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  theme         String  @default("dark")
+  fontSize      Int     @default(14)
+  fontFamily    String  @default("JetBrains Mono")
+  tabSize       Int     @default(2)
+  wordWrap      String  @default("off")
+  minimap       Boolean @default(true)
+  lineNumbers   Boolean @default(true)
+  autoSave      Boolean @default(true)
+  defaultModel  String  @default("gpt-4")
+  aiProvider    String  @default("openai")
+  apiEndpoint   String?
+  terminalShell String  @default("bash")
+}
+
+model Project {
+  id            String    @id @default(uuid())
+  name          String
+  description   String?
+  path          String
+  framework     String?
+  language      String?
+  packageManager String?
+  isGitRepo     Boolean   @default(false)
+  gitRemoteUrl  String?
+  defaultBranch String    @default("main")
+  isIndexed     Boolean   @default(false)
+  lastIndexedAt DateTime?
+  ownerId       String
+  owner         User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  files         FileIndex[]
+  conversations Conversation[]
+  agentTasks    AgentTask[]
+  rules         ProjectRule[]
+  mcpTools      MCPTool[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model FileIndex {
+  id            String    @id @default(uuid())
+  projectId     String
+  project       Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  filePath      String
+  fileName      String
+  extension     String
+  language      String?
+  size          Int
+  lineCount     Int?
+  isTest        Boolean   @default(false)
+  isConfig      Boolean   @default(false)
+  lastModified  DateTime  @default(now())
+  indexedAt     DateTime  @default(now())
+  embeddings    Embedding[]
+  @@unique([projectId, filePath])
+}
+
+model CodeSymbol {
+  id            String    @id @default(uuid())
+  projectId     String
+  filePath      String
+  name          String
+  kind          String
+  startLine     Int
+  endLine       Int
+  parentId      String?
+  signature     String?
+  documentation String?
+  language      String
+  createdAt     DateTime  @default(now())
+  @@index([projectId, filePath])
+  @@index([projectId, name])
+}
+
+model Embedding {
+  id            String    @id @default(uuid())
+  fileIndexId   String
+  fileIndex     FileIndex @relation(fields: [fileIndexId], references: [id], onDelete: Cascade)
+  chunkIndex    Int
+  content       String
+  startLine     Int
+  endLine       Int
+  embedding     String
+  createdAt     DateTime  @default(now())
+}
+
+model Conversation {
+  id            String    @id @default(uuid())
+  title         String?
+  projectId     String?
+  project       Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mode          String    @default("chat")
+  model         String?
+  messages      Message[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Message {
+  id              String       @id @default(uuid())
+  conversationId  String
+  conversation    Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role            String
+  content         String
+  model           String?
+  tokenCount      Int?
+  toolCalls       String?
+  contextFiles    String?
+  createdAt       DateTime     @default(now())
+}
+
+model AgentTask {
+  id              String       @id @default(uuid())
+  projectId       String?
+  project         Project?     @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  userId          String
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title           String
+  description     String?
+  status          String       @default("queued")
+  state           String       @default("IDLE")
+  plan            String?
+  result          String?
+  model           String?
+  errorMessage    String?
+  startedAt       DateTime?
+  completedAt     DateTime?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  steps           AgentStep[]
+  toolCalls       ToolCall[]
+}
+
+model AgentStep {
+  id              String    @id @default(uuid())
+  taskId          String
+  task            AgentTask @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  stepNumber      Int
+  action          String
+  description     String?
+  status          String    @default("pending")
+  output          String?
+  error           String?
+  duration        Int?
+  startedAt       DateTime?
+  completedAt     DateTime?
+  createdAt       DateTime  @default(now())
+}
+
+model ToolCall {
+  id              String    @id @default(uuid())
+  taskId          String
+  task            AgentTask @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  toolName        String
+  arguments       String
+  status          String    @default("pending")
+  output          String?
+  error           String?
+  duration        Int?
+  approvalState   String    @default("auto")
+  createdAt       DateTime  @default(now())
+}
+
+model ProjectRule {
+  id            String    @id @default(uuid())
+  projectId     String
+  project       Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  name          String
+  content       String
+  scope         String    @default("project")
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model MCPTool {
+  id            String    @id @default(uuid())
+  projectId     String?
+  project       Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  name          String
+  description   String
+  inputSchema   String
+  outputSchema  String?
+  endpoint      String
+  authType      String?
+  authConfig    String?
+  isEnabled     Boolean   @default(true)
+  permissions   String    @default("read")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model AIProvider {
+  id            String    @id @default(uuid())
+  name          String
+  type          String
+  apiKey        String
+  endpoint      String?
+  models        AIModel[]
+  isEnabled     Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model AIModel {
+  id            String    @id @default(uuid())
+  providerId    String
+  provider      AIProvider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  name          String
+  displayName   String
+  contextWindow Int
+  maxOutput     Int
+  costPer1kInput  Float?
+  costPer1kOutput Float?
+  speed         String?
+  tier          String    @default("balanced")
+  isEnabled     Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model UsageRecord {
+  id            String    @id @default(uuid())
+  userId        String
+  model         String
+  provider      String
+  inputTokens   Int
+  outputTokens  Int
+  requestType   String
+  duration      Int?
+  cost          Float?
+  createdAt     DateTime  @default(now())
+}
+
+model ApiKey {
+  id            String    @id @default(uuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name          String
+  key           String    @unique
+  lastUsedAt    DateTime?
+  expiresAt     DateTime?
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+}
+
+model AuditLog {
+  id            String    @id @default(uuid())
+  userId        String?
+  user          User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action        String
+  resource      String
+  resourceId    String?
+  details       String?
+  ipAddress     String?
+  userAgent     String?
+  createdAt     DateTime  @default(now())
+}
+
+model BackgroundTask {
+  id            String    @id @default(uuid())
+  type          String
+  status        String    @default("queued")
+  payload       String
+  result        String?
+  error         String?
+  priority      Int       @default(0)
+  retryCount    Int       @default(0)
+  maxRetries    Int       @default(3)
+  scheduledAt   DateTime?
+  startedAt     DateTime?
+  completedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
