@@ -1,0 +1,1062 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EARTH OBSERVATION - Remote Sensing & Space-Based Applications</title>
+    <style>
+        @page { size: A4; margin: 2cm; }
+        @media print {
+            body { background: #0a0a0f !important; color: #e0e0e0 !important; }
+            .no-print { display: none !important; }
+            .page { page-break-after: always; page-break-inside: avoid; box-shadow: none !important; border: none !important; }
+            .page:last-child { page-break-after: auto; }
+            .download-btn { display: none !important; }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0a0a0f; color: #e0e0e0; line-height: 1.7; font-size: 14px; }
+        .download-btn { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #00c6ff, #0072ff); color: white; border: none; padding: 15px 30px; font-size: 16px; cursor: pointer; border-radius: 50px; z-index: 1000; box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4); font-weight: bold; }
+        .download-btn:hover { background: linear-gradient(135deg, #0072ff, #00c6ff); transform: translateY(-2px); }
+        .page { width: 210mm; min-height: 297mm; margin: 20px auto; background: linear-gradient(145deg, #0d0d14, #1a1a2e); padding: 40px 50px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); border: 1px solid #2a2a4a; position: relative; }
+        .cover-page { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(145deg, #0a0a1a, #16213e); position: relative; overflow: hidden; }
+        .cover-page::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, rgba(0,100,255,0.08) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(0,200,150,0.06) 0%, transparent 40%); animation: coverGlow 8s ease-in-out infinite; }
+        @keyframes coverGlow { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+        .cover-title { font-size: 42px; font-weight: 900; letter-spacing: 4px; background: linear-gradient(135deg, #00c6ff, #0072ff, #00ff88); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 15px; z-index: 1; }
+        .cover-subtitle { font-size: 22px; color: #8899bb; letter-spacing: 3px; margin-bottom: 40px; z-index: 1; }
+        .cover-ascii { font-family: 'Courier New', monospace; color: #00aaff; font-size: 11px; line-height: 1.3; margin: 30px 0; z-index: 1; white-space: pre; }
+        .cover-author { font-size: 18px; color: #66aadd; margin-top: 40px; z-index: 1; }
+        .cover-date { font-size: 14px; color: #556688; margin-top: 10px; z-index: 1; }
+        h1 { font-size: 28px; color: #00c6ff; border-bottom: 3px solid #0072ff; padding-bottom: 10px; margin-bottom: 20px; }
+        h2 { font-size: 22px; color: #00ddaa; margin: 20px 0 12px; }
+        h3 { font-size: 18px; color: #ffaa00; margin: 15px 0 8px; }
+        p { margin-bottom: 12px; text-align: justify; color: #ccddeeff; }
+        .key-facts { background: rgba(0, 114, 255, 0.1); border-left: 4px solid #0072ff; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .key-facts-title { color: #00c6ff; font-weight: bold; margin-bottom: 8px; font-size: 15px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12px; }
+        th { background: linear-gradient(135deg, #0072ff, #00c6ff); color: white; padding: 10px 8px; text-align: left; font-weight: bold; }
+        td { padding: 8px; border-bottom: 1px solid #2a2a4a; color: #bbccdd; }
+        tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+        .ascii-diagram { font-family: 'Courier New', monospace; background: rgba(0,0,0,0.4); padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #2a2a4a; font-size: 11px; line-height: 1.3; color: #00ccff; white-space: pre; overflow-x: auto; }
+        .summary-box { background: linear-gradient(135deg, rgba(0,200,100,0.1), rgba(0,100,200,0.1)); border: 1px solid #00aa66; border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+        .summary-box h3 { color: #00ff88; margin-top: 0; }
+        ul, ol { margin: 10px 0 10px 25px; color: #aabbcc; }
+        li { margin-bottom: 6px; }
+        .page-number { position: absolute; bottom: 20px; right: 30px; color: #445566; font-size: 12px; }
+        .toc-entry { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dotted #2a2a4a; color: #aabbcc; }
+        .toc-entry:hover { color: #00c6ff; }
+        .toc-chapter { color: #00ddaa; font-weight: bold; }
+    </style>
+</head>
+<body>
+<button class="download-btn no-print" onclick="window.print()">Download PDF</button>
+<!-- PAGE 1: COVER PAGE -->
+<div class="page cover-page">
+    <div class="cover-ascii">
+                 ___  ___  ________  _________  _______  ________  ________  ___  ________  ________  ________  ___  ________
+                |\  \|\  \|\   __  \|\___   ___\\  \\\  \|\   __  \|\   ____\|\  \|\   __  \|\   __  \|\   __  \|\  \|\   __  \
+                \ \  \\\  \ \  \|\  \|___ \  \_| \ \  \ \ \  \|\  \ \  \___|\ \  \ \  \|\  \ \  \|\  \ \  \|\  \ \  \ \  \|\  \
+                 \ \   __  \ \  \\\  \   \ \  \   \ \  \ \ \  \\\  \ \  \    \ \  \ \  \\\  \ \  \\\  \ \  \\\  \ \  \ \  \\\  \
+                  \ \  \ \  \ \  \\\  \   \ \  \   \ \  \ \ \  \\\  \ \  \____\ \  \ \  \\\  \ \  \\\  \ \  \\\  \ \  \ \  \\\  \
+                   \ \__\ \__\ \_______\   \ \__\   \ \__\ \ \_______\ \_______\ \__\ \_______\ \_______\ \__\ \_______\ \  \ \_______\
+                    \|__|\|__|\|_______|    \|__|    \|__|  \|_______|\|_______|\|__|\|_______|\|_______|\|__|\|_______|\ \__\|_______|
+                                                                              \__\         \|__|         \|__|         \|__|
+    </div>
+    <div class="cover-title">EARTH OBSERVATION</div>
+    <div class="cover-subtitle">REMOTE SENSING &amp; SPACE-BASED APPLICATIONS</div>
+    <div class="cover-ascii">
+    +===========================================================================+
+    |                                                                           |
+    |        O --- SATELLITE ORBIT --- O                                       |
+    |       / \                      / \                                        |
+    |      /   \  +--------------+  /   \                                       |
+    |     /     \ |  REMOTE      | /     \                                      |
+    |    O  SSO  O|  SENSING     |O  LEO  O                                     |
+    |     \     / |  PAYLOAD     | \     /                                      |
+    |      \   /  |  (C X L S)  |  \   /                                       |
+    |       \ /   +--------------+   \ /                                        |
+    |        O --- DATA DOWNLINK --- O                                         |
+    |                                                                           |
+    |        INDIAN SPACE RESEARCH ORGANISATION                                 |
+    +===========================================================================+
+    </div>
+    <div class="cover-author">MissileX RocketSpace Research</div>
+    <div class="cover-date">September 2026 Edition</div>
+    <div class="page-number">i</div>
+</div>
+<!-- PAGE 2: TABLE OF CONTENTS -->
+<div class="page">
+    <h1>TABLE OF CONTENTS</h1>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 1</span><span>History of Remote Sensing in India - The IRS Programme</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 2</span><span>ISRO Remote Sensing Applications Infrastructure</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 3</span><span>Electro-Optical Satellites - Cartosat Series</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 4</span><span>Radar Imaging Satellites - RISAT Series</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 5</span><span>Hyperspectral Imaging - IMS-1 &amp; Hypersat</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 6</span><span>Ocean Satellites - Oceansat &amp; SARAL-AltiKa</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 7</span><span>Cartographic Applications - Topographic Mapping</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 8</span><span>Agricultural Monitoring - Crop Forecasting &amp; FASAL</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 9</span><span>Disaster Management - Flood, Cyclone &amp; Earthquake</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 10</span><span>Urban Planning &amp; Smart Cities</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 11</span><span>Forestry &amp; Biodiversity - Forest Survey of India</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 12</span><span>Water Resource Management</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 13</span><span>Mineral Exploration &amp; Geological Mapping</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 14</span><span>Defence &amp; Surveillance Applications</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 15</span><span>Data Processing &amp; Analysis - Geoprocessing</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 16</span><span>GIS Integration &amp; Spatial Analysis</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 17</span><span>AI/ML in Earth Observation</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 18</span><span>International Cooperation - UNOOSA &amp; Bilateral</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 19</span><span>Future Missions - NISAR &amp; Earth Observing System</span></div>
+    <div class="toc-entry"><span class="toc-chapter">Chapter 20</span><span>Summary &amp; Impact on Nation Building</span></div>
+    <div class="page-number">ii</div>
+</div>
+<!-- PAGE 3: CHAPTER 1 -->
+<div class="page">
+    <h1>Chapter 1: History of Remote Sensing in India - The IRS Programme</h1>
+    <p>India's journey in remote sensing began long before the launch of its first dedicated operational satellite. The seeds of this revolutionary programme were sown in the early 1970s when the Indian Space Research Organisation (ISRO) recognized the immense potential of space-based observations for managing the country's vast and diverse natural resources. The journey from aerial surveys to a sophisticated constellation of Earth observation satellites represents one of the most remarkable success stories in global space technology.</p>
+    <h2>Early Experimental Missions (1975-1987)</h2>
+    <p>The successful launch of <strong>Aryabhata</strong> on 19th April 1975 by a Soviet Interkosmos rocket from Kapustin Yar marked India's entry into space. While primarily a scientific satellite, Aryabhata demonstrated the technological foundation needed for future Earth observation missions. Following this milestone, two experimental Earth observation satellites were developed: <strong>Bhaskara-I</strong> (launched 7th June 1979) was India's first experimental remote sensing satellite, carrying a two-band TV camera system and a three-frequency microwave radiometer. Weighing 444 kg, it operated from a near-circular orbit at 534 km altitude. <strong>Bhaskara-II</strong> (launched 20th November 1981) was an improved version with a three-band TV camera, providing valuable experience in satellite-based resource survey.</p>
+    <div class="ascii-diagram">
+    TIMELINE: INDIAN REMOTE SENSING EVOLUTION
+    ========================================================================
+    1975          1979          1981          1988          1991          1995
+     |            |             |             |             |             |
+     v            v             v             v             v             v
+    [AB]        [B1]         [B2]          [1A]         [1B]         [1C]
+    Aryabhata   Bhaskara-I   Bhaskara-II   IRS-1A        IRS-1B        IRS-1C
+                                          (Operational  (Workhorse)  (Advanced)
+                                           Era Begins)
+
+    -----------------------------------------------------------------------
+    1997          2003          2005          2008          2009          2011
+     |            |             |             |             |             |
+     v            v             v             v             v             v
+    [1D]        [P6]         [P5]          [2A]         [-2]         [2]
+    IRS-1D     Resourcesat-1  Cartosat-1   Cartosat-2A   RISAT-2      Resourcesat-2
+
+    -----------------------------------------------------------------------
+    2012          2013          2017          2019          2022          2025
+     |             |             |             |             |             |
+     v             v             v             v             v             v
+    [-1]        [SRL]         [-3]         [Carto3]      [1A]         [NISAR]
+    RISAT-1      SARAL        Cartosat-2E   Cartosat-3    RISAT-1A      NISAR
+    </div>
+    <h2>The Operational Era Begins: IRS-1A</h2>
+    <p>The launch of <strong>IRS-1A</strong> on 17th March 1988 from the Soviet Cosmodrome at Baikonur was a watershed moment in India's space history. This was the first indigenous state-of-the-art operational remote sensing satellite, designed and built entirely by India. IRS-1A carried two sophisticated imaging instruments: LISS-I with 72.5 m spatial resolution and 148 km swath, and LISS-II with two separate sensors at 36.25 m resolution each providing a composite swath of 147 km. The satellite operated in a Polar Sun-Synchronous orbit at 904 km altitude, weighing 975 kg with a planned mission life of 3 years (operated until 1992).</p>
+    <div class="key-facts">
+        <div class="key-facts-title">IRS Programme Milestones</div>
+        <ul>
+            <li><strong>1988:</strong> IRS-1A launched - India enters operational remote sensing era</li>
+            <li><strong>1991:</strong> IRS-1B launched - 11-day revisit with IRS-1A in tandem</li>
+            <li><strong>1995:</strong> IRS-1C introduced multispectral and panchromatic cameras</li>
+            <li><strong>1999:</strong> Oceansat-1 - India's first dedicated ocean observation satellite</li>
+            <li><strong>2005:</strong> Cartosat-1 - India's first dedicated cartographic satellite</li>
+            <li><strong>2012:</strong> RISAT-1 - India's first indigenous SAR satellite</li>
+            <li><strong>2019:</strong> Cartosat-3 achieved 0.25m resolution - highest civilian resolution</li>
+            <li><strong>Current:</strong> 11+ operational Earth observation satellites - world's largest civilian EO constellation</li>
+        </ul>
+    </div>
+    <h2>Institutional Framework: NNRMS</h2>
+    <p>A unique institutional strategy emerged with the establishment of the <strong>National Natural Resources Management System (NNRMS)</strong> in 1983, with the Department of Space as the nodal agency. NNRMS integrated traditional survey techniques with remote sensing technology to provide timely, accurate, and specific information on natural resources to decision-makers at all levels. The system evolved into theme-based satellite series covering land/water resources (Resourcesat, RISAT), ocean/atmospheric studies (Oceansat, INSAT, Megha-Tropiques, SARAL), and cartographic applications (Cartosat).</p>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>India's remote sensing journey progressed through experimental missions (Aryabhata, Bhaskara), culminating in the operational IRS programme beginning with IRS-1A in 1988. The NNRMS framework provided institutional structure, and the programme evolved into theme-based satellite series covering land, ocean, and cartographic applications, making India's IRS the world's largest civilian Earth observation constellation with 11+ operational satellites.</p>
+    </div>
+    <div class="page-number">1</div>
+</div>
+<!-- PAGE 4: CHAPTER 2 -->
+<div class="page">
+    <h1>Chapter 2: ISRO Remote Sensing Applications Infrastructure</h1>
+    <p>The Indian Space Research Organisation (ISRO) operates a comprehensive network of centres and facilities dedicated to remote sensing applications. The institutional framework encompasses the National Remote Sensing Centre (NRSC) in Hyderabad, the Space Applications Centre (SAC) in Ahmedabad, the Indian Institute of Remote Sensing (IIRS) in Dehradun, and various regional centres that collectively form a robust ecosystem for Earth observation data utilisation.</p>
+    <h2>National Remote Sensing Centre (NRSC)</h2>
+    <p>NRSC, located in Hyderabad, serves as the primary agency for acquisition, processing, and dissemination of remote sensing satellite data in India. It operates ground stations for receiving data from IRS satellites and other international Earth observation missions. The NRSC Data Centre functions as a one-stop-shop offering a wide range of data products with various resolutions, processing levels, and formats. The centre maintains an extensive archive of satellite imagery dating back decades, serving as an invaluable resource for temporal studies.</p>
+    <div class="ascii-diagram">
+    ISRO REMOTE SENSING INFRASTRUCTURE
+    ========================================================================
+                        +---------------------------+
+                        |     ISRO HEADQUARTERS     |
+                        |     Bengaluru, Karnataka  |
+                        +-------------+-------------+
+                                      |
+            +-------------------------+-------------------------+
+            |                         |                         |
+            v                         v                         v
+    +-------------------+    +-------------------+    +-------------------+
+    |  UR Rao Satellite |    |  Space Applications|    |  Vikram Sarabhai  |
+    |  Centre (URSC)    |    |  Centre (SAC)     |    |  Space Centre     |
+    |  Satellite Design |    |  Payload Dev.     |    |  Launch Vehicles  |
+    +---------+---------+    +---------+---------+    +---------+---------+
+              |                        |                        |
+              v                        v                        v
+    +-------------------+    +-------------------+    +-------------------+
+    |  National Remote  |    |  Indian Institute |    |  Satish Dhawan    |
+    |  Sensing Centre   |    |  of Remote        |    |  Space Centre     |
+    |  (NRSC)           |    |  Sensing (IIRS)   |    |  (SDSC)           |
+    |  Data Reception   |    |  Training &       |    |  Launch Ops       |
+    |  & Processing     |    |  Capacity Building|    |                   |
+    +-------------------+    +-------------------+    +-------------------+
+    </div>
+    <h2>Space Applications Centre (SAC)</h2>
+    <p>SAC in Ahmedabad is ISRO's lead centre for payload development and remote sensing application research. It developed the FASAL methodology for crop forecasting and maintains the VEDAS portal for Earth observation data access. SAC has developed specialized software including MIDAS for SAR analysis, INDUS for interferometric SAR, and AVHYAS for hyperspectral data processing.</p>
+    <h2>National Database for Emergency Management (NDEM)</h2>
+    <p>NDEM is a unique geo-portal serving as the national repository of GIS-based multi-scale geospatial database for the entire country. Operational since 2013, it provides space-based inputs in near real-time during disasters and integrates data from multiple forecasting organizations including IMD, CWC, INCOIS, and NRSC. The system includes decision support tools for situational assessment, evacuation planning, and resource management.</p>
+    <h2>Bhuvan: India's Geo-Platform</h2>
+    <p>Bhuvan, developed by NRSC, is India's open data archive and visualization portal providing Earth observation data to public domain users. The portal enables 2D and 3D representation of Earth's surface, supports pest surveillance, disaster services, and high-resolution city imagery. States like Punjab, Karnataka, Himachal Pradesh, and Andhra Pradesh use Bhuvan for applications in forestry, tourism, municipal management, GIS, and geo-tagging. The platform integrates data from Resourcesat, Cartosat, RISAT, and other missions, offering APIs for programmatic access.</p>
+    <div class="key-facts">
+        <div class="key-facts-title">Key Infrastructure Statistics</div>
+        <ul>
+            <li><strong>Ground Stations:</strong> Multiple stations across India for real-time and recorded data reception</li>
+            <li><strong>Data Archive:</strong> Petabytes of historical satellite imagery spanning 40+ years</li>
+            <li><strong>Bhuvan Portal:</strong> India's own geo-platform with 20+ ministry portals and 30+ state portals</li>
+            <li><strong>MOSDAC:</strong> Meteorological and Oceanographic Satellite Data Archival Centre</li>
+            <li><strong>NDEM:</strong> National Database for Emergency Management with decision support tools</li>
+        </ul>
+    </div>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>ISRO's remote sensing infrastructure is distributed across multiple centres: NRSC for data acquisition and processing, SAC for payload development and applications research, IIRS for capacity building, and SDSC for launch operations. Together, they form a comprehensive ecosystem including ground stations, data archives, web portals (Bhuvan, MOSDAC), and emergency management systems (NDEM).</p>
+    </div>
+    <div class="page-number">2</div>
+</div>
+<!-- PAGE 5: CHAPTER 3 -->
+<div class="page">
+    <h1>Chapter 3: Electro-Optical Satellites - Cartosat Series</h1>
+    <p>The Cartosat series represents India's most advanced fleet of electro-optical Earth observation satellites, specifically designed for high-resolution cartographic and large-scale mapping applications. Developed by ISRO as an extension of the IRS programme, these satellites have been instrumental in enabling precise topographic mapping, urban planning, infrastructure development, and defence applications.</p>
+    <h2>Cartosat-1 (IRS-P5) - The Pioneer</h2>
+    <p>Launched on 5th May 2005 by PSLV-C6, Cartosat-1 was the first dedicated cartographic satellite carrying two panchromatic cameras - one forward-looking (+26 degrees) and one aft-looking (-5 degrees) - enabling near-instantaneous stereoscopic data acquisition with a time difference of only 52 seconds. This unique configuration provided Digital Elevation Models (DEMs) essential for topographic mapping and terrain analysis. The satellite weighed 1,560 kg and operated at 505 km altitude.</p>
+    <h2>Cartosat-2 Series - High Resolution Imaging</h2>
+    <p>The Cartosat-2 series introduced sub-metre resolution capabilities. Cartosat-2 (2007) achieved better than 1 metre panchromatic resolution with 9.6 km swath. These highly agile satellites can be steered up to plus/minus 45 degrees along and across track, enabling 4-5 day revisit capability. The advanced Cartosat-2C (2016) incorporated adaptive optics with 0.65 metre resolution and 60% mass reduction. Cartosat-3 (2019) achieved 0.25 metre resolution with 1,625 kg mass.</p>
+    <div class="key-facts">
+        <div class="key-facts-title">Cartosat Series Specifications</div>
+        <table>
+            <tr><th>Satellite</th><th>Launch</th><th>Resolution</th><th>Mass</th><th>Orbit</th></tr>
+            <tr><td>Cartosat-1</td><td>May 2005</td><td>2.5 m (PAN)</td><td>1,560 kg</td><td>505 km SSO</td></tr>
+            <tr><td>Cartosat-2</td><td>Jan 2007</td><td>&lt;1 m (PAN)</td><td>680 kg</td><td>505 km SSO</td></tr>
+            <tr><td>Cartosat-2A</td><td>Apr 2008</td><td>&lt;1 m (PAN)</td><td>690 kg</td><td>505 km SSO</td></tr>
+            <tr><td>Cartosat-2C</td><td>Jun 2016</td><td>0.65 m</td><td>728 kg</td><td>505 km SSO</td></tr>
+            <tr><td>Cartosat-3</td><td>Nov 2019</td><td>0.25 m (PAN)</td><td>1,625 kg</td><td>509 km SSO</td></tr>
+        </table>
+    </div>
+    <h2>Applications and Impact</h2>
+    <p>Cartosat data forms the backbone of India's topographic mapping programme. The Survey of India uses this data to produce and update topographic sheets. Key applications include topographic mapping and DEM generation, urban planning and infrastructure monitoring, rural development and village-level planning, coastal zone management and shoreline change detection, and strategic mapping and border surveillance for defence applications.</p>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>The Cartosat series has progressed from 2.5m (Cartosat-1) to 0.25m (Cartosat-3) resolution, serving critical roles in topographic mapping, urban planning, infrastructure development, and defence applications, with data products supporting scales from 1:25,000 to 1:2,500.</p>
+    </div>
+    <div class="page-number">3</div>
+</div>
+<!-- PAGE 6: CHAPTER 4 -->
+<div class="page">
+    <h1>Chapter 4: Radar Imaging Satellites - RISAT Series</h1>
+    <p>The Radar Imaging Satellite (RISAT) series represents a transformative capability in India's Earth observation programme - the ability to image the Earth's surface through clouds, rain, and in complete darkness. Using Synthetic Aperture Radar (SAR) technology, RISAT satellites provide all-weather, day-and-night imaging capability essential for monitoring tropical regions like India.</p>
+    <h2>The Need for Radar Imaging</h2>
+    <p>Traditional optical remote sensing satellites rely on reflected sunlight. During India's crucial Kharif (monsoon) cropping season, persistent cloud cover renders optical sensors ineffective precisely when agricultural monitoring and flood assessment are most critical. SAR instruments overcome this limitation by actively transmitting microwave pulses toward the Earth and recording the backscattered energy, enabling imaging regardless of weather or illumination conditions.</p>
+    <h2>RISAT-2 - India's First SAR Satellite</h2>
+    <p>RISAT-2, launched on 20th April 2009, was India's first satellite carrying a SAR payload. Built by ISRO using an X-band SAR manufactured by Israel Aerospace Industries (IAI), this 300 kg satellite was fast-tracked following the 26th November 2008 Mumbai terror attacks. The X-band SAR operated at 9.59 GHz with multiple imaging modes: Spotlight (1m resolution, 10km swath), Stripmap (3m, 40km), Mosaic (1.8m, 60km), and Wide Coverage (8m, 120km).</p>
+    <h2>RISAT-1 - Indigenous C-Band SAR</h2>
+    <p>RISAT-1, launched on 26th April 2012, was India's first fully indigenous radar imaging satellite carrying a C-band (5.35 GHz) SAR payload. This 1,858 kg satellite provided five operational modes with resolutions from 1 to 50 metres and swaths ranging from 10 to 225 km. The C-band frequency was chosen for its superior penetration through vegetation canopy, making it ideal for agricultural monitoring, forestry, and soil moisture estimation.</p>
+    <div class="ascii-diagram">
+    RADAR IMAGING - HOW SAR WORKS
+    ========================================================================
+                          RISAT Satellite in Orbit
+                                +-----+
+                                | SAT |
+                                +--+--+
+                                   |
+                    Transmit ------|------ Receive
+                    Radar Pulse    |     Backscatter
+                                   |
+                    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  <- Cloud Cover (Transparent)
+                                   |
+                    ###############################  <- Surface Features
+                                   |
+    +----------------------------------------------------------------+
+    |  SAR Frequencies Used by India:                                |
+    |  C-band:  5.35 GHz (RISAT-1, RISAT-1A, NISAR)               |
+    |  X-band:  9.59 GHz (RISAT-2, RISAT-2B, RISAT-2BR1)          |
+    |  L-band:  1.27 GHz (NISAR - deep penetration)                 |
+    |  S-band:  3.2 GHz  (NISAR - vegetation sensitivity)           |
+    +----------------------------------------------------------------+
+    </div>
+    <h2>RISAT-2B and RISAT-2BR1 - Enhanced Resolution</h2>
+    <p>RISAT-2B (May 2019) brought 0.5m x 0.3m resolution capability in an inclined orbit at 557 km. RISAT-2BR1 (December 2019) achieved 0.35 metre resolution, enabling identification of objects separated by just 35 centimetres. These satellites operate in various polarimetric modes and support interferometric applications.</p>
+    <h2>RISAT-1A (EOS-04) - Continuity Mission</h2>
+    <p>RISAT-1A, launched on 14th February 2022, is a continuity mission for RISAT-1 with enhanced capabilities. Weighing 1,710 kg with 2,280W power, it operates in C-band with variable resolution (1-50m) across swath widths of 10-223 km, featuring over 300 Gbit storage capacity and X-band data downlink at 640 Mbit/s.</p>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>The RISAT series evolved from Israeli-technology-based RISAT-2 (X-band, 2009) to fully indigenous missions like RISAT-1 (C-band, 2012), RISAT-2B/2BR1 (X-band, 2019), and RISAT-1A (C-band, 2022). These satellites provide critical all-weather, day-night imaging essential for agricultural monitoring during monsoon, flood mapping, and defence surveillance.</p>
+    </div>
+    <div class="page-number">4</div>
+</div>
+<!-- PAGE 7: CHAPTER 5 -->
+<div class="page">
+    <h1>Chapter 5: Hyperspectral Imaging - IMS-1 &amp; Hypersat</h1>
+    <p>Hyperspectral imaging captures data across hundreds of narrow, contiguous spectral bands spanning the visible, near-infrared, and short-wave infrared regions of the electromagnetic spectrum. While multispectral sensors like LISS capture data in 4-8 broad spectral bands, hyperspectral sensors capture information in 60-200+ contiguous bands, each only 10-20 nm wide. This extraordinary spectral resolution enables identification of materials indistinguishable in conventional satellite imagery.</p>
+    <h2>Principles of Hyperspectral Imaging</h2>
+    <p>Every material on Earth's surface has a unique spectral signature - a characteristic pattern of how it absorbs, reflects, and emits electromagnetic energy across different wavelengths. Hyperspectral sensors exploit this principle to identify specific minerals, vegetation species, soil types, water quality parameters, and man-made materials with remarkable precision.</p>
+    <div class="ascii-diagram">
+    HYPERSPECTRAL vs MULTISPECTRAL IMAGING
+    ========================================================================
+    MULTISPECTRAL (e.g., LISS-III):
+    +----------------------------------------------------------------+
+    |  Band 1    |        |  Band 2    |        |  Band 3    |  Band 4  |
+    |  (Green)   |        |  (Red)     |        |  (NIR)     |  (SWIR)  |
+    |  0.52-0.59 | GAP    |  0.62-0.68 | GAP    |  0.77-0.86 | 1.55-1.70|
+    |  ########  |        |  ########  |        |  ########  |  ########|
+    +----------------------------------------------------------------+
+    4-8 Broad Bands | Spectral Gaps | Limited Material Discrimination
+
+    HYPERSPECTRAL (e.g., HySI on IMS-1):
+    +----------------------------------------------------------------+
+    | ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |
+    |400nm ------------------ 900nm ------------------ 2500nm       |
+    +----------------------------------------------------------------+
+    60-200+ Contiguous Bands | No Spectral Gaps | Complete Signatures
+    </div>
+    <h2>IMS-1 - India's First Mini Satellite</h2>
+    <p>IMS-1 (Indian Mini Satellite-1), launched on 28th April 2008, was ISRO's first mini satellite demonstrating miniaturized remote sensing capabilities. Weighing just 93 kg, IMS-1 carried three payloads: Mx (36m resolution, 141 km swath), HySI (Hyperspectral Imager with 505m resolution in 64 contiguous bands across 400-950 nm), and LiVHISI. The HySI payload marked India's first operational spaceborne hyperspectral imager.</p>
+    <h2>Applications of Hyperspectral Data</h2>
+    <p>Hyperspectral data enables geological mapping through mineral identification via spectral signatures of iron oxides, clay minerals, and carbonates. In precision agriculture, it detects crop stress and nutrient deficiency before visible symptoms appear. Environmental monitoring includes water quality assessment and oil spill detection. ISRO's SAC has developed AVHYAS (AdVance HYperspectral data Analysis Software) for processing and analyzing hyperspectral data within the QGIS platform.</p>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>Hyperspectral imaging captures data across hundreds of contiguous spectral bands, enabling identification of specific materials through unique spectral signatures. India's IMS-1 demonstrated spaceborne hyperspectral capability with its HySI payload. Applications span geological mapping, mineral exploration, precision agriculture, and environmental monitoring, with dedicated processing software AVHYAS developed by SAC-ISRO.</p>
+    </div>
+    <div class="page-number">5</div>
+</div>
+<!-- PAGE 8: CHAPTER 6 -->
+<div class="page">
+    <h1>Chapter 6: Ocean Satellites - Oceansat &amp; SARAL-AltiKa</h1>
+    <p>India's vast coastline of 7,516 km and extensive Exclusive Economic Zone (EEZ) spanning over 2 million sq km demand dedicated ocean observation capabilities. ISRO's ocean satellite programme, beginning with Oceansat-1 in 1999, has established India as a significant contributor to global ocean science and monitoring.</p>
+    <h2>Oceansat-1 (IRS-P4) - The Pioneer</h2>
+    <p>Launched on 26th May 1999, Oceansat-1 carried the Ocean Colour Monitor (OCM) with 8 spectral bands in the 402-885 nm range. With 360m spatial resolution and 1,420 km swath, OCM-1 provided revolutionary data for chlorophyll concentration estimation, Potential Fishing Zone (PFZ) identification, and ocean primary productivity studies, serving for over a decade.</p>
+    <h2>Oceansat-2 - Enhanced Capabilities</h2>
+    <p>Oceansat-2, launched on 23rd September 2009, carried three payloads: OCM-2, a Ku-band scatterometer, and Italian ROSA (Radio Occultation Sounder). OCM-2 provides 360m x 236m resolution with 1,420 km swath in 8 spectral bands at 12-bit quantization. The satellite orbits at 720 km in a Sun-Synchronous orbit with 2-day revisit capability.</p>
+    <div class="key-facts">
+        <div class="key-facts-title">Oceansat-2 OCM-2 Specifications</div>
+        <table>
+            <tr><th>Parameter</th><th>Specification</th></tr>
+            <tr><td>Spatial Resolution</td><td>360m x 236m (LAC), 1 km (GAC)</td></tr>
+            <tr><td>Swath</td><td>1,420 km</td></tr>
+            <tr><td>Spectral Bands</td><td>8 bands (404-885 nm)</td></tr>
+            <tr><td>Quantization</td><td>12 bits</td></tr>
+            <tr><td>Revisit Time</td><td>2 days</td></tr>
+            <tr><td>Orbit</td><td>720 km, Sun-Synchronous, 98.28 degrees</td></tr>
+        </table>
+    </div>
+    <h2>SARAL-AltiKa - Precision Altimetry</h2>
+    <p>SARAL (Satellite for ARGOS and AltiKa), launched on 25th February 2013, is a landmark Indo-French collaborative mission carrying AltiKa, a Ka-band (35.75 GHz) altimeter provided by CNES (France). AltiKa's Ka-band provides finer spatial resolution and improved accuracy for sea surface height measurement - critical for ocean circulation studies, sea level monitoring, and marine geoid determination.</p>
+    <h2>ScatSat-1 and Oceansat-3</h2>
+    <p>ScatSat-1 (September 2016) provided continuity of scatterometer services for ocean surface wind vector generation. Oceansat-3 (EOS-6, November 2022) continues the ocean colour observation legacy with improved OCM-3 payload, maintaining India's capability for marine resource assessment and climate monitoring.</p>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>India's ocean satellite programme encompasses ocean colour monitoring (Oceansat series) for fisheries and marine ecosystems, scatterometry (ScatSat-1) for ocean wind mapping and cyclone tracking, and altimetry (SARAL-AltiKa) for precise sea surface height measurement. These satellites collectively support marine resource management, weather forecasting, and climate monitoring.</p>
+    </div>
+    <div class="page-number">6</div>
+</div>
+<!-- PAGE 9: CHAPTER 7 -->
+<div class="page">
+    <h1>Chapter 7: Cartographic Applications - Topographic Mapping</h1>
+    <p>Cartographic applications represent one of the primary drivers of India's Earth observation satellite programme. The systematic acquisition of high-resolution satellite imagery has revolutionized the production and updating of topographic maps, enabling the Survey of India to maintain an accurate spatial database of the nation's terrain, infrastructure, and land use patterns.</p>
+    <h2>Topographic Mapping Programme</h2>
+    <p>India's topographic mapping programme leverages satellite data to produce maps at various scales. The traditional ground-based survey approach, while highly accurate, is time-consuming for covering India's 3.28 million sq km land area. Satellite-based cartographic mapping has dramatically accelerated this process:</p>
+    <ul>
+        <li><strong>1:50,000 Scale:</strong> Primary national mapping using Resourcesat LISS-III (23.5m) and Cartosat-1 (2.5m)</li>
+        <li><strong>1:25,000 Scale:</strong> Enhanced mapping using Cartosat-2 data for cadastral and infrastructure planning</li>
+        <li><strong>1:10,000 Scale:</strong> High-resolution urban mapping using Cartosat-3 (0.25m) for city-level planning</li>
+    </ul>
+    <div class="ascii-diagram">
+    SATELLITE-BASED TOPOGRAPHIC MAPPING WORKFLOW
+    ========================================================================
+    +--------------+     +--------------+     +--------------+     +----------+
+    |   SATELLITE  |     |   GROUND     |     |  DIGITAL     |     |   TOPO   |
+    |   IMAGERY    | --> |   TRUTH      | --> |  PROCESSING  | --> |   MAPS   |
+    |              |     |   CONTROL    |     |              |     |          |
+    | Cartosat     |     | GCP Survey   |     | Ortho-       |     | Contours |
+    | Resourcesat  |     | DGPS         |     | rectification|     | Drainage |
+    | RISAT        |     | Elevation    |     | DEM Gen.     |     | Roads    |
+    |              |     | Points       |     | Mosaicking   |     | Buildings|
+    +--------------+     +--------------+     +--------------+     +----------+
+
+    MAPPING SCALE vs SATELLITE DATA:
+    -----------------------------------------------------------------------
+    Scale        | Satellite         | Resolution | Application
+    -----------------------------------------------------------------------
+    1:1,000,000  | LISS-II           | 36 m       | Regional Planning
+    1:250,000    | LISS-III          | 23.5 m     | District Planning
+    1:50,000     | LISS-IV / PAN     | 5.8 m      | State Mapping
+    1:25,000     | Cartosat-1        | 2.5 m      | Cadastral Mapping
+    1:10,000     | Cartosat-2        | <1 m       | Urban Planning
+    1:2,500      | Cartosat-3        | 0.25 m     | Detailed Infrastructure
+    -----------------------------------------------------------------------
+    </div>
+    <h2>Digital Elevation Models (DEMs)</h2>
+    <p>Cartosat-1's stereo pair capability enables generation of DEMs with vertical accuracy of 5-10 metres. These DEMs are fundamental for terrain analysis, watershed delineation, flood modeling, road alignment studies, and telecommunications network planning. ISRO has generated national-level DEMs at 30m and 10m resolution using Cartosat stereo data.</p>
+    <h2>Land Information System (LIS)</h2>
+    <p>India is developing a comprehensive Land Information System using satellite-derived cadastral and topographic data. States like Karnataka, Maharashtra, and Andhra Pradesh have pioneered LIS implementation, using high-resolution satellite data for cadastral map modernization and transparent land administration.</p>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>Cartographic applications form a core mission of India's Earth observation programme, with satellites providing data at resolutions from 36m to 0.25m for mapping scales from 1:1,000,000 to 1:2,500. The systematic approach has enabled comprehensive topographic mapping, DEM generation, and Land Information System development across the country.</p>
+    </div>
+    <div class="page-number">7</div>
+</div>
+<!-- PAGE 10: CHAPTER 8 -->
+<div class="page">
+    <h1>Chapter 8: Agricultural Monitoring - Crop Forecasting &amp; FASAL</h1>
+    <p>Agriculture employs over 42% of India's workforce and contributes approximately 18% to GDP. Remote sensing has transformed agricultural monitoring from traditional crop-cutting experiments to sophisticated satellite-based forecasting systems. India's crop monitoring programme is one of the largest and most operationally mature in the world.</p>
+    <h2>Evolution of Agricultural Remote Sensing</h2>
+    <p>Agricultural remote sensing in India began in 1970 with helicopter-mounted multispectral cameras detecting coconut root-wilt disease. The programme evolved through CAPE (1980s-90s), FASAL (2007-present), NADAMS (National Agricultural Drought Assessment), and KISAN programmes.</p>
+    <div class="ascii-diagram">
+    FASAL OPERATIONAL FRAMEWORK
+    ========================================================================
+    +---------------------------------------------------------------------+
+    |                    FASAL PARTNER AGENCIES                           |
+    |  +--------+  +--------+  +--------+  +--------+  +--------+       |
+    |  | MNCFC  |  | ISRO   |  |  IMD   |  |  IEG   |  |  ICAR  |       |
+    |  | (Lead) |  | (Space)|  |(AgroMet)|  |(Economet)|  | (Field)|       |
+    |  +---+----+  +---+----+  +---+----+  +---+----+  +---+----+       |
+    |      |           |           |           |           |              |
+    |      v           v           v           v           v              |
+    |  +-------------------------------------------------------------+  |
+    |  |        INTEGRATED CROP PRODUCTION FORECAST                  |  |
+    |  | F0 -> F1 -> F2 -> F3 -> F4 (Pre-sowing to Pre-harvest)    |  |
+    |  +-------------------------------------------------------------+  |
+    +---------------------------------------------------------------------+
+
+    FORECAST STAGES:
+    ========================================================================
+    F0 (Pre-sowing)    | Econometric models based on economic indicators
+    F1 (Sowing)        | Area estimation from satellite data + field surveys
+    F2 (Mid-season)    | RS-based crop condition assessment + yield models
+    F3 (Pre-harvest)   | Multi-source integrated production forecast
+    F4 (Post-harvest)  | Ground truth validation + final estimates
+    ========================================================================
+
+    DATA SOURCES:
+    +------------------+----------------------------------------------------+
+    | Resourcesat-2    | LISS-IV (5.8m), LISS-III (23.5m), AWiFS (56m)   |
+    | RISAT-1A         | C-band SAR for Kharif season monitoring          |
+    | INSAT-3D/3DR    | Agrometeorological parameters                    |
+    | MODIS/Terra      | NDVI time series for vegetation monitoring        |
+    +------------------+----------------------------------------------------+
+    </div>
+    <h2>Mahalanobis National Crop Forecast Centre (MNCFC)</h2>
+    <p>MNCFC, established in 2012 at Pusa, New Delhi, is the operational hub for satellite-based crop forecasting. It integrates remote sensing from SAC Ahmedabad, agrometeorological models from IMD, and econometric models from IEG to produce multiple pre-harvest production forecasts.</p>
+    <div class="key-facts">
+        <div class="key-facts-title">FASAL Monitored Crops</div>
+        <table>
+            <tr><th>Season</th><th>Crops Monitored</th><th>Forecast Stages</th></tr>
+            <tr><td>Kharif</td><td>Rice, Cotton, Jute, Sugarcane, Pulses</td><td>F1, F2, F3</td></tr>
+            <tr><td>Rabi</td><td>Wheat, Rapeseed/Mustard, Potato, Sorghum</td><td>F1, F2, F3</td></tr>
+            <tr><td>Annual</td><td>Sugarcane, Cotton</td><td>F0, F1, F2, F3</td></tr>
+        </table>
+    </div>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>India's agricultural monitoring system, led by MNCFC under FASAL, integrates satellite remote sensing, agrometeorological data, and economic models to provide multi-stage crop production forecasts for major Kharif and Rabi crops, supporting food security planning and agricultural policy development.</p>
+    </div>
+    <div class="page-number">8</div>
+</div>
+<!-- PAGE 11: CHAPTER 9 -->
+<div class="page">
+    <h1>Chapter 9: Disaster Management - Flood, Cyclone &amp; Earthquake</h1>
+    <p>India is among the most disaster-prone nations globally, facing floods, cyclones, earthquakes, landslides, droughts, and forest fires. ISRO's Disaster Management Support Programme provides near real-time satellite-based information for all phases of disaster management - prevention, preparedness, response, and recovery.</p>
+    <h2>Flood Monitoring and Mapping</h2>
+    <p>Flood monitoring is one of the most critical applications during India's monsoon season (June-October). NRSC maintains systematic flood monitoring using both optical and radar satellite data. RISAT-1A SAR provides near real-time flood inundation maps regardless of cloud cover, while Resourcesat data supplements mapping during clear weather.</p>
+    <div class="ascii-diagram">
+    ISRO DISASTER MANAGEMENT SUPPORT FRAMEWORK
+    ========================================================================
+                        +---------------------------+
+                        |     NDEM GEO-PORTAL       |
+                        |  National Database for     |
+                        |  Emergency Management      |
+                        +-------------+-------------+
+                                      |
+        +-----------------------------+-----------------------------+
+        |                             |                             |
+        v                             v                             v
+    +----------+              +----------+              +----------+
+    |  FLOOD   |              |  CYCLONE |              |EARTHQUAKE|
+    | MONITOR  |              | TRACKING |              | ASSESS   |
+    +----+-----+              +----+-----+              +----+-----+
+         |                          |                          |
+    +----+-----+              +----+-----+              +----+-----+
+    |RISAT-1A  |              |INSAT-3D  |              |Cartosat  |
+    |SAR data  |              |Scattero- |              |RISAT     |
+    |AWiFS     |              |meter     |              |Field Data|
+    +----------+              +----------+              +----------+
+         |                          |                          |
+         v                          v                          v
+    +----------+              +----------+              +----------+
+    |Flood Ext |              |Cyclone   |              |Damage    |
+    |Early Warn|              |Intensity |              |Relief    |
+    |Damage    |              |Landfall  |              |Recovery  |
+    +----------+              +----------+              +----------+
+
+    TURNAROUND TIME: Products disseminated within 3-4 HOURS of data acquisition
+    </div>
+    <h2>Cyclone Monitoring and Early Warning</h2>
+    <p>India's North Indian Ocean basin is exposed to approximately 10% of the world's tropical cyclones. ISRO's system integrates INSAT-3D/3DR, Oceansat scatterometers, and radar satellites for cyclone detection, intensity estimation, and track prediction. Data products are disseminated to IMD and NDMA for public warnings.</p>
+    <div class="key-facts">
+        <div class="key-facts-title">ISRO Disaster Support Statistics (2022-2025)</div>
+        <ul>
+            <li><strong>Flood Maps:</strong> 319 products generated in 2025 alone</li>
+            <li><strong>Flood Hazard Atlases:</strong> Released for 6 states (Assam, Bihar, UP, West Bengal, AP, Odisha)</li>
+            <li><strong>Spatial Early Warning:</strong> Operational for Godavari and Tapi rivers</li>
+            <li><strong>International Support:</strong> Data provided to 16+ countries under International Charter</li>
+            <li><strong>Turnaround Time:</strong> Products within 3-4 hours of satellite data acquisition</li>
+        </ul>
+    </div>
+    <h2>Earthquake and Landslide Response</h2>
+    <p>For earthquake response, ISRO provides pre- and post-event satellite imagery for rapid damage assessment. High-resolution Cartosat and RISAT data enable building-level damage mapping. For landslides, NRSC maintains a landslide zonation map using terrain analysis and satellite imagery, providing early warning in vulnerable Himalayan and Western Ghat regions.</p>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>ISRO's disaster management programme provides near real-time satellite support for floods, cyclones, earthquakes, and landslides through the NDEM portal. The system integrates SAR, optical, and meteorological satellite data with decision support tools, achieving 3-4 hour turnaround for disaster products and supporting 16+ countries internationally.</p>
+    </div>
+    <div class="page-number">9</div>
+</div>
+<!-- PAGE 12: CHAPTER 10 -->
+<div class="page">
+    <h1>Chapter 10: Urban Planning &amp; Smart Cities</h1>
+    <p>With India's urban population projected to reach 600 million by 2031, satellite remote sensing has become indispensable for urban planning, monitoring, and management. The rapid expansion of cities demands regular monitoring of land use changes, infrastructure development, and environmental impacts.</p>
+    <h2>Urban Spatial Growth Monitoring</h2>
+    <p>ISRO's SAC has developed the Urban Sprawl Information System using Resourcesat-2/2A LISS-IV data (5.8m resolution). The system uses Convolutional Neural Network (CNN) architectures with UNet and Atrous Spatial Pyramid Pooling to extract built-up areas. For the AMRUT programme, built-up areas of 500 cities were mapped for 2023-2024 using AI-based classification.</p>
+    <div class="ascii-diagram">
+    SMART CITY MONITORING USING REMOTE SENSING
+    ========================================================================
+    SATELLITE DATA SOURCES FOR URBAN AREAS:
+    +--------------------------------------------------------------------+
+    | Cartosat-3   | 0.25 m | Building extraction, 3D modeling          |
+    | Cartosat-2   | <1 m   | Road network, infrastructure monitoring   |
+    | Resourcesat-2| 5.8 m  | Land use/land cover, urban sprawl         |
+    | RISAT-1A     | 3-50 m | Impervious surface, urban heat island    |
+    +--------------------------------------------------------------------+
+
+    URBAN APPLICATION LAYERS:
+    +--------------------------------------------------------------------+
+    | Layer 1: LAND USE / LAND COVER                                      |
+    | [Residential] [Commercial] [Industrial] [Open Spaces] [Green]      |
+    |                                                                    |
+    | Layer 2: INFRASTRUCTURE                                            |
+    | [Road Network] [Railway] [Water Supply] [Power Grid] [Telecom]    |
+    |                                                                    |
+    | Layer 3: ENVIRONMENT                                                |
+    | [Urban Heat] [Air Quality] [Water Bodies] [Urban Forest] [Noise]  |
+    +--------------------------------------------------------------------+
+    </div>
+    <h2>Land Use / Land Cover Mapping</h2>
+    <p>Multi-temporal satellite data enables comprehensive land use/land cover classification. Resourcesat AWiFS (56m) provides synoptic coverage for regional planning, while LISS-IV (5.8m) enables ward-level classification. Time-series analysis reveals urbanization patterns and loss of agricultural land.</p>
+    <div class="key-facts">
+        <div class="key-facts-title">Urban Remote Sensing Applications</div>
+        <ul>
+            <li><strong>Smart Cities Mission:</strong> Satellite data for master plan preparation in 100 smart cities</li>
+            <li><strong>AMRUT Programme:</strong> Built-up area mapping for 500 cities using Resourcesat LISS-IV</li>
+            <li><strong>Swachh Bharat:</strong> Monitoring of waste dump sites and sanitation infrastructure</li>
+            <li><strong>Disaster Preparedness:</strong> Vulnerability mapping for urban floods, fires, earthquakes</li>
+        </ul>
+    </div>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>Satellite remote sensing supports India's urbanization through multi-resolution data integration for land use mapping, infrastructure monitoring, 3D city modeling, and environmental assessment. AI-based built-up area extraction monitors urban sprawl across 500+ cities, supporting Smart Cities Mission, AMRUT, and Housing for All programmes.</p>
+    </div>
+    <div class="page-number">10</div>
+</div>
+<!-- PAGE 13: CHAPTER 11 -->
+<div class="page">
+    <h1>Chapter 11: Forestry &amp; Biodiversity - Forest Survey of India</h1>
+    <p>India's forests cover approximately 21.7% of geographical area, supporting immense biodiversity and providing critical ecosystem services. The Forest Survey of India (FSI) has been conducting biennial assessments of forest cover since 1987 using satellite remote sensing - one of the longest-running operational forest monitoring programmes globally.</p>
+    <h2>India State of Forest Report (ISFR)</h2>
+    <p>FSI publishes the India State of Forest Report every two years using multi-temporal satellite data, primarily Resourcesat-2/2A LISS-III (23.5m resolution). Forest cover is classified into three categories based on canopy density.</p>
+    <div class="key-facts">
+        <div class="key-facts-title">Forest Cover Classification</div>
+        <table>
+            <tr><th>Category</th><th>Canopy Density</th><th>Area (approx.)</th><th>Trend</th></tr>
+            <tr><td>Very Dense Forest (VDF)</td><td>70% and above</td><td>3.02% of GA</td><td>Increasing</td></tr>
+            <tr><td>Moderately Dense Forest (MDF)</td><td>40% to less than 70%</td><td>9.30% of GA</td><td>Increasing</td></tr>
+            <tr><td>Open Forest (OF)</td><td>10% to less than 40%</td><td>9.38% of GA</td><td>Stable</td></tr>
+            <tr><td>Scrub</td><td>Less than 10%</td><td>1.41% of GA</td><td>Decreasing</td></tr>
+        </table>
+    </div>
+    <h2>Evolution of Forest Mapping Technology</h2>
+    <div class="ascii-diagram">
+    FSI ASSESSMENT EVOLUTION (1987-2025)
+    ========================================================================
+    1987-1993: VISUAL INTERPRETATION ERA
+    Sensors: LANDSAT-MSS (80m) -> LANDSAT-TM (30m)
+    Scale: 1:1 million -> 1:250,000
+    Method: Manual visual interpretation
+    Min. Mappable Unit: 400 ha -> 25 ha
+
+    1995-2001: TRANSITION TO DIGITAL
+    Sensors: IRS-1B LISS-II (36m) -> IRS-1C/1D LISS-III (23.5m)
+    Scale: 1:250,000 -> 1:50,000
+    Method: Hybrid visual and digital interpretation
+    Min. Mappable Unit: 25 ha -> 1 ha
+
+    2003-PRESENT: FULLY DIGITAL ERA
+    Sensors: Resourcesat-2 LISS-III (23.5m)
+    Scale: 1:50,000
+    Method: Digital image processing (ISODATA + MLE)
+    Min. Mappable Unit: 1 ha
+    Additional: Google Earth validation, OSM basemaps
+    </div>
+    <h2>Digital Image Processing Methodology</h2>
+    <p>FSI's workflow involves radiometric calibration, NDVI transformation for vegetation separation, ISODATA unsupervised classification, and Maximum Likelihood Estimator for final classification. The process integrates collateral data from Google Earth, Sentinel-2, and ground truth for validation.</p>
+    <h2>Biodiversity Monitoring</h2>
+    <p>FSI and NRSC extend remote sensing to biodiversity conservation through monitoring of Biosphere Reserves and Tiger Reserves. LiDAR technology enables forest biomass estimation and canopy height mapping for carbon stock assessment under REDD+ programmes. Multi-decadal forest fraction maps from 1930 to present reveal long-term deforestation and reforestation patterns.</p>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>FSI's biennial forest assessment programme has evolved from visual interpretation to fully digital processing of Resourcesat LISS-III imagery at 1:50,000 scale. The India State of Forest Report provides critical data on forest cover, enabling evidence-based policy. Advanced techniques including LiDAR-based biomass estimation support biodiversity conservation and REDD+ commitments.</p>
+    </div>
+    <div class="page-number">11</div>
+</div>
+<!-- PAGE 14: CHAPTER 12 -->
+<div class="page">
+    <h1>Chapter 12: Water Resource Management</h1>
+    <p>India faces a paradoxical water situation - abundant during monsoons causing floods, yet water-stressed during other seasons. With 18% of world population but only 4% of freshwater resources, effective water resource management is crucial. Remote sensing provides comprehensive information for monitoring surface water, groundwater, snow cover, and water quality.</p>
+    <h2>Surface Water Resource Monitoring</h2>
+    <p>ISRO's Bhuvan portal and NRSC maintain national-level surface water databases using multi-temporal satellite imagery. Resourcesat AWiFS (56m) and LISS-III (23.5m) data enable mapping and monitoring of water bodies including reservoirs, lakes, rivers, and tanks.</p>
+    <div class="ascii-diagram">
+    WATER RESOURCE MONITORING FRAMEWORK
+    ========================================================================
+    SATELLITE DATA FOR WATER RESOURCES:
+    +--------------------------------------------------------------------+
+    | Resourcesat AWiFS    | Water body extent mapping (56m, wide swath)|
+    | Resourcesat LISS-III | Detailed reservoir monitoring (23.5m)     |
+    | RISAT-1A SAR         | Flood inundation, soil moisture           |
+    | Cartosat DEM         | Watershed delineation, drainage analysis  |
+    | Oceansat OCM         | Water quality, turbidity, chlorophyll     |
+    | SARAL-AltiKa         | Sea level, river gauge height (altimetry) |
+    +--------------------------------------------------------------------+
+
+    APPLICATION DOMAINS:
+    +--------------------------------------------------------------------+
+    |  SURFACE WATER    |  GROUNDWATER      |  WATER QUALITY            |
+    |  Reservoir monit. |  Lineament map    |  Turbidity                |
+    |  River courses    |  Aquifer potential|  Chlorophyll              |
+    |  Lake inventory   |  Recharge zones   |  Algal bloom              |
+    |  Wetland mapping  |  Water table est. |  Sediment/Pollution       |
+    +--------------------------------------------------------------------+
+    </div>
+    <h2>Groundwater Assessment</h2>
+    <p>Remote sensing aids groundwater exploration through geological and hydrogeological mapping. Lineament analysis from satellite imagery identifies potential zones, while DEMs from Cartosat data enable watershed delineation and runoff estimation. The Central Ground Water Board uses IRS data for groundwater prospect mapping.</p>
+    <h2>Snow and Glacier Monitoring</h2>
+    <p>In the Himalayan region, satellite remote sensing monitors snow cover extent, snowline altitude, and glacier mass balance. This information is vital for hydropower planning, flood forecasting, and long-term water security. ISRO's operational snow-melt runoff models use satellite-derived snow cover to forecast river discharge in the Indus, Ganga, and Brahmaputra basins.</p>
+    <h2>National Wetland Inventory</h2>
+    <p>SAC-ISRO completed a National Wetland Inventory using Resourcesat-2/2A LISS-IV data (5m resolution), mapping approximately 3.58 million wetlands covering 16.89 Mha (5.12% of geographical area). This database supports conservation planning, Ramsar site management, and assessment of wetland ecosystem services.</p>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>Remote sensing supports comprehensive water resource management through surface water monitoring, groundwater exploration, water quality assessment, flood mapping, and sea/river level measurement. The National Wetland Inventory maps 3.58 million wetlands, while snow/glacier monitoring supports long-term water security planning.</p>
+    </div>
+    <div class="page-number">12</div>
+</div>
+<!-- PAGE 15: CHAPTER 13 -->
+<div class="page">
+    <h1>Chapter 13: Mineral Exploration &amp; Geological Mapping</h1>
+    <p>India possesses diverse geological formations hosting mineral resources essential for industrial development. Remote sensing has revolutionized mineral exploration by enabling rapid, cost-effective geological mapping over vast and often inaccessible terrains.</p>
+    <h2>Remote Sensing in Geological Mapping</h2>
+    <p>Different rock types and minerals exhibit characteristic spectral signatures. Multispectral sensors like LISS-III and LISS-IV detect variations in visible, near-infrared, and short-wave infrared reflectance that distinguish between different lithological units. Hyperspectral sensors identify specific mineral absorption features across hundreds of narrow spectral bands.</p>
+    <div class="ascii-diagram">
+    GEOLOGICAL APPLICATIONS OF REMOTE SENSING
+    ========================================================================
+    SPECTRAL SIGNATURES OF KEY MINERALS:
+    +--------------------------------------------------------------------+
+    | Reflectance                                                        |
+    |    ^    Iron Oxides    Clay Minerals    Carbonates                |
+    |    |       (Fe2O3)       (Al-OH)          (CO3)                   |
+    |    |         v              v               v                      |
+    |    |    +----+        +----+           +----+                     |
+    |    |   /      \      /    \           /    \                     |
+    |    |--/--------\----/------\---------/------\------------------   |
+    |    0.5  0.8  1.0  1.3  1.6  1.9  2.2  2.5  Wavelength (um)     |
+    |                                                                    |
+    | KEY ABSORPTION FEATURES:                                           |
+    | Iron Oxides: 0.85-0.90 um (Goethite, Hematite)                   |
+    | Al-OH Clay: 2.20 um (Kaolinite, Montmorillonite)                 |
+    | Carbonate: 2.33 um (Calcite, Dolomite)                            |
+    +--------------------------------------------------------------------+
+
+    SENSORS FOR GEOLOGICAL MAPPING:
+    -----------------------------------------------------------------------
+    Sensor          | Bands  | Resolution | Application
+    -----------------------------------------------------------------------
+    LISS-III        | 4      | 23.5 m     | Regional lithological mapping
+    LISS-IV         | 4      | 5.8 m      | Detailed structural mapping
+    Cartosat PAN    | 1      | 0.25-1 m   | Lineament/structure extraction
+    HySI (IMS-1)    | 64     | 50 m       | Mineral identification
+    RISAT-1A SAR    | Multi  | 3-50 m     | Subsurface structure mapping
+    -----------------------------------------------------------------------
+    </div>
+    <h2>Mineral Exploration Applications</h2>
+    <p>India's geological survey agencies use satellite data extensively for mineral prospecting. Key applications include iron ore detection (goethite/hematite signatures in Jharkhand, Odisha, Chhattisgarh), bauxite mapping (lateritic plateaus using Al-OH absorption), limestone/dolomite delineation (carbonate sequences in Vindhyan and Aravalli ranges), gold/copper exploration (alteration zones with clay and hydroxyl indices), and rare earth element detection (beach placers along Odisha and Andhra Pradesh coasts).</p>
+    <h2>Structural Mapping and Lineament Analysis</h2>
+    <p>Satellite imagery, particularly panchromatic Cartosat and SAR RISAT data, enables identification of geological structures including faults, fractures, folds, and lineaments. These structures control groundwater occurrence, mineral localization, and seismic activity. SAR imagery is particularly valuable for structural mapping due to its sensitivity to surface roughness and topographic expression.</p>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>Remote sensing enables rapid geological mapping and mineral exploration through spectral identification of minerals, structural analysis, and lithological discrimination. Multispectral, hyperspectral, and radar sensors provide complementary information, supporting the Geological Survey of India and state agencies in mineral prospecting.</p>
+    </div>
+    <div class="page-number">13</div>
+</div>
+<!-- PAGE 16: CHAPTER 14 -->
+<div class="page">
+    <h1>Chapter 14: Defence &amp; Surveillance Applications</h1>
+    <p>Earth observation satellites play a strategic role in national security, providing critical intelligence for defence planning, border surveillance, and operational preparedness. India's constellation of high-resolution optical and radar satellites offers autonomous, round-the-clock surveillance capability essential for monitoring the nation's 15,106 km land border and 7,516 km coastline.</p>
+    <h2>Cartosat-2 Series for Strategic Applications</h2>
+    <p>Cartosat-2A, launched in 2008, was specifically dedicated to the Indian Armed Forces, marking India's entry into dedicated military satellite reconnaissance. These satellites with sub-metre resolution and agile pointing capability provide scene-specific spot imagery along borders and coastal regions.</p>
+    <div class="ascii-diagram">
+    DEFENCE APPLICATIONS OF EARTH OBSERVATION
+    ========================================================================
+    STRATEGIC IMAGING CAPABILITIES:
+    +--------------------------------------------------------------------+
+    | OPTICAL (Cartosat)          | RADAR (RISAT)                       |
+    | Resolution: 0.25-1 metre   | Resolution: 0.3-50 metre            |
+    | Daylight imaging only       | Day/night, all-weather              |
+    | Cloud-blocked during monsoon| Penetrates clouds, rain             |
+    | Building/vehicle identify   | Through-foliage imaging             |
+    +--------------------------------------------------------------------+
+
+    BORDER SURVEILLANCE ARCHITECTURE:
+    -----------------------------------------------------------------------
+    Northern Border (Himalayas):
+      Cartosat-3 (0.25m) - Mountain terrain, infrastructure tracking
+
+    Western Border (Desert/Rann):
+      RISAT-2B (0.5m SAR) - Sand dune monitoring, infiltration detection
+
+    Eastern Border (Jungle/Hills):
+      RISAT-1A (C-band SAR) - Through-canopy, path/track detection
+
+    Coastal Surveillance:
+      RISAT-2BR1 (0.35m) - Maritime domain awareness, ship tracking
+    -----------------------------------------------------------------------
+    </div>
+    <h2>RISAT Series for All-Weather Surveillance</h2>
+    <p>The RISAT programme was accelerated following the 26th November 2008 Mumbai attacks. RISAT-2, built with Israeli X-band SAR technology, was fast-tracked and launched in April 2009 - just five months after the attacks. This satellite provided 24-hour monitoring capability regardless of weather conditions, crucial for border security during monsoon seasons.</p>
+    <h2>Maritime Domain Awareness</h2>
+    <p>RISAT-2BR1 with 0.35 metre resolution enables ship detection and tracking in coastal waters. The system integrates with the Indian Navy's maritime domain awareness network, providing data for monitoring fishing vessel movements, detecting illegal maritime activities, and assessing coastal security threats.</p>
+    <div class="key-facts">
+        <div class="key-facts-title">Defence Satellite Capabilities</div>
+        <ul>
+            <li><strong>Cartosat-2A:</strong> Dedicated to Indian Armed Forces, sub-metre optical imaging</li>
+            <li><strong>RISAT-2:</strong> X-band SAR for all-weather border surveillance</li>
+            <li><strong>RISAT-2B:</strong> 0.5m x 0.3m resolution, inclined orbit for enhanced revisit</li>
+            <li><strong>RISAT-2BR1:</strong> 0.35m resolution for high-precision target imaging</li>
+            <li><strong>RISAT-1A:</strong> C-band SAR for wide-area monsoon surveillance</li>
+        </ul>
+    </div>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>India's defence Earth observation combines high-resolution optical (Cartosat-2, 0.25-1m) with all-weather radar surveillance (RISAT, 0.3-50m SAR). Accelerated post-2008 Mumbai attacks, these capabilities provide border monitoring, maritime domain awareness, and operational intelligence across all weather conditions.</p>
+    </div>
+    <div class="page-number">14</div>
+</div>
+<!-- PAGE 17: CHAPTER 15 -->
+<div class="page">
+    <h1>Chapter 15: Data Processing &amp; Analysis - Geoprocessing</h1>
+    <p>The vast volumes of data generated by India's Earth observation satellite constellation require sophisticated processing, analysis, and distribution infrastructure. ISRO has developed a comprehensive geoprocessing ecosystem encompassing ground stations, processing centres, and data dissemination systems.</p>
+    <h2>Data Processing Chain</h2>
+    <div class="ascii-diagram">
+    SATELLITE DATA PROCESSING CHAIN
+    ========================================================================
+    +----------+    +----------+    +----------+    +----------+
+    | LEVEL-0  |    | LEVEL-1A |    | LEVEL-1B |    | LEVEL-2  |
+    |          |--->|          |--->|          |--->|          |
+    | Raw      |    | Sensor   |    | Geometric|    | Geo-     |
+    | Telemetry|    | Calibrat.|    | Radiom.  |    | physical |
+    |          |    |          |    | Corrected|    | Parameters|
+    +----------+    +----------+    +----------+    +----------+
+         |              |              |              |
+         v              v              v              v
+    +----------+    +----------+    +----------+    +----------+
+    | Level-3  |    | Level-4  |    | VALUE-   |    | USER     |
+    |          |--->|          |--->| ADDED    |--->| PRODUCTS |
+    | Gridded  |    | Model    |    | PRODUCTS |    |          |
+    | Time Ser.|    | Output   |    | Thematic |    | Analysis |
+    +----------+    +----------+    | Maps     |    | Ready    |
+                                   +----------+    +----------+
+
+    PROCESSING LEVELS:
+    -----------------------------------------------------------------------
+    Level-0  | Raw compressed telemetry data from satellite
+    Level-1A | Decompressed, sensor-calibrated digital numbers
+    Level-1B | Georeferenced, radiometrically corrected (Ortho products)
+    Level-2  | Derived parameters (NDVI, Chlorophyll, Water indices)
+    Level-3  | Time-series, gridded products (weekly/monthly composites)
+    Level-4  | Model-derived products (biomass, yield estimates)
+    -----------------------------------------------------------------------
+    </div>
+    <h2>SAR Data Processing Software</h2>
+    <p>ISRO has developed specialized software for SAR analysis. MIDAS (Microwave Data Analysis Software) supports RISAT-1, Chandrayaan-2 DFSAR processing including speckle filtering, polarimetric decompositions (Pauli, Yamaguchi, H-A-Alpha), and Wishart classification. INDUS enables interferometric analysis for ground deformation mapping.</p>
+    <div class="key-facts">
+        <div class="key-facts-title">ISRO Processing Software Suite</div>
+        <table>
+            <tr><th>Software</th><th>Developer</th><th>Purpose</th></tr>
+            <tr><td>MIDAS</td><td>SAC, ISRO</td><td>SAR data analysis, polarimetric decomposition</td></tr>
+            <tr><td>INDUS</td><td>SAC, ISRO</td><td>Interferometric SAR analysis, deformation mapping</td></tr>
+            <tr><td>AVHYAS</td><td>SAC, ISRO</td><td>Hyperspectral data analysis</td></tr>
+            <tr><td>Bhuvan SDK</td><td>NRSC</td><td>Geospatial data access and visualization</td></tr>
+            <tr><td>VEDAS</td><td>SAC</td><td>Multi-source EO data visualization portal</td></tr>
+        </table>
+    </div>
+    <h2>Data Dissemination Infrastructure</h2>
+    <p>NRSC's data centre archives terabytes of satellite imagery and distributes products through multiple channels. Bhuvan provides free public access to moderate-resolution data, while NDEM serves disaster management agencies with near real-time data during emergencies, ensuring critical information reaches decision-makers within hours.</p>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>ISRO's geoprocessing infrastructure encompasses a complete data processing chain from raw telemetry to analysis-ready products, with specialized software for SAR (MIDAS, INDUS) and hyperspectral (AVHYAS) analysis. Multiple platforms (Bhuvan, VEDAS, NDEM) provide tiered access to processed satellite data products.</p>
+    </div>
+    <div class="page-number">15</div>
+</div>
+<!-- PAGE 18: CHAPTER 16 -->
+<div class="page">
+    <h1>Chapter 16: GIS Integration &amp; Spatial Analysis</h1>
+    <p>Geographic Information System (GIS) technology provides the analytical framework for integrating remote sensing data with other spatial datasets, enabling complex spatial analysis, modeling, and decision support. India has developed robust GIS infrastructure through ISRO's Bhuvan platform and various national mapping agencies.</p>
+    <h2>Bhuvan: India's National Geo-Platform</h2>
+    <p>Bhuvan, developed by NRSC, is India's premier geo-platform providing 2D and 3D visualization of Earth observation data. The platform hosts data from Resourcesat, Cartosat, Oceansat, and other ISRO missions, along with GIS layers for administrative boundaries, infrastructure networks, and thematic maps. With over 20 ministry portals and 30 state portals integrated, Bhuvan serves as the backbone for geospatial governance.</p>
+    <div class="ascii-diagram">
+    GIS INTEGRATION ARCHITECTURE
+    ========================================================================
+    +--------------------------------------------------------------------+
+    |                   BHUVAN GEO-PLATFORM                              |
+    |              India's National GIS Infrastructure                   |
+    +--------------------------------------------------------------------+
+    |                                                                    |
+    | DATA LAYERS:                                                       |
+    | [Satellite    ] [Admin       ] [Infra-     ] [Thematic  ] [Real-  |
+    | [Imagery      ] [Boundaries  ] [structure  ] [Maps      ] [time   |
+    | [             ] [            ] [Networks   ] [          ] [Data   |
+    | Optical/SAR   ] Country/State ] Roads/Rail  ] Land/Forest ] Weather|
+    |                                                                    |
+    | INTEGRATED WITH: Smart Cities | AMRUT | Clean Ganga | Watershed   |
+    +--------------------------------------------------------------------+
+
+    SPATIAL ANALYSIS CAPABILITIES:
+    -----------------------------------------------------------------------
+    Overlay      | Combine multiple layers for suitability analysis
+    Buffer       | Create zones of influence around features
+    Network      | Optimal routing for roads, pipelines, evacuation
+    Terrain      | Slope, aspect, visibility, viewshed analysis
+    Interpolate  | Generate continuous surfaces from point data
+    Hotspot      | Identify clusters of events (crime, disease, fire)
+    Change Det.  | Multi-temporal comparison for land use change
+    3D Modeling  | Urban morphology, terrain visualization
+    -----------------------------------------------------------------------
+    </div>
+    <h2>State-Level GIS Implementations</h2>
+    <p>Several Indian states have developed comprehensive GIS-based governance systems. Karnataka's Revenue Department uses Bhuvan for cadastral mapping. Maharashtra employs GIS for disaster management. Andhra Pradesh uses satellite-based GIS for crop insurance verification. These implementations demonstrate practical impact in improving governance efficiency.</p>
+    <h2>Thematic GIS Applications</h2>
+    <ul>
+        <li><strong>Watershed Development:</strong> Srishti-Drishti programme for integrated watershed planning</li>
+        <li><strong>Clean Ganga Mission:</strong> Satellite data maps pollution sources and monitors river health</li>
+        <li><strong>Forest Management:</strong> Forest Survey of India uses GIS for forest cover mapping</li>
+        <li><strong>Disaster Management:</strong> NDEM provides GIS-based decision support</li>
+        <li><strong>Urban Governance:</strong> Smart city GIS integrates satellite imagery with municipal databases</li>
+    </ul>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>GIS integration forms the analytical backbone of India's Earth observation applications, with Bhuvan as the national geo-platform hosting 20+ ministry and 30+ state portals. Spatial analysis capabilities enable complex decision support across governance, planning, and resource management, creating an integrated geospatial ecosystem.</p>
+    </div>
+    <div class="page-number">16</div>
+</div>
+<!-- PAGE 19: CHAPTER 17 -->
+<div class="page">
+    <h1>Chapter 17: AI/ML in Earth Observation</h1>
+    <p>The convergence of Artificial Intelligence and Machine Learning with Earth observation data is transforming satellite imagery analysis. India is at the forefront of this revolution, with ISRO developing cutting-edge AI/ML applications for automated feature extraction, predictive modeling, and real-time disaster monitoring.</p>
+    <h2>AI Applications in EO Data Processing</h2>
+    <div class="ascii-diagram">
+    AI/ML IN EARTH OBSERVATION - APPLICATION MAP
+    ========================================================================
+    +--------------------------------------------------------------------+
+    |                 ISRO AI/ML RESEARCH DOMAINS                        |
+    +--------------------------------------------------------------------+
+    |                                                                    |
+    | +------------------+  +------------------+  +------------------+  |
+    | | IMAGE            |  | PREDICTIVE       |  | AUTOMATED        |  |
+    | | CLASSIFICATION   |  | MODELING         |  | DETECTION        |  |
+    | +------------------+  +------------------+  +------------------+  |
+    | | Land use/cover   |  | Crop yield       |  | Flood extent     |  |
+    | | Urban built-up   |  | Drought risk     |  | Cyclone center   |  |
+    | | Forest type      |  | Forest biomass   |  | Fire hotspots    |  |
+    | | Crop species     |  | Landslide risk   |  | Oil spills       |  |
+    | +------------------+  +------------------+  +------------------+  |
+    |                                                                    |
+    | +------------------+  +------------------+  +------------------+  |
+    | | DEEP LEARNING    |  | NLP / MULTIMODAL |  | OPTIMIZATION     |  |
+    | +------------------+  +------------------+  +------------------+  |
+    | | CNN segmentation |  | Satellite Q&A    |  | Orbit maneuver   |  |
+    | | U-Net buildings  |  | Indian languages |  | Resource alloc   |  |
+    | | ResNet classif.  |  | Multimodal EO    |  | Scheduling       |  |
+    | +------------------+  +------------------+  +------------------+  |
+    +--------------------------------------------------------------------+
+    </div>
+    <h2>Cyclone Detection Using Deep Learning</h2>
+    <p>ISRO-SAC and IISc jointly developed AI-based cyclone detection and intensity estimation using INSAT-3D imagery. The system employs YOLOv7/v8 for cyclone localization and CNN-LSTM networks for intensity estimation, processing thermal infrared images at 30-minute intervals. This automated system significantly reduces time required for cyclone tracking compared to traditional NWP models.</p>
+    <h2>AI for Urban Mapping</h2>
+    <p>SAC's VEDAS portal uses CNN with UNet and Atrous Spatial Pyramid Pooling architectures to automatically extract built-up areas from Resourcesat LISS-IV data. This AI-based approach mapped built-up areas for 500 cities under the AMRUT programme, achieving high accuracy while dramatically reducing manual effort.</p>
+    <div class="key-facts">
+        <div class="key-facts-title">AI/ML Disaster Detection Thresholds</div>
+        <table>
+            <tr><th>Disaster</th><th>Index</th><th>Threshold</th><th>Method</th></tr>
+            <tr><td>Flood</td><td>NDWI</td><td>&gt; 0.3</td><td>Water index + SAR backscatter</td></tr>
+            <tr><td>Drought</td><td>NDVI</td><td>&lt; 0.2</td><td>Vegetation stress index</td></tr>
+            <tr><td>Cyclone</td><td>SAR spiral</td><td>Pattern match</td><td>Wind + SAR signature</td></tr>
+            <tr><td>Fire</td><td>SWIR anomaly</td><td>&gt; 2 sigma</td><td>Thermal + shortwave IR</td></tr>
+        </table>
+    </div>
+    <h2>ISRO-NRSC AI for Soil Health</h2>
+    <p>A recent ISRO-NRSC study combined satellite imagery, field-tested soil samples, and machine learning to map soil health in Andhra Pradesh farmland. Using Landsat-8 data with Random Forest and Gradient Boosting Regression models, researchers predicted soil pH and electrical conductivity, producing digital maps showing local variations in acidity and salinity.</p>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>AI/ML is transforming Earth observation through automated image classification, predictive modeling, and real-time disaster detection. ISRO's research spans deep learning (U-Net, CNN), cyclone detection (YOLO, CNN-LSTM), urban mapping (UNet-ASPP), and soil health monitoring. These capabilities enable scalable, timely analysis of massive EO data volumes.</p>
+    </div>
+    <div class="page-number">17</div>
+</div>
+<!-- PAGE 20: CHAPTER 18 -->
+<div class="page">
+    <h1>Chapter 18: International Cooperation - UNOOSA &amp; Bilateral</h1>
+    <p>India's Earth observation programme operates within a robust framework of international cooperation, contributing to and benefiting from global space-based observation systems. Through bilateral partnerships, multilateral frameworks, and contributions to international disaster response mechanisms, India has established itself as a significant player in the global Earth observation community.</p>
+    <h2>United Nations Committee on Peaceful Uses of Outer Space (COPUOS)</h2>
+    <p>India is an active member of COPUOS and its subsidiary bodies, contributing to the development of international space law and the peaceful use of outer resources. India signed and ratified the Outer Space Treaty (1967), the Rescue Agreement (1968), the Liability Convention (1972), and the Registration Convention (1976). India's participation in UNISPACE conferences has shaped global policy on Earth observation for sustainable development.</p>
+    <h2>International Charter Space and Major Disasters</h2>
+    <p>India is a founding member of the International Charter Space and Major Disasters, established in 2000. Under this framework, ISRO provides satellite data and value-added products to disaster-affected countries worldwide. India has supported disaster response in over 16 countries including Cambodia, China, Indonesia, Iraq, Japan, Myanmar, Nepal, Oman, Philippines, Sri Lanka, Taiwan, Tajikistan, Thailand, and Vietnam. During events like Cyclone Ditwah in Sri Lanka, ISRO provided extensive SAR and optical satellite data support.</p>
+    <h2>NASA-ISRO SAR (NISAR) Mission</h2>
+    <p>The NISAR mission, launched on 30th July 2025, represents the most significant bilateral partnership in Earth observation. This joint mission between NASA and ISRO is the first dual-frequency (L-band and S-band) SAR satellite, providing unprecedented measurements of Earth's surface changes. NASA provided the L-band SAR, 12m reflector antenna, and high-rate data systems, while ISRO provided the S-band SAR, spacecraft bus, and GSLV launch vehicle.</p>
+    <h2>SARAL-AltiKa - Indo-French Cooperation</h2>
+    <p>SARAL (2013) is a landmark Indo-French collaboration between ISRO and CNES. The satellite carries AltiKa (Ka-band altimeter) from CNES and ARGOS data collection system, with ISRO providing the spacecraft bus and launch. This mission provides critical data for ocean circulation studies and sea level monitoring.</p>
+    <div class="key-facts">
+        <div class="key-facts-title">Key International Partnerships</div>
+        <table>
+            <tr><th>Partner</th><th>Mission/Programme</th><th>Contribution</th></tr>
+            <tr><td>NASA (USA)</td><td>NISAR</td><td>L-band SAR, reflector, data systems</td></tr>
+            <tr><td>CNES (France)</td><td>SARAL-AltiKa</td><td>Ka-band altimeter, ARGOS</td></tr>
+            <tr><td>IAI (Israel)</td><td>RISAT-2</td><td>X-band SAR payload</td></tr>
+            <tr><td>ASI (Italy)</td><td>Oceansat-2</td><td>ROSA radio occultation</td></tr>
+            <tr><td>JAXA (Japan)</td><td>DAICHI-2</td><td>ALOS data sharing</td></tr>
+            <tr><td>ESA (Europe)</td><td>Various</td><td>Data exchange, calibration</td></tr>
+        </table>
+    </div>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>India's international Earth observation cooperation spans UN frameworks (COPUOS, UN-SPIDER), disaster response (International Charter), and major bilateral missions (NISAR with NASA, SARAL with CNES). These partnerships have enhanced India's technical capabilities while positioning it as a significant contributor to global Earth observation and space science.</p>
+    </div>
+    <div class="page-number">18</div>
+</div>
+<!-- PAGE 21: CHAPTER 19 -->
+<div class="page">
+    <h1>Chapter 19: Future Missions - NISAR &amp; Earth Observing System</h1>
+    <p>India's Earth observation programme continues to evolve with ambitious future missions that will expand capabilities in spatial resolution, spectral coverage, and global monitoring. These missions will address emerging challenges in climate change, disaster resilience, and sustainable development.</p>
+    <h2>NISAR - NASA-ISRO Synthetic Aperture Radar</h2>
+    <p>NISAR, launched on 30th July 2025 from Satish Dhawan Space Centre on GSLV-F16, is the first dual-frequency SAR satellite operating in L-band (NASA) and S-band (ISRO). The mission maps the entire globe every 12 days, providing spatially and temporally consistent data for understanding changes in Earth's ecosystems, ice mass, vegetation biomass, sea level rise, ground water, and natural hazards.</p>
+    <div class="ascii-diagram">
+    NISAR MISSION CONFIGURATION
+    ========================================================================
+                    +-------------------------------------------+
+                    |            NISAR OBSERVATORY              |
+                    |     First Dual-Frequency SAR Mission     |
+                    +-------------------+-----------------------+
+                                        |
+            +---------------------------+---------------------------+
+            |                           |                           |
+            v                           v                           v
+    +-------------------+    +-------------------+    +-------------------+
+    |   L-BAND SAR     |    |   S-BAND SAR     |    |   SPACECRAFT     |
+    |   (NASA/JPL)     |    |   (ISRO/SAC)     |    |   BUS (ISRO)     |
+    +-------------------+    +-------------------+    +-------------------+
+    | Wavelength: 24 cm |    | Wavelength: 9.4cm |    | I-3K Structure   |
+    | Resolution: 5-100m|    | Resolution: 5-100m|    | Mass: ~2400 kg   |
+    | Swath: ~240 km    |    | Swath: ~240 km    |    | Power: 70V Bus   |
+    | Full Polarimetric |    | Full Polarimetric |    | 3-axis stabilized|
+    | Interferometric   |    | Interferometric   |    |                   |
+    +-------------------+    +-------------------+    +-------------------+
+            |                           |                           |
+            v                           v                           v
+    +--------------------------------------------------------------------+
+    |                    12m DIAMETER REFLECTOR ANTENNA                  |
+    |              Mounted on 9m Deployable Boom (NASA/JPL)             |
+    +--------------------------------------------------------------------+
+
+    ORBIT: Sun-Synchronous, 747 km altitude, 98.405 deg inclination
+    LAUNCH: GSLV-F16, 30 July 2025, Satish Dhawan Space Centre
+    MISSION LIFE: 3 years (NASA) / 5 years (ISRO)
+    GLOBAL COVERAGE: Every 12 days
+    DATA: Free and open data policy
+    </div>
+    <h2>Future Indian Earth Observation Missions</h2>
+    <p>ISRO has planned several next-generation missions:</p>
+    <ul>
+        <li><strong>Resourcesat-3 Series:</strong> Continuity of Resourcesat-2 with improved LISS and AWiFS payloads for land and water resource monitoring</li>
+        <li><strong>EOS-09 (RISAT-1B):</strong> Planned C-band SAR continuity mission (launch failed May 2025 due to PSLV third stage failure, replacement planned)</li>
+        <li><strong> GISAT-2:</strong> Geostationary Earth observation satellite for high-temporal-resolution imaging from 36,000 km orbit</li>
+        <li><strong> Landsat-NISAR synergy:</strong> Integration of Indian and American SAR data for global change monitoring</li>
+        <li><strong>Next-gen Oceansat:</strong> Advanced ocean colour and scatterometry for marine ecosystem monitoring</li>
+    </ul>
+    <h2>Earth Observing System - Global Vision</h2>
+    <p>India's future Earth observing system will integrate optical, SAR, hyperspectral, and meteorological satellites into a comprehensive global monitoring constellation. The emphasis will be on higher revisit rates (daily to sub-daily), finer spatial resolution (sub-metre), and enhanced spectral capabilities for addressing climate change, food security, water resources, and disaster resilience challenges.</p>
+    <div class="summary-box">
+        <h3>Chapter Summary</h3>
+        <p>NISAR, launched in July 2025, represents a milestone as the world's first dual-frequency SAR satellite, mapping Earth's surface every 12 days at 5-100m resolution. Future Indian missions including Resourcesat-3, GISAT-2, and next-generation Oceansat will expand capabilities in temporal resolution, spectral coverage, and global monitoring for addressing climate change and sustainable development challenges.</p>
+    </div>
+    <div class="page-number">19</div>
+</div>
+<!-- PAGE 22: CHAPTER 20 -->
+<div class="page">
+    <h1>Chapter 20: Summary &amp; Impact on Nation Building</h1>
+    <p>India's Earth observation programme, spanning nearly five decades since the experimental Bhaskara missions, has evolved into one of the most comprehensive and operationally mature space-based remote sensing systems in the world. From the pioneering IRS-1A in 1988 to the recently launched NISAR, this journey reflects India's commitment to leveraging space technology for national development and societal benefit.</p>
+    <h2>The Transformation of Indian Society</h2>
+    <p>Earth observation satellites have fundamentally transformed how India manages its natural resources, responds to disasters, plans its cities, feeds its population, and protects its environment. The impact is measurable across every sector of the economy and every level of governance.</p>
+    <div class="ascii-diagram">
+    IMPACT OF EARTH OBSERVATION ON INDIA
+    ========================================================================
+    +--------------------------------------------------------------------+
+    |                    NATION-BUILDING IMPACT                          |
+    +--------------------------------------------------------------------+
+    |                                                                    |
+    |  FOOD SECURITY          |  DISASTER RESILIENCE                   |
+    |  FASAL crop forecasts   |  3-4 hour flood mapping turnaround     |
+    |  11+ crops monitored    |  Cyclone early warning systems         |
+    |  District-level yields  |  Landslide zonation maps               |
+    |  Drought assessment     |  NDEM emergency management             |
+    |                         |                                        |
+    |  WATER RESOURCES        |  URBAN DEVELOPMENT                     |
+    |  3.58M wetlands mapped  |  500 cities built-up monitoring        |
+    |  Snow/glacier monitoring|  3D city modeling                      |
+    |  Groundwater prospect   |  Smart city master plans               |
+    |  River basin management |  Infrastructure planning               |
+    |                         |                                        |
+    |  FOREST CONSERVATION    |  MARINE RESOURCES                      |
+    |  Biennial ISFR reports  |  Potential Fishing Zone mapping        |
+    |  21.7% forest cover     |  Ocean colour monitoring               |
+    |  REDD+ carbon stocks    |  Coastal zone management               |
+    |  Tiger Reserve monitoring| Maritime domain awareness             |
+    |                         |                                        |
+    |  DEFENCE & SECURITY     |  GEOLOGICAL EXPLORATION                |
+    |  0.25m optical imaging  |  Mineral prospect mapping              |
+    |  All-weather SAR        |  Lineament analysis                    |
+    |  Border surveillance    |  Groundwater exploration               |
+    |  Maritime domain awareness| Geotechnical studies                  |
+    +--------------------------------------------------------------------+
+    </div>
+    <h2>Key Achievements Summary</h2>
+    <div class="key-facts">
+        <div class="key-facts-title">India's Earth Observation Programme at a Glance</div>
+        <table>
+            <tr><th>Parameter</th><th>Achievement</th></tr>
+            <tr><td>Operational EO Satellites</td><td>11+ (world's largest civilian EO constellation)</td></tr>
+            <tr><td>Best Resolution Achieved</td><td>0.25 m (Cartosat-3) optical, 0.35 m (RISAT-2BR1) SAR</td></tr>
+            <tr><td>Spectral Coverage</td><td>Visible, NIR, SWIR, Thermal IR, Microwave</td></tr>
+            <tr><td>Temporal Resolution</td><td>From 24 days (Resourcesat) to 12 days (NISAR) to 15 minutes (GEO)</td></tr>
+            <tr><td>Radiometric Resolution</td><td>7-bit to 12-bit</td></tr>
+            <tr><td>Forest Assessment</td><td>Biennial since 1987, 1:50,000 scale</td></tr>
+            <tr><td>Crop Monitoring</td><td>11+ crops, district-level forecasts</td></tr>
+            <tr><td>Disaster Response</td><td>3-4 hour turnaround, 16+ countries supported</td></tr>
+            <tr><td>Wetlands Mapped</td><td>3.58 million wetlands (16.89 Mha)</td></tr>
+            <tr><td>International Partners</td><td>NASA, CNES, JAXA, ESA, ASI, IAI</td></tr>
+        </table>
+    </div>
+    <h2>Challenges and the Road Ahead</h2>
+    <p>Despite remarkable achievements, challenges remain. The need for higher temporal resolution for rapid disaster response, geostationary Earth observation for continuous monitoring, and integration of AI/ML for automated analysis represent key priorities. The EOS-09 launch failure in May 2025 highlighted the importance of continued investment in reliable launch vehicles and redundant satellite constellations.</p>
+    <p>Looking ahead, India's Earth observation programme will continue to evolve with next-generation missions addressing climate change, sustainable agriculture, water security, and urban resilience. The integration of Indian and international satellite data, combined with advanced AI/ML analytics, will create unprecedented capabilities for understanding and managing our planet's resources.</p>
+    <div class="summary-box">
+        <h3>Final Summary</h3>
+        <p>India's Earth observation programme has established the nation as a global leader in civilian remote sensing, with the world's largest constellation of operational EO satellites serving applications from agriculture to defence. The programme's impact on nation building is immeasurable - from enabling food security for 1.4 billion people to providing critical disaster response capabilities. With missions like NISAR and future constellations, India continues to push the boundaries of space-based Earth observation for the benefit of humanity.</p>
+    </div>
+    <div class="page-number">20</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SATELLITE ARRAY - India's Space Infrastructure</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
+  :root {
+    --bg-primary: #0a0e17; --bg-secondary: #111827; --bg-card: #1a2332;
+    --text-primary: #e8edf5; --text-secondary: #94a3b8; --text-muted: #64748b;
+    --accent-blue: #3b82f6; --accent-cyan: #06b6d4; --accent-orange: #f97316;
+    --accent-green: #22c55e; --accent-purple: #a855f7; --accent-red: #ef4444;
+    --border-color: #1e293b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg-primary); color: var(--text-primary); font-family: 'Source Sans Pro', sans-serif; line-height: 1.7; font-size: 15px; }
+  .cover-page { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(135deg, #0a0e17 0%, #0d1929 50%, #111827 100%); border-bottom: 3px solid var(--accent-blue); position: relative; overflow: hidden; padding: 60px 40px; page-break-after: always; }
+  .cover-page::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at 30% 50%, rgba(59,130,246,0.08) 0%, transparent 50%), radial-gradient(ellipse at 70% 20%, rgba(6,182,212,0.06) 0%, transparent 40%); animation: coverPulse 8s ease-in-out infinite; }
+  @keyframes coverPulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
+  .cover-content { position: relative; z-index: 1; max-width: 900px; }
+  .cover-emblem { font-size: 80px; margin-bottom: 20px; display: block; filter: drop-shadow(0 0 30px rgba(59,130,246,0.4)); }
+  .cover-series { font-weight: 600; font-size: 14px; letter-spacing: 8px; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 30px; }
+  .cover-title { font-family: 'Playfair Display', serif; font-size: clamp(42px, 6vw, 72px); font-weight: 900; line-height: 1.1; margin-bottom: 10px; background: linear-gradient(135deg, #e8edf5 0%, #3b82f6 50%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .cover-subtitle { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.5vw, 26px); color: var(--text-secondary); margin-bottom: 40px; font-style: italic; }
+  .cover-divider { width: 120px; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-blue), var(--accent-cyan), transparent); margin: 30px auto; }
+  .cover-meta { font-size: 13px; color: var(--text-muted); line-height: 2; letter-spacing: 1px; }
+  .cover-meta strong { color: var(--accent-cyan); font-weight: 600; }
+  .page { max-width: 900px; margin: 0 auto; padding: 60px 40px; border-bottom: 1px solid var(--border-color); page-break-after: always; position: relative; min-height: 100vh; }
+  .page::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(180deg, var(--accent-blue), var(--accent-cyan), transparent); }
+  .page-number { position: absolute; bottom: 20px; right: 30px; font-family: 'Fira Code', monospace; font-size: 11px; color: var(--text-muted); }
+  .chapter-header { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }
+  .chapter-number { font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 500; color: var(--accent-blue); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 8px; }
+  .chapter-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 38px); font-weight: 700; line-height: 1.2; }
+  .chapter-subtitle { font-size: 15px; color: var(--text-secondary); margin-top: 8px; }
+  h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin: 35px 0 15px; padding-left: 15px; border-left: 3px solid var(--accent-cyan); }
+  h4 { font-family: 'Source Sans Pro', sans-serif; font-size: 17px; font-weight: 700; color: var(--accent-blue); margin: 25px 0 10px; }
+  p { margin-bottom: 14px; color: var(--text-secondary); }
+  .key-facts { background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(6,182,212,0.05)); border: 1px solid rgba(59,130,246,0.2); border-radius: 8px; padding: 20px 25px; margin: 20px 0; }
+  .key-facts-title { font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 500; color: var(--accent-blue); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+  .key-facts ul { list-style: none; padding: 0; }
+  .key-facts li { padding: 6px 0; color: var(--text-secondary); font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+  .key-facts li:last-child { border-bottom: none; }
+  .key-facts li strong { color: var(--text-primary); }
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+  thead { background: var(--bg-card); }
+  th { padding: 12px 15px; text-align: left; font-weight: 600; color: var(--accent-cyan); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; border-bottom: 2px solid var(--accent-blue); }
+  td { padding: 10px 15px; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); }
+  .ascii-art { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px 25px; margin: 20px 0; overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 12px; line-height: 1.5; color: var(--accent-cyan); white-space: pre; }
+  .ascii-art-title { font-size: 12px; font-weight: 600; color: var(--accent-blue); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block; font-family: 'Fira Code', monospace; }
+  .summary-box { background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(6,182,212,0.05)); border: 1px solid rgba(34,197,94,0.25); border-radius: 8px; padding: 25px; margin: 30px 0; }
+  .summary-box-title { font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 500; color: var(--accent-green); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+  .timeline { position: relative; padding-left: 30px; margin: 20px 0; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--accent-blue), var(--accent-cyan)); }
+  .timeline-item { position: relative; margin-bottom: 20px; padding: 12px 18px; background: var(--bg-card); border-radius: 6px; border: 1px solid var(--border-color); }
+  .timeline-item::before { content: ''; position: absolute; left: -26px; top: 18px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-blue); border: 2px solid var(--bg-primary); }
+  .timeline-year { font-family: 'Fira Code', monospace; font-size: 12px; color: var(--accent-cyan); font-weight: 600; }
+  .timeline-text { font-size: 14px; color: var(--text-secondary); margin-top: 4px; }
+  .toc { padding: 60px 40px; max-width: 900px; margin: 0 auto; page-break-after: always; }
+  .toc h2 { font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 30px; }
+  .toc-list { list-style: none; }
+  .toc-item { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px dashed rgba(255,255,255,0.05); text-decoration: none; }
+  .toc-chapter { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--accent-blue); margin-right: 15px; min-width: 40px; }
+  .toc-title-text { color: var(--text-secondary); font-size: 15px; flex: 1; }
+  .toc-page { font-family: 'Fira Code', monospace; font-size: 12px; color: var(--text-muted); margin-left: 15px; }
+  .download-btn { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); color: white; border: none; padding: 14px 28px; border-radius: 50px; font-family: 'Source Sans Pro', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; z-index: 1000; box-shadow: 0 4px 20px rgba(59,130,246,0.4); transition: transform 0.2s, box-shadow 0.2s; letter-spacing: 0.5px; }
+  .download-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(59,130,246,0.5); }
+  @media print {
+    @page { size: A4; margin: 20mm 15mm; }
+    body { background: white; color: #1a1a1a; font-size: 11pt; }
+    .download-btn { display: none !important; }
+    .cover-page { background: white !important; min-height: auto; padding: 100px 40px; }
+    .cover-page::before { display: none; }
+    .cover-title { background: none; -webkit-text-fill-color: #0066cc; color: #0066cc; }
+    .cover-subtitle { color: #444; } .cover-meta { color: #666; } .cover-meta strong { color: #0066cc; }
+    .page { border-bottom: none; padding: 20px 0; min-height: auto; }
+    .page::before { background: #0066cc; }
+    .chapter-title { color: #1a1a1a; } .chapter-number { color: #0066cc; }
+    h3 { color: #1a1a1a; border-left-color: #0066cc; } h4 { color: #0066cc; } p { color: #333; } td { color: #333; } th { color: #0066cc; }
+    .key-facts { background: #f0f7ff; border-color: #0066cc; }
+    .ascii-art { background: #f5f5f5; color: #333; border-color: #ccc; }
+    .summary-box { background: #f0fff4; border-color: #22c55e; }
+    .summary-box-title { color: #16a34a; } .key-facts-title { color: #0066cc; }
+    .timeline-item { background: #f8f9fa; border-color: #ddd; }
+  }
+</style>
+</head>
+<body>
+<!-- COVER PAGE -->
+<div class="cover-page">
+  <div class="cover-content">
+    <span class="cover-emblem">&#x1F6F0;</span>
+    <div class="cover-series">MISSILEX ROCKETSPACE RESEARCH SERIES</div>
+    <h1 class="cover-title">SATELLITE ARRAY</h1>
+    <p class="cover-subtitle">India's Space Infrastructure</p>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <strong>Author:</strong> MissileX RocketSpace Research<br>
+      <strong>Published:</strong> September 2026<br>
+      <strong>Edition:</strong> First Edition, Comprehensive Reference<br>
+      <strong>Pages:</strong> 20 Chapters &middot; Full Technical Detail<br>
+      <strong>Classification:</strong> Educational Reference Work
+    </div>
+  </div>
+</div>
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul class="toc-list">
+    <li><a class="toc-item" href="#ch1"><span class="toc-chapter">01</span><span class="toc-title-text">History of Indian Satellite Programme</span><span class="toc-page">4</span></a></li>
+    <li><a class="toc-item" href="#ch2"><span class="toc-chapter">02</span><span class="toc-title-text">ISRO Satellite Centre (ISAC / URSC)</span><span class="toc-page">5</span></a></li>
+    <li><a class="toc-item" href="#ch3"><span class="toc-chapter">03</span><span class="toc-title-text">Communication Satellites (INSAT / GSAT Series)</span><span class="toc-page">6</span></a></li>
+    <li><a class="toc-item" href="#ch4"><span class="toc-chapter">04</span><span class="toc-title-text">Remote Sensing Satellites (IRS / Cartosat / RISAT)</span><span class="toc-page">7</span></a></li>
+    <li><a class="toc-item" href="#ch5"><span class="toc-chapter">05</span><span class="toc-title-text">Navigation Satellites (NavIC / IRNSS Constellation)</span><span class="toc-page">8</span></a></li>
+    <li><a class="toc-item" href="#ch6"><span class="toc-chapter">06</span><span class="toc-title-text">Weather &amp; Meteorological Satellites</span><span class="toc-page">9</span></a></li>
+    <li><a class="toc-item" href="#ch7"><span class="toc-chapter">07</span><span class="toc-title-text">Scientific Satellites (AstroSat, Chandrayaan Orbiters)</span><span class="toc-page">10</span></a></li>
+    <li><a class="toc-item" href="#ch8"><span class="toc-chapter">08</span><span class="toc-title-text">Satellite Design &amp; Architecture</span><span class="toc-page">11</span></a></li>
+    <li><a class="toc-item" href="#ch9"><span class="toc-chapter">09</span><span class="toc-title-text">Power Systems (Solar Panels &amp; Batteries)</span><span class="toc-page">12</span></a></li>
+    <li><a class="toc-item" href="#ch10"><span class="toc-chapter">10</span><span class="toc-title-text">Communication Systems (Transponders &amp; Frequency Bands)</span><span class="toc-page">13</span></a></li>
+    <li><a class="toc-item" href="#ch11"><span class="toc-chapter">11</span><span class="toc-title-text">Orbital Mechanics (GEO, LEO, MEO, Polar Orbits)</span><span class="toc-page">14</span></a></li>
+    <li><a class="toc-item" href="#ch12"><span class="toc-chapter">12</span><span class="toc-title-text">Launch Vehicle Integration</span><span class="toc-page">15</span></a></li>
+    <li><a class="toc-item" href="#ch13"><span class="toc-chapter">13</span><span class="toc-title-text">Ground Segment (ISTRAC, MCF, IDSN)</span><span class="toc-page">16</span></a></li>
+    <li><a class="toc-item" href="#ch14"><span class="toc-chapter">14</span><span class="toc-title-text">Satellite Operations &amp; Mission Control</span><span class="toc-page">17</span></a></li>
+    <li><a class="toc-item" href="#ch15"><span class="toc-chapter">15</span><span class="toc-title-text">Data Applications (Agriculture, Disaster, Defence)</span><span class="toc-page">18</span></a></li>
+    <li><a class="toc-item" href="#ch16"><span class="toc-chapter">16</span><span class="toc-title-text">Small Satellite Technology (Microsatellites &amp; CubeSats)</span><span class="toc-page">19</span></a></li>
+    <li><a class="toc-item" href="#ch17"><span class="toc-chapter">17</span><span class="toc-title-text">SAR &amp; Radar Imaging (RISAT Series)</span><span class="toc-page">20</span></a></li>
+    <li><a class="toc-item" href="#ch18"><span class="toc-chapter">18</span><span class="toc-title-text">Formation Flying &amp; Constellations</span><span class="toc-page">21</span></a></li>
+    <li><a class="toc-item" href="#ch19"><span class="toc-chapter">19</span><span class="toc-title-text">Future Missions (AMSAT, Next-Gen Constellations)</span><span class="toc-page">22</span></a></li>
+    <li><a class="toc-item" href="#ch20"><span class="toc-chapter">20</span><span class="toc-title-text">Summary &amp; India's Space Dominance</span><span class="toc-page">23</span></a></li>
+  </ul>
+</div>
+<!-- CHAPTER 1 -->
+<div class="page" id="ch1">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 01</div>
+    <h2 class="chapter-title">History of the Indian Satellite Programme</h2>
+    <p class="chapter-subtitle">From Aryabhata to a Modern Space Power</p>
+  </div>
+  <h3>1.1 The Visionary Beginning</h3>
+  <p>India's space journey began not with rockets, but with a vision. On August 15, 1969, the Indian Space Research Organisation (ISRO) was formed under the Department of Atomic Energy (DAE), with Dr. Vikram Sarabhai as its founding father. Sarabhai envisioned space technology as a tool for national development, not merely prestige. He famously stated that India did not have the fantasy of competing with economically advanced nations in the exploration of the moon or planets, but should concentrate on using space technology for the benefit of its people. The setting up of the Thumba Equatorial Rocket Launching Station (TERLS) in 1963, with support from NASA, marked the very first physical infrastructure of India's space programme.</p>
+  <p>The early 1970s saw critical institutional developments. On June 1, 1972, the Space Commission and the Department of Space (DOS) were established, making space activities a focused national priority. ISRO was brought under DOS, giving it direct access to government policy-making and funding. This institutional architecture, which persists to this day, ensured that India's space programme operated with both scientific rigour and national purpose. Prof. Satish Dhawan, who succeeded Sarabhai, built the management systems that would drive India's first satellite to orbit.</p>
+  <h3>1.2 Aryabhata: India's First Satellite (1975)</h3>
+  <p>On April 19, 1975, India's first satellite, Aryabhata, was launched from the Kapustin Yar cosmodrome in the Soviet Union aboard a Kosmos-3M rocket. Named after the ancient Indian astronomer and mathematician who wrote the seminal text Aryabhatiya in 499 CE, the satellite weighed 360 kg and carried three scientific experiments: X-ray astronomy, aeronomy, and solar physics. The spacecraft was a 26-sided polygon, 1.4 metres in diameter, with solar cells covering all faces except the top and bottom, generating 46 watts of power.</p>
+  <p>Aryabhata operated in a 563 x 619 km orbit with an inclination of 50.7 degrees. Though a power failure halted experiments after four days, the satellite's telemetry was tracked for nearly five years, and it remained in orbit for seventeen years before re-entering the Earth's atmosphere on February 10, 1992. Despite the power anomaly, Aryabhata demonstrated that Indian engineers could design, fabricate, and operate a satellite end-to-end. The satellite was so iconic that it was imprinted on Indian two-rupee banknotes from 1976 to 1997.</p>
+  <div class="key-facts">
+    <div class="key-facts-title">Key Facts: Aryabhata</div>
+    <ul>
+      <li><strong>Launch Date:</strong> April 19, 1975</li>
+      <li><strong>Launch Vehicle:</strong> Kosmos-3M (Soviet)</li>
+      <li><strong>Mass:</strong> 360 kg</li>
+      <li><strong>Orbit:</strong> 563 x 619 km, 50.7 degrees inclination</li>
+      <li><strong>Power:</strong> 46 Watts (solar panels on 24 faces)</li>
+      <li><strong>Payloads:</strong> X-ray Astronomy, Aeronomy, Solar Physics, Ionospheric study</li>
+      <li><strong>Orbital Life:</strong> ~17 years (re-entered Feb 10, 1992)</li>
+      <li><strong>Telemetry:</strong> PCM-FM-PM at 137.44 MHz</li>
+      <li><strong>Stabilization:</strong> Spin-stabilized (max 90 rpm)</li>
+      <li><strong>Battery:</strong> Ni-Cd, passive thermal control</li>
+    </ul>
+  </div>
+  <h3>1.3 Early Experimental Satellites</h3>
+  <p>Following Aryabhata, ISRO embarked on a series of experimental missions. Bhaskara-I (1979) and Bhaskara-II (1981) were experimental Earth observation satellites launched by the Soviet Union from Kapustin Yar. These 380 kg satellites carried microwave remote sensing payloads and provided invaluable experience in configuring, designing, and qualifying remote sensing platforms. APPLE (Ariane Passenger PayLoad Experiment), launched on June 19, 1981, aboard Ariane-1 from Kourou, French Guiana, was India's first experimental communication satellite. It operated in the C-band (4 GHz) and demonstrated India's ability to build and operate communication spacecraft in geostationary orbit. In parallel, the Rohini series demonstrated India's indigenous launch capability through the SLV-3 programme, with SLV-3 successfully placing the RS-D1 satellite in orbit on July 18, 1980.</p>
+  <div class="timeline">
+    <div class="timeline-item"><span class="timeline-year">1963</span><p class="timeline-text">TERLS established at Thumba, Kerala, marking the start of Indian rocketry</p></div>
+    <div class="timeline-item"><span class="timeline-year">1969</span><p class="timeline-text">ISRO formed under Department of Atomic Energy on August 15</p></div>
+    <div class="timeline-item"><span class="timeline-year">1972</span><p class="timeline-text">Space Commission and Department of Space established</p></div>
+    <div class="timeline-item"><span class="timeline-year">1975</span><p class="timeline-text">Aryabhata launched; SITE experiment begins with ATS-6</p></div>
+    <div class="timeline-item"><span class="timeline-year">1980</span><p class="timeline-text">SLV-3 successfully places RS-D1 in orbit - India's first indigenous launch</p></div>
+    <div class="timeline-item"><span class="timeline-year">1981</span><p class="timeline-text">APPLE launched on Ariane-1; Bhaskara-II launched</p></div>
+  </div>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>India's satellite programme began with the visionary leadership of Dr. Vikram Sarabhai and Prof. Satish Dhawan. The launch of Aryabhata on April 19, 1975, marked India's entry into the space age, proving that a developing nation could build and operate satellites. Subsequent experimental missions including Bhaskara and Apple laid the groundwork for operational satellite systems. By the early 1980s, India had demonstrated capabilities in satellite design, communication technology, and indigenous launch capability through SLV-3.</p>
+  </div>
+  <span class="page-number">04</span>
+</div>
+<!-- CHAPTER 2 -->
+<div class="page" id="ch2">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 02</div>
+    <h2 class="chapter-title">ISRO Satellite Centre (ISAC / URSC)</h2>
+    <p class="chapter-subtitle">The Heart of India's Satellite Programme</p>
+  </div>
+  <h3>2.1 Formation and Evolution</h3>
+  <p>The U R Rao Satellite Centre (URSC), Bengaluru, formerly known as ISRO Satellite Centre (ISAC), is the lead centre of the Indian Space Research Organisation responsible for the design, development, assembly, integration, and testing of all Indian satellites. The centre was formally established in 1976, following the success of the Aryabhata mission, and moved to its current 32-acre campus at Old Airport Road, Vimanapura, Bengaluru in 1984. Named after the legendary Indian space scientist Dr. U.R. Rao, who served as ISRO Chairman from 1984 to 1994 and championed India's satellite programme, URSC is home to approximately 2,500 highly trained scientists, engineers, and technicians.</p>
+  <p>The origins of URSC trace back to the Satellite Systems Division at the Space Science & Technology Centre, Trivandrum, in the late 1960s. A handful of engineers fresh from universities sowed the first seeds of satellite technology in India, working in makeshift industrial sheds at Peenya, Bangalore, with virtually no prior art. They developed Aryabhata from scratch, and with its success, the fledgling activity grew into a full-fledged programme with national priorities. Today, URSC has built more than 100 satellites for various applications spanning communication, navigation, remote sensing, meteorology, space science, and interplanetary exploration.</p>
+  <h3>2.2 Facilities and Capabilities</h3>
+  <p>URSC houses state-of-the-art facilities for building satellites on an end-to-end basis. The ISRO Satellite Integration and Test Establishment (ISITE), established in 2006 on a 110-acre campus approximately 8 km from the main campus, is equipped with large clean rooms, a 6.5-metre thermo-vacuum chamber, a 29-ton vibration facility, a compact antenna test facility, and acoustic test facilities. All communication and navigation spacecraft undergo assembly, integration, and testing at ISITE. The Laboratory for Electro Optics Systems (LEOS), located at Peenya Industrial Estate, was established in 1993 and is responsible for the design, development, and production of electro-optic sensors including star trackers, earth sensors, sun sensors, and processing electronics.</p>
+  <div class="key-facts">
+    <div class="key-facts-title">URSC at a Glance</div>
+    <ul>
+      <li><strong>Location:</strong> Old Airport Road, Vimanapura, Bengaluru - 560 017</li>
+      <li><strong>Campus Area:</strong> 32 acres (main), 110 acres (ISITE)</li>
+      <li><strong>Staff:</strong> ~2,500 scientists, engineers, and technicians</li>
+      <li><strong>Satellites Built:</strong> Over 100 since inception</li>
+      <li><strong>Director:</strong> Shri D.K. Singh (from Sep 1, 2026)</li>
+      <li><strong>Key Units:</strong> ISITE (integration & testing), LEOS (electro-optics)</li>
+      <li><strong>Clean Room:</strong> ISO Class 5 for spacecraft integration</li>
+      <li><strong>Thermo-Vacuum Chamber:</strong> 6.5 metre diameter</li>
+      <li><strong>Vibration Facility:</strong> 29-tonne capacity</li>
+    </ul>
+  </div>
+  <h3>2.3 Satellite Bus Platforms</h3>
+  <p>URSC has developed a family of standardised satellite bus platforms used across multiple missions. The I-1K bus (600 kg dry, 1,425 kg lift-off) was used for the IRNSS navigation satellites. The I-2K bus (2,000 kg class) has been used for communication satellites including GSAT-9 (South Asian Satellite). The I-3K bus (3,100-3,400 kg at lift-off) forms the backbone of India's major communication satellites including GSAT-8, GSAT-15, GSAT-16, GSAT-17, and GSAT-30. The latest I-6K bus supports the high-throughput GSAT-11, weighing 5,854 kg. Each bus incorporates three-axis body stabilization using earth sensors, sun sensors, momentum and reaction wheels, magnetic torquers, and bipropellant thrusters.</p>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>URSC (formerly ISAC) is the nerve centre of India's satellite programme, having built over 100 satellites since 1976. With approximately 2,500 staff, state-of-the-art integration and testing facilities at ISITE, and advanced electro-optics development at LEOS, URSC provides end-to-end satellite building capabilities. The centre has developed a family of standardised bus platforms (I-1K through I-6K) that serve India's communication, navigation, remote sensing, and scientific missions.</p>
+  </div>
+  <span class="page-number">05</span>
+</div>
+<!-- CHAPTER 3 -->
+<div class="page" id="ch3">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 03</div>
+    <h2 class="chapter-title">Communication Satellites: INSAT / GSAT Series</h2>
+    <p class="chapter-subtitle">India's Backbone for Telecom, Broadcasting &amp; Navigation</p>
+  </div>
+  <h3>3.1 The INSAT System</h3>
+  <p>The Indian National Satellite System (INSAT) is one of the largest domestic communication satellite systems in the world. Launched initially in the early 1980s, the INSAT series was conceived as a multi-purpose system providing telecommunications, television broadcasting, meteorological observation, and search-and-rescue services across India. The first satellite in the operational series, INSAT-1B, was launched in 1983, and the system has grown through INSAT-2 and INSAT-3 series to the current GSAT series. As of 2026, India operates over a dozen communication satellites in geostationary orbit at various orbital slots, providing seamless coverage of the Indian subcontinent and surrounding regions.</p>
+  <p>The INSAT system enabled the Satellite Instructional Television Experiment (SITE) in 1975, which beamed educational television programmes to approximately 2,400 villages across six states. It has enabled tele-education through EDUSAT (GSAT-3), telemedicine connecting remote health centres to urban hospitals, and direct-to-home (DTH) television broadcasting reaching over 100 million households. The system also supports Very Small Aperture Terminal (VSAT) networks used by banks, airlines, and government agencies for data communication.</p>
+  <h3>3.2 The GSAT Evolution</h3>
+  <p>The GSAT series represents ISRO's advanced communication satellites. GSAT-8, launched in May 2011, weighs 3,093 kg and carries 24 high-power Ku-band transponders plus a two-channel GAGAN payload. GSAT-15, launched on November 11, 2015, weighs 3,164 kg and carries 24 Ku-band transponders plus a GAGAN payload. GSAT-16, launched on December 7, 2014, was ISRO's heaviest communication satellite at the time at 3,181.6 kg, carrying 48 communication transponders. GSAT-11, launched on December 5, 2018, represents a generational leap at 5,854 kg with multi-spot beam architecture: 32 user beams in Ku-band and 8 hub beams in Ka-band, delivering 16 Gbps throughput. GSAT-30, launched on January 17, 2020, weighs 3,357 kg and is configured on the enhanced I-3K bus.</p>
+  <table>
+    <thead><tr><th>Satellite</th><th>Launch Date</th><th>Mass (kg)</th><th>Transponders</th><th>Bands</th><th>Life (yrs)</th></tr></thead>
+    <tbody>
+      <tr><td>GSAT-8</td><td>May 21, 2011</td><td>3,093</td><td>24 Ku + 2 GAGAN</td><td>Ku, L1/L5</td><td>12+</td></tr>
+      <tr><td>GSAT-15</td><td>Nov 11, 2015</td><td>3,164</td><td>24 Ku + GAGAN</td><td>Ku, L1/L5</td><td>12</td></tr>
+      <tr><td>GSAT-16</td><td>Dec 7, 2014</td><td>3,182</td><td>48</td><td>C, Ext-C, Ku</td><td>12</td></tr>
+      <tr><td>GSAT-17</td><td>Jun 29, 2017</td><td>3,477</td><td>42 + SAR + Met</td><td>C, Ext-C, S</td><td>15</td></tr>
+      <tr><td>GSAT-11</td><td>Dec 5, 2018</td><td>5,854</td><td>32 user + 8 hub</td><td>Ku, Ka</td><td>15</td></tr>
+      <tr><td>GSAT-30</td><td>Jan 17, 2020</td><td>3,357</td><td>24 + GAGAN</td><td>C, Ku</td><td>15</td></tr>
+    </tbody>
+  </table>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>India's INSAT/GSAT communication satellite system is one of the largest in the world, providing telecommunications, DTH broadcasting, VSAT services, telemedicine, tele-education, and navigation augmentation. The evolution from INSAT-1B through the GSAT series has seen dramatic increases in capacity, from a handful of transponders to the 48-transponder GSAT-16 and the high-throughput GSAT-11 with 16 Gbps multi-spot beam architecture.</p>
+  </div>
+  <span class="page-number">06</span>
+</div>
+<!-- CHAPTER 4 -->
+<div class="page" id="ch4">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 04</div>
+    <h2 class="chapter-title">Remote Sensing Satellites: IRS / Cartosat / RISAT</h2>
+    <p class="chapter-subtitle">India's Eyes on Earth</p>
+  </div>
+  <h3>4.1 The IRS Programme</h3>
+  <p>India operates one of the largest constellations of remote sensing satellites in the world. The Indian Remote Sensing Satellite (IRS) programme began with IRS-1A, launched on March 17, 1988, from the Baikonur Cosmodrome in the Soviet Union. Weighing 975 kg, IRS-1A carried two LISS sensors providing 72.5-metre resolution in multispectral bands. Since then, ISRO has launched an extensive series including IRS-1B, IRS-1C, IRS-1D, IRS-P4 (OceanSat-1), IRS-P5 (CartoSat-1), IRS-P6 (ResourceSat-1), and numerous others. Today, India maintains a constellation providing multi-spectral, multi-resolution, and multi-temporal imaging for agriculture, water resources, urban planning, disaster management, and more.</p>
+  <h3>4.2 CartoSat: High-Resolution Mapping</h3>
+  <p>CartoSat-1 (IRS-P5), launched on May 5, 2005, was the first satellite specifically designed for cartographic applications with two panchromatic cameras at 2.5-metre resolution. CartoSat-3, launched on November 27, 2019, represents the current state-of-the-art with 0.25-metre panchromatic and 1-metre multispectral resolution, making it one of the highest-resolution civilian imaging satellites globally. CartoSat-3 is placed in Sun-Synchronous Polar Orbit at approximately 505 km altitude and has been instrumental in generating Digital Elevation Models for India.</p>
+  <div class="key-facts">
+    <div class="key-facts-title">Indian Remote Sensing Constellation</div>
+    <ul>
+      <li><strong>IRS-1A (1988):</strong> First operational IRS, 72.5m resolution, 975 kg</li>
+      <li><strong>IRS-1C (1995):</strong> 5.8m panchromatic, 23.5m multispectral, 1,250 kg</li>
+      <li><strong>IRS-P4/OceanSat-1 (1999):</strong> Ocean colour monitor, 1,100 kg</li>
+      <li><strong>IRS-P6/ResourceSat-1 (2003):</strong> 5.8m LISS-4, 23.5m LISS-3, 56m AWiFS, 1,200 kg</li>
+      <li><strong>CartoSat-1 (2005):</strong> 2.5m dual panchromatic cameras, 1,450 kg</li>
+      <li><strong>CartoSat-3 (2019):</strong> 0.25m panchromatic, 1,625 kg</li>
+      <li><strong>ResourceSat-2 (2011):</strong> Enhanced ResourceSat, 1,206 kg</li>
+      <li><strong>HysIS (2018):</strong> Hyperspectral imaging, 380 kg</li>
+      <li><strong>EOS-04/RISAT-1A (2022):</strong> C-band SAR, 1,710 kg</li>
+    </ul>
+  </div>
+  <table>
+    <thead><tr><th>Satellite</th><th>Type</th><th>Resolution</th><th>Orbit</th><th>Mass</th></tr></thead>
+    <tbody>
+      <tr><td>CartoSat-3</td><td>Pan/Multi</td><td>0.25m / 1m</td><td>SSPO 505km</td><td>1,625 kg</td></tr>
+      <tr><td>ResourceSat-2A</td><td>LISS/AWiFS</td><td>5.8m / 56m</td><td>SSPO 817km</td><td>1,206 kg</td></tr>
+      <tr><td>OceanSat-2</td><td>Ocean Colour</td><td>360m</td><td>SSPO 720km</td><td>960 kg</td></tr>
+      <tr><td>HysIS</td><td>Hyperspectral</td><td>30m (50 bands)</td><td>SSPO 505km</td><td>380 kg</td></tr>
+    </tbody>
+  </table>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>India operates one of the world's largest constellations of remote sensing satellites, providing sub-metre cartographic imaging (CartoSat-3 at 0.25m), ocean colour monitoring, and radar imaging. Since IRS-1A in 1988, ISRO has deployed dozens of Earth observation satellites serving agriculture, water resources, urban planning, disaster management, and defence. The constellation provides India with strategic independence in Earth observation.</p>
+  </div>
+  <span class="page-number">07</span>
+</div>
+<!-- CHAPTER 5 -->
+<div class="page" id="ch5">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 05</div>
+    <h2 class="chapter-title">Navigation Satellites: NavIC / IRNSS Constellation</h2>
+    <p class="chapter-subtitle">India's Independent Regional Navigation System</p>
+  </div>
+  <h3>5.1 The Need for NavIC</h3>
+  <p>Navigation with Indian Constellation (NavIC), formerly IRNSS, is India's independent regional satellite navigation system. The system was conceived because global navigation systems like GPS and GLONASS are operated by defence agencies, meaning civilian service can be degraded or denied. NavIC ensures India has sovereign navigation capability under complete Indian control. Prime Minister Narendra Modi named the system "NavIC" on April 28, 2016, upon completion of the seven-satellite constellation.</p>
+  <p>NavIC provides Standard Positioning Service (SPS) for civilians and Restricted Service (RS) for strategic users on dual frequencies: L5 (1176.45 MHz) and S-band (2498.028 MHz). From NVS-01 (launched May 29, 2023) onwards, civil signals are broadcast in L1 band, making NavIC interoperable with GPS, GLONASS, Galileo, and BeiDou. The system provides position accuracy better than 20 metres (2-sigma) and timing accuracy better than 50 nanoseconds over India and 1,500 km beyond Indian boundaries.</p>
+  <h3>5.2 Constellation Architecture</h3>
+  <p>The NavIC constellation consists of seven satellites: three in Geostationary Orbit (GEO) at 32.5E, 83E, and 129.5E, and four in Inclined Geosynchronous Orbit (IGSO) with equatorial crossings at 55E and 111.75E with 29 degrees inclination. This hybrid GEO-IGSO configuration ensures continuous visibility of at least 4-5 satellites over the Indian subcontinent. Each satellite is built on the I-1K bus platform with 1,425 kg lift-off mass and carries Rubidium Atomic Frequency Standards (RAFS) for precise timing.</p>
+  <div class="key-facts">
+    <div class="key-facts-title">NavIC Constellation Details</div>
+    <ul>
+      <li><strong>Total Satellites:</strong> 7 (3 GEO + 4 IGSO)</li>
+      <li><strong>GEO Positions:</strong> 32.5E, 83E, 129.5E</li>
+      <li><strong>IGSO Positions:</strong> 55E, 111.75E (29 inclination, 2 each)</li>
+      <li><strong>Frequencies:</strong> L5 (1176.45 MHz), S-band (2498.028 MHz), L1 (from NVS-01)</li>
+      <li><strong>Position Accuracy:</strong> Less than 20 m (2-sigma) over India</li>
+      <li><strong>Timing Accuracy:</strong> Less than 50 ns (2-sigma)</li>
+      <li><strong>Ground Stations:</strong> 14 IRIMS, 4 IRCDR, 2 Navigation Centres</li>
+      <li><strong>Services:</strong> Standard Positioning (Civilian) + Restricted (Strategic)</li>
+    </ul>
+  </div>
+  <div class="ascii-art"><span class="ascii-art-title">NavIC 7-Satellite Constellation Configuration</span>
+                          NAVIC CONSTELLATION
+                          ~36,000 km Altitude
+              32.5E         55E          83E        111.75E      129.5E
+                |             |             |             |             |
+                |       +-----+-----+       |       +-----+-----+       |
+                |       |           |       |       |           |       |
+           -----*-------*-----------*-------*-------*-----------*-------*-----
+           GEO  |  GEO  |  IGSO(29)| GEO   |  IGSO(29)|  GEO
+          IRNSS | IRNSS |  IRNSS   | IRNSS |  IRNSS   | IRNSS
+          -1C   | -1A   |  -1D,-1F | -1B   |  -1E,-1G | -1I
+
+    GEO Satellites: 3 (stationary over equator)
+    IGSO Satellites: 4 (figure-8 ground track, 29 inclination)
+    Coverage: India + 1,500 km beyond boundary</div>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>NavIC is India's sovereign regional navigation satellite system comprising 7 satellites (3 GEO + 4 IGSO) providing positioning, navigation, and timing services with sub-20-metre accuracy. The system ensures strategic independence from foreign GNSS constellations. With dual-frequency capability, international recognition by IMO and 3GPP, and integration into automotive and maritime standards, NavIC serves both civilian and strategic applications.</p>
+  </div>
+  <span class="page-number">08</span>
+</div>
+<!-- CHAPTER 6 -->
+<div class="page" id="ch6">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 06</div>
+    <h2 class="chapter-title">Weather &amp; Meteorological Satellites</h2>
+    <p class="chapter-subtitle">INSAT-3D, Kalpana-1, and the Monsoon Watch</p>
+  </div>
+  <h3>6.1 India's Meteorological Satellite Legacy</h3>
+  <p>India was among the first countries to use space-based platforms for operational weather forecasting. The meteorological payloads on INSAT series satellites have provided invaluable data for weather prediction, cyclone tracking, monsoon monitoring, and disaster warning since the early 1980s. India Meteorological Department (IMD) relies heavily on data from India's geostationary and polar-orbiting meteorological satellites for issuing forecasts and warnings that protect hundreds of millions of lives.</p>
+  <p>The first dedicated Indian meteorological satellite was Kalpana-1 (MetSat-1), launched on September 12, 2002, on board GSLV-F01. Named in memory of Kalpana Chawla, the satellite weighs 1,060 kg and is positioned at 74E in geostationary orbit. It carries a Very High Resolution Radiometer (VHRR) operating in visible, water vapour, and thermal infrared bands, providing meteorological data twice daily for monitoring the Indian monsoon and cyclonic systems.</p>
+  <h3>6.2 INSAT-3D and INSAT-3DR</h3>
+  <p>INSAT-3D, launched on July 26, 2013, is an advanced meteorological satellite at 82E in geostationary orbit. Weighing 2,060 kg, it carries an Imager with 19 channels (6 visible, 1 water vapour, 12 infrared) and a 19-channel Sounder for vertical atmospheric profiling. INSAT-3DR, launched on September 8, 2016, is a follow-on with enhanced capabilities at 2,211 kg. The latest, INSAT-3DS, was launched on February 17, 2024, continuing the legacy with advanced imaging and sounding capabilities.</p>
+  <table>
+    <thead><tr><th>Satellite</th><th>Type</th><th>Key Payloads</th><th>Orbit</th><th>Resolution</th></tr></thead>
+    <tbody>
+      <tr><td>INSAT-3D (2013)</td><td>Meteo GEO</td><td>Imager (19 ch), Sounder (19 ch)</td><td>GEO 82E</td><td>1km Vis, 4km IR</td></tr>
+      <tr><td>INSAT-3DR (2016)</td><td>Meteo GEO</td><td>Enhanced Imager, Sounder</td><td>GEO 74E</td><td>Improved over 3D</td></tr>
+      <tr><td>INSAT-3DS (2024)</td><td>Meteo GEO</td><td>Next-gen Imager & Sounder</td><td>GEO</td><td>Enhanced</td></tr>
+      <tr><td>Kalpana-1 (2002)</td><td>Meteo GEO</td><td>VHRR</td><td>GEO 74E</td><td>2km Vis, 8km IR</td></tr>
+      <tr><td>Oceansat-2 (2009)</td><td>Ocean/Scatterometry</td><td>OCM-2, Scatterometer</td><td>SSPO 720km</td><td>360m (OCM)</td></tr>
+      <tr><td>Megha-Tropiques (2011)</td><td>Tropical Met</td><td>MADRAS, SAPHIR, SCARAB</td><td>SSPO 867km</td><td>N/A</td></tr>
+    </tbody>
+  </table>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>India operates a comprehensive meteorological satellite constellation including geostationary platforms (INSAT-3D/3DR/3DS, Kalpana-1) and polar-orbiting satellites (Oceansat-2, Megha-Tropiques). These provide continuous monitoring of weather systems, enabling cyclone tracking, monsoon prediction, fog warnings, and ocean state forecasting, protecting millions of lives annually.</p>
+  </div>
+  <span class="page-number">09</span>
+</div>
+<!-- CHAPTER 7 -->
+<div class="page" id="ch7">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 07</div>
+    <h2 class="chapter-title">Scientific Satellites: AstroSat &amp; Chandrayaan Orbiters</h2>
+    <p class="chapter-subtitle">Exploring the Universe from Indian Eyes</p>
+  </div>
+  <h3>7.1 AstroSat: India's First Space Observatory</h3>
+  <p>AstroSat is India's first dedicated multi-wavelength space observatory, launched on September 28, 2015, by PSLV-C30 (XL) from Sriharikota into a 650 km orbit inclined at 6 degrees. Weighing 1,515 kg, AstroSat carries five scientific payloads enabling simultaneous imaging from far ultraviolet to gamma rays. Developed through collaboration among TIFR, IIA, IUCAA, RRI, and ISRO, its unique capability is broad-band simultaneous multi-wavelength observations.</p>
+  <p>The five payloads are: UVIT with two telescopes covering FUV (130-180 nm), NUV (200-300 nm), and visible bands with 1.5 arc-second resolution; LAXPC with three gas detectors providing 8,000 cm2 effective area in 3-100 keV; SXT operating in 0.3-10 keV; CZTI for hard X-rays (20-200 keV) with coded mask imaging; and SSM for detecting transient sources in 2.5-10 keV. As of 2025, AstroSat has completed 10 years, observed over 750 sources, and produced hundreds of publications.</p>
+  <h3>7.2 Chandrayaan Orbiter Missions</h3>
+  <p>Chandrayaan-1, launched October 22, 2008, carried 11 instruments and discovered water molecules on the lunar surface. Chandrayaan-2, launched July 22, 2019, consists of an orbiter, lander, and rover; while the lander had a hard landing, the orbiter continues operating with eight payloads including CLASS, DF-SAR, and XSM. Chandrayaan-3, launched August 23, 2023, successfully demonstrated soft landing and roving on the lunar surface, making India the fourth country to achieve a lunar soft landing.</p>
+  <div class="key-facts">
+    <div class="key-facts-title">AstroSat Mission Specifications</div>
+    <ul>
+      <li><strong>Launch Date:</strong> September 28, 2015 (PSLV-C30 XL)</li>
+      <li><strong>Orbit:</strong> 650 km, 6 inclination</li>
+      <li><strong>Mass:</strong> 1,515 kg</li>
+      <li><strong>Payload 1:</strong> UVIT (FUV/NUV/Vis) - 1.5 arc-sec resolution</li>
+      <li><strong>Payload 2:</strong> LAXPC (3-100 keV) - 8,000 cm2 area</li>
+      <li><strong>Payload 3:</strong> SXT (0.3-10 keV) - X-ray CCD at -80C</li>
+      <li><strong>Payload 4:</strong> CZTI (20-200 keV) - Coded mask imaging</li>
+      <li><strong>Payload 5:</strong> SSM (2.5-10 keV) - All sky monitor</li>
+    </ul>
+  </div>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>AstroSat is India's premier space observatory with five co-aligned payloads covering UV to hard X-rays. Over 10 years it has made groundbreaking discoveries. Chandrayaan-1 discovered water on the Moon, Chandrayaan-2's orbiter continues mapping lunar resources, and Chandrayaan-3 achieved India's historic lunar soft landing. These missions established India as a significant player in space science and interplanetary exploration.</p>
+  </div>
+  <span class="page-number">10</span>
+</div>
+<!-- CHAPTER 8 -->
+<div class="page" id="ch8">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 08</div>
+    <h2 class="chapter-title">Satellite Design &amp; Architecture</h2>
+    <p class="chapter-subtitle">Bus, Payloads, Thermal Control, and Structural Systems</p>
+  </div>
+  <h3>8.1 Satellite Bus Architecture</h3>
+  <p>A satellite bus is the foundational platform providing structural support, power generation, thermal control, attitude determination and control, propulsion, and command/data handling. ISRO has developed standardised bus platforms: I-1K (1,000 kg class), I-2K (2,000 kg), I-3K (3,000 kg), I-4K (4,000 kg), and I-6K (6,000 kg). The structural subsystem, typically aluminium honeycomb and composites, must survive launch loads up to 10g. The propulsion subsystem includes a 440-Newton Liquid Apogee Motor (LAM) with MMH fuel and MON-3 oxidizer for orbit raising, plus bipropellant thrusters for attitude control.</p>
+  <h3>8.2 Payload Design</h3>
+  <p>For communication satellites, payloads include transponders operating in C-band (3.7-4.2 GHz), Ku-band (10.7-12.75 GHz), and Ka-band (20.2-21.2 GHz). Remote sensing payloads include multispectral scanners, panchromatic cameras, and synthetic aperture radars. Navigation payloads include signal generators, Rubidium Atomic Frequency Standards, and C-band transponders for ranging. Scientific payloads are custom-designed for specific observations, requiring extreme pointing stability.</p>
+  <h3>8.3 Thermal Control</h3>
+  <p>Thermal control maintains electronics within -10C to +40C while external surfaces experience -150C to +150C. ISRO uses passive methods (multi-layer insulation, coatings, heat pipes) and active methods (electric heaters, louvers). The 6.5-metre thermo-vacuum chamber at ISITE simulates space conditions for qualification. Satellites undergo thermal balance testing, thermal cycling, and outgassing tests to ensure reliability.</p>
+  <div class="ascii-art"><span class="ascii-art-title">Typical Communication Satellite Cross-Section</span>
+                    +-----------------------------------+
+                    |     SOLAR ARRAY (deployed)        |
+                    |  +-----------------------------+  |
+                    |  | XXXXXXXX SOLAR CELLS XXXXXXX |  |
+                    |  +--------------+--------------+  |
+                    |                 | B/O            |
+                    |          +------+------+
+                    |          |  MAIN BODY  |
+                    |          |  +--------+ |
+                    |          |  |TRANS-  | |  +----+
+                    |          |  |PONDER  | |  |LAM |
+                    |          |  | MODULE | |  |440N|
+                    |          |  +--------+ |  +----+
+                    |          +------+------+
+                    |     +-----------+-----------+
+                    |     |  REFLECTOR ANTENNAS   |
+                    |     |  (2.2m dual-grid)     |
+                    |     +------------------------+
+                    +-----------------------------------+</div>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>Satellite design at URSC follows modular bus architecture (I-1K through I-6K) with structural support, power, thermal control, propulsion, and command/data handling. Thermal control employs passive and active methods qualified through thermo-vacuum testing. The design philosophy emphasises reliability, commonality, and cost-effectiveness across communication, navigation, remote sensing, and scientific missions.</p>
+  </div>
+  <span class="page-number">11</span>
+</div>
+<!-- CHAPTER 9 -->
+<div class="page" id="ch9">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 09</div>
+    <h2 class="chapter-title">Power Systems: Solar Panels &amp; Batteries</h2>
+    <p class="chapter-subtitle">Energising India's Satellite Fleet</p>
+  </div>
+  <h3>9.1 Solar Array Power Generation</h3>
+  <p>Solar arrays are the primary power source for all operational Indian satellites. In GEO, satellites experience up to 72 minutes of eclipse during equinox seasons. ISRO's communication satellites employ large deployable solar panels with silicon or gallium arsenide (GaAs) cells. Power ranges from 1,600W for the I-1K navigation bus to over 13,600W for GSAT-11. The cells are typically triple-junction GaAs with efficiencies exceeding 28%, protected by cover glass against radiation damage.</p>
+  <h3>9.2 Energy Storage: Batteries</h3>
+  <p>During eclipses, high-capacity Lithium-Ion batteries supply all electrical loads. ISRO uses three 100 Ah Li-Ion batteries for GEO satellites, replacing older Ni-Cd batteries. The Power Conditioning and Distribution Unit (PCDU) manages energy flow, regulates voltage, charges/discharges batteries, and distributes power at 28V, 50V, or 100V bus voltages. Design accounts for 15-25% solar cell degradation over 15-year lifetimes.</p>
+  <div class="key-facts">
+    <div class="key-facts-title">Power System Specifications by Bus Type</div>
+    <ul>
+      <li><strong>I-1K Bus (IRNSS):</strong> 1,600 W solar power, Ni-Cd batteries</li>
+      <li><strong>I-2K Bus (GSAT-9):</strong> ~3,000 W, Li-Ion batteries</li>
+      <li><strong>I-3K Bus (GSAT-15/16/17/30):</strong> 6,000-6,200 W, three 100 Ah Li-Ion</li>
+      <li><strong>I-4K Bus (GSAT-20/N2):</strong> ~8,000 W, enhanced Li-Ion</li>
+      <li><strong>I-6K Bus (GSAT-11):</strong> 13,600+ W, advanced Li-Ion</li>
+      <li><strong>Eclipse Duration (GEO):</strong> Up to 72 min at equinox</li>
+    </ul>
+  </div>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>Indian satellite power systems employ deployable solar arrays generating 1.6 kW to 13.6+ kW with triple-junction GaAs cells exceeding 28% efficiency. Energy storage uses Li-Ion batteries for eclipse operations. The PCDU manages power conditioning and distribution across regulated bus architectures, accounting for solar cell degradation and thousands of charge-discharge cycles over 15-year mission lifetimes.</p>
+  </div>
+  <span class="page-number">12</span>
+</div>
+<!-- CHAPTER 10 -->
+<div class="page" id="ch10">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 10</div>
+    <h2 class="chapter-title">Communication Systems: Transponders &amp; Frequency Bands</h2>
+    <p class="chapter-subtitle">How India's Satellites Talk to Earth</p>
+  </div>
+  <h3>10.1 Transponder Fundamentals</h3>
+  <p>A transponder receives signals at one frequency, amplifies them, frequency-shifts them, and retransmits at a different frequency. Each transponder typically has 36 MHz bandwidth. ISRO's GSAT-16 carries 48 transponders, while GSAT-11 uses spot-beam architecture for multi-fold capacity through frequency reuse. The transponder chain includes input filter, LNA, frequency converter, IF amplifier, high-power amplifier (TWTA or SSPA), and output filter.</p>
+  <h3>10.2 Frequency Bands</h3>
+  <p>ISRO operates across C-band (3.7-4.2 GHz, wide coverage, low rain attenuation), Ku-band (10.7-12.75 GHz, smaller antennas, ideal for DTH), Ka-band (20.2-21.2 GHz, highest bandwidth for HTS broadband), S-band (2.5 GHz, mobile services), and L-band for GAGAN/NavIC navigation. Ka-band was first used on GSAT-11 with 4-colour frequency reuse spot beams achieving 16 Gbps total throughput.</p>
+  <table>
+    <thead><tr><th>Band</th><th>Uplink (GHz)</th><th>Downlink (GHz)</th><th>Primary Use</th><th>Rain Sensitivity</th></tr></thead>
+    <tbody>
+      <tr><td>C-band</td><td>5.925-6.425</td><td>3.7-4.2</td><td>TV, Telecom backbone</td><td>Low</td></tr>
+      <tr><td>Ext-C</td><td>6.725-7.025</td><td>4.5-4.8</td><td>Additional capacity</td><td>Low</td></tr>
+      <tr><td>Ku-band</td><td>13.75-14.5</td><td>10.7-12.75</td><td>DTH, VSAT</td><td>Moderate</td></tr>
+      <tr><td>Ka-band</td><td>29.5-30.0</td><td>20.2-21.2</td><td>HTS Broadband</td><td>High</td></tr>
+      <tr><td>S-band</td><td>2.0-2.2</td><td>2.18-2.2</td><td>Mobile services</td><td>Low</td></tr>
+      <tr><td>L-band</td><td>1.525-1.559</td><td>1.626-1.660</td><td>Navigation (GAGAN/NavIC)</td><td>Very Low</td></tr>
+    </tbody>
+  </table>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>ISRO's communication satellites operate across C, Extended C, Ku, Ka, S, and L frequency bands. Transponders provide 36-72 MHz bandwidth and 10-100W output power. High-throughput architectures like GSAT-11 use Ka-band spot beams with frequency reuse to achieve 16 Gbps throughput. The GAGAN system provides GPS augmentation at L1/L5 frequencies for Indian aviation safety.</p>
+  </div>
+  <span class="page-number">13</span>
+</div>
+<!-- CHAPTER 11 -->
+<div class="page" id="ch11">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 11</div>
+    <h2 class="chapter-title">Orbital Mechanics: GEO, LEO, MEO, Polar Orbits</h2>
+    <p class="chapter-subtitle">Where India's Satellites Live in Space</p>
+  </div>
+  <h3>11.1 Geostationary Orbit (GEO)</h3>
+  <p>GEO is a circular orbit 35,786 km above the equator where the satellite's period matches Earth's rotation, appearing stationary relative to the ground. India positions communication, navigation (3 GEO NavIC), and weather satellites here at specific ITU slots: 55E, 74E, 82E, 83E, 93.5E, and 129.5E. Satellites are launched into GTO and raised to GEO using onboard LAM. MCF Hassan manages orbit raising, in-orbit testing, and station-keeping.</p>
+  <h3>11.2 Low Earth Orbit (LEO)</h3>
+  <p>LEO ranges from 200-2,000 km, offering lower launch costs and reduced latency. India's remote sensing satellites (IRS, CartoSat, RISAT) and AstroSat operate in LEO with 90-120 minute orbital periods. Most use Sun-Synchronous Polar Orbit (SSPO) at 97-99 inclination for consistent illumination.</p>
+  <h3>11.3 Sun-Synchronous Polar Orbit (SSPO)</h3>
+  <p>In SSPO, the orbital plane precesses at 0.9856 degrees/day, matching Earth's solar revolution, ensuring consistent local solar time passes. Indian remote sensing satellites use altitudes of 505 km (CartoSat-3), 720 km (Oceansat-2), and 817 km (ResourceSat-2A).</p>
+  <h3>11.4 Inclined Geosynchronous Orbit (IGSO)</h3>
+  <p>Four NavIC satellites are in IGSO with 29 degrees inclination, creating figure-eight ground tracks. This provides higher elevation angles over India, improving signal availability in urban canyons and mountainous terrain.</p>
+  <div class="ascii-art"><span class="ascii-art-title">Indian Satellite Orbit Types Comparison</span>
+    ORBIT TYPES USED BY ISRO SATELLITES
+    ============================================================
+    GEO (35,786 km)    * INSAT-3D  * GSAT-11
+    - Circ. Equatorial  * GSAT-30   * NavIC (3)
+    - Period: 24 hrs    * Kalpana-1 * IRNSS (3)
+    - Application: Comm,Nav,Meteo
+
+    LEO (200-2,000 km) * CartoSat-3 (505 km)
+    - Period: 90-120m  * ResourceSat-2A (817 km)
+    - App: Remote Sensing, Science * Oceansat-2 (720 km)
+
+    SSPO (~98 inclination) - Consistent sun angle for imaging
+    IGSO (29 inclination) - NavIC figure-8 ground tracks</div>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>India's satellite fleet operates across GEO (35,786 km for comm/nav/meteo), LEO (200-2,000 km for remote sensing), SSPO (~98 inclination for consistent imaging), and IGSO (29 inclination for NavIC). Each orbit type offers specific advantages: GEO for continuous coverage, LEO for high resolution, SSPO for uniform illumination, and IGSO for enhanced Indian geometry.</p>
+  </div>
+  <span class="page-number">14</span>
+</div>
+<!-- CHAPTER 12 -->
+<div class="page" id="ch12">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 12</div>
+    <h2 class="chapter-title">Launch Vehicle Integration</h2>
+    <p class="chapter-subtitle">Getting India's Satellites to Space</p>
+  </div>
+  <h3>12.1 India's Launch Vehicle Fleet</h3>
+  <p>India operates PSLV, GSLV, LVM3 (GSLV Mk III), and SSLV from Satish Dhawan Space Centre (SDSC) SHAR at Sriharikota. PSLV, first launched in 1994, has over 60 consecutive successful missions, placing up to 1,750 kg into SSO or 3,200 kg into LEO. PSLV-XL uses larger strap-on boosters for increased capacity.</p>
+  <h3>12.2 GSLV and LVM3</h3>
+  <p>GSLV uses liquid core, solid first stage, and indigenous cryogenic upper stage (200 kN thrust, LH2/LOX), placing 2,500 kg into GTO. LVM3, India's heaviest, places 4,000 kg into GTO and 10,000 kg into LEO with S200 solid boosters, L110 liquid core, and CE-20 cryogenic stage. LVM3 launched Chandrayaan-2 and Chandrayaan-3 and is selected for Gaganyaan. SSLV places 500 kg into LEO for rapid, low-cost small satellite access.</p>
+  <div class="key-facts">
+    <div class="key-facts-title">India's Launch Vehicle Fleet</div>
+    <ul>
+      <li><strong>PSLV:</strong> 4-stage, 1,750 kg to SSO, 3,200 kg to LEO, 60+ successes</li>
+      <li><strong>PSLV-XL:</strong> Enhanced strap-ons, up to 1,900 kg to SSO</li>
+      <li><strong>GSLV:</strong> 3-stage (S+L+Cryogenic), 2,500 kg to GTO</li>
+      <li><strong>LVM3:</strong> S200 + L110 + CE-20, 4,000 kg to GTO, 10,000 kg to LEO</li>
+      <li><strong>SSLV:</strong> 3-stage solid, 500 kg to LEO, rapid turnaround</li>
+      <li><strong>SDSC SHAR:</strong> Sriharikota, Andhra Pradesh (13.7N, 80.2E)</li>
+    </ul>
+  </div>
+  <div class="ascii-art"><span class="ascii-art-title">PSLV Launch Vehicle Configuration</span>
+                    +-------+
+                    | PAYLOAD|  <- Satellite (up to 1,750 kg)
+                    | FAIRING|     (enclosed in heat shield)
+                    +---+---+
+                        |
+                    +---+---+
+                    | PS4   |  <- 4th Stage: 2x 7.4 kN liquid
+                    | (L10) |     MMH/N2O4 propellant
+                    +---+---+
+                    +---+---+
+                    | PS3   |  <- 3rd Stage: HTPB Solid
+                    | (S12) |     12 tonnes, 120 kN thrust
+                    +---+---+
+              +----+----+----+----+
+              |    |  PS2    |    |
+              |    | (L40)   |    |  <- 2nd Stage: Vikas Liquid
+              |    |(Vikas)  |    |     800 kN thrust
+              |    +----+----+    |
+         +----+----+    |    +----+----+
+         | PS1 Strap-on| |    | PS1 Strap-on|
+         | (S139)  |    |    | (S139)  |  <- 1st Stage: Solid
+         |139 tonnes|   |    |139 tonnes|     4,800 kN thrust
+         +---------+    |    +---------+
+                    +---+---+
+                    | BASE  |
+                    +-------+
+    Total Height: ~44 m  |  Lift-off Mass: ~320 tonnes</div>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>India's launch vehicle fleet includes PSLV (60+ successes, global launch leader), GSLV (indigenous cryogenic, 2,500 kg to GTO), LVM3 (4,000 kg to GTO, crewed mission vehicle), and SSLV (small satellite, rapid turnaround). Operations are from SDSC SHAR at Sriharikota with two launch pads. PSLV's reliability has made India a global leader in commercial launch services.</p>
+  </div>
+  <span class="page-number">15</span>
+</div>
+<!-- CHAPTER 13 -->
+<div class="page" id="ch13">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 13</div>
+    <h2 class="chapter-title">Ground Segment: ISTRAC, MCF &amp; IDSN</h2>
+    <p class="chapter-subtitle">The Terrestrial Network Behind Every Mission</p>
+  </div>
+  <h3>13.1 ISTRAC: Telemetry, Tracking &amp; Command</h3>
+  <p>ISTRAC, headquartered in Bengaluru, provides ground support for all ISRO missions. The global network includes stations at Bengaluru, Lucknow, Sriharikota, Thiruvananthapuram, Port Blair, Mauritius, Brunei, and Biak (Indonesia), supplemented by partners at Alcantara/Cuiaba (Brazil), Hartebeesthoek (South Africa), and NASA DSN. ISTRAC's SCC in Bengaluru is the nerve centre for LEO mission operations.</p>
+  <h3>13.2 Master Control Facility (MCF)</h3>
+  <p>MCF at Hassan, Karnataka, and Bhopal, Madhya Pradesh, monitors all geostationary satellites. MCF performs orbit raising, in-orbit payload testing, and 24/7 TT&C operations including eclipse management and station-keeping manoeuvres. The facility operates high-gain C-band and Ku-band terminals for GEO satellite communication at 36,000 km altitude.</p>
+  <h3>13.3 Indian Deep Space Network (IDSN)</h3>
+  <p>IDSN at Byalalu, Bengaluru, commissioned in 2008, includes a 12-metre antenna for X-band and S-band communication up to 400,000+ km. It was critical for Chandrayaan-1, Mars Orbiter Mission, and Chandrayaan-2/3, providing command uplink and telemetry at up to 1.5 Mbps from lunar distance.</p>
+  <div class="key-facts">
+    <div class="key-facts-title">Ground Segment Key Facilities</div>
+    <ul>
+      <li><strong>ISTRAC HQ:</strong> Peenya Industrial Area, Bengaluru</li>
+      <li><strong>SCC:</strong> Bengaluru - LEO mission operations</li>
+      <li><strong>MCF Hassan:</strong> GEO satellite primary control</li>
+      <li><strong>MCF Bhopal:</strong> GEO satellite backup & secondary</li>
+      <li><strong>IDSN Byalalu:</strong> 12m deep space antenna, 400,000+ km range</li>
+      <li><strong>Navigation Ground:</strong> 14 IRIMS, 4 IRCDR, 2 INC</li>
+    </ul>
+  </div>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>India's ground segment comprises ISTRAC (global TTC network), MCF (GEO control at Hassan/Bhopal), and IDSN (deep space at Byalalu). The network spans stations across India and internationally, providing near-continuous LEO coverage and 24/7 GEO operations. IDSN supports interplanetary missions, ensuring independent command and control over India's entire satellite fleet.</p>
+  </div>
+  <span class="page-number">16</span>
+</div>
+<!-- CHAPTER 14 -->
+<div class="page" id="ch14">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 14</div>
+    <h2 class="chapter-title">Satellite Operations &amp; Mission Control</h2>
+    <p class="chapter-subtitle">24/7 Vigil Over India's Space Assets</p>
+  </div>
+  <h3>14.1 Launch Phase Operations</h3>
+  <p>Ground stations at Sriharikota, Port Blair, and Brunei provide continuous tracking from liftoff through stage separation. Ship-borne terminals track from PS4 ignition through separation. For GEO missions, satellites are injected into GTO and MCF performs LAM burns over several days to raise to GEO, then deploys appendages and initiates three-axis stabilisation.</p>
+  <h3>14.2 In-Orbit Operations</h3>
+  <p>GEO satellites: MCF monitors hundreds of telemetry parameters and performs monthly station-keeping within plus/minus 0.05 degree. LEO satellites: ISTRAC manages 8-12 minute ground station passes for data downlink and command uplink. Onboard computers store commands for autonomous execution between passes.</p>
+  <h3>14.3 Contingency and End-of-Life</h3>
+  <p>Most subsystems are fully redundant with backup units activated by ground command. At end-of-life, GEO satellites are boosted 300 km above GEO to the graveyard orbit per IADC guidelines. LEO satellites with remaining propellant may be deorbited over the South Pacific Uninhabited Area.</p>
+  <div class="key-facts">
+    <div class="key-facts-title">Mission Control Parameters</div>
+    <ul>
+      <li><strong>Telemetry Parameters:</strong> 500-2,000 per satellite</li>
+      <li><strong>GEO Station-Keeping:</strong> Monthly, plus/minus 0.05 degree tolerance</li>
+      <li><strong>LEO Pass Duration:</strong> 8-12 minutes per ground station</li>
+      <li><strong>Eclipse Management:</strong> Battery mode for 72 min max (GEO equinox)</li>
+      <li><strong>Operational Life:</strong> 10-15 years (GEO), 5-7 years (LEO)</li>
+    </ul>
+  </div>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>Satellite operations encompass launch tracking, GTO-to-GEO orbit raising, 24/7 monitoring, station-keeping, contingency management, and end-of-life disposal. MCF and ISTRAC manage the fleet with redundant subsystems ensuring service continuity. GEO graveyard orbits and LEO deorbiting comply with debris mitigation guidelines, maintaining responsible space operations.</p>
+  </div>
+  <span class="page-number">17</span>
+</div>
+<!-- CHAPTER 15 -->
+<div class="page" id="ch15">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 15</div>
+    <h2 class="chapter-title">Data Applications: Agriculture, Disaster &amp; Defence</h2>
+    <p class="chapter-subtitle">Translating Space Data into National Benefit</p>
+  </div>
+  <h3>15.1 Agricultural Applications</h3>
+  <p>The Resourcesat series enables crop acreage estimation, condition assessment, and yield prediction. The FASAL programme uses IRS data combined with weather information for crop production forecasts. Soil mapping using multispectral data identifies types, moisture, and nutrients for precision agriculture. The Potential Fishing Zone (PFZ) service using OceanSat data provides daily advisories to millions of fishermen.</p>
+  <h3>15.2 Disaster Management</h3>
+  <p>INSAT provides cyclone tracking with 24-48 hours advance warning, enabling evacuation of millions. RISAT radar satellites provide all-weather imagery during cloud-covered disasters. ISRO's Disaster Management Support Programme provides near-real-time imagery to NDMA. During the 2013 Uttarakhand floods and 2018 Kerala floods, ISRO provided rapid mapping for rescue operations and damage assessment.</p>
+  <h3>15.3 Defence and Strategic Applications</h3>
+  <p>GSAT-7 provides secure Navy communication across the Indian Ocean using UHF, S, C, and Ku bands. GSAT-7A serves the Air Force with high-bandwidth networking. RISAT series provides all-weather radar imaging for border surveillance and defence reconnaissance. India plans to expand its military satellite network to 78 platforms by 2031.</p>
+  <div class="ascii-art"><span class="ascii-art-title">Indian Space-Based Disaster Management Workflow</span>
+    +---------------------------------------------------+
+    |           DISASTER MANAGEMENT CYCLE               |
+    |  PREVENTION -> MITIGATION -> PREPAREDNESS        |
+    |       ^                        |                  |
+    |       |    +--------------------v-----------+     |
+    |       |    |      RESPONSE                   |     |
+    |       |    |  INSAT: Cyclone Tracking        |     |
+    |       |    |  RISAT: Flood Mapping (all-wx)  |     |
+    |       |    |  CartoSat: Damage Assessment    |     |
+    |       |    +--------------------+-----------+     |
+    |       |                        |                  |
+    |       +--- RECOVERY & REHABILITATION <------------+
+    +---------------------------------------------------+
+    Satellites: INSAT-3D | RISAT | CartoSat | Oceansat</div>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>India's satellite data serves critical applications in agriculture (crop monitoring, yield prediction), disaster management (cyclone tracking, flood mapping), and defence (secure communication, radar surveillance). The FASAL programme, PFZ advisories, and DMSP provide life-saving services. RISAT's all-weather capability is crucial during cloud-covered disasters, making satellite infrastructure indispensable for 1.4 billion citizens.</p>
+  </div>
+  <span class="page-number">18</span>
+</div>
+<!-- CHAPTER 16 -->
+<div class="page" id="ch16">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 16</div>
+    <h2 class="chapter-title">Small Satellite Technology: Microsatellites &amp; CubeSats</h2>
+    <p class="chapter-subtitle">The Democratisation of Space</p>
+  </div>
+  <h3>16.1 India's Small Satellite Revolution</h3>
+  <p>India has embraced the small satellite revolution with ISRO's Student Satellite Programme. ANUSat (40 kg, 2009) from Anna University was the first student satellite, launched as RISAT-2's co-passenger. STUDSAT (less than 1 kg, 2010) was the first Indian CubeSat. Subsequent student satellites include Jugnu (3 kg, 2011), SRMSat (10.9 kg, 2011), SWAYAM (1 kg, 2016), SATHYABAMASAT (1.5 kg, 2016), PISAT (5.25 kg, 2016), PRATHAM (10 kg, 2016), NIUSAT (15 kg, 2017), and Kalamsat (1.26 kg, 2019).</p>
+  <h3>16.2 Small Satellite Launch Vehicle (SSLV)</h3>
+  <p>SSLV, India's newest launch vehicle, is designed specifically for small satellite missions. It is a three-stage all-solid vehicle capable of placing 500 kg into 500 km LEO or 300 kg into Sun-Synchronous Orbit. SSLV features a lightweight, modular design with minimal launch infrastructure requirements and can be assembled in less than a week, compared to months for larger vehicles. The first development flight (SSLV-D1/EOS-02) in August 2022 had a partial success, while SSLV-D2/EOS-07 in February 2023 was fully successful.</p>
+  <h3>16.3 Commercial and Academic Small Satellites</h3>
+  <p>ISRO's commercial arm NSIL (NewSpace India Limited) and private companies like Pixxel (Hyperspectral imaging constellation), Satelllogic, and AgniKul are developing small satellite constellations. Pixxel's constellation provides 5-metre resolution hyperspectral imagery for agriculture, environment, and mining applications. ISRO has also supported international small satellite launches through PSLV's Small Satellite Launch Program, deploying hundreds of CubeSats for global customers.</p>
+  <div class="key-facts">
+    <div class="key-facts-title">Indian Student &amp; Small Satellites</div>
+    <ul>
+      <li><strong>ANUSat (2009):</strong> 40 kg, Anna University, first student satellite</li>
+      <li><strong>STUDSAT (2010):</strong> &lt;1 kg, first Indian CubeSat</li>
+      <li><strong>Jugnu (2011):</strong> 3 kg, IIT Kanpur</li>
+      <li><strong>SRMSat (2011):</strong> 10.9 kg, SRM University</li>
+      <li><strong>SWAYAM (2016):</strong> 1 kg, College of Engineering Pune</li>
+      <li><strong>PRATHAM (2016):</strong> 10 kg, IIT Bombay</li>
+      <li><strong>Kalamsat (2019):</strong> 1.26 kg, named after APJ Abdul Kalam</li>
+      <li><strong>SDSAT (2021):</strong> Satish Dhawan Space Centre</li>
+      <li><strong>SSLV Capacity:</strong> 500 kg to LEO, 300 kg to SSO</li>
+    </ul>
+  </div>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>India's small satellite ecosystem includes student-built satellites from universities across the country, commercial constellations from private companies like Pixxel, and ISRO's SSLV for dedicated small satellite launches. The Student Satellite Programme has trained hundreds of students in satellite technology, while SSLV provides rapid, low-cost access to space. India has launched hundreds of international customer CubeSats through PSLV, establishing itself as a global leader in small satellite deployment.</p>
+  </div>
+  <span class="page-number">19</span>
+</div>
+<!-- CHAPTER 17 -->
+<div class="page" id="ch17">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 17</div>
+    <h2 class="chapter-title">SAR &amp; Radar Imaging: RISAT Series</h2>
+    <p class="chapter-subtitle">Seeing Through Clouds: All-Weather Earth Observation</p>
+  </div>
+  <h3>17.1 The Need for Radar Imaging</h3>
+  <p>Optical remote sensing satellites cannot image through cloud cover, limiting their usefulness during monsoon seasons and tropical weather. Synthetic Aperture Radar (SAR) satellites solve this by using microwave signals that penetrate clouds, rain, and darkness, providing 24-hour, all-weather imaging capability. For India, with its monsoon climate covering most of the subcontinent for 4-5 months annually, SAR capability is strategically essential.</p>
+  <h3>17.2 RISAT-2: India's First SAR Satellite</h3>
+  <p>RISAT-2, launched on April 20, 2009, on PSLV-C12, was India's first satellite with a SAR instrument. It carries an X-band SAR (XSAR) manufactured by Israel Aerospace Industries (IAI) with four operational modes: Stripmap (3m resolution), ScanSAR (wide coverage, 100 km swath), Spotlight (highest resolution), and Mosaic mode. RISAT-2 operates at 550 km altitude in LEO, providing all-weather monitoring for disaster management, flood mapping, oil slick detection, agriculture, and urban mapping. The satellite weighed 300 kg and had a 5-year design life, though it operated until 2022.</p>
+  <h3>17.3 RISAT-1: India's Indigenous C-band SAR</h3>
+  <p>RISAT-1, launched on April 26, 2012, on PSLV-C19, was India's first indigenous SAR satellite with a C-band Synthetic Aperture Radar. Weighing 1,858 kg, it was the heaviest Indian remote sensing satellite at launch. The C-band SAR operates at 5.35 GHz with multiple polarisation modes (HH, VV, HV, VH) and resolutions ranging from 1m to 50m across swath widths of 10-223 km. RISAT-1 operated in Sun-Synchronous Polar Orbit at 535 km altitude until 2017. It provided critical data for flood monitoring, crop classification, soil moisture estimation, and forest mapping.</p>
+  <h3>17.4 RISAT-1A (EOS-04) and RISAT-2B/2BR1</h3>
+  <p>RISAT-1A (EOS-04), launched on February 14, 2022, on PSLV-C52, is the follow-on to RISAT-1 with enhanced C-band SAR capabilities at 1,710 kg. It operates in multi-mode with 1-50m resolution and 10-223 km swath. RISAT-2B, launched on May 22, 2019, at 615 kg, and RISAT-2BR1, launched on December 11, 2019, at 628 kg, provide continued X-band SAR capability for disaster management and Earth observation.</p>
+  <table>
+    <thead><tr><th>Satellite</th><th>Band</th><th>Resolution</th><th>Mass</th><th>Launch</th><th>Orbit</th></tr></thead>
+    <tbody>
+      <tr><td>RISAT-2 (2009)</td><td>X-band</td><td>3m (Stripmap)</td><td>300 kg</td><td>PSLV-C12</td><td>550 km LEO</td></tr>
+      <tr><td>RISAT-1 (2012)</td><td>C-band</td><td>1-50m</td><td>1,858 kg</td><td>PSLV-C19</td><td>535 km SSPO</td></tr>
+      <tr><td>RISAT-2B (2019)</td><td>X-band</td><td>~1m</td><td>615 kg</td><td>PSLV-C46</td><td>LEO</td></tr>
+      <tr><td>RISAT-2BR1 (2019)</td><td>X-band</td><td>~1m</td><td>628 kg</td><td>PSLV-C48</td><td>LEO</td></tr>
+      <tr><td>EOS-04/RISAT-1A (2022)</td><td>C-band</td><td>1-50m</td><td>1,710 kg</td><td>PSLV-C52</td><td>SSPO</td></tr>
+    </tbody>
+  </table>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>India's RISAT series provides critical all-weather SAR imaging capability essential for a monsoon-climate nation. RISAT-2 (X-band, 2009) was India's first SAR satellite, followed by the indigenous RISAT-1 (C-band, 2012). The current constellation includes RISAT-2B, 2BR1, and EOS-04 (RISAT-1A), providing X-band and C-band SAR data for disaster management, agriculture, defence, and environmental monitoring with resolutions from 1m to 50m.</p>
+  </div>
+  <span class="page-number">20</span>
+</div>
+<!-- CHAPTER 18 -->
+<div class="page" id="ch18">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 18</div>
+    <h2 class="chapter-title">Formation Flying &amp; Constellations</h2>
+    <p class="chapter-subtitle">Coordinated Multi-Satellite Operations</p>
+  </div>
+  <h3>18.1 Constellation Concepts</h3>
+  <p>Satellite constellations are groups of satellites working together to provide coverage that a single satellite cannot achieve alone. India operates several constellations: the NavIC navigation constellation (7 satellites in GEO/IGSO), the IRS remote sensing constellation (multiple satellites in complementary orbits), and the INSAT/GSAT communication fleet (co-located at GEO orbital slots). Each constellation is designed with specific geometry to ensure continuous or repeated coverage of the Indian region.</p>
+  <p>The NavIC constellation demonstrates constellation design principles: the hybrid GEO-IGSO configuration ensures that at least 4-5 satellites are visible from any point in India at all times, providing robust positioning geometry with low Dilution of Precision (DOP). The three GEO satellites provide fixed coverage while the four IGSO satellites trace figure-eight ground tracks that enhance elevation angles, particularly important in urban environments and mountainous terrain where low-elevation signals are blocked.</p>
+  <h3>18.2 GEO Co-location</h3>
+  <p>India maintains multiple communication satellites co-located at the same orbital slots. At 55E, GSAT-8, GSAT-16, IRNSS-1A, and IRNSS-1B share the slot. At 93.5E, INSAT-3A, INSAT-4B, and GSAT-15 are co-located. Co-location requires precise station-keeping to prevent radio frequency interference and physical collision. Each satellite is maintained within a box of approximately plus/minus 0.05 degrees in both longitude and latitude, with periodic manoeuvres using bipropellant thrusters. The Master Control Facility at Hassan manages all co-located satellites through time-division and frequency planning.</p>
+  <h3>18.3 Formation Flying Potential</h3>
+  <p>While India has not yet implemented formation flying missions where satellites maintain precise relative positions, the technology is being developed for future applications. Formation flying enables interferometric synthetic aperture radar, gravity field measurement, and distributed space telescopes. ISRO's small satellite capabilities and SSLV open possibilities for future formation flying missions. The groundwork is being laid through precise orbit determination and inter-satellite communication research at ISTRAC and URSC.</p>
+  <div class="key-facts">
+    <div class="key-facts-title">India's Satellite Constellations</div>
+    <ul>
+      <li><strong>NavIC:</strong> 7 satellites (3 GEO + 4 IGSO), 24/7 navigation coverage</li>
+      <li><strong>IRS Fleet:</strong> Multiple SSPO satellites for daily revisit capability</li>
+      <li><strong>INSAT/GSAT:</strong> Co-located GEO fleet, up to 12 satellites at various slots</li>
+      <li><strong>RISAT Fleet:</strong> X-band and C-band SAR constellation for all-weather imaging</li>
+      <li><strong>GEO Slot 55E:</strong> GSAT-8, GSAT-16, IRNSS-1A, IRNSS-1B co-located</li>
+      <li><strong>GEO Slot 93.5E:</strong> INSAT-3A, INSAT-4B, GSAT-15 co-located</li>
+      <li><strong>Station-Keeping Box:</strong> Plus/minus 0.05 degrees (GEO)</li>
+    </ul>
+  </div>
+  <div class="ascii-art"><span class="ascii-art-title">GEO Co-location at 55E Orbital Slot</span>
+    GEO ORBITAL SLOT 55 degrees EAST
+    +---------------------------------------------------+
+    |                                                   |
+    |   +-------+  +-------+  +-------+  +-------+    |
+    |   | GSAT  |  | GSAT  |  | IRNSS |  | IRNSS |    |
+    |   | -8    |  | -16   |  | -1A   |  | -1B   |    |
+    |   | 3,093 |  | 3,182 |  | 1,425 |  | 1,425 |    |
+    |   | kg    |  | kg    |  | kg    |  | kg    |    |
+    |   +---+---+  +---+---+  +---+---+  +---+---+    |
+    |       |          |          |          |          |
+    |   +---+----------+----------+----------+---+      |
+    |   |     STATION-KEEPING BOX (+/- 0.05)    |      |
+    |   +-------------------------------------------+      |
+    |                                                   |
+    |   Ku-band (GSAT) + S-band (IRNSS)                |
+    |   24 transponders + Navigation signals             |
+    +---------------------------------------------------+
+    Total spacecraft mass at 55E: ~9,125 kg</div>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>India operates multiple satellite constellations including NavIC (7 GEO/IGSO navigation), IRS (multi-orbit remote sensing), INSAT/GSAT (co-located GEO communication), and RISAT (all-weather SAR). GEO co-location at slots like 55E and 93.5E requires precise station-keeping within 0.05-degree boxes. The NavIC constellation demonstrates optimal hybrid GEO-IGSO design for regional navigation. Future formation flying missions are being planned as small satellite and SSLV capabilities mature.</p>
+  </div>
+  <span class="page-number">21</span>
+</div>
+<!-- CHAPTER 19 -->
+<div class="page" id="ch19">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 19</div>
+    <h2 class="chapter-title">Future Missions: AMSAT &amp; Next-Gen Constellations</h2>
+    <p class="chapter-subtitle">India's Roadmap to Space Dominance</p>
+  </div>
+  <h3>19.1 Next-Generation Communication Satellites</h3>
+  <p>ISRO is developing next-generation high-throughput communication satellites with even greater capacity. GSAT-20 (also known as GSAT-N2), launched in 2024, is configured on the I-4K bus with enhanced Ka and Ku band capabilities. Future satellites will employ flexible, reconfigurable payloads with digital transparent processors, enabling dynamic allocation of capacity based on demand. The Communications Ministry has outlined plans for a High Throughput Satellite (HTS) constellation providing 100+ Gbps broadband coverage across India, supporting the Digital India and BharatNet initiatives to connect all 250,000 Gram Panchayats with broadband.</p>
+  <p>ISRO is also developing the gsat-constellation concept, where multiple medium-sized satellites work together as a virtual large satellite, providing resilience through redundancy. If one satellite fails, others can reconfigure to maintain service continuity. This approach reduces the risk associated with single large satellites and enables incremental capacity addition.</p>
+  <h3>19.2 Navigation: NavIC Follow-On (NVS)</h3>
+  <p>The NavIC constellation is being upgraded with next-generation Navigation Satellite (NVS) series. NVS-01, launched on May 29, 2023, is the first follow-on satellite with indigenous atomic clocks (replacing imported Rubidium standards) and the new L1 civil signal for interoperability with GPS/Galileo. NVS-02 was launched in 2024, and additional NVS satellites will replace aging IRNSS satellites and expand coverage. The NVS series incorporates improved navigation signal design with SBOC modulation and IZ4 PRN codes, enhanced ionospheric correction algorithms (NeQuick), and higher clock stability for improved positioning accuracy.</p>
+  <h3>19.3 Scientific and Interplanetary Missions</h3>
+  <p>India's future scientific missions include the Aditya-L1 solar observatory (launched September 2, 2023, at Sun-Earth L1 Lagrange point), XPoSat (X-ray Polarimeter Satellite, launched December 2023), and the planned Venus Orbiter Mission (Shukrayaan) and Mars Orbiter Mission-2 (Mangalyaan-2). Gaganyaan, India's first crewed space mission, will demonstrate human spaceflight capability with a crew of 3 astronauts in 400 km LEO, with the first crewed flight planned for the 2025-2026 timeframe. The Bharatiya Antariksh Station (BAS), India's planned modular space station, will be assembled incrementally in orbit from 2028 onwards, providing a platform for microgravity research, materials science, and biological experiments.</p>
+  <h3>19.4 Private Sector and IN-SPACe</h3>
+  <p>The Indian National Space Promotion and Authorization Center (IN-SPACe), established in 2020, acts as a single-window nodal agency for promoting and enabling the private space sector. Companies like Skyroot Aerospace (Vikram series launch vehicles), AgniKul Cosmos (Agnibaan), Bellatrix Aerospace (Orbital Transfer Vehicle), Pixxel (hyperspectral imaging constellation), and Dhruva Space (satellite platforms and ground systems) are rapidly developing capabilities. IN-SPACe has approved over 40 private sector missions and is building infrastructure at SDSC SHAR for commercial launches. The opening of the space sector is expected to generate $44 billion in revenue by 2033 and create over 200,000 jobs.</p>
+  <div class="key-facts">
+    <div class="key-facts-title">India's Future Space Roadmap</div>
+    <ul>
+      <li><strong>GSAT-20/N2:</strong> I-4K bus HTS with Ka/Ku capability</li>
+      <li><strong>NVS Follow-On:</strong> Indigenous atomic clocks, L1 signal</li>
+      <li><strong>Gaganyaan:</strong> First crewed mission, 3 astronauts, 400 km LEO</li>
+      <li><strong>Bharatiya Antariksh Station:</strong> Modular station from 2028</li>
+      <li><strong>Shukrayaan:</strong> Venus Orbiter Mission (under study)</li>
+      <li><strong>Mangalyaan-2:</strong> Mars Orbiter Mission-2 (planned)</li>
+      <li><strong>Aditya-L1:</strong> Solar observatory at Sun-Earth L1 (operational)</li>
+      <li><strong>IN-SPACe:</strong> 40+ private missions approved</li>
+      <li><strong>Private Sector Revenue Target:</strong> $44 billion by 2033</li>
+      <li><strong>Military Satellites:</strong> Expansion to 78 platforms by 2031</li>
+    </ul>
+  </div>
+  <div class="summary-box">
+    <div class="summary-box-title">Chapter Summary</div>
+    <p>India's future space programme encompasses next-generation HTS communication satellites, NavIC NVS follow-on with indigenous clocks, Gaganyaan crewed missions, the Bharatiya Antariksh Station, and interplanetary missions to Venus and Mars. The opening of the space sector through IN-SPACe has catalysed private sector growth with companies like Skyroot, AgniKul, and Pixxel developing launch vehicles, satellites, and constellations. India is on track to become a $44 billion space economy by 2033 with a comprehensive multi-mission roadmap.</p>
+  </div>
+  <span class="page-number">22</span>
+</div>
+<!-- CHAPTER 20 -->
+<div class="page" id="ch20">
+  <div class="chapter-header">
+    <div class="chapter-number">Chapter 20</div>
+    <h2 class="chapter-title">Summary &amp; India's Space Dominance</h2>
+    <p class="chapter-subtitle">A Comprehensive Assessment of India's Satellite Infrastructure</p>
+  </div>
+  <h3>20.1 Five Decades of Achievement</h3>
+  <p>India's satellite programme, from the 360 kg Aryabhata in 1975 to the 5,854 kg GSAT-11 in 2018, represents one of the most remarkable technological journeys of any developing nation. In just five decades, India has built and launched over 100 satellites, developed indigenous launch vehicles with world-leading reliability (PSLV with 60+ consecutive successes), established sovereign navigation (NavIC), pioneered cost-effective interplanetary missions (Mars Orbiter Mission at $74 million), and achieved historic firsts including the Chandrayaan-3 lunar soft landing. The cumulative investment in India's space programme, while a fraction of NASA or ESA budgets, has generated returns measured in hundreds of billions of dollars through telecommunications, television broadcasting, disaster management, and agricultural planning.</p>
+  <h3>20.2 Strategic Significance</h3>
+  <p>India's satellite constellation provides strategic independence across multiple domains. Communication satellites ensure uninterrupted telecommunications and broadcasting without dependence on foreign systems. NavIC provides sovereign navigation capability independent of GPS, critical for military operations and civilian applications. The RISAT radar constellation provides all-weather surveillance capability essential for national security. The meteorological satellite constellation protects 1.4 billion lives through cyclone tracking and monsoon forecasting. The IRS constellation supports agricultural planning for a nation where agriculture employs over 40% of the workforce. This comprehensive satellite infrastructure is not a luxury; it is fundamental national infrastructure comparable to roads, railways, and power grids.</p>
+  <h3>20.3 Global Position</h3>
+  <p>India ranks among the top five spacefaring nations globally, with capabilities spanning launch vehicles, satellites, ground systems, and space science. ISRO's commercial launch services have made India the world's leading provider of small satellite launches, with PSLV deploying hundreds of international customer satellites. The opening of the space sector to private companies through IN-SPACe has created a vibrant ecosystem of startups developing next-generation launch vehicles, satellites, and services. India's cost efficiency is legendary: the Mars Orbiter Mission cost less than the budget of the Hollywood movie Gravity, and Chandrayaan-3 cost approximately $75 million, a fraction of comparable missions by other agencies.</p>
+  <h3>20.4 The Road Ahead</h3>
+  <p>India's space programme is entering its most ambitious phase. Gaganyaan will make India the fourth nation to independently send humans to space. The Bharatiya Antariksh Station will provide India's own orbital research platform. Interplanetary missions to Venus and Mars will expand India's scientific reach. The private sector is developing reusable launch vehicles that promise further cost reductions. Navigation capabilities will expand through the NVS constellation and GAGAN augmentation. High-throughput communication satellites will provide broadband to every Indian village. Earth observation capabilities will advance with hyperspectral, very high resolution, and persistent monitoring constellations. India's space programme is not merely keeping pace with global developments; it is defining new paradigms for what a developing nation can achieve in space.</p>
+  <div class="key-facts">
+    <div class="key-facts-title">India's Space Programme: Key Statistics (2026)</div>
+    <ul>
+      <li><strong>Total Satellites Launched:</strong> 100+ (ISRO-built)</li>
+      <li><strong>Communication Satellites:</strong> 12+ in GEO (INSAT/GSAT fleet)</li>
+      <li><strong>Remote Sensing Satellites:</strong> 15+ operational</li>
+      <li><strong>Navigation Satellites:</strong> 7 (NavIC constellation) + GAGAN</li>
+      <li><strong>Weather Satellites:</strong> 5+ geostationary and polar</li>
+      <li><strong>Scientific Missions:</strong> AstroSat, Chandrayaan-2/3 orbiter, Aditya-L1, XPoSat</li>
+      <li><strong>PSLV Record:</strong> 60+ consecutive successes</li>
+      <li><strong>International Customers:</strong> 400+ foreign satellites launched</li>
+      <li><strong>Mars Orbiter Mission Cost:</strong> $74 million (cheapest Mars mission globally)</li>
+      <li><strong>Chandrayaan-3 Cost:</strong> ~$75 million</li>
+      <li><strong>Space Economy Target:</strong> $44 billion by 2033</li>
+      <li><strong>Private Sector:</strong> 40+ missions approved by IN-SPACe</li>
+    </ul>
+  </div>
+  <div class="ascii-art"><span class="ascii-art-title">India's Complete Satellite Infrastructure Map</span>
+    +===========================================================+
+    |           INDIA'S SATELLITE INFRASTRUCTURE                |
+    |                   (2026 Overview)                          |
+    +===========================================================+
+    |                                                           |
+    |  SPACE SEGMENT                                            |
+    |  +-----------+  +-----------+  +-----------+              |
+    |  | 12+ GEO   |  | 15+ LEO   |  | 7 NAV    |              |
+    |  | Comm/Nav/  |  | Remote    |  | Satellites|              |
+    |  | Meteo      |  | Sensing   |  | (NavIC)  |              |
+    |  +-----------+  +-----------+  +-----------+              |
+    |                                                           |
+    |  GROUND SEGMENT                                           |
+    |  +-----------+  +-----------+  +-----------+              |
+    |  | ISTRAC    |  | MCF       |  | IDSN      |              |
+    |  | (Global   |  | (GEO      |  | (Deep     |              |
+    |  |  TTC)     |  |  Control) |  |  Space)   |              |
+    |  +-----------+  +-----------+  +-----------+              |
+    |                                                           |
+    |  LAUNCH SEGMENT                                           |
+    |  +-----------+  +-----------+  +-----------+              |
+    |  | PSLV      |  | GSLV/LVM3 |  | SSLV      |              |
+    |  | (Workhorse)|  | (Heavy)   |  | (Small)   |              |
+    |  +-----------+  +-----------+  +-----------+              |
+    |                                                           |
+    |  APPLICATIONS                                             |
+    |  Telecom | TV | Navigation | Weather | Agriculture       |
+    |  Disaster | Defence | Maritime | Broadband | Scientific   |
+    +===========================================================+</div>
+  <div class="summary-box">
+    <div class="summary-box-title">Final Summary</div>
+    <p>India's satellite array represents a comprehensive, sovereign space infrastructure that serves 1.4 billion citizens across telecommunications, navigation, weather forecasting, Earth observation, disaster management, agriculture, defence, and scientific exploration. From the pioneering Aryabhata in 1975 to the next-generation constellations planned for the 2030s, India has built one of the world's most capable and cost-effective space programmes. With the opening of the sector to private enterprise, indigenous crewed spaceflight on the horizon, and a modular space station under development, India's space dominance is not aspirational; it is being realised, one satellite at a time.</p>
+  </div>
+  <span class="page-number">23</span>
+</div>
+
+<button class="download-btn" onclick="window.print()">Download / Print PDF</button>
+</body>
+</html>

@@ -1,0 +1,2211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MISSILE TESTING - India's Strategic Defence Systems</title>
+<style>
+  /* ========== BASE STYLES ========== */
+  :root {
+    --bg-primary: #0a0e17;
+    --bg-secondary: #111827;
+    --bg-card: #1a1f2e;
+    --bg-accent: #1e293b;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-heading: #f1f5f9;
+    --accent-red: #ef4444;
+    --accent-orange: #f97316;
+    --accent-gold: #fbbf24;
+    --accent-blue: #3b82f6;
+    --accent-cyan: #06b6d4;
+    --accent-green: #10b981;
+    --accent-purple: #8b5cf6;
+    --border-color: #1e293b;
+    --border-accent: #334155;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.8;
+    font-size: 14px;
+  }
+
+  /* ========== PRINT STYLES ========== */
+  @media print {
+    @page {
+      size: A4;
+      margin: 2cm 2.5cm;
+    }
+    body {
+      background-color: #ffffff;
+      color: #1a1a1a;
+      font-size: 12pt;
+      line-height: 1.6;
+    }
+    .page {
+      page-break-after: always;
+      background: #ffffff !important;
+      color: #1a1a1a !important;
+      border: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      box-shadow: none !important;
+    }
+    .page:last-child { page-break-after: avoid; }
+    .download-btn, .no-print { display: none !important; }
+    h1, h2, h3, h4 { color: #1a1a1a !important; }
+    p, li, td, th { color: #333 !important; }
+    .chapter-heading { color: #b91c1c !important; border-color: #b91c1c !important; }
+    .key-fact-box { background: #f8f9fa !important; border-color: #b91c1c !important; color: #333 !important; }
+    .key-fact-box h4 { color: #b91c1c !important; }
+    .comparison-table th { background: #b91c1c !important; color: white !important; }
+    .comparison-table td, .comparison-table th { border: 1px solid #ddd !important; color: #333 !important; }
+    .cover-page { background: #ffffff !important; border: 3px double #b91c1c !important; }
+    .toc-page { background: #ffffff !important; }
+    .ascii-diagram { background: #f5f5f5 !important; color: #333 !important; border: 1px solid #ccc !important; }
+    .summary-box { background: #f0f9ff !important; border-color: #2563eb !important; }
+    .summary-box h4 { color: #1e40af !important; }
+  }
+
+  /* ========== PAGE LAYOUT ========== */
+  .page {
+    max-width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    padding: 40px 50px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    position: relative;
+  }
+
+  .page-number {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-family: 'Courier New', monospace;
+  }
+
+  /* ========== COVER PAGE ========== */
+  .cover-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 297mm;
+    background: linear-gradient(135deg, #0a0e17 0%, #1a1f2e 50%, #0f172a 100%);
+    border: 3px double var(--accent-red);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(239,68,68,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(59,130,246,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .cover-emblem {
+    font-size: 80px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 20px rgba(239,68,68,0.3));
+  }
+
+  .cover-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--accent-red);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    text-shadow: 0 0 30px rgba(239,68,68,0.3);
+    font-family: 'Georgia', serif;
+  }
+
+  .cover-subtitle {
+    font-size: 20px;
+    color: var(--accent-gold);
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+    font-style: italic;
+  }
+
+  .cover-line {
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+    margin: 20px auto;
+  }
+
+  .cover-author {
+    font-size: 16px;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+    margin-top: 30px;
+  }
+
+  .cover-date {
+    font-size: 14px;
+    color: var(--accent-cyan);
+    margin-top: 10px;
+    font-family: 'Courier New', monospace;
+  }
+
+  .cover-ascii {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: var(--accent-red);
+    opacity: 0.6;
+    margin-top: 40px;
+    line-height: 1.2;
+    white-space: pre;
+  }
+
+  /* ========== TABLE OF CONTENTS ========== */
+  .toc-page {
+    background: var(--bg-secondary);
+  }
+
+  .toc-title {
+    font-size: 28px;
+    color: var(--accent-gold);
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--accent-gold);
+    padding-bottom: 15px;
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .toc-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--border-accent);
+    font-size: 14px;
+  }
+
+  .toc-list li span.toc-num {
+    color: var(--accent-red);
+    font-weight: bold;
+    min-width: 30px;
+    font-family: 'Courier New', monospace;
+  }
+
+  .toc-list li span.toc-title-text {
+    flex: 1;
+    color: var(--text-primary);
+    padding: 0 10px;
+  }
+
+  .toc-list li span.toc-page-num {
+    color: var(--accent-cyan);
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+  }
+
+  /* ========== CHAPTER HEADINGS ========== */
+  .chapter-heading {
+    font-size: 24px;
+    color: var(--accent-red);
+    border-bottom: 2px solid var(--accent-red);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'Georgia', serif;
+  }
+
+  .chapter-num {
+    font-size: 14px;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 5px;
+    font-family: 'Courier New', monospace;
+  }
+
+  h3 {
+    font-size: 18px;
+    color: var(--accent-orange);
+    margin: 20px 0 10px 0;
+    font-family: 'Georgia', serif;
+  }
+
+  h4 {
+    font-size: 15px;
+    color: var(--accent-gold);
+    margin: 15px 0 8px 0;
+  }
+
+  p {
+    margin-bottom: 12px;
+    text-align: justify;
+    color: var(--text-primary);
+  }
+
+  ul, ol {
+    margin: 10px 0 15px 25px;
+    color: var(--text-primary);
+  }
+
+  li { margin-bottom: 6px; }
+
+  /* ========== KEY FACT BOX ========== */
+  .key-fact-box {
+    background: var(--bg-card);
+    border-left: 4px solid var(--accent-red);
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .key-fact-box h4 {
+    color: var(--accent-red);
+    margin-bottom: 8px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .key-fact-box p, .key-fact-box li {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  /* ========== COMPARISON TABLE ========== */
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 12px;
+  }
+
+  .comparison-table th {
+    background: var(--accent-red);
+    color: white;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .comparison-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-accent);
+    color: var(--text-primary);
+  }
+
+  .comparison-table tr:nth-child(even) {
+    background: var(--bg-card);
+  }
+
+  .comparison-table tr:hover {
+    background: var(--bg-accent);
+  }
+
+  /* ========== ASCII DIAGRAMS ========== */
+  .ascii-diagram {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-accent);
+    padding: 15px 20px;
+    margin: 20px 0;
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.3;
+    color: var(--accent-cyan);
+    border-radius: 4px;
+  }
+
+  /* ========== SUMMARY BOX ========== */
+  .summary-box {
+    background: linear-gradient(135deg, var(--bg-card), var(--bg-accent));
+    border: 1px solid var(--accent-blue);
+    border-left: 4px solid var(--accent-blue);
+    padding: 20px;
+    margin: 25px 0 15px 0;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .summary-box h4 {
+    color: var(--accent-blue);
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .summary-box ul {
+    margin-left: 15px;
+  }
+
+  .summary-box li {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  /* ========== DOWNLOAD BUTTON ========== */
+  .download-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--accent-red);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-family: 'Georgia', serif;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(239,68,68,0.4);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+
+  .download-btn:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(239,68,68,0.5);
+  }
+
+  /* ========== HIGHLIGHTS ========== */
+  .highlight-red { color: var(--accent-red); font-weight: bold; }
+  .highlight-gold { color: var(--accent-gold); font-weight: bold; }
+  .highlight-blue { color: var(--accent-blue); font-weight: bold; }
+  .highlight-green { color: var(--accent-green); font-weight: bold; }
+  .highlight-cyan { color: var(--accent-cyan); font-weight: bold; }
+
+  .timeline-item {
+    border-left: 2px solid var(--accent-red);
+    padding: 8px 0 8px 20px;
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 12px;
+    width: 10px;
+    height: 10px;
+    background: var(--accent-red);
+    border-radius: 50%;
+  }
+
+  .timeline-year {
+    color: var(--accent-gold);
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+  }
+
+  blockquote {
+    border-left: 3px solid var(--accent-purple);
+    padding: 10px 20px;
+    margin: 15px 0;
+    background: rgba(139,92,246,0.05);
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+
+  .two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 15px 0;
+  }
+
+  .stat-box {
+    background: var(--bg-card);
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    border: 1px solid var(--border-accent);
+  }
+
+  .stat-box .stat-num {
+    font-size: 28px;
+    color: var(--accent-gold);
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+  }
+
+  .stat-box .stat-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== COVER PAGE ========== -->
+<div class="page cover-page">
+  <div class="cover-emblem">&#128163;</div>
+  <div class="cover-title">MISSILE TESTING</div>
+  <div class="cover-line"></div>
+  <div class="cover-subtitle">India's Strategic Defence Systems</div>
+  <div class="cover-line"></div>
+  <div class="cover-ascii">
+        /\
+       /  \
+      /    \
+     /  **  \
+    /________\
+    |  ||||  |
+    |  ||||  |
+    |________|
+     ||    ||
+     ||    ||
+    _||____||_
+   |__________|
+  </div>
+  <div class="cover-author">MissileX RocketSpace Research</div>
+  <div class="cover-date">September 2026 Edition</div>
+  <p style="color: var(--text-secondary); font-size: 12px; margin-top: 30px; max-width: 400px; text-align: center; line-height: 1.6;">
+    A Comprehensive Study of India's Missile Development Programme,<br>
+    Strategic Defence Systems, and Nuclear Deterrence Architecture
+  </p>
+  <div class="page-number">i</div>
+</div>
+
+<!-- ========== TABLE OF CONTENTS ========== -->
+<div class="page toc-page">
+  <div class="toc-title">Table of Contents</div>
+  <ul class="toc-list">
+    <li><span class="toc-num">Ch 01</span><span class="toc-title-text">History of Indian Missile Programme</span><span class="toc-page-num">01</span></li>
+    <li><span class="toc-num">Ch 02</span><span class="toc-title-text">DRDO: Role in Missile Development</span><span class="toc-page-num">02</span></li>
+    <li><span class="toc-num">Ch 03</span><span class="toc-title-text">Integrated Guided Missile Development Programme (IGMDP)</span><span class="toc-page-num">03</span></li>
+    <li><span class="toc-num">Ch 04</span><span class="toc-title-text">Agni Series: India's Strategic Missile Backbone</span><span class="toc-page-num">04</span></li>
+    <li><span class="toc-num">Ch 05</span><span class="toc-title-text">Prithvi Series: Short-Range Ballistic Missiles</span><span class="toc-page-num">05</span></li>
+    <li><span class="toc-num">Ch 06</span><span class="toc-title-text">BrahMos: India-Russia Supersonic Cruise Missile</span><span class="toc-page-num">06</span></li>
+    <li><span class="toc-num">Ch 07</span><span class="toc-title-text">Akash Air Defence System</span><span class="toc-page-num">07</span></li>
+    <li><span class="toc-num">Ch 08</span><span class="toc-title-text">Nag Anti-Tank Guided Missile</span><span class="toc-page-num">08</span></li>
+    <li><span class="toc-num">Ch 09</span><span class="toc-title-text">Barak-8: India-Israel Joint Air Defence</span><span class="toc-page-num">09</span></li>
+    <li><span class="toc-num">Ch 10</span><span class="toc-title-text">Missile Testing Infrastructure</span><span class="toc-page-num">10</span></li>
+    <li><span class="toc-num">Ch 11</span><span class="toc-title-text">Test Facilities: Radar Tracking & Telemetry</span><span class="toc-page-num">11</span></li>
+    <li><span class="toc-num">Ch 12</span><span class="toc-title-text">Launch Vehicles & Platforms</span><span class="toc-page-num">12</span></li>
+    <li><span class="toc-num">Ch 13</span><span class="toc-title-text">Navigation & Guidance Systems</span><span class="toc-page-num">13</span></li>
+    <li><span class="toc-num">Ch 14</span><span class="toc-title-text">Warhead Technology</span><span class="toc-page-num">14</span></li>
+    <li><span class="toc-num">Ch 15</span><span class="toc-title-text">Re-entry Vehicle Technology</span><span class="toc-page-num">15</span></li>
+    <li><span class="toc-num">Ch 16</span><span class="toc-title-text">Propulsion Systems</span><span class="toc-page-num">16</span></li>
+    <li><span class="toc-num">Ch 17</span><span class="toc-title-text">Test Protocols & Range Safety</span><span class="toc-page-num">17</span></li>
+    <li><span class="toc-num">Ch 18</span><span class="toc-title-text">Nuclear Deterrence Doctrine</span><span class="toc-page-num">18</span></li>
+    <li><span class="toc-num">Ch 19</span><span class="toc-title-text">Future Missiles: Agni-VI & Hypersonic Weapons</span><span class="toc-page-num">19</span></li>
+    <li><span class="toc-num">Ch 20</span><span class="toc-title-text">Summary & Strategic Importance</span><span class="toc-page-num">20</span></li>
+  </ul>
+  <div style="margin-top: 40px; padding: 20px; background: var(--bg-card); border-radius: 6px; border: 1px solid var(--border-accent);">
+    <h4 style="color: var(--accent-cyan); margin-bottom: 10px;">About This Book</h4>
+    <p style="font-size: 12px; color: var(--text-secondary);">
+      This comprehensive reference work examines India's missile testing programme from its origins in the 1980s to the present day. 
+      Covering the complete spectrum of India's strategic missile systems — from short-range tactical weapons to intercontinental ballistic missiles — 
+      this book provides detailed technical specifications, historical context, and strategic analysis of one of the world's most advanced missile programmes.
+    </p>
+    <p style="font-size: 12px; color: var(--text-secondary); margin-top: 10px;">
+      Published by <span class="highlight-gold">MissileX RocketSpace Research</span> | September 2026
+    </p>
+  </div>
+  <div class="page-number">ii</div>
+</div>
+
+<!-- ========== PAGE 1: HISTORY OF INDIAN MISSILE PROGRAMME ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 01</span>
+  <h2 class="chapter-heading">History of Indian Missile Programme</h2>
+
+  <p>India's missile programme is one of the most significant indigenous defence technology endeavours in the developing world. The origins of India's missile development can be traced back to the early 1960s, when the Defence Research and Development Organisation (DRDO) first began exploring guided missile technology. The catalyst for this initiative was the 1962 Sino-Indian War, which exposed India's technological vulnerabilities and strategic dependence on foreign suppliers for advanced weaponry. In the aftermath of this conflict, the Indian government recognized the urgent need for indigenous defence capabilities, particularly in the field of guided missiles.</p>
+
+  <p>The initial efforts were modest in scope. In 1962, DRDO was allocated a mere six lakh rupees (approximately $530,000 in today's terms) to begin work on developing an anti-tank missile. This early endeavour laid the foundation for what would eventually become a comprehensive missile development programme. Throughout the 1960s and 1970s, Indian scientists and engineers gained critical experience in rocket technology through the Indian Space Research Organisation (ISRO), which was simultaneously developing India's satellite launch vehicle programme. The SLV-3 programme, in particular, provided invaluable expertise in rocket propulsion, guidance systems, and re-entry technology that would later prove essential for missile development.</p>
+
+  <h3>The Vision of Dr. A.P.J. Abdul Kalam</h3>
+
+  <p>The transformative figure in India's missile history is Dr. A.P.J. Abdul Kalam, who would later be known as the "Missile Man of India" and eventually become the 11th President of India. In 1982, Dr. Kalam was inducted as the Director of the Defence Research and Development Laboratory (DRDL) in Hyderabad. His visionary leadership fundamentally reshaped India's approach to missile development. Having served as the project director for the SLV-3 programme at ISRO, Dr. Kalam brought a unique combination of technical expertise and strategic thinking to DRDL.</p>
+
+  <p>Dr. Kalam's most consequential contribution was conceiving and leading the Integrated Guided Missile Development Programme (IGMDP), which was formally launched in 1983. This ambitious programme aimed to develop five missile systems simultaneously: Prithvi (surface-to-surface), Agni (ballistic), Akash (surface-to-air), Trishul (short-range surface-to-air), and Nag (anti-tank). The IGMDP was remarkable for its comprehensive scope, seeking to build India's complete missile capability across multiple categories in a single coordinated programme.</p>
+
+  <div class="key-fact-box">
+    <h4>Key Milestones in Indian Missile History</h4>
+    <ul>
+      <li><span class="highlight-gold">1962:</span> DRDO allocated initial funds for anti-tank missile research after Sino-Indian War</li>
+      <li><span class="highlight-gold">1982:</span> Dr. A.P.J. Abdul Kalam appointed as DRDL Director</li>
+      <li><span class="highlight-gold">1983:</span> IGMDP formally launched under Dr. Kalam's leadership</li>
+      <li><span class="highlight-gold">1988:</span> First Prithvi missile test-fired from Sriharikota</li>
+      <li><span class="highlight-gold">1989:</span> First Agni missile tested, validating re-entry vehicle technology</li>
+      <li><span class="highlight-gold">1998:</span> Pokhran-II nuclear tests, establishing nuclear weapons capability</li>
+      <li><span class="highlight-gold">2003:</span> Prithvi-II inducted into Strategic Forces Command</li>
+      <li><span class="highlight-gold">2012:</span> Agni-V first tested, giving India ICBM-class capability</li>
+      <li><span class="highlight-gold">2024:</span> Mission Divyastra — Agni-V tested with MIRV technology</li>
+    </ul>
+  </div>
+
+  <h3>Early Development Phase (1960s-1980s)</h3>
+
+  <p>The early phase of India's missile programme was characterized by incremental progress and technology building. Between the 1960s and early 1980s, Indian scientists conducted numerous sounding rocket experiments and developed foundational technologies in solid and liquid propulsion, aerodynamics, materials science, and electronics. The DRDO established several specialized laboratories for missile-related research, including the Defence Research and Development Laboratory (DRDL) in Hyderabad, the Terminal Ballistics Research Laboratory (TBRL) in Chandigarh, and the Research Centre Imarat (RCI) also in Hyderabad.</p>
+
+  <p>These laboratories worked on various aspects of missile technology, from warhead design to guidance systems. The technological base built during this period was crucial for the success of the IGMDP. By the time the programme was formally launched in 1983, India had accumulated sufficient expertise to undertake the ambitious task of developing multiple missile systems simultaneously. The institutional knowledge gained from ISRO's space programme, particularly the experience with the SLV-3 launch vehicle, provided a significant advantage. The SLV-3 programme had already demonstrated India's capability in staging, guidance, and recovery of payloads from space — technologies directly applicable to ballistic missile development.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>India's missile programme originated from the strategic need exposed by the 1962 war with China</li>
+      <li>Dr. A.P.J. Abdul Kalam, the "Missile Man of India," conceived and led the IGMDP from 1983</li>
+      <li>The programme aimed to develop five missile systems: Prithvi, Agni, Akash, Trishul, and Nag</li>
+      <li>ISRO's SLV-3 programme provided critical foundational technology for missile development</li>
+      <li>Early laboratories like DRDL, TBRL, and RCI built essential institutional capabilities</li>
+    </ul>
+  </div>
+  <div class="page-number">1</div>
+</div>
+
+<!-- ========== PAGE 2: DRDO ROLE ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 02</span>
+  <h2 class="chapter-heading">DRDO: Role in Missile Development</h2>
+
+  <p>The Defence Research and Development Organisation (DRDO) is the premier defence research agency of India, operating under the Ministry of Defence. Established in 1958, DRDO has grown from a small organization with a handful of laboratories to a vast network of over 50 laboratories and establishments spread across India. DRDO's mandate encompasses the design, development, and production of defence technologies spanning missiles, weapons, electronics, combat vehicles, aircraft, naval systems, and advanced materials. In the field of missile development, DRDO has been the driving force behind India's transformation from a technology-dependent nation to one possessing indigenous capabilities across the full spectrum of missile systems.</p>
+
+  <h3>Organizational Structure for Missile Development</h3>
+
+  <p>DRDO's missile development activities are coordinated through several key laboratories, each specializing in different aspects of missile technology. The primary laboratories involved in missile development include:</p>
+
+  <div class="two-column">
+    <div class="stat-box">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">DRDO Laboratories</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">30,000+</div>
+      <div class="stat-label">Scientists & Engineers</div>
+    </div>
+  </div>
+
+  <ul>
+    <li><strong>Defence Research and Development Laboratory (DRDL), Hyderabad:</strong> The lead laboratory for missile development, DRDL has been responsible for the design and development of the Agni series of ballistic missiles and several other strategic missile systems.</li>
+    <li><strong>Research Centre Imarat (RCI), Hyderabad:</strong> Specializes in guidance and control systems, RCI has developed the inertial navigation systems, ring laser gyros, and advanced avionics used in India's missile systems.</li>
+    <li><strong>Defence Research and Development Laboratory (DRDL) – Solid Propulsion Complex:</strong> Responsible for the development and production of solid rocket motors used in Agni and other missiles.</li>
+    <li><strong>Terminal Ballistics Research Laboratory (TBRL), Chandigarh:</strong> Focuses on warhead technology, fuze development, and terminal effects of missile warheads.</li>
+    <li><strong>High Energy Materials Research Laboratory (HEMRL), Pune:</strong> Develops advanced propellants and explosive materials for missiles and munitions.</li>
+    <li><strong>Integrated Test Range (ITR), Chandipur:</strong> India's premier missile test facility, providing launch infrastructure, tracking, and telemetry services for missile testing.</li>
+    <li><strong>Aeronautical Development Establishment (ADE), Bangalore:</strong> Specializes in cruise missile development, including the Nirbhay programme.</li>
+  </ul>
+
+  <h3>Key Contributions to Missile Development</h3>
+
+  <p>DRDO's contributions to India's missile programme extend far beyond the design and development of individual missile systems. The organization has built an entire ecosystem for missile technology, encompassing research, development, testing, production, and sustenance. Some of DRDO's most significant contributions include:</p>
+
+  <p><strong>Indigenous Guidance Systems:</strong> DRDO has developed sophisticated inertial navigation systems (INS) using ring laser gyroscopes and accelerometers that provide the precision guidance needed for long-range ballistic missiles. The ring laser gyro-based inertial guidance system used in the Agni-V, for instance, provides exceptional accuracy over intercontinental ranges.</p>
+
+  <p><strong>Re-entry Vehicle Technology:</span> Developing thermal protection systems and re-entry vehicle shapes capable of withstanding the extreme temperatures generated during atmospheric re-entry at hypersonic speeds was one of the most challenging technical achievements of the programme.</p>
+
+  <p><strong>Canisterization Technology:</strong> DRDO developed the capability to store missiles in sealed canisters, enabling rapid launch capability and improved survivability. This technology, first demonstrated with the Agni-V, allows missiles to be maintained in a ready-to-fire state for extended periods.</p>
+
+  <div class="key-fact-box">
+    <h4>DRDO's Missile Programme Highlights</h4>
+    <ul>
+      <li>Developed <span class="highlight-red">5 major missile families</span> under the IGMDP</li>
+      <li>Created India's first <span class="highlight-red">ICBM-class missile</span> (Agni-V, range 5,000+ km)</li>
+      <li>Achieved <span class="highlight-red">MIRV technology</span> capability in 2024 (Mission Divyastra)</li>
+      <li>Developed world's fastest cruise missile — <span class="highlight-red">BrahMos at Mach 2.8</span></li>
+      <li>Built indigenous <span class="highlight-red">air defence systems</span> (Akash, Barak-8 MRSAM)</li>
+      <li>Over <span class="highlight-red">96% indigenous content</span> in major missile systems</li>
+    </ul>
+  </div>
+
+  <h3>Industry Partnership and Production</h3>
+
+  <p>DRDO operates on a model where it designs and develops missile systems, while production is carried out by Defence Public Sector Undertakings (DPSUs) and private industry. Bharat Dynamics Limited (BDL) in Hyderabad is the primary production agency for most missile systems, including Akash, Nag, and BrahMos. Bharat Electronics Limited (BEL) provides critical electronic systems, radars, and communication equipment. Private sector companies such as Tata Advanced Systems, L&T Defence, and Adani Defence have increasingly become important partners in missile component manufacturing and subsystem integration.</p>
+
+  <p>The Transfer of Technology (ToT) model used by DRDO has enabled the creation of a robust defence industrial base. Under this model, DRDO transfers production technology to DPSUs and private companies, who then manufacture the missile systems. This approach has not only increased production capacity but also built indigenous manufacturing capabilities across the defence sector.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>DRDO operates 50+ laboratories with over 30,000 scientists and engineers</li>
+      <li>Key missile labs include DRDL, RCI, TBRL, HEMRL, and ITR Chandipur</li>
+      <li>DRDO has developed indigenous guidance systems, re-entry vehicles, and canisterization technology</li>
+      <li>Production is carried out by DPSUs (BDL, BEL) and private industry partners</li>
+      <li>The Transfer of Technology model has built a robust defence industrial base</li>
+    </ul>
+  </div>
+  <div class="page-number">2</div>
+</div>
+
+<!-- ========== PAGE 3: IGMDP ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 03</span>
+  <h2 class="chapter-heading">Integrated Guided Missile Development Programme (IGMDP)</h2>
+
+  <p>The Integrated Guided Missile Development Programme (IGMDP) stands as one of the most ambitious and successful indigenous defence technology programmes ever undertaken by any developing nation. Launched in 1983 under the visionary leadership of Dr. A.P.J. Abdul Kalam, the IGMDP was conceived as a comprehensive programme to develop India's indigenous capability across the full spectrum of guided missile systems. The programme was unique in its scope, seeking to simultaneously develop five different missile systems covering surface-to-surface, surface-to-air, and anti-tank roles.</p>
+
+  <h3>Genesis and Planning</h3>
+
+  <p>The genesis of the IGMDP lies in the strategic calculations of the early 1980s. India faced a complex security environment with hostile borders with both Pakistan and China. The country's dependence on imported weapons systems was seen as a strategic vulnerability. Prime Minister Indira Gandhi, Defence Minister R. Venkataraman, and DRDO Chief V.S. Arunachalam were instrumental in conceptualizing the programme. When Dr. Kalam took over as DRDL Director in 1982, he was tasked with creating a comprehensive plan for indigenous missile development.</p>
+
+  <p>Dr. Kalam's plan was revolutionary in its approach. Rather than developing missiles sequentially, he proposed parallel development of multiple missile systems. This approach was risky but offered the advantage of building a broad technological base simultaneously. The programme was structured around five missile systems, each addressing a specific operational requirement:</p>
+
+  <table class="comparison-table">
+    <tr>
+      <th>Missile System</th>
+      <th>Type</th>
+      <th>Range</th>
+      <th>Primary User</th>
+    </tr>
+    <tr>
+      <td><span class="highlight-red">Prithvi</span></td>
+      <td>Surface-to-Surface (SRBM)</td>
+      <td>150-350 km</td>
+      <td>Army, Air Force, Navy</td>
+    </tr>
+    <tr>
+      <td><span class="highlight-red">Agni</span></td>
+      <td>Surface-to-Surface (Ballistic)</td>
+      <td>700-5,000+ km</td>
+      <td>Strategic Forces Command</td>
+    </tr>
+    <tr>
+      <td><span class="highlight-red">Akash</span></td>
+      <td>Surface-to-Air</td>
+      <td>25-30 km</td>
+      <td>Army, Air Force</td>
+    </tr>
+    <tr>
+      <td><span class="highlight-red">Trishul</span></td>
+      <td>Short-Range SAM</td>
+      <td>9 km</td>
+      <td>Navy, Army</td>
+    </tr>
+    <tr>
+      <td><span class="highlight-red">Nag</span></td>
+      <td>Anti-Tank Guided Missile</td>
+      <td>4-20 km</td>
+      <td>Army, Air Force</td>
+    </tr>
+  </table>
+
+  <h3>Programme Structure and Management</h3>
+
+  <p>The IGMDP was managed through a three-tier structure. At the apex level, a Programme Management Board (PMB) provided overall direction and policy guidance. The PMB was chaired by the Secretary, Department of Defence Research and Development. At the working level, a Programme Coordination Committee (PCC) coordinated the activities of multiple laboratories and production agencies. Each missile system had its own project team led by a Project Director, who was responsible for the technical development and testing of the system.</p>
+
+  <p>The programme was funded through the Ministry of Defence budget, with additional support from the Department of Space for technology transfer. The total investment in the IGMDP over its operational life is estimated at approximately Rs 10,000 crore (about $2 billion at the time). This investment was remarkably modest compared to similar programmes in other countries, yet it yielded an extraordinary return in terms of indigenous capability.</p>
+
+  <h3>Technology Building Blocks</h3>
+
+  <p>A key innovation of the IGMDP was its emphasis on building shared technology platforms. Rather than developing completely separate technologies for each missile, the programme identified common building blocks that could be reused across multiple systems. For example, the solid propulsion technology developed for Agni was adapted for use in Akash and Nag. Similarly, the guidance and control systems developed for one missile were often modified for use in others. This approach maximized the return on research investment and accelerated the development timeline.</p>
+
+  <div class="key-fact-box">
+    <h4>IGMDP by the Numbers</h4>
+    <ul>
+      <li><span class="highlight-gold">Duration:</span> 1983-2008 (25 years of active development)</li>
+      <li><span class="highlight-gold">Total Investment:</span> Approximately Rs 10,000 crore (~$2 billion)</li>
+      <li><span class="highlight-gold">Missiles Developed:</span> 5 major systems (Prithvi, Agni, Akash, Trishul, Nag)</li>
+      <li><span class="highlight-gold">Test Flights:</span> Over 100 test launches conducted</li>
+      <li><span class="highlight-gold">Laboratories Involved:</span> 20+ DRDO laboratories</li>
+      <li><span class="highlight-gold">Production Agencies:</span> BDL, BEL, HAL, and private industry</li>
+    </ul>
+  </div>
+
+  <h3>Completion and Transition</h3>
+
+  <p>The IGMDP was formally concluded in 2008 after successfully achieving its primary objectives. By that time, all five missile systems had been developed, tested, and inducted into the Indian armed forces. The programme was considered a resounding success, having transformed India from a nation dependent on imported missile technology to one possessing comprehensive indigenous capabilities. Following the conclusion of the IGMDP, the individual missile programmes were separated and placed under dedicated project teams within DRDO for continued development and upgrades.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>IGMDP was launched in 1983 as a comprehensive programme to develop five missile systems simultaneously</li>
+      <li>Dr. A.P.J. Abdul Kalam's visionary leadership was central to the programme's success</li>
+      <li>The programme developed Prithvi, Agni, Akash, Trishul, and Nag missile systems</li>
+      <li>Common technology platforms were used across multiple missiles to maximize efficiency</li>
+      <li>The programme concluded in 2008 after successfully building India's indigenous missile capability</li>
+    </ul>
+  </div>
+  <div class="page-number">3</div>
+</div>
+
+<!-- ========== PAGE 4: AGNI SERIES ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 04</span>
+  <h2 class="chapter-heading">Agni Series: India's Strategic Missile Backbone</h2>
+
+  <p>The Agni missile family represents the backbone of India's nuclear deterrence capability. Named after the Sanskrit word for "Fire," the Agni series comprises medium to intercontinental range ballistic missiles developed by DRDO. These nuclear-capable, surface-to-surface missiles form the primary land-based leg of India's nuclear triad, providing the country with a credible deterrent against potential adversaries. The Agni programme traces its roots to the IGMDP, where it was initially conceived not as a weapon system but as a technology demonstrator to validate re-entry vehicle technology — one of the most complex aspects of long-range ballistic missile development.</p>
+
+  <h3>Agni-I: India's First Operational Deterrent</h3>
+
+  <p>Agni-I emerged after the 1999 Kargil conflict and changing regional threat assessments. Designed to bridge the gap between shorter-range Prithvi systems and longer-range Agni missiles, Agni-I gives India rapid-response capability against targets across Pakistan. The missile has a range of <span class="highlight-red">700-1,250 km</span> and uses a single-stage solid-fuel propulsion system. It is road and rail mobile, improving survivability and launch flexibility. Agni-I became operational with the Strategic Forces Command in 2007 and marked the beginning of India's operational land-based strategic missile deterrent.</p>
+
+  <div class="ascii-diagram">
+    AGNI-I MISSILE PROFILE
+    ═══════════════════════════════════════════════════════════
+
+    Length:    ~12 m          Range:    700-1,250 km
+    Diameter:  1.0 m          Payload:  1,000 kg
+    Weight:    ~12,000 kg     Stages:   Single (Solid)
+
+         /\
+        /  \        ← Re-entry Vehicle
+       /    \
+      /______\
+      |      |
+      | SOLID|     ← First Stage Motor
+      | FUEL |
+      |      |
+      |______|
+      /|    |\
+     / |    | \   ← Control Fins
+    /  |    |  \
+       |    |
+       |____|
+
+    Range Map (from Delhi):
+    ← 700 km → |← 1,250 km →
+    [DELHI]----[ISLAMABAD]----[KARACHI]
+                PAKISTAN
+  </div>
+
+  <h3>Agni-II: Extending Strategic Reach</h3>
+
+  <p>Agni-II marked India's first major expansion into medium-range deterrence. Tested initially in April 1999, the missile extends India's strike capability to approximately <span class="highlight-red">2,000-3,000 km</span>, bringing large parts of China within range. The missile uses a two-stage solid-fuel propulsion system and advanced inertial navigation technology. Agni-II is 20 metres long, weighs approximately 17 tonnes, and can carry a payload of 1,000 kg. The missile was inducted into the Strategic Forces Command in 2011 and is a key component of India's nuclear arsenal.</p>
+
+  <h3>Agni-III: Accuracy and Heavier Payloads</h3>
+
+  <p>The Agni-III represented a significant step forward in India's missile capability. With a range of <span class="highlight-red">3,000-5,000 km</span>, it provides coverage of virtually all of China from Indian territory. The missile is 17 metres long, has a diameter of two metres, and weighs approximately 2,200 kg in its lighter configuration. Agni-III is a two-stage solid-propellant missile with a payload capacity of up to 1,500 kg, enabling it to carry both conventional and nuclear warheads. The first night trial of Agni-III was conducted in December 2019, demonstrating its operational readiness.</p>
+
+  <h3>Agni-IV: Advanced Navigation</h3>
+
+  <p>Agni-IV pushed India's missile technology into a more sophisticated era. With a range of approximately <span class="highlight-red">4,000 km</span>, the missile can cover almost all strategic targets across China from Indian territory. The two-stage, road-mobile missile features a two-phase propulsion system designed to carry a 1,000 kg payload. Agni-IV incorporates a ring laser gyro-based inertial navigation system, providing exceptional accuracy. The most recent test was conducted in August 2026 from the Integrated Test Range at Chandipur, validating all operational and technical parameters.</p>
+
+  <h3>Agni-V: India's Near-ICBM</h3>
+
+  <p>The Agni-V is widely regarded as the crown jewel of India's missile programme. With a range exceeding <span class="highlight-red">5,000-8,000 km</span>, the missile brought Beijing and most of China within India's strike envelope. Unlike earlier missiles, the Agni-V launches from a sealed canister on a road-mobile launcher, compressing the time needed to prepare for launch. The missile is 17.5 metres long, 2 metres in diameter, and has a launch mass of 50,000 kg. It uses a three-stage solid-propellant system with a ring laser gyro-based inertial guidance system.</p>
+
+  <table class="comparison-table">
+    <tr>
+      <th>Missile</th>
+      <th>Range (km)</th>
+      <th>Stages</th>
+      <th>Payload (kg)</th>
+      <th>Weight (tonnes)</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>Agni-I</td>
+      <td>700-1,250</td>
+      <td>1 (Solid)</td>
+      <td>1,000</td>
+      <td>12</td>
+      <td>Operational (2007)</td>
+    </tr>
+    <tr>
+      <td>Agni-II</td>
+      <td>2,000-3,000</td>
+      <td>2 (Solid)</td>
+      <td>1,000</td>
+      <td>17</td>
+      <td>Operational (2011)</td>
+    </tr>
+    <tr>
+      <td>Agni-III</td>
+      <td>3,000-5,000</td>
+      <td>2 (Solid)</td>
+      <td>1,500</td>
+      <td>22</td>
+      <td>Operational (2011)</td>
+    </tr>
+    <tr>
+      <td>Agni-IV</td>
+      <td>3,500-4,000</td>
+      <td>2 (Solid)</td>
+      <td>1,000</td>
+      <td>17</td>
+      <td>Operational</td>
+    </tr>
+    <tr>
+      <td>Agni-V</td>
+      <td>5,000-8,000</td>
+      <td>3 (Solid)</td>
+      <td>1,650</td>
+      <td>50</td>
+      <td>Operational (2019)</td>
+    </tr>
+    <tr>
+      <td>Agni-P</td>
+      <td>1,000-2,000</td>
+      <td>2 (Solid)</td>
+      <td>Variable</td>
+      <td>11</td>
+      <td>Operational (2021)</td>
+    </tr>
+  </table>
+
+  <h3>Mission Divyastra: MIRV Breakthrough</h3>
+
+  <p>In March 2024, India achieved a landmark technological breakthrough with Mission Divyastra — the first successful flight test of the Agni-5 missile with Multiple Independently Targetable Re-entry Vehicle (MIRV) technology. This achievement placed India in an exclusive club of nations possessing MIRV capability. MIRV technology allows a single missile to carry multiple warheads, each capable of being directed at a different target. Prime Minister Narendra Modi congratulated DRDO scientists, calling it a "proud" moment for the nation. The successful MIRV test demonstrated India's ability to launch a single ballistic missile carrying multiple warheads aimed at different targets spread across a vast geographical area.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>The Agni series spans ranges from 700 km (Agni-I) to 8,000 km (Agni-V)</li>
+      <li>All Agni missiles use solid-fuel propulsion for rapid reaction capability</li>
+      <li>Agni-V provides ICBM-class capability with canisterized launch from road-mobile platforms</li>
+      <li>Mission Divyastra (March 2024) achieved MIRV technology on Agni-V</li>
+      <li>The Agni-P (Prime) is a new-generation missile combining advanced technologies from Agni-IV and V</li>
+    </ul>
+  </div>
+  <div class="page-number">4</div>
+</div>
+
+<!-- ========== PAGE 5: PRITHVI SERIES ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 05</span>
+  <h2 class="chapter-heading">Prithvi Series: Short-Range Ballistic Missiles</h2>
+
+  <p>The Prithvi missile family holds the distinction of being India's first indigenously developed ballistic missile. "Prithvi," meaning "Earth" in Sanskrit, was the first missile to emerge from the Integrated Guided Missile Development Programme (IGMDP) and played a foundational role in building India's missile capabilities. First test-fired on February 25, 1988, from Sriharikota, the Prithvi demonstrated that India could design, develop, and produce ballistic missile systems entirely with indigenous resources. The programme's success provided the confidence and technological foundation for the more ambitious Agni and other missile programmes that followed.</p>
+
+  <h3>Prithvi-I: The Army Version</h3>
+
+  <p>Prithvi-I is a single-stage, liquid-fuelled surface-to-surface ballistic missile with a range of <span class="highlight-red">150 km</span> and a payload capacity of <span class="highlight-red">1,000 kg</span>. The missile is 9 metres long, has a diameter of 110 cm, and weighs approximately 4,400 kg. It uses strap-down inertial navigation system (INS) and achieves an accuracy of 10-50 metres CEP (Circular Error Probable). Prithvi-I was inducted into the Indian Army in 1994 and was the first missile system to be produced under the IGMDP. The missile can be launched from 8x8 Tata transporter erector launchers (TELs).</p>
+
+  <div class="key-fact-box">
+    <h4>Prithvi-I Specifications</h4>
+    <ul>
+      <li><span class="highlight-gold">Type:</span> Single-stage, liquid-fuelled SRBM</li>
+      <li><span class="highlight-gold">Range:</span> 150 km</li>
+      <li><span class="highlight-gold">Payload:</span> 1,000 kg (conventional or nuclear)</li>
+      <li><span class="highlight-gold">Length:</span> 9 metres</li>
+      <li><span class="highlight-gold">Diameter:</span> 110 cm</li>
+      <li><span class="highlight-gold">Weight:</span> 4,400 kg</li>
+      <li><span class="highlight-gold">Guidance:</span> Strap-down INS</li>
+      <li><span class="highlight-gold">Accuracy:</span> 10-50 m CEP</li>
+      <li><span class="highlight-gold">Inducted:</span> 1994 (Indian Army)</li>
+    </ul>
+  </div>
+
+  <h3>Prithvi-II: Air Force Version</h3>
+
+  <p>Prithvi-II is the air force variant of the Prithvi missile, featuring an extended range of <span class="highlight-red">250-350 km</span> with a reduced payload capacity of <span class="highlight-red">500 kg</span>. First tested on January 27, 1996, Prithvi-II incorporates improvements in propulsion and guidance systems. The missile is 8.56 metres long and weighs approximately 4,600 kg. It uses an advanced inertial guidance system with manoeuvring trajectory to hit its target with high precision. Prithvi-II was inducted into the Indian Air Force in 2003 and is also operated by the Strategic Forces Command. Night trials have been conducted to validate its operational readiness in all conditions.</p>
+
+  <h3>Prithvi-III: Naval Version</h3>
+
+  <p>Prithvi-III, also known by its naval designation Dhanush, is a two-stage surface-to-surface missile with a range of <span class="highlight-red">350-750 km</span>. First tested in 2000, it uses a two-stage propellant system combining both solid and liquid fuel. The missile is 8.56 metres long with a diameter of 100 cm and weighs approximately 5,600 kg. The Dhanush variant was successfully test-fired from a naval warship in March 2011, demonstrating India's capability for sea-based missile launches. This naval variant can carry both conventional and nuclear warheads, providing India with a sea-based nuclear deterrent before the deployment of submarine-launched ballistic missiles.</p>
+
+  <h3>Evolution and Legacy</h3>
+
+  <p>The Prithvi programme served as a critical learning experience for India's missile establishment. Through the development of Prithvi-I, II, and III, Indian scientists gained expertise in liquid propulsion, guidance systems, warhead integration, and launch vehicle technology. The programme also established the production infrastructure needed for indigenous missile manufacturing. Bharat Dynamics Limited (BDL) in Hyderabad became the primary production agency for Prithvi missiles, building the manufacturing capabilities that would later be used for producing Agni, Akash, and BrahMos missiles.</p>
+
+  <div class="ascii-diagram">
+    PRITHVI MISSILE FAMILY COMPARISON
+    ═══════════════════════════════════════════════════════════
+
+    Prithvi-I (150 km)          Prithvi-II (350 km)         Prithvi-III (750 km)
+    ┌─────────┐                 ┌─────────┐                 ┌─────────┐
+    │  WARHEAD │                 │  WARHEAD │                 │  WARHEAD │
+    ├─────────┤                 ├─────────┤                 ├─────────┤
+    │         │                 │         │                 │ SOLID   │
+    │ LIQUID  │                 │ LIQUID  │                 │ STAGE 1 │
+    │  FUEL   │                 │  FUEL   │                 ├─────────┤
+    │         │                 │         │                 │ LIQUID  │
+    │  (1 STG)│                 │  (1 STG)│                 │ STAGE 2 │
+    └────┬────┘                 └────┬────┘                 └────┬────┘
+         │                           │                           │
+    ─────┴─────                ─────┴─────                 ─────┴─────
+
+    Range:  150 km             Range:  350 km              Range:  750 km
+    Payload: 1,000 kg          Payload: 500 kg             Payload: 1,000 kg
+    Weight: 4,400 kg           Weight: 4,600 kg            Weight: 5,600 kg
+    User:   Army               User:   IAF/SFC             User:   Navy
+  </div>
+
+  <h3>Current Status and Replacement</h3>
+
+  <p>As of 2026, Prithvi-II continues to serve as a key component of India's nuclear deterrent, with regular test firings conducted by the Strategic Forces Command. However, the shorter-range Prithvi-I is gradually being replaced by the more capable Prahaar missile, a quick-reaction battlefield missile with improved accuracy. The Prithvi family's legacy extends beyond its operational role — it proved that India could develop and produce ballistic missile systems independently, setting the stage for the more ambitious Agni programme and India's emergence as a major missile power.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>Prithvi was India's first indigenous ballistic missile, first tested in 1988</li>
+      <li>Three variants exist: Prithvi-I (Army, 150 km), Prithvi-II (Air Force, 350 km), Prithvi-III/Dhanush (Navy, 750 km)</li>
+      <li>Prithvi uses liquid-fuel propulsion (single stage for I and II, two-stage for III)</li>
+      <li>The programme established India's missile production infrastructure at BDL</li>
+      <li>Prithvi-II continues to serve with the Strategic Forces Command as of 2026</li>
+    </ul>
+  </div>
+  <div class="page-number">5</div>
+</div>
+
+<!-- ========== PAGE 6: BRAHMOS ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 06</span>
+  <h2 class="chapter-heading">BrahMos: India-Russia Supersonic Cruise Missile</h2>
+
+  <p>The BrahMos is a supersonic cruise missile jointly developed by India and Russia, representing one of the most successful bilateral defence technology collaborations in the world. Named after the Brahmaputra River in India and the Moskva River in Russia, the missile is produced by BrahMos Aerospace, a joint venture company established in 1998 with 50.5% Indian and 49.5% Russian ownership. The BrahMos has earned the distinction of being the world's fastest operational cruise missile, capable of flying at speeds between Mach 2.0 and Mach 2.8 — approximately three times faster than comparable subsonic cruise missiles.</p>
+
+  <h3>Development and Design</h3>
+
+  <p>The BrahMos is based on the Russian SS-N-26 (3M55 Oniks/Yakhont) cruise missile design, adapted and enhanced through Indian and Russian collaboration. The missile was designed from the outset to be a universal weapon system capable of being launched from land, sea, and air platforms. India's DRDO contributed significantly to the missile's guidance systems, software, and integration with Indian platforms, while Russia provided the core ramjet propulsion technology and initial design expertise.</p>
+
+  <p>The missile is a two-stage weapon system. The first stage uses a solid propellant booster engine that accelerates the missile to supersonic speed. Once the booster is exhausted and jettisoned, the second stage — a liquid-fuelled ramjet engine — sustains the missile at cruising speed of approximately Mach 2.8. This two-stage approach provides the combination of rapid acceleration and sustained high-speed flight that makes the BrahMos so difficult to intercept.</p>
+
+  <div class="key-fact-box">
+    <h4>BrahMos Specifications</h4>
+    <ul>
+      <li><span class="highlight-gold">Speed:</span> Mach 2.0-2.8 (supersonic throughout flight)</li>
+      <li><span class="highlight-gold">Range:</span> 290-500 km (depending on variant)</li>
+      <li><span class="highlight-gold">Warhead:</span> 200-300 kg (conventional HE, submunitions)</li>
+      <li><span class="highlight-gold">Length:</span> 8.0-8.2 m</li>
+      <li><span class="highlight-gold">Diameter:</span> 0.67 m</li>
+      <li><span class="highlight-gold">Weight:</span> 2,200-3,000 kg (depending on variant)</li>
+      <li><span class="highlight-gold">Propulsion:</span> Solid booster + liquid ramjet sustainer</li>
+      <li><span class="highlight-gold">Guidance:</span> INS + GPS (land attack), INS + active/passive radar (anti-ship)</li>
+    </ul>
+  </div>
+
+  <h3>Launch Platform Variants</h3>
+
+  <p>The BrahMos's modular design enables deployment from virtually any launch platform, making it one of the most versatile cruise missiles in the world:</p>
+
+  <p><strong>Ship-Launched Version:</strong> The naval variant was the first to be operationalized, integrated on Indian Navy destroyers including INS Rajput and subsequent ships. It can be launched from both inclined and vertical launch configurations. The vertical launch capability, first demonstrated in December 2008, enhances ship stealth as missiles are stored below deck.</p>
+
+  <p><strong>Land-Launched Version:</strong> The land-based variant is deployed on mobile autonomous launchers (MALs) equipped with Transport Launch Canisters (TLCs). The Indian Army became the world's only land force to operate a regiment of supersonic cruise missiles. The Block-II version features significantly improved guidance software for precision strikes in complex urban environments.</p>
+
+  <p><strong>Air-Launched Version (BrahMos-A):</strong> The air-launched variant, designated BrahMos-A, has been integrated with the Indian Air Force's Sukhoi-30MKI fighter aircraft. The missile is 8.0 metres long, weighs 2,200-2,500 kg, and carries a 200 kg warhead. Integration on the Su-30MKI involved modifying the aircraft's fuselage and reinforcing its wings to carry the heavy supersonic missile.</p>
+
+  <div class="ascii-diagram">
+    BRAHMOS FLIGHT PROFILE
+    ═══════════════════════════════════════════════════════════
+
+    Altitude (m)
+    15,000 ┤                    ╭────────────────╮  ← Cruise
+           │                   ╱                  ╲    Phase
+    10,000 ┤                  ╱                    ╲
+           │                 ╱                      ╲
+     5,000 ┤               ╱                        ╲
+           │   BOOST      ╱                          ╲ TERMINAL
+           │   PHASE    ╱                            ╲ PHASE
+         0 ┤──────────╱────────────────────────────────╲──→
+           0    50    100   150   200   250   290 km
+                        DISTANCE FROM LAUNCH
+
+    ┌─────────────────────────────────────────────────────┐
+    │  BOOST: Solid propellant accelerates to Mach 2+     │
+    │  CRUISE: Ramjet sustains Mach 2.5-2.8 at 15 km    │
+    │  TERMINAL: Dives to 5-10m altitude for final strike │
+    └─────────────────────────────────────────────────────┘
+  </div>
+
+  <h3>Combat Record and Export Success</h3>
+
+  <p>The BrahMos has established an impressive operational track record. The missile's precision strike capability was demonstrated during the 2025 Operation Sindoor, where BrahMos missiles were used to strike targets with pinpoint accuracy. The system's "fire and forget" principle, combined with its high kinetic energy on impact, makes it a devastating weapon against both naval and land targets.</p>
+
+  <p>BrahMos has also become India's first major defence export success. In 2022, the Philippines signed a contract for shore-based anti-ship BrahMos missiles, marking India's first full-scale weapon export. BrahMos Aerospace has been in discussions with several countries including Indonesia, Malaysia, and Vietnam, with the company targeting $5 billion in export orders by 2025.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>BrahMos is the world's fastest operational cruise missile at Mach 2.8</li>
+      <li>Jointly developed by India (DRDO) and Russia (NPO Mashinostroyenia)</li>
+      <li>Can be launched from ships, land, submarines, and Su-30MKI aircraft</li>
+      <li>Features "fire and forget" guidance with stealth technology</li>
+      <li>India's first full-scale defence export (Philippines, 2022)</li>
+    </ul>
+  </div>
+  <div class="page-number">6</div>
+</div>
+
+<!-- ========== PAGE 7: AKASH AIR DEFENCE ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 07</span>
+  <h2 class="chapter-heading">Akash Air Defence System</h2>
+
+  <p>Akash, meaning "Sky" in Sanskrit, is a medium-range mobile surface-to-air missile (SAM) system developed by DRDO as part of the Integrated Guided Missile Development Programme. The system is designed to protect vulnerable areas and critical installations from a wide range of aerial threats, including fighter aircraft, helicopters, cruise missiles, and unmanned aerial vehicles (UAVs). Akash has emerged as one of India's most successful indigenous defence systems, with over 96% indigenous content and significant export potential. The system has been inducted into both the Indian Air Force (2014) and the Indian Army (2015), and has demonstrated its effectiveness in operational conditions.</p>
+
+  <h3>System Architecture</h3>
+
+  <p>The Akash weapon system is a comprehensive air defence solution consisting of several integrated components. At its core is the Akash missile, a ramjet-powered interceptor capable of reaching speeds up to Mach 2.5. The missile is 5.87 metres long, has a diameter of 350 mm, and weighs 710 kg. It carries a 55 kg pre-fragmented warhead activated by a proximity fuse, meaning it can cause significant damage even without a direct hit.</p>
+
+  <p>The most critical component of the Akash system is the <span class="highlight-red">Rajendra 3D phased array radar</span>, a passive electronically scanned array (PESA) radar that can electronically scan and guide missiles toward targets. The Rajendra radar provides three-dimensional measurements of range, azimuth, and height of targets, with a coverage of 120 km in any direction. Unlike conventional radars, the Rajendra can track objects flying on very low trajectories throughout their course.</p>
+
+  <div class="key-fact-box">
+    <h4>Akash Weapon System Specifications</h4>
+    <ul>
+      <li><span class="highlight-gold">Range:</span> 4.5 km to 30 km</li>
+      <li><span class="highlight-gold">Altitude:</span> 100 m to 20 km</li>
+      <li><span class="highlight-gold">Missile Speed:</span> Up to Mach 2.5</li>
+      <li><span class="highlight-gold">Warhead:</span> 55 kg pre-fragmented, proximity fuse</li>
+      <li><span class="highlight-gold">Kill Probability:</span> 88% (first missile), 99% (second missile)</li>
+      <li><span class="highlight-gold">Targets:</span> Aircraft, helicopters, cruise missiles, UAVs</li>
+      <li><span class="highlight-gold">Indigenous Content:</span> Over 96%</li>
+      <li><span class="highlight-gold">Area Coverage:</span> 2,000 km² per battery</li>
+    </ul>
+  </div>
+
+  <h3>Operational Capabilities</h3>
+
+  <p>Akash provides multi-directional and multi-target area defence. A single battery can simultaneously engage multiple aerial targets in group mode or autonomous mode. The system features built-in Electronic Counter-Counter Measures (ECCM) and high immunity against active and passive jamming. The entire weapon system — comprising launchers, control centres, guidance systems, and the Rajendra radar — is configured on mobile platforms, providing rapid deployment capability.</p>
+
+  <p>The system's kill probability is particularly impressive: 88% for the first missile fired at a target, rising to 99% for the second missile. This high single-shot kill probability is achieved through the combination of the missile's manoeuvrability, the Rajendra radar's tracking precision, and the proximity-fused warhead design.</p>
+
+  <h3>Akash Prime: Enhanced High-Altitude Performance</h3>
+
+  <p>Akash Prime is an upgraded variant designed specifically for high-altitude deployment. It was successfully tested in Ladakh in July 2025 at altitudes exceeding 15,000 feet (4,500 metres), where it scored two direct hits on fast-moving aerial targets in the rarified atmosphere. Akash Prime features an indigenous active Radio Frequency (RF) seeker for enhanced precision regardless of weather or terrain. The system demonstrated exceptional performance during Operation Sindoor, where it was used to counter aerial threats from Pakistan with excellent results.</p>
+
+  <h3>Akash-NG: Next Generation</h3>
+
+  <p>The Akash New Generation (Akash-NG) is the latest evolution of the Akash family, featuring solid rocket motor propulsion, an electro-mechanical control system, an active RF seeker, and a laser proximity fuse. Akash-NG can search, track, and fire while engaging up to 10 targets flying at altitudes up to 25 km. User evaluation trials were successfully completed in December 2025, with the system intercepting aerial targets at various ranges and altitudes.</p>
+
+  <h3>Export Success</h3>
+
+  <p>In November 2024, India shipped the first Akash weapon system battery to Armenia, marking India's second major defence export after BrahMos. Armenia signed a deal in 2022 to procure 15 Akash missile systems worth approximately Rs 6,000 crore. Several other countries including Vietnam, Egypt, and the Philippines have expressed interest in acquiring the Akash system, recognizing its combination of capability, reliability, and cost-effectiveness.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>Akash is a medium-range SAM with 30 km range and 96% indigenous content</li>
+      <li>The Rajendra 3D phased array radar provides 120 km tracking coverage</li>
+      <li>Kill probability is 88% for first shot, 99% for second shot</li>
+      <li>Akash Prime demonstrated high-altitude performance in Ladakh (July 2025)</li>
+      <li>First export to Armenia in November 2024, with more countries showing interest</li>
+    </ul>
+  </div>
+  <div class="page-number">7</div>
+</div>
+
+<!-- ========== PAGE 8: NAG ANTI-TANK ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 08</span>
+  <h2 class="chapter-heading">Nag Anti-Tank Guided Missile</h2>
+
+  <p>The Nag missile, meaning "Cobra" in Sanskrit, is India's third-generation, all-weather, fire-and-forget anti-tank guided missile (ATGM) developed by DRDO. Designed to support both mechanised infantry and airborne forces of the Indian Army, the Nag represents a critical capability in India's anti-armour arsenal. The missile features lock-on after launch capability and passive homing guidance, enabling it to defeat all Main Battle Tanks (MBT) equipped with composite and reactive armour. The Nag programme was part of the IGMDP and has evolved through several variants to meet changing operational requirements.</p>
+
+  <h3>Technical Specifications</h3>
+
+  <p>The Nag missile is a compact yet powerful weapon system. It is 1.85 metres long, has a diameter of 150 mm, and weighs 42 kg. The missile features four foldable wings and a blunt nose cone housing the guidance system. The middle portion accommodates a compact sensor package and the main warhead charge, while a booster rocket motor is located at the rear with four stabilizing tail fins.</p>
+
+  <table class="comparison-table">
+    <tr>
+      <th>Parameter</th>
+      <th>Specification</th>
+    </tr>
+    <tr>
+      <td>Length</td>
+      <td>1,832 mm</td>
+    </tr>
+    <tr>
+      <td>Diameter</td>
+      <td>150 mm</td>
+    </tr>
+    <tr>
+      <td>Weight</td>
+      <td>42 kg</td>
+    </tr>
+    <tr>
+      <td>Speed</td>
+      <td>220-230 m/s</td>
+    </tr>
+    <tr>
+      <td>Range</td>
+      <td>500 m to 4,000 m (land), up to 7 km (HELINA)</td>
+    </tr>
+    <tr>
+      <td>Guidance</td>
+      <td>Passive Homing (IIR Seeker)</td>
+    </tr>
+    <tr>
+      <td>Warhead</td>
+      <td>Tandem HEAT (8 kg)</td>
+    </tr>
+    <tr>
+      <td>Control</td>
+      <td>Aerodynamic Tail Fin Control</td>
+    </tr>
+    <tr>
+      <td>Operation</td>
+      <td>All weather, day and night</td>
+    </tr>
+    <tr>
+      <td>Hit Probability</td>
+      <td>Single-shot: 90%</td>
+    </tr>
+  </table>
+
+  <h3>Warhead Technology</h3>
+
+  <p>The Nag missile is equipped with an 8 kg tandem-shaped charge high-explosive anti-tank (HEAT) warhead. The tandem design features a precursor charge followed by a main charge. The precursor charge is designed to defeat the explosive reactive armour (ERA) fitted to modern tanks, while the main charge penetrates the tank's main armour. This two-stage warhead design ensures high kill probability against even the most heavily armoured targets.</p>
+
+  <h3>Nag Missile Carrier (NAMICA)</h3>
+
+  <p>The primary launch platform for the Nag missile is the Nag Missile Carrier (NAMICA), a modified BMP-2 infantry fighting vehicle produced under license in India. NAMICA Version 1 carries up to eight ready-to-fire missiles in a launch container that can be elevated for firing. The vehicle provides battlefield mobility and protection for the missile crew. NAMICA Version 2, which underwent successful field evaluations alongside the Nag Mk 2 missile, features enhanced mobility and launch capabilities.</p>
+
+  <h3>Nag Mark 2: Enhanced Capability</h3>
+
+  <p>The Nag Mark 2 is the latest evolution of the Nag family, featuring significant improvements in range, guidance, and target engagement capability. In January 2025, DRDO successfully conducted field evaluation trials of the Nag Mk 2 at the Pokhran field range in Rajasthan. During three field trials, the missile system destroyed all designated targets at both maximum and minimum range limits. The Nag Mk 2 features fire-and-forget technology with lock-on after launch capability, enabling precision strikes even in complex battlefield scenarios.</p>
+
+  <h3>HELINA: Air-Launched Variant</h3>
+
+  <p>HELINA (Helicopter-launched Nag) is the air-launched variant of the Nag missile, designed for deployment from the Advanced Light Helicopter (ALH) and the Light Combat Helicopter (LCH). HELINA has an extended range of up to 7 km compared to the land-based version's 4 km. The missile uses lock-on before launch technology, where the helicopter's electro-optic system identifies and locks onto the target before missile launch. HELINA completed all development trials and is awaiting induction into the Indian Army and Air Force.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>Nag is a third-generation fire-and-forget anti-tank guided missile with 90% single-shot hit probability</li>
+      <li>Features tandem HEAT warhead capable of defeating explosive reactive armour</li>
+      <li>Nag Mk 2 successfully tested in January 2025, ready for induction</li>
+      <li>NAMICA (Nag Missile Carrier) provides armoured launch platform with 8 missiles</li>
+      <li>HELINA variant extends range to 7 km from helicopter platforms</li>
+    </ul>
+  </div>
+  <div class="page-number">8</div>
+</div>
+
+<!-- ========== PAGE 9: BARAK-8 ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 09</span>
+  <h2 class="chapter-heading">Barak-8: India-Israel Joint Air Defence</h2>
+
+  <p>The Barak-8, also known as Medium Range Surface-to-Air Missile (MRSAM) or Long Range Surface-to-Air Missile (LR-SAM), is an advanced air and missile defence system jointly developed by India's DRDO and Israel Aerospace Industries (IAI). The system represents one of the most significant Indo-Israeli defence collaborations and has become a cornerstone of India's layered air defence architecture. In April 2025, the Indian Army completed final acceptance tests, declaring the Barak-8 operationally ready for deployment across all three branches of the Indian military — the Army, Navy, and Air Force.</p>
+
+  <h3>Development Partnership</h3>
+
+  <p>The Barak-8 programme was initiated in February 2006 when Israel and India signed a joint development agreement. The system evolved from the earlier Barak-1 point defence missile, extending the range from 10 km to 70 km. Israel Aerospace Industries (IAI) served as the lead contractor, with IAI Elta Systems providing the multi-function phased array radar and Rafael Advanced Defence Systems producing the missile's critical seeker components. DRDO contributed significantly to the missile's rocket motor, control systems, and integration with Indian platforms.</p>
+
+  <div class="key-fact-box">
+    <h4>Barak-8 / MRSAM Specifications</h4>
+    <ul>
+      <li><span class="highlight-gold">Range:</span> Up to 70 km (150 km for ER version)</li>
+      <li><span class="highlight-gold">Speed:</span> Mach 2 (2,450 km/h)</li>
+      <li><span class="highlight-gold">Altitude:</span> Up to 16 km</li>
+      <li><span class="highlight-gold">Length:</span> 4.5 metres</li>
+      <li><span class="highlight-gold">Weight:</span> 275 kg (missile), 2,700 kg (with booster)</li>
+      <li><span class="highlight-gold">Warhead:</span> 60 kg with proximity fuse</li>
+      <li><span class="highlight-gold">Guidance:</span> Active radar homing with mid-course updates</li>
+      <li><span class="highlight-gold">Propulsion:</span> Dual-pulse, two-stage rocket engine</li>
+      <li><span class="highlight-gold">Manufacturer:</span> Bharat Dynamics Limited (India)</li>
+    </ul>
+  </div>
+
+  <h3>System Components</h3>
+
+  <p>The Barak-8 system integrates several advanced components into a comprehensive air defence solution. The multi-function phased array radar provides 360-degree coverage and can track multiple targets simultaneously. The command and control array processes target data and coordinates missile engagements. Mobile launchers can be deployed on both land and sea platforms, while the interceptor missiles feature advanced RF seekers for terminal guidance.</p>
+
+  <p>The missile uses a dual-pulse motor system that provides high manoeuvrability throughout its flight envelope. After launch, the missile receives mid-course guidance updates from the ground-based radar before activating its active radar seeker for terminal homing. This two-phase guidance approach ensures high accuracy even against manoeuvring targets.</p>
+
+  <h3>Tri-Services Deployment</h3>
+
+  <p>The Barak-8 has been successfully integrated across all three Indian military services:</p>
+
+  <p><strong>Indian Navy:</strong> The naval variant, designated LR-SAM, was the first to be operationalized. It is deployed on several Indian warships including aircraft carriers and destroyers. The naval version provides comprehensive anti-air warfare capability, defending ships against aircraft, anti-ship missiles, and UAVs.</p>
+
+  <p><strong>Indian Air Force:</strong> The IAF inducted the MRSAM system in September 2021 at Jaisalmer. Defence Minister Rajnath Singh described the capability as a "game changer" in air defence. The system is capable of hitting multiple targets simultaneously up to a range of 70 km, even in bad weather.</p>
+
+  <p><strong>Indian Army:</strong> The army completed final acceptance tests in April 2025, with four successful interceptions of aerial targets at various speeds, altitudes, and ranges. All targets were destroyed with direct hits, demonstrating the system's operational capability. The army version provides mobile area air defence for ground forces.</p>
+
+  <h3>Combat Performance and Strategic Significance</h3>
+
+  <p>The Barak-8 demonstrated exceptional performance during Operation Sindoor in 2025, where it reportedly intercepted a Pakistani Fatah-II ballistic missile over Sirsa. This interception validated the system's ballistic missile defence capability, which was designed into the system from the outset. The system's ability to counter both aircraft and ballistic missiles makes it a critical component of India's integrated air defence network.</p>
+
+  <p>India has invested over $2.4 billion in the Barak-8 programme, including a $1.6 billion deal in 2017 and a $777 million order for the long-range variant in 2018. In January 2025, India ordered over 70 additional MRSAMs for future warships. IAI has established local companies in India to support maintenance and operations, strengthening the long-term partnership.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>Barak-8 is a joint India-Israel air defence system with 70 km range</li>
+      <li>Deployed across all three Indian military services (Army, Navy, Air Force)</li>
+      <li>Features active radar homing with dual-pulse motor for high manoeuvrability</li>
+      <li>Demonstrated ballistic missile interception capability during Operation Sindoor (2025)</li>
+      <li>Total Indian investment exceeds $2.4 billion with continued procurement</li>
+    </ul>
+  </div>
+  <div class="page-number">9</div>
+</div>
+
+<!-- ========== PAGE 10: TESTING INFRASTRUCTURE ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 10</span>
+  <h2 class="chapter-heading">Missile Testing Infrastructure</h2>
+
+  <p>India possesses one of the most sophisticated missile testing infrastructures in the world, built over four decades of systematic development. The testing infrastructure spans multiple facilities across the country, each serving specific functions in the missile development and validation process. At the heart of this infrastructure is the Integrated Test Range (ITR) at Chandipur in Odisha, which has been the primary launch site for virtually every Indian missile test since the 1980s. The testing infrastructure encompasses launch complexes, tracking stations, telemetry facilities, radar installations, and mission control centres.</p>
+
+  <h3>Integrated Test Range (ITR), Chandipur</h3>
+
+  <p>The Integrated Test Range at Chandipur, located on the coast of Odisha in the Bay of Bengal, is India's premier missile testing facility. Operated by DRDO, the ITR provides comprehensive launch infrastructure for testing all types of missile systems, from short-range tactical missiles to intercontinental ballistic missiles. The facility includes multiple launch complexes, each designed for specific missile types and launch configurations.</p>
+
+  <div class="ascii-diagram">
+    ITR CHANDIPUR - FACILITY LAYOUT
+    ═══════════════════════════════════════════════════════════
+
+                    BAY OF BENGAL
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          ▲              ▲              ▲
+          │              │              │
+     [SHIP-1]       [SHIP-2]       [SHIP-3]
+     Tracking       Tracking       Tracking
+     Station        Station        Station
+          │              │              │
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ──────────── COASTLINE ──────────────────────
+          │              │              │
+    ┌─────────┐    ┌─────────┐    ┌─────────┐
+    │ LAUNCH  │    │ LAUNCH  │    │ LAUNCH  │
+    │PAD - I  │    │PAD - IV │    │PAD - III│
+    │(Agni)   │    │(Prithvi)│    │(Akash)  │
+    └─────────┘    └─────────┘    └─────────┘
+          │              │              │
+    ┌─────────┐    ┌─────────┐    ┌─────────┐
+    │MISSION  │    │TELEMETRY│    │RADAR    │
+    │CONTROL  │    │CENTRE   │    │STATION  │
+    │CENTRE   │    │         │    │         │
+    └─────────┘    └─────────┘    └─────────┘
+
+    Dr APJ Abdul Kalam Island (Wheeler Island)
+    ─── Offshore launch complex for strategic missiles ───
+  </div>
+
+  <p>The ITR features several launch complexes:</p>
+  <ul>
+    <li><strong>Launch Complex-IV:</strong> Primarily used for Prithvi and short-range missile tests</li>
+    <li><strong>Launch Pad-IV:</strong> Used for Agni series missile tests, including night trials</li>
+    <li><strong>Dr APJ Abdul Kalam Island (Wheeler Island):</strong> Offshore launch complex for strategic missile tests, including Agni-V and MIRV missions</li>
+    <li><strong>Mobile Launch Platforms:</strong> Road-mobile and rail-mobile launchers for testing canisterized missiles</li>
+  </ul>
+
+  <h3>Dr APJ Abdul Kalam Island</h3>
+
+  <p>Formerly known as Wheeler Island, this offshore facility was renamed in honor of Dr. A.P.J. Abdul Kalam in 2015. Located approximately 10 km from the Chandipur coast, the island serves as the primary launch site for India's strategic missile tests, including Agni-V, Agni-P, and the Mission Divyastra MIRV test. The island's offshore location provides safety advantages and allows for testing of missiles with longer ranges without risk to populated areas.</p>
+
+  <h3>Other Testing Facilities</h3>
+
+  <p>India has established several other missile testing facilities across the country:</p>
+
+  <ul>
+    <li><strong>Pokhran Field Range, Rajasthan:</strong> Used for anti-tank missile testing (Nag, MPATGM) and tactical missile trials</li>
+    <li><strong>Sriharikota (SHAR):</strong> While primarily an ISRO launch facility, it was used for early missile tests including the first Prithvi test in 1988</li>
+    <li><strong>Balasore, Odisha:</strong> Tracking and telemetry stations supporting ITR operations</li>
+    <li><strong>Interim Test Range, Chitradurga:</strong> Used for missile subsystem testing and evaluation</li>
+  </ul>
+
+  <h3>Testing Protocols</h3>
+
+  <p>Missile testing at ITR follows rigorous protocols designed to ensure safety and maximize data collection. Before any test launch, extensive preparations are conducted including system checks, propellant loading, guidance system calibration, and range safety clearance. The test is typically witnessed by senior DRDO scientists, military officials from the Strategic Forces Command, and representatives from production agencies. Range safety officers have the authority to abort a launch at any point if safety parameters are violated.</p>
+
+  <div class="key-fact-box">
+    <h4>ITR Testing Statistics</h4>
+    <ul>
+      <li><span class="highlight-gold">Location:</span> Chandipur, Odisha (20.7°N, 87.0°E)</li>
+      <li><span class="highlight-gold">Established:</span> 1970s, enhanced in 1980s for IGMDP</li>
+      <li><span class="highlight-gold">Total Tests Conducted:</span> 400+ missile and rocket launches</li>
+      <li><span class="highlight-gold">Key Facilities:</span> Multiple launch pads, mission control, telemetry, radar stations</li>
+      <li><span class="highlight-gold">Offshore Complex:</span> Dr APJ Abdul Kalam Island for strategic missile tests</li>
+      <li><span class="highlight-gold">Latest Test:</span> Agni-4 test-fired from Chandipur on August 6, 2026</li>
+    </ul>
+  </div>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>ITR Chandipur is India's premier missile testing facility with multiple launch complexes</li>
+      <li>Dr APJ Abdul Kalam Island serves as offshore launch site for strategic missile tests</li>
+      <li>Pokhran Field Range is used for tactical and anti-tank missile testing</li>
+      <li>Testing follows rigorous safety protocols with range safety officers having abort authority</li>
+      <li>400+ missile and rocket launches have been conducted from Indian test ranges</li>
+    </ul>
+  </div>
+  <div class="page-number">10</div>
+</div>
+
+<!-- ========== PAGE 11: TEST FACILITIES ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 11</span>
+  <h2 class="chapter-heading">Test Facilities: Radar Tracking & Telemetry</h2>
+
+  <p>The success of India's missile testing programme depends not only on launch infrastructure but also on an extensive network of radar tracking, telemetry, and monitoring facilities. These facilities are responsible for capturing every aspect of a missile's flight — from launch to target impact — providing the data needed to validate performance, identify deficiencies, and guide future development. India has built a sophisticated network of ground-based and ship-based tracking stations that provide comprehensive coverage of missile test flights across the Bay of Bengal and Indian Ocean Region.</p>
+
+  <h3>Radar Tracking Systems</h3>
+
+  <p>India operates several types of radar systems for missile tracking, each designed for specific roles in the test range instrumentation network. Long-range tracking radars provide precise position and velocity data on missiles throughout their flight trajectory. These radars use advanced signal processing techniques to track targets at distances exceeding 500 km, even in the presence of electronic countermeasures and adverse weather conditions.</p>
+
+  <p>The primary tracking radars at ITR include metric and precision tracking radars capable of measuring range, azimuth, elevation, and velocity of missile targets. These radars operate in multiple frequency bands to ensure reliable tracking under various conditions. The data collected by these radars is used to reconstruct the missile's trajectory, verify guidance accuracy, and confirm warhead separation and re-entry events.</p>
+
+  <div class="key-fact-box">
+    <h4>Tracking and Telemetry Infrastructure</h4>
+    <ul>
+      <li><span class="highlight-gold">Long-Range Tracking Radars:</span> Coverage up to 500+ km for missile tracking</li>
+      <li><span class="highlight-gold">Precision Tracking Radars:</span> High-accuracy trajectory measurement</li>
+      <li><span class="highlight-gold">Telemetry Systems:</span> Real-time data link with missile for onboard parameter monitoring</li>
+      <li><span class="highlight-gold">Electro-Optical Tracking:</span> TV and infrared cameras for visual tracking and documentation</li>
+      <li><span class="highlight-gold">Ship-Based Stations:</span> Downrange tracking ships in Bay of Bengal</li>
+      <li><span class="highlight-gold">Mission Control Centre:</span> Centralized command for test orchestration and data analysis</li>
+    </ul>
+  </div>
+
+  <h3>Telemetry Systems</h3>
+
+  <p>Telemetry is the backbone of missile test instrumentation. During a test flight, the missile transmits real-time data on hundreds of parameters including attitude, acceleration, temperature, pressure, fuel consumption, guidance commands, and warhead status. This data is received by ground-based telemetry stations and transmitted to the Mission Control Centre for real-time monitoring and post-flight analysis.</p>
+
+  <p>India has developed indigenous telemetry systems capable of handling the high data rates required for modern missile tests. These systems use encrypted data links to prevent interception and employ frequency-hopping techniques to ensure reliable data transmission even in the presence of jamming. The telemetry data is critical for validating missile performance against design specifications and identifying any anomalies that need to be addressed.</p>
+
+  <h3>Electro-Optical Tracking</h3>
+
+  <p>Electro-optical tracking systems provide visual documentation of missile tests using high-resolution television cameras and infrared sensors. These systems track the missile during launch, boost phase, staging events, and re-entry, providing valuable visual data that supplements radar and telemetry information. The electro-optical data is particularly useful for analyzing separation events, warhead deployment, and target impact.</p>
+
+  <p>Multiple electro-optical tracking stations are positioned along the test range to ensure continuous visual coverage of the missile's flight path. These stations use high-speed cameras capable of capturing thousands of frames per second, enabling detailed analysis of rapid events such as stage separation and re-entry vehicle deployment.</p>
+
+  <h3>Downrange Tracking Ships</h3>
+
+  <p>For tests involving longer ranges, India deploys tracking ships in the Bay of Bengal and Indian Ocean Region. These ships are equipped with radar, telemetry, and electro-optical systems to track missiles during their terminal phase and confirm warhead impact. The use of downrange ships extends the effective tracking range of the test infrastructure and provides critical data on missile performance at extended ranges.</p>
+
+  <div class="ascii-diagram">
+    DATA FLOW: MISSILE TEST MONITORING
+    ═══════════════════════════════════════════════════════════
+
+    ┌──────────┐     ┌──────────────┐     ┌──────────────┐
+    │ MISSILE  │────▶│   TELEMETRY  │────▶│   MISSION    │
+    │ (onboard │     │   GROUND     │     │   CONTROL    │
+    │  sensors)│     │   STATION    │     │   CENTRE     │
+    └──────────┘     └──────────────┘     └──────┬───────┘
+                                                 │
+    ┌──────────┐     ┌──────────────┐            │
+    │ TRACKING │────▶│   RADAR DATA │────────────┘
+    │   RADAR  │     │   PROCESSING │            │
+    └──────────┘     └──────────────┘            │
+                                                 ▼
+    ┌──────────┐     ┌──────────────┐     ┌──────────────┐
+    │  ELECTRO │────▶│   OPTICAL    │────▶│ POST-FLIGHT  │
+    │  OPTICAL │     │   RECORDING  │     │  ANALYSIS    │
+    │  CAMERAS │     │              │     │  TEAM        │
+    └──────────┘     └──────────────┘     └──────────────┘
+  </div>
+
+  <h3>Range Safety Systems</h3>
+
+  <p>Range safety is a critical aspect of missile testing infrastructure. The ITR operates a comprehensive range safety system that monitors the missile's trajectory in real-time and can trigger flight termination if the missile deviates from its planned corridor. The range safety system uses dedicated radars and telemetry receivers to track the missile's position and velocity, comparing this data against pre-defined safety limits. If the missile exceeds these limits, the range safety officer can issue a flight termination command to destroy the missile safely over open water.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>India operates comprehensive radar tracking networks with 500+ km coverage</li>
+      <li>Telemetry systems transmit hundreds of real-time parameters during test flights</li>
+      <li>Electro-optical systems provide high-speed visual documentation of missile tests</li>
+      <li>Downrange tracking ships extend monitoring capability into the Indian Ocean</li>
+      <li>Range safety systems can terminate flight if safety limits are exceeded</li>
+    </ul>
+  </div>
+  <div class="page-number">11</div>
+</div>
+
+<!-- ========== PAGE 12: LAUNCH VEHICLES & PLATFORMS ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 12</span>
+  <h2 class="chapter-heading">Launch Vehicles & Platforms</h2>
+
+  <p>India has developed a diverse range of launch platforms for its missile systems, enabling deployment across land, sea, and air domains. The choice of launch platform significantly impacts a missile system's survivability, reaction time, and operational flexibility. India's approach to launch platform development has evolved from fixed launch pads to highly mobile road and rail-based systems, and from ground-only launch to multi-platform capability including ships, submarines, and aircraft. This evolution reflects the changing strategic requirements and the need for nuclear survivability through dispersed and mobile deployment.</p>
+
+  <h3>Land-Based Launch Platforms</h3>
+
+  <p><strong>Road-Mobile Transporter Erector Launchers (TELs):</strong> The most common land-based launch platform for Indian missiles is the Transporter Erector Launcher (TEL). These vehicles combine transportation, erection, and launch functions in a single platform. Agni missiles are deployed on custom-designed multi-axle TELs that provide cross-country mobility and rapid launch capability. Prithvi missiles use 8x8 Tata TELs for road-mobile deployment. The use of road-mobile TELs significantly improves missile survivability by making it difficult for adversaries to locate and target missile launchers.</p>
+
+  <p><strong>Rail-Mobile Launchers:</strong> India has pioneered rail-mobile missile launch capability with the Agni-P (Prime) missile. In September 2025, DRDO successfully tested the Agni-P from a specially designed rail-based mobile launcher. This system can move on the existing rail network without pre-conditions, providing cross-country mobility and reduced launch preparation time. India joined an exclusive group of nations — alongside the US, Russia, and China — possessing canisterized launch from rail networks.</p>
+
+  <div class="key-fact-box">
+    <h4>Launch Platform Comparison</h4>
+    <ul>
+      <li><span class="highlight-gold">Road-Mobile TEL:</span> High mobility, rapid deployment, used for Agni, Prithvi, BrahMos</li>
+      <li><span class="highlight-gold">Rail-Mobile:</span> Cross-country mobility via rail network (Agni-P, future systems)</li>
+      <li><span class="highlight-gold">Ship-Launched:</span> Naval deployment for BrahMos, Dhanush, Barak-8</li>
+      <li><span class="highlight-gold">Submarine-Launched:</span> Undersea launch for K-15 Sagarika, K-4, K-5</li>
+      <li><span class="highlight-gold">Air-Launched:</span> Fighter aircraft deployment for BrahMos-A on Su-30MKI</li>
+      <li><span class="highlight-gold">Helicopter-Launched:</span> ALH/LCH platform for HELINA anti-tank missile</li>
+    </ul>
+  </div>
+
+  <h3>Sea-Based Launch Platforms</h3>
+
+  <p><strong>Surface Ships:</strong> The Indian Navy operates several missile-armed warships equipped with vertical and inclined launch systems. BrahMos missiles are deployed on destroyers and frigates in both anti-ship and land-attack configurations. Barak-8/LR-SAM provides air defence capability on aircraft carriers and major surface combatants. The naval variant of Prithvi, Dhanush, has been test-fired from naval warships, demonstrating sea-based ballistic missile capability.</p>
+
+  <p><strong>Submarines:</strong> India's submarine-launched ballistic missile (SLBM) capability is centered on the INS Arihant class of nuclear-powered ballistic missile submarines. The K-15 Sagarika (range 750 km) and K-4 (range 3,500 km) SLBMs provide the sea-based leg of India's nuclear triad. The submarine-launched capability is considered the most survivable form of nuclear deterrence, as submarines can remain hidden underwater for extended periods.</p>
+
+  <h3>Air-Based Launch Platforms</h3>
+
+  <p><strong>Sukhoi-30MKI Integration:</strong> The BrahMos-A air-launched cruise missile has been integrated with the Indian Air Force's Sukhoi-30MKI fighter aircraft. The missile is carried in the aircraft's belly, with wing reinforcement to support the 2.5-tonne weapon. The air-launched BrahMos extends the strike range of the Su-30MKI and provides the IAF with a supersonic precision strike capability.</p>
+
+  <p><strong>Helicopter Platforms:</strong> The HELINA anti-tank missile is designed for launch from the Advanced Light Helicopter (ALH) and Light Combat Helicopter (LCH). This provides Indian forces with a rapidly deployable anti-armour capability that can be deployed across the battlefield.</p>
+
+  <div class="ascii-diagram">
+    INDIA'S MULTI-DOMAIN LAUNCH ARCHITECTURE
+    ═══════════════════════════════════════════════════════════
+
+              AIR DOMAIN
+         ┌──────────────────┐
+         │  Su-30MKI        │
+         │  ┌──────────┐    │
+         │  │BrahMos-A │    │
+         │  └──────────┘    │
+         └──────────────────┘
+                   │
+                   ▼
+    LAND DOMAIN          SEA DOMAIN
+    ┌──────────┐      ┌──────────────┐
+    │ TEL      │      │ WARSHIP      │
+    │ (Agni)   │      │ (BrahMos)    │
+    │          │      │              │
+    │ RAIL-MOB │      │ SUBMARINE    │
+    │ (Agni-P) │      │ (K-15, K-4)  │
+    └──────────┘      └──────────────┘
+         │                   │
+         └─────────┬─────────┘
+                   ▼
+            ┌────────────┐
+            │  NUCLEAR   │
+            │  TRIAD     │
+            │  (Land +   │
+            │  Sea + Air)│
+            └────────────┘
+  </div>
+
+  <h3>Canisterization: Rapid Launch Capability</h3>
+
+  <p>India has developed canisterization technology for several of its missile systems. Canisterized missiles are stored in sealed Transport Launch Canisters (TLCs) that protect the missile from environmental degradation and enable rapid launch. The canister serves dual purposes as both a storage container and a launch tube. This technology, first implemented with Agni-V and now used for Agni-P, reduces launch preparation time from hours to minutes, significantly enhancing the missile force's responsive capability.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>India deploys missiles across land (road-mobile, rail-mobile), sea (ships, submarines), and air (Su-30MKI, helicopters)</li>
+      <li>Road-mobile TELs provide high mobility and rapid deployment for Agni and Prithvi missiles</li>
+      <li>Rail-mobile launch capability achieved with Agni-P in September 2025</li>
+      <li>Submarine-launched ballistic missiles (K-15, K-4) on INS Arihant provide sea-based deterrent</li>
+      <li>Canisterization technology enables rapid launch from sealed storage containers</li>
+    </ul>
+  </div>
+  <div class="page-number">12</div>
+</div>
+
+<!-- ========== PAGE 13: NAVIGATION & GUIDANCE ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 13</span>
+  <h2 class="chapter-heading">Navigation & Guidance Systems</h2>
+
+  <p>The accuracy and effectiveness of any missile system depend critically on its navigation and guidance capabilities. India has developed sophisticated indigenous guidance systems that enable its missiles to hit targets with remarkable precision over ranges spanning from hundreds to thousands of kilometres. The development of these systems has been one of DRDO's most significant technical achievements, requiring mastery of advanced electronics, sensor technology, signal processing, and control theory. India's guidance systems have evolved from basic strap-down inertial navigation to ring laser gyro-based systems with GPS augmentation and terminal homing capability.</p>
+
+  <h3>Inertial Navigation Systems (INS)</h3>
+
+  <p>The foundation of India's missile guidance capability is the Inertial Navigation System (INS). An INS determines a missile's position, velocity, and attitude by measuring its own accelerations and rotations using accelerometers and gyroscopes. This self-contained guidance method is immune to external jamming and does not rely on external signals, making it highly reliable for military applications.</p>
+
+  <p>India has developed both mechanical and strap-down inertial navigation systems. The strap-down INS, used in Prithvi and earlier Agni missiles, mounts gyroscopes and accelerometers directly on the missile's body, using computational algorithms to derive navigation data. This approach is simpler and more reliable than traditional platform-based INS.</p>
+
+  <h3>Ring Laser Gyroscope (RLG) Systems</h3>
+
+  <p>For its more advanced missiles, including Agni-V and BrahMos, India has developed ring laser gyroscope-based inertial navigation systems. RLGs use the Sagnac effect — the difference in travel time of two counter-propagating laser beams in a rotating ring — to measure angular rotation with extreme precision. RLG-based INS systems offer significant advantages over mechanical gyroscopes, including higher accuracy, faster alignment, longer operational life, and greater resistance to vibration and shock.</p>
+
+  <div class="key-fact-box">
+    <h4>Guidance System Technologies</h4>
+    <ul>
+      <li><span class="highlight-gold">Strap-Down INS:</span> Basic inertial guidance using body-mounted sensors (Prithvi)</li>
+      <li><span class="highlight-gold">Ring Laser Gyro INS:</span> High-precision inertial guidance (Agni-V, BrahMos)</li>
+      <li><span class="highlight-gold">GPS-Aided INS:</span> GPS updates augment inertial navigation for improved accuracy</li>
+      <li><span class="highlight-gold">Command Guidance:</span> Ground-based radar commands missile to target (Akash)</li>
+      <li><span class="highlight-gold">Active Radar Homing:</span> Missile's onboard radar guides to target (Barak-8)</li>
+      <li><span class="highlight-gold">IIR Seeker:</span> Imaging Infrared guidance for terminal homing (Nag)</li>
+    </ul>
+  </div>
+
+  <h3>GPS-Aided Navigation</h3>
+
+  <p>Many Indian missiles incorporate GPS (Global Positioning System) or Indian Regional Navigation Satellite System (NavIC/IRNSS) updates to augment their inertial navigation. GPS/NavIC provides periodic position corrections that compensate for the drift inherent in inertial systems, significantly improving accuracy over long flight times. The combination of INS and GPS creates a robust guidance solution that maintains accuracy even if GPS signals are temporarily lost or jammed.</p>
+
+  <h3>Command Guidance</h3>
+
+  <p>Command guidance, used in the Akash air defence system, involves ground-based radar tracking both the target and the missile, with a command computer calculating interception trajectories and transmitting steering commands to the missile. The Akash system uses the Rajendra phased array radar for this purpose, providing real-time guidance commands throughout the missile's flight. This approach allows the missile to be simpler and less expensive while still achieving high accuracy against manoeuvring aerial targets.</p>
+
+  <h3>Terminal Homing Systems</h3>
+
+  <p>For precision terminal guidance, several Indian missiles employ seeker-based terminal homing. The BrahMos uses active/passive radar seekers for terminal guidance against both ship and land targets. The Nag anti-tank missile uses an Imaging Infrared (IIR) seeker for lock-on and terminal homing against armoured vehicles. The Barak-8 features an active radar seeker that activates during the terminal phase of flight, providing high accuracy against aerial targets.</p>
+
+  <p>The development of indigenous seekers has been a critical achievement for India's missile programme. The Akash Prime and Akash-NG feature indigenous active Radio Frequency (RF) seekers that provide all-weather, day-and-night targeting capability. The development of these seekers has reduced India's dependence on imported components and enhanced the self-reliance of the missile programme.</p>
+
+  <h3>Thrust Vector Control (TVC)</h3>
+
+  <p>For ballistic missiles, trajectory control during the boost phase is achieved through Thrust Vector Control (TVC) systems. India has developed flexseal thrust vector control systems for each stage of its Agni missiles. TVC works by deflecting the rocket motor's exhaust nozzle, creating a side force that rotates the missile. This capability is essential for trajectory shaping, range extension, and improving missile accuracy.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>India has developed indigenous INS, RLG, and GPS-aided navigation systems</li>
+      <li>Ring laser gyro systems provide high-precision guidance for strategic missiles</li>
+      <li>Command guidance (Akash) and terminal homing (BrahMos, Nag, Barak-8) provide multi-mode capability</li>
+      <li>Indigenous RF and IIR seekers reduce dependence on imported components</li>
+      <li>Thrust Vector Control enables trajectory shaping during boost phase</li>
+    </ul>
+  </div>
+  <div class="page-number">13</div>
+</div>
+
+<!-- ========== PAGE 14: WARHEAD TECHNOLOGY ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 14</span>
+  <h2 class="chapter-heading">Warhead Technology</h2>
+
+  <p>Warhead technology is a critical element of missile effectiveness, determining the damage a missile can inflict on its target. India has developed a diverse range of warhead types to suit different operational requirements, from conventional high-explosive warheads for tactical missiles to nuclear warheads for strategic deterrence. The development of warhead technology has been conducted under strict safety protocols and security measures, with the Terminal Ballistics Research Laboratory (TBRL) in Chandigarh serving as the primary facility for warhead research and development.</p>
+
+  <h3>Conventional Warheads</h3>
+
+  <p>India's tactical missiles employ various types of conventional warheads designed for specific target sets. The Prithvi missiles can carry high-explosive (HE), penetration, cluster munition, fragmentation, and thermobaric warheads. The BrahMos carries a 200-300 kg semi-armor-piercing HE warhead or a 250 kg submunitions warhead. The Akash missile uses a 55 kg pre-fragmented warhead with a proximity fuse, designed to create a lethal fragmentation pattern that can destroy aerial targets even without a direct hit.</p>
+
+  <div class="key-fact-box">
+    <h4>Warhead Types in India's Missile Arsenal</h4>
+    <ul>
+      <li><span class="highlight-gold">High-Explosive (HE):</span> Blast and fragmentation effect against soft targets</li>
+      <li><span class="highlight-gold">Semi-Armor-Piercing:</span> Penetrates hardened structures before detonation (BrahMos)</li>
+      <li><span class="highlight-gold">Tandem HEAT:</span> Two-stage shaped charge defeating reactive armour (Nag)</li>
+      <li><span class="highlight-gold">Pre-Fragmented:</span> Optimized fragmentation pattern with proximity fuze (Akash)</li>
+      <li><span class="highlight-gold">Submunitions:</span> Multiple bomblets for area targets (BrahMos)</li>
+      <li><span class="highlight-gold">Thermobaric:</span> Enhanced blast effect in enclosed spaces</li>
+      <li><span class="highlight-gold">Nuclear:</span> Strategic deterrence warheads (12 kt yield for most missiles)</li>
+    </ul>
+  </div>
+
+  <h3>Nuclear Warheads</h3>
+
+  <p>India's strategic missiles — Agni series and Prithvi-II — are designed to carry nuclear warheads. India conducted its first nuclear tests, codenamed Pokhran-I, in 1974, followed by a series of five nuclear tests under Pokhran-II in May 1998. These tests validated India's nuclear weapon designs, including fission and thermonuclear (hydrogen bomb) capabilities. The nuclear warheads deployed on India's missiles are reported to have yields of approximately 12 kilotons, though exact figures remain classified.</p>
+
+  <p>The development of compact nuclear warheads suitable for missile delivery has been a significant technical challenge. Warheads must be small and light enough to fit within the missile's payload section while being robust enough to withstand the extreme forces of launch, flight, and re-entry. India's nuclear weapons programme, managed by the Defence Research and Development Organisation (DRDO) and the Department of Atomic Energy (DAE), has achieved the miniaturization necessary for deployment on Agni and Prithvi missiles.</p>
+
+  <h3>Multiple Independently Targetable Re-entry Vehicles (MIRV)</h3>
+
+  <p>The most advanced warhead configuration in India's arsenal is the MIRV (Multiple Independently Targetable Re-entry Vehicle) system, successfully demonstrated in March 2024 under Mission Divyastra. MIRV technology allows a single missile to carry multiple nuclear warheads, each of which can be directed at a different target. This capability dramatically multiplies the destructive potential of a single missile launch and complicates the adversary's missile defence problem.</p>
+
+  <p>The Agni-V MIRV test demonstrated India's ability to launch a single ballistic missile carrying multiple warheads aimed at different targets spread across a vast geographical area. Reports suggest the test involved two to three dummy warheads, though the operational configuration may carry more. The development of MIRV technology requires solving complex problems in warhead miniaturization, post-boost vehicle guidance, warhead dispensing mechanisms, and re-entry physics.</p>
+
+  <h3>Tandem Warhead Technology</h3>
+
+  <p>For anti-armour applications, India has developed tandem warhead technology used in the Nag missile. The tandem configuration features a precursor charge followed by a main charge. The precursor charge is designed to detonate and defeat the explosive reactive armour (ERA) fitted to modern main battle tanks. Once the ERA is neutralized, the main shaped charge penetrates the tank's primary armour. This two-stage approach ensures high kill probability against even the most heavily protected armoured vehicles.</p>
+
+  <div class="ascii-diagram">
+    WARHEAD CONFIGURATION TYPES
+    ═══════════════════════════════════════════════════════════
+
+    SINGLE NUCLEAR          MIRV CONFIGURATION
+    ┌──────────┐           ┌──────────┐
+    │ RE-ENTRY │           │ POST-    │
+    │ VEHICLE  │           │ BOOST    │
+    │  ┌────┐  │           │ VEHICLE  │
+    │  │WHD │  │           │  ┌─┐┌─┐┌─┐│
+    │  └────┘  │           │  │1││2││3││
+    └──────────┘           │  └─┘└─┘└─┘│
+                           └──────────┘
+                             │  │  │
+                             ▼  ▼  ▼
+    TANDEM HEAT             [T1][T2][T3]
+    ┌──────────┐            Different targets
+    │ PRECURSOR│
+    │  CHARGE  │
+    ├──────────┤
+    │   MAIN   │
+    │  CHARGE  │
+    └──────────┘
+  </div>
+
+  <h3>Warhead Safety and Security</h3>
+
+  <p>India maintains rigorous safety protocols for nuclear warhead handling, storage, and transportation. Nuclear weapons are maintained under the custody of the Strategic Forces Command (SFC) with multiple layers of safety mechanisms, including environmental Sensing Safety Devices (ESDs) that prevent unauthorized detonation. The Nuclear Command Authority (NCA), chaired by the Prime Minister, is the sole body authorized to authorize the use of nuclear weapons.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>India has developed conventional warheads including HE, fragmentation, thermobaric, and submunitions</li>
+      <li>Nuclear warheads (~12 kt yield) are deployed on Agni and Prithvi-II missiles</li>
+      <li>MIRV technology demonstrated in March 2024 allows multiple warheads per missile</li>
+      <li>Tandem warhead technology defeats explosive reactive armour on tanks (Nag missile)</li>
+      <li>Rigorous safety protocols and Nuclear Command Authority control nuclear warheads</li>
+    </ul>
+  </div>
+  <div class="page-number">14</div>
+</div>
+
+<!-- ========== PAGE 15: RE-ENTRY VEHICLE TECHNOLOGY ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 15</span>
+  <h2 class="chapter-heading">Re-entry Vehicle Technology</h2>
+
+  <p>Re-entry vehicle technology is one of the most challenging and critical aspects of ballistic missile development. When a ballistic missile's warhead re-enters the Earth's atmosphere after its ballistic trajectory through space, it encounters extreme aerodynamic heating, with surface temperatures potentially exceeding 2,000 degrees Celsius. The re-entry vehicle must protect its warhead from these thermal and mechanical stresses while maintaining aerodynamic stability and trajectory accuracy. India's mastery of re-entry technology was a pivotal achievement that enabled the development of long-range ballistic missiles like the Agni series.</p>
+
+  <h3>The Challenge of Re-entry</h3>
+
+  <p>During re-entry, a missile's warhead travels at hypersonic speeds (typically Mach 10-25) through the atmosphere. The compression of air ahead of the re-entry vehicle generates intense heating through a combination of aerodynamic friction and compression. Without adequate thermal protection, the warhead would be destroyed before reaching its target. The re-entry vehicle must also maintain aerodynamic stability despite the extreme heating, which can alter the vehicle's shape and mass distribution.</p>
+
+  <p>The development of re-entry vehicle technology was the original motivation for the Agni programme within the IGMDP. When the Agni was first conceived in the early 1980s, it was intended not as a weapon system but as a technology demonstrator to validate re-entry vehicle technology. The first Agni test in 1989 successfully demonstrated India's capability to build and fly a re-entry vehicle, a critical milestone that enabled the subsequent development of long-range ballistic missiles.</p>
+
+  <h3>Thermal Protection Systems</h3>
+
+  <p>India has developed advanced thermal protection systems for its re-entry vehicles. These systems use ablative materials that absorb heat through controlled decomposition (charring, melting, and pyrolysis) rather than conducting it to the warhead. The ablative material is applied to the re-entry vehicle's heat shield, which faces the direction of travel during re-entry. As the material ablates, it carries away heat through mass loss and gas generation, creating a protective boundary layer that reduces heat transfer to the vehicle's structure.</p>
+
+  <div class="key-fact-box">
+    <h4>Re-entry Vehicle Challenges</h4>
+    <ul>
+      <li><span class="highlight-gold">Aerodynamic Heating:</span> Surface temperatures exceeding 2,000°C at hypersonic speeds</li>
+      <li><span class="highlight-gold">Mechanical Stress:</span> Deceleration forces of 50-100g during atmospheric re-entry</li>
+      <li><span class="highlight-gold">Plasma Sheath:</span> Ionized gas around vehicle causes communications blackout</li>
+      <li><span class="highlight-gold">Trajectory Accuracy:</span> Maintaining precision despite atmospheric disturbances</li>
+      <li><span class="highlight-gold">Warhead Survival:</span> Protecting nuclear/conventional payload from extreme conditions</li>
+      <li><span class="highlight-gold">MIRV Dispersion:</span> Deploying multiple warheads in correct trajectories</li>
+    </ul>
+  </div>
+
+  <h3>Re-entry Vehicle Shapes</h3>
+
+  <p>India has experimented with various re-entry vehicle shapes to optimize aerodynamic performance and thermal protection. The Agni missiles use blunted cone-shaped re-entry vehicles, which provide a good balance between aerodynamic stability, thermal protection, and volume efficiency. The blunted nose reduces peak heating by creating a detached bow shock wave that stands off from the vehicle surface, reducing convective heat transfer.</p>
+
+  <p>For MIRV applications, the re-entry vehicle design becomes more complex, as multiple smaller warheads must be housed within a single payload section and dispensed in the correct trajectories after the post-boost vehicle completes its manoeuvres. The development of MIRV-compatible re-entry vehicles requires solving problems of warhead miniaturization, separation mechanisms, and individual warhead guidance.</p>
+
+  <h3>India's Re-entry Technology Milestones</h3>
+
+  <p>India's re-entry technology development has followed a systematic progression:</p>
+
+  <ul>
+    <li><strong>1989:</strong> First Agni test demonstrated basic re-entry vehicle technology</li>
+    <li><strong>1999:</strong> Agni-II test validated improved re-entry thermal protection</li>
+    <li><strong>2007:</strong> Agni-I operational with proven re-entry capability</li>
+    <li><strong>2012:</strong> Agni-V test demonstrated re-entry at intercontinental ranges</li>
+    <li><strong>2024:</strong> Mission Divyastra validated MIRV re-entry technology</li>
+  </ul>
+
+  <h3>Blackout Communications</h3>
+
+  <p>During re-entry, the extreme heating ionizes the air around the re-entry vehicle, creating a plasma sheath that blocks electromagnetic communications. This phenomenon, known as "re-entry blackout," prevents telemetry data from being transmitted during the most critical phase of re-entry. India has addressed this challenge through predictive modelling, pre-recorded telemetry systems, and ground-based radar tracking that continues to monitor the vehicle's position even during the blackout period.</p>
+
+  <div class="ascii-diagram">
+    RE-ENTRY VEHICLE THERMAL PROTECTION
+    ═══════════════════════════════════════════════════════════
+
+    RE-ENTRY TRAJECTORY
+
+         SPACE
+         ┌───────────────────────────
+         │     Ballistic Arc
+         │    ╱              ╲
+         │   ╱                ╲
+         │  ╱                  ╲
+    ─────┼─╱────────────────────╲───── 100 km (Kármán line)
+         │╱    ABLATIVE HEAT     ╲
+         │╲     SHIELD           ╲
+    ─────┼──╲─────────────────────╲─── ATMOSPHERE
+         │   ╲  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓  ╲
+         │    ╲ ▓ RE-ENTRY VEHICLE▓╲
+         │     ╲▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓╲
+         │      ╲   PLASMA SHEATH  ╲
+    ─────┼───────╲─────────────────╲── GROUND
+         │        ▼
+         │    ┌────────┐
+         │    │ TARGET │
+         │    └────────┘
+
+    HEAT SHIELD MATERIALS:
+    ┌─────────────────────────────────┐
+    │ Ablative composites             │
+    │ Carbon-phenolic materials       │
+    │ Re-inforced carbon-carbon (RCC) │
+    │ Silica-phenolic composites      │
+    └─────────────────────────────────┘
+  </div>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>Re-entry vehicles must withstand temperatures exceeding 2,000°C during atmospheric re-entry</li>
+      <li>Ablative thermal protection systems absorb heat through controlled material decomposition</li>
+      <li>The Agni programme was originally conceived to validate re-entry vehicle technology</li>
+      <li>MIRV re-entry requires deploying multiple smaller warheads in correct trajectories</li>
+      <li>Re-entry blackout creates communications challenges addressed through radar tracking</li>
+    </ul>
+  </div>
+  <div class="page-number">15</div>
+</div>
+
+<!-- ========== PAGE 16: PROPULSION SYSTEMS ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 16</span>
+  <h2 class="chapter-heading">Propulsion Systems</h2>
+
+  <p>Propulsion is the heart of any missile system, providing the thrust necessary to accelerate the missile to its required speed and sustain it throughout its flight. India has developed indigenous expertise across the full spectrum of missile propulsion technologies, including solid, liquid, and hybrid rocket motors, as well as air-breathing ramjet and scramjet engines. The mastery of propulsion technology has been essential for the development of India's diverse missile arsenal, from short-range tactical weapons to intercontinental ballistic missiles. The High Energy Materials Research Laboratory (HEMRL) in Pune and the Solid Propulsion Complex at DRDL have been central to India's propulsion development efforts.</p>
+
+  <h3>Solid Propulsion</h3>
+
+  <p>Solid rocket motors are the primary propulsion system for India's ballistic missiles, including the entire Agni series and the newer Prithvi variants. Solid propulsion offers several advantages for military missiles: the propellant is pre-loaded and stable for long storage periods, the motor can be activated instantly, and the system is mechanically simpler than liquid propulsion. India has developed a range of solid propellants based on composite formulations using ammonium perchlorate as oxidizer, aluminium powder as fuel, and HTPB (hydroxyl-terminated polybutadiene) as binder.</p>
+
+  <div class="key-fact-box">
+    <h4>Propulsion Technologies in India's Missiles</h4>
+    <ul>
+      <li><span class="highlight-gold">Solid Propellant:</span> Composite formulations (AP/Al/HTPB) for Agni, Akash, Nag</li>
+      <li><span class="highlight-gold">Liquid Propellant:</span> UDMH/Nitrogen tetroxide for Prithvi I & II, BrahMos ramjet</li>
+      <li><span class="highlight-gold">Ramjet:</span> Air-breathing supersonic propulsion for BrahMos (Mach 2.8)</li>
+      <li><span class="highlight-gold">Dual-Pulse Motor:</span> Two-pulse solid motor for Barak-8 missile</li>
+      <li><span class="highlight-gold">Hybrid:</span> Combined solid-liquid stages for Prithvi-III</li>
+      <li><span class="highlight-gold">Scramjet:</span> Hypersonic air-breathing engine under development (BrahMos-II)</li>
+    </ul>
+  </div>
+
+  <p>The Agni-V uses three solid-propellant stages, each designed for specific thrust profiles. The first stage provides the initial boost to lift the 50-tonne missile off the launch pad. The second stage sustains acceleration as the missile climbs through the atmosphere. The third stage, featuring a conical composite-cased motor, provides the final push to boost the re-entry vehicle onto its ballistic trajectory. Each stage incorporates flexseal thrust vector control for trajectory shaping.</p>
+
+  <h3>Liquid Propulsion</h3>
+
+  <p>Liquid rocket engines were used in India's early missile programmes, particularly the Prithvi series. The Prithvi-I and Prithvi-II use single-stage liquid-fuelled engines burning UDMH (unsymmetrical dimethylhydrazine) as fuel and nitrogen tetroxide as oxidizer. Liquid propulsion offers advantages in terms of throttleability and shutdown capability, but requires more complex ground support equipment for propellant loading. The BrahMos missile also uses a liquid-fuelled ramjet for its sustained cruise phase.</p>
+
+  <div class="ascii-diagram">
+    PROPULSION SYSTEM COMPARISON
+    ═══════════════════════════════════════════════════════════
+
+    SOLID ROCKET MOTOR          LIQUID ROCKET ENGINE
+    ┌───────────────┐          ┌───────────────┐
+    │   IGNITER     │          │  PROPELLANT   │
+    ├───────────────┤          │  TANKS (UDMH  │
+    │               │          │  + N2O4)      │
+    │  SOLID        │          ├───────────────┤
+    │  PROPELLANT   │          │  TURBO-PUMP   │
+    │  GRAIN        │          │  ASSEMBLY     │
+    │  (AP/Al/HTPB) │          ├───────────────┤
+    │               │          │  COMBUSTION   │
+    ├───────────────┤          │  CHAMBER      │
+    │  NOZZLE w/TVC │          ├───────────────┤
+    └───────┬───────┘          │  NOZZLE w/TVC │
+            │                  └───────┬───────┘
+            ▼                          ▼
+    ┌───────────────┐          ┌───────────────┐
+    │  ADVANTAGES:  │          │  ADVANTAGES:  │
+    │  • Instant    │          │  • Throttle   │
+    │    ignition   │          │  • Shutdown   │
+    │  • Simple     │          │  • Restart    │
+    │  • Long shelf │          │  • High Isp   │
+    └───────────────┘          └───────────────┘
+
+    RAMJET (BrahMos)            SCRAMJET (BrahMos-II)
+    ┌───────────────┐          ┌───────────────┐
+    │  AIR INLET    │          │  AIR INLET    │
+    ├───────────────┤          ├───────────────┤
+    │  DIFFUSER     │          │  SUPersonic   │
+    │  (subsonic)   │          │  COMBUSTION   │
+    ├───────────────┤          ├───────────────┤
+    │  COMBUSTION   │          │  COMBUSTION   │
+    │  CHAMBER      │          │  CHAMBER      │
+    ├───────────────┤          ├───────────────┤
+    │  NOZZLE       │          │  NOZZLE       │
+    └───────────────┘          └───────────────┘
+    Mach 2.5-3.0               Mach 5-7+
+  </div>
+
+  <h3>Ramjet Propulsion</h3>
+
+  <p>The BrahMos missile uses a liquid-fuelled ramjet engine for sustained supersonic cruise. A ramjet is an air-breathing engine that uses the missile's forward motion to compress incoming air, eliminating the need for a mechanical compressor. The compressed air is mixed with fuel and ignited, producing thrust through the exhaust nozzle. The ramjet cannot start from rest — it requires the solid booster to accelerate the missile to supersonic speed first. Once activated, the ramjet sustains the missile at Mach 2.5-2.8 throughout its cruise phase.</p>
+
+  <h3>Future Propulsion: Scramjet Technology</h3>
+
+  <p>India is actively developing scramjet (supersonic combustion ramjet) technology for future hypersonic missiles. Unlike a conventional ramjet that slows incoming air to subsonic speeds before combustion, a scramjet maintains supersonic airflow throughout the engine, enabling operation at much higher speeds (Mach 5-7+). The BrahMos-II, a hypersonic variant of the BrahMos, will use scramjet propulsion to achieve speeds exceeding Mach 7. India has conducted several ground tests of scramjet engine components and is working toward flight demonstration of the technology.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>Solid propulsion is the primary system for Agni missiles, offering instant readiness and long shelf life</li>
+      <li>Liquid propulsion (UDMH/N2O4) is used in Prithvi I & II and BrahMos ramjet</li>
+      <li>BrahMos ramjet achieves Mach 2.8 cruise speed using air-breathing propulsion</li>
+      <li>Dual-pulse solid motors provide advanced propulsion for Barak-8 interceptors</li>
+      <li>Scramjet technology under development for BrahMos-II hypersonic missile</li>
+    </ul>
+  </div>
+  <div class="page-number">16</div>
+</div>
+
+<!-- ========== PAGE 17: TEST PROTOCOLS & RANGE SAFETY ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 17</span>
+  <h2 class="chapter-heading">Test Protocols & Range Safety</h2>
+
+  <p>Missile testing is an inherently high-risk activity that demands rigorous protocols and safety measures to protect personnel, property, and the environment. India has developed comprehensive test protocols and range safety procedures that govern every aspect of missile testing, from pre-flight preparations to post-flight recovery operations. These protocols have been refined over four decades of testing experience and represent international best practices in range safety management. The safety culture at India's test ranges has maintained an exemplary record, with no serious safety incidents during the hundreds of missile tests conducted since the 1980s.</p>
+
+  <h3>Pre-Flight Preparations</h3>
+
+  <p>Before any missile test, extensive preparations are conducted over a period of weeks or months. These preparations include system integration and checkout, propellant loading (for liquid-fuelled missiles), guidance system calibration, warhead integration (for operational tests), and communication system verification. Each step is documented and verified by multiple teams to ensure compliance with design specifications and safety requirements.</p>
+
+  <p>A formal Flight Readiness Review (FRR) is conducted before each test launch. The FRR brings together senior scientists, engineers, military officials, and safety officers to review all aspects of the test programme. The FRR assesses the missile's readiness, the range's preparedness, tracking system functionality, weather conditions, and sea state (for over-water tests). The FRR must authorize the test to proceed; any concerns raised by participants must be addressed before the launch can be approved.</p>
+
+  <h3>Range Safety Organization</h3>
+
+  <p>The Range Safety Organization (RSO) at ITR Chandipur is responsible for ensuring the safety of all test activities. The RSO operates independently from the missile development teams and has the authority to halt or abort any test if safety parameters are violated. The RSO maintains real-time tracking of the missile's position and trajectory, comparing this data against pre-defined safety corridors and impact zones.</p>
+
+  <div class="key-fact-box">
+    <h4>Range Safety Protocols</h4>
+    <ul>
+      <li><span class="highlight-gold">Safety Corridors:</span> Pre-defined flight paths with exclusion zones for populated areas</li>
+      <li><span class="highlight-gold">Flight Termination System:</span> Command-destruct capability if missile deviates from safe path</li>
+      <li><span class="highlight-gold">Downrange Ships:</span> Positioned in impact zone to confirm warhead splashdown</li>
+      <li><span class="highlight-gold">Weather Limits:</span> Specific wind speed, cloud cover, and lightning requirements</li>
+      <li><span class="highlight-gold">Sea State:</span> Wave height limits for over-water tests and ship-based tracking</li>
+      <li><span class="highlight-gold">Communication Protocols:</span> Redundant command links for launch and termination commands</li>
+    </ul>
+  </div>
+
+  <h3>Flight Termination Systems</h3>
+
+  <p>Every missile test vehicle is equipped with a Flight Termination System (FTS) that can destroy the missile if it deviates from its planned trajectory and threatens populated areas or other assets. The FTS typically uses one or more redundant command-destruct receivers that can trigger explosive charges to destroy the missile's motor or separate its stages. The FTS can be activated by the Range Safety Officer if the missile exceeds its safety limits.</p>
+
+  <p>India has also developed autonomous flight termination capability, where the missile's onboard computer can detect unsafe conditions and trigger self-destruction without ground command. This capability is particularly important for long-range tests where communication delays could prevent timely ground-based termination.</p>
+
+  <h3>Exclusion Zones and Maritime Safety</h3>
+
+  <p>For missile tests over the Bay of Bengal, India establishes maritime exclusion zones to protect shipping and fishing activities. NOTAMs (Notices to Airmen) and NAVAREA warnings are issued to alert aircraft and ships of the test activity. The Indian Navy deploys ships to patrol the exclusion zone and ensure compliance. Downrange tracking ships are positioned along the missile's flight path to collect telemetry data and confirm target impact.</p>
+
+  <div class="ascii-diagram">
+    TEST PROTOCOL SEQUENCE
+    ═══════════════════════════════════════════════════════════
+
+    ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐
+    │ INTEGRATION│→ │ PROPELLANT│→ │  SYSTEM  │→ │FLIGHT    │
+    │ & CHECKOUT│   │ LOADING   │   │ CALIBRATE│   │READINESS │
+    │           │   │           │   │          │   │REVIEW    │
+    └──────────┘   └──────────┘   └──────────┘   └────┬─────┘
+                                                       │
+                                                       ▼
+    ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐
+    │POST-FLIGHT│← │  IMPACT  │← │  FLIGHT  │← │  RANGE   │
+    │ ANALYSIS  │   │ CONFIRM  │   │ TRACKING │   │ CLEARANCE│
+    │           │   │          │   │          │   │          │
+    └──────────┘   └──────────┘   └──────────┘   └──────────┘
+
+    TIMELINE (Typical Agni Test):
+    ─────────────────────────────────────────────────────────
+    T-72 hrs  │ System integration and checkout begins
+    T-24 hrs  │ Propellant loading completed
+    T-12 hrs  │ Final system calibration
+    T-4 hrs   │ Flight Readiness Review
+    T-2 hrs   │ Range clearance confirmed
+    T-30 min  │ Tracking systems activated
+    T-0       │ LAUNCH
+    T+5 min   │ Impact confirmation
+    T+24 hrs  │ Post-flight data analysis begins
+  </div>
+
+  <h3>Post-Flight Analysis</h3>
+
+  <p>After each test, extensive post-flight analysis is conducted using data collected by radar tracking, telemetry, electro-optical systems, and downrange ships. This analysis verifies whether the missile met all design specifications and mission objectives. Any anomalies are identified and investigated to determine their root cause and impact on future tests. The post-flight analysis results are documented in formal test reports that guide subsequent development and testing activities.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>Comprehensive Flight Readiness Reviews authorize each test launch</li>
+      <li>The Range Safety Organization operates independently with abort authority</li>
+      <li>Flight Termination Systems can destroy missiles that deviate from safe flight paths</li>
+      <li>Maritime exclusion zones and NOTAMs protect shipping and aviation during over-water tests</li>
+      <li>Post-flight analysis using multi-source data validates missile performance</li>
+    </ul>
+  </div>
+  <div class="page-number">17</div>
+</div>
+
+<!-- ========== PAGE 18: NUCLEAR DETERRENCE DOCTRINE ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 18</span>
+  <h2 class="chapter-heading">Nuclear Deterrence Doctrine</h2>
+
+  <p>India's nuclear deterrence doctrine provides the strategic framework within which the country's missile arsenal is deployed and operated. Formally articulated by the Cabinet Committee on Security (CCS) on January 4, 2003, the doctrine establishes the principles governing India's nuclear weapons policy, including the commitment to "No First Use" (NFU) and "credible minimum deterrent." The missile testing programme is fundamentally linked to this doctrine, as the development and deployment of nuclear-capable missiles provides the delivery mechanism for India's nuclear deterrent.</p>
+
+  <h3>Core Principles of India's Nuclear Doctrine</h3>
+
+  <p>India's nuclear doctrine, as articulated by the CCS, rests on several key principles:</p>
+
+  <ul>
+    <li><strong>Credible Minimum Deterrent:</strong> India will build and maintain a nuclear arsenal sufficient to deter nuclear aggression, but will not engage in an arms race.</li>
+    <li><strong>No First Use (NFU):</strong> Nuclear weapons will only be used in retaliation against a nuclear attack on Indian territory or on Indian forces anywhere.</li>
+    <li><strong>Massive Retaliation:</strong> Nuclear retaliation to a first strike will be massive and designed to inflict unacceptable damage on the adversary.</li>
+    <li><strong>Civilian Control:</strong> Nuclear retaliatory attacks can only be authorized by the civilian political leadership through the Nuclear Command Authority.</li>
+    <li><strong>Non-Use Against Non-Nuclear States:</strong> India will not use nuclear weapons against non-nuclear weapon states.</li>
+    <li><strong>CBRN Exception:</strong> India retains the option to retaliate with nuclear weapons in the event of a major attack by biological or chemical weapons.</li>
+  </ul>
+
+  <div class="key-fact-box">
+    <h4>Nuclear Command Authority (NCA)</h4>
+    <ul>
+      <li><span class="highlight-gold">Political Council:</span> Chaired by the Prime Minister — sole authority to authorize nuclear use</li>
+      <li><span class="highlight-gold">Executive Council:</span> Chaired by the National Security Advisor — provides operational inputs</li>
+      <li><span class="highlight-gold">Strategic Forces Command (SFC):</span> Implements nuclear delivery through triad of missiles, aircraft, and submarines</li>
+    </ul>
+  </div>
+
+  <h3>The Nuclear Triad</h3>
+
+  <p>India has operationalized a nuclear triad — the capability to deliver nuclear weapons from land, sea, and air. This triad ensures the survivability of India's nuclear deterrent, as an adversary must simultaneously target all three legs to neutralize India's second-strike capability.</p>
+
+  <p><strong>Land-Based Leg:</strong> The Agni series of ballistic missiles (Agni-I through Agni-V) and Prithvi-II form the land-based component of the triad. These missiles are deployed on road-mobile and rail-mobile launchers, dispersed across the country to enhance survivability. The canisterized Agni-V provides rapid reaction capability from dispersed locations.</p>
+
+  <p><strong>Sea-Based Leg:</strong> The submarine-launched ballistic missile capability, centered on the INS Arihant class of nuclear-powered submarines, provides the most survivable component of the triad. The K-15 Sagarika (range 750 km) and K-4 (range 3,500 km) SLBMs give India a secure second-strike capability that can be launched from hidden submarine positions in the Indian Ocean.</p>
+
+  <p><strong>Air-Based Leg:</strong> The Indian Air Force's Mirage 2000H and Jaguar IS fighter aircraft can deliver nuclear weapons in the form of gravity bombs. While less capable than ballistic missiles in terms of range and penetrability, the air-based leg provides flexibility and rapid deployment capability.</p>
+
+  <h3>Strategic Implications of Missile Development</h3>
+
+  <p>India's missile development programme is directly linked to its nuclear deterrence posture. The progression from short-range Prithvi missiles to intercontinental Agni-V reflects the evolving threat perception and the need to hold adversaries' strategic centres at risk. The development of MIRV technology, demonstrated through Mission Divyastra in 2024, enhances the credibility of India's deterrent by complicating adversary missile defence calculations.</p>
+
+  <p>The Agni-V's range of 5,000-8,000 km ensures that all of China's major cities and military installations are within India's strike range. This capability is essential for maintaining credible deterrence against China, which possesses a significantly larger nuclear arsenal and geographic depth. The deployment of canisterized, road-mobile Agni-V missiles ensures survivability against a first strike, underpinning the NFU doctrine's requirement for a secure second-strike capability.</p>
+
+  <h3>Debate on NFU Policy</h3>
+
+  <p>While India officially maintains its No First Use commitment, there has been periodic debate within strategic circles about whether the policy should be revisited. Proponents of change argue that NFU may not adequately deter lower-level nuclear provocations, particularly Pakistan's development of tactical nuclear weapons. However, the official position remains that India's NFU policy is credible and will continue to guide India's nuclear posture. The development of robust second-strike capabilities through the nuclear triad reinforces the credibility of this commitment.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>India's nuclear doctrine is based on No First Use, credible minimum deterrent, and massive retaliation</li>
+      <li>The Nuclear Command Authority, chaired by the PM, is the sole authority for nuclear weapon use</li>
+      <li>India has operationalized a nuclear triad: land (Agni/Prithvi), sea (K-15/K-4 on submarines), air (Mirage 2000H)</li>
+      <li>Missile development directly supports nuclear deterrence posture and second-strike capability</li>
+      <li>MIRV technology (2024) enhances deterrent credibility by complicating adversary missile defences</li>
+    </ul>
+  </div>
+  <div class="page-number">18</div>
+</div>
+
+<!-- ========== PAGE 19: FUTURE MISSILES ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 19</span>
+  <h2 class="chapter-heading">Future Missiles: Agni-VI & Hypersonic Weapons</h2>
+
+  <p>India's missile development programme continues to evolve, with several advanced systems under development that will significantly enhance the country's strategic and tactical capabilities. The most anticipated future systems include the Agni-VI intercontinental ballistic missile with advanced MIRV capability, hypersonic weapons based on scramjet technology, and next-generation cruise and ballistic missiles. These programmes represent the cutting edge of Indian missile technology and will ensure that India maintains a credible and technologically sophisticated deterrent against evolving threats.</p>
+
+  <h3>Agni-VI: The Next Generation ICBM</h3>
+
+  <p>The Agni-VI is the most anticipated future missile in India's arsenal. DRDO officials have confirmed that the organization is fully prepared to move ahead with the Agni-VI programme once government approval is received. Unlike the Agni-V, which was a technology evolution from Agni-III, the Agni-VI is being designed from the ground up as a true intercontinental ballistic missile with advanced MIRV capability.</p>
+
+  <div class="key-fact-box">
+    <h4>Agni-VI Projected Specifications</h4>
+    <ul>
+      <li><span class="highlight-gold">Range:</span> 6,000-8,000+ km</li>
+      <li><span class="highlight-gold">Warheads:</span> 4-6 MIRV warheads</li>
+      <li><span class="highlight-gold">Weight:</span> 65-70 tonnes (class)</li>
+      <li><span class="highlight-gold">Length:</span> ~20 metres</li>
+      <li><span class="highlight-gold">Diameter:</span> 2 metres</li>
+      <li><span class="highlight-gold">Stages:</span> Three (all solid propellant)</li>
+      <li><span class="highlight-gold">Launch:</span> Road-mobile, canisterized</li>
+      <li><span class="highlight-gold">Status:</span> Design completed, awaiting government approval</li>
+    </ul>
+  </div>
+
+  <p>DRDO technologists have revealed that the Agni-VI will carry four to six warheads depending on their weight, with the constraint being the vehicle's mass. The missile will feature advanced warhead dispersal mechanisms that can release warheads in sequence, with each warhead able to strike a different target separated by distances of 100 km or more. The Agni-VI will be significantly larger than the Agni-V, weighing 65-70 tonnes compared to Agni-V's 50 tonnes, and will be approximately 20 metres long.</p>
+
+  <h3>Hypersonic Weapons Programme</h3>
+
+  <p>India is actively pursuing hypersonic missile technology through several parallel programmes. Hypersonic weapons, defined as those travelling at speeds exceeding Mach 5, represent a transformative capability that can defeat existing missile defence systems through sheer speed and manoeuvrability.</p>
+
+  <p><strong>HSTDV (Hypersonic Technology Demonstrator Vehicle):</strong> India successfully tested the HSTDV in September 2020, demonstrating scramjet engine technology at hypersonic speeds. The HSTDV reached a speed of Mach 6 during its flight test, validating the design of India's scramjet engine and thermal protection systems. This technology demonstrator provides the foundation for future hypersonic missile development.</p>
+
+  <p><strong>BrahMos-II:</strong> The BrahMos-II is a hypersonic variant of the BrahMos cruise missile, designed to achieve speeds exceeding Mach 7. The missile will use scramjet propulsion instead of the ramjet used in the current BrahMos. BrahMos-II will be capable of being launched from land, sea, and air platforms, providing a universally deployable hypersonic strike capability. The development of BrahMos-II is a joint India-Russia programme.</p>
+
+  <div class="ascii-diagram">
+    INDIA'S MISSILE DEVELOPMENT ROADMAP
+    ═══════════════════════════════════════════════════════════
+
+    CURRENT CAPABILITIES              FUTURE SYSTEMS
+    ─────────────────────             ─────────────────────
+    ┌────────────┐                    ┌────────────────┐
+    │ Agni-I     │  700 km            │                │
+    │ Agni-II    │  2,000 km          │                │
+    │ Agni-III   │  3,500 km          │                │
+    │ Agni-IV    │  4,000 km          │                │
+    │ Agni-V     │  5,000+ km    ───▶ │ Agni-VI        │ 6,000-8,000+ km
+    │ Agni-P     │  1,000-2,000 km    │ (MIRV: 4-6     │
+    │            │                    │  warheads)     │
+    └────────────┘                    └────────────────┘
+
+    ┌────────────┐                    ┌────────────────┐
+    │ BrahMos    │  Mach 2.8     ───▶ │ BrahMos-II     │ Mach 7+
+    │ (Ramjet)   │  290 km            │ (Scramjet)     │ 300+ km
+    └────────────┘                    └────────────────┘
+
+    ┌────────────┐                    ┌────────────────┐
+    │ HSTDV      │  Mach 6       ───▶ │ Hypersonic     │ Mach 7-10
+    │ (Demo)     │  (Technology       │ Glide Vehicle  │
+    │            │   Demonstrator)    │ (Operational)  │
+    └────────────┘                    └────────────────┘
+
+    ┌────────────┐                    ┌────────────────┐
+    │ Akash-NG   │  30 km        ───▶ │ XR-SAM         │ 250 km
+    │ Barak-8 ER │  70-150 km         │ (Extended      │
+    │            │                    │  Range SAM)    │
+    └────────────┘                    └────────────────┘
+  </div>
+
+  <h3>Pralay: Tactical Ballistic Missile</h3>
+
+  <p>Pralay is a new short-range ballistic missile designed for tactical battlefield use. With a range of 150-500 km, Pralay fills the gap between the Prahaar tactical missile and the Agni-I ballistic missile. The missile uses solid propulsion and features advanced guidance systems for precision strikes against high-value battlefield targets. Pralay is designed to be a quick-reaction, road-mobile system that can be deployed rapidly in response to evolving battlefield situations.</p>
+
+  <h3>Nirbhay: Long-Range Cruise Missile</h3>
+
+  <p>The Nirbhay is India's indigenous long-range subsonic cruise missile, designed to provide precision strike capability at ranges of 1,000-1,500 km. Unlike the supersonic BrahMos, Nirbhay is designed for low-altitude, terrain-hugging flight that makes it difficult to detect by radar. The missile uses a turbofan engine for propulsion and features both INS and GPS guidance with terminal seeker homing. Nirbhay can carry both conventional and nuclear warheads, adding another dimension to India's strategic strike capability.</p>
+
+  <h3>K-Series Submarine-Launched Missiles</h3>
+
+  <p>India continues to develop its submarine-launched ballistic missile (SLBM) capability with the K-series of missiles. The K-15 Sagarika (range 750 km) is already deployed on INS Arihant submarines. The K-4 (range 3,500 km) is undergoing testing and will significantly extend the range of India's sea-based deterrent. Future missiles in the series, including the K-5 and K-6, are reported to have ranges of 6,000 km and beyond, potentially providing intercontinental range from submarine platforms.</p>
+
+  <div class="summary-box">
+    <h4>Chapter Summary</h4>
+    <ul>
+      <li>Agni-VI will carry 4-6 MIRV warheads with 6,000-8,000+ km range, design completed</li>
+      <li>HSTDV demonstrated Mach 6 scramjet technology in 2020, foundation for BrahMos-II</li>
+      <li>BrahMos-II hypersonic cruise missile will achieve Mach 7+ speed</li>
+      <li>Pralay tactical ballistic missile fills the 150-500 km range gap</li>
+      <li>K-series SLBMs (K-4, K-5, K-6) extend submarine-launched deterrent range</li>
+    </ul>
+  </div>
+  <div class="page-number">19</div>
+</div>
+
+<!-- ========== PAGE 20: SUMMARY & STRATEGIC IMPORTANCE ========== -->
+<div class="page">
+  <span class="chapter-num">Chapter 20</span>
+  <h2 class="chapter-heading">Summary & Strategic Importance</h2>
+
+  <p>India's missile testing programme represents one of the most remarkable indigenous technology achievements in the developing world. From the modest beginnings of the IGMDP in 1983 to the successful demonstration of MIRV technology in 2024, India has built a comprehensive missile capability that spans the full spectrum of strategic and tactical systems. This chapter summarizes the key achievements, assesses the strategic significance of India's missile programme, and considers its future trajectory in the context of evolving regional and global security dynamics.</p>
+
+  <h3>Achievement Summary</h3>
+
+  <div class="two-column">
+    <div class="stat-box">
+      <div class="stat-num">5,000+</div>
+      <div class="stat-label">Max Range (km)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">Mach 2.8</div>
+      <div class="stat-label">BrahMos Speed</div>
+    </div>
+  </div>
+  <div class="two-column" style="margin-top: 15px;">
+    <div class="stat-box">
+      <div class="stat-num">400+</div>
+      <div class="stat-label">Missile Tests Conducted</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">96%</div>
+      <div class="stat-label">Indigenous Content</div>
+    </div>
+  </div>
+
+  <p>Over four decades, India's DRDO has developed:</p>
+  <ul>
+    <li><strong>Strategic Ballistic Missiles:</strong> The Agni family (Agni-I through Agni-V, plus Agni-P), providing ranges from 700 km to 8,000 km with nuclear capability</li>
+    <li><strong>Short-Range Ballistic Missiles:</strong> Prithvi series (Prithvi-I, II, III/Dhanush) for tactical nuclear and conventional strike</li>
+    <li><strong>Supersonic Cruise Missiles:</strong> BrahMos, the world's fastest operational cruise missile at Mach 2.8</li>
+    <li><strong>Air Defence Systems:</strong> Akash (medium-range SAM), Barak-8/MRSAM (long-range SAM), and QRSAM</li>
+    <li><strong>Anti-Tank Missiles:</strong> Nag, HELINA, and MPATGM for armour defeat</li>
+    <li><strong>Advanced Technologies:</strong> MIRV, canisterization, rail-mobile launch, scramjet propulsion</li>
+  </ul>
+
+  <h3>Strategic Significance</h3>
+
+  <p>India's missile programme has fundamentally altered the strategic balance in South Asia and enhanced India's standing as a major military power. The key strategic contributions include:</p>
+
+  <p><strong>Nuclear Deterrence:</strong> The Agni series of missiles, combined with Prithvi-II and aircraft-delivered weapons, provides the delivery mechanism for India's nuclear deterrent. The development of MIRV technology and submarine-launched ballistic missiles ensures the credibility of India's second-strike capability, which is essential for the "No First Use" doctrine.</p>
+
+  <p><strong>Conventional Deterrence:</strong> Systems like BrahMos and Prithvi provide India with potent conventional strike capabilities. The BrahMos's speed and precision make it a formidable weapon against both naval and land targets, as demonstrated during Operation Sindoor in 2025.</p>
+
+  <p><strong>Air Defence:</strong> The combination of Akash, Barak-8/MRSAM, and the S-400 creates a multi-layered air defence network capable of countering a wide range of aerial threats, from cruise missiles to ballistic missiles and UAVs.</p>
+
+  <div class="key-fact-box">
+    <h4>India's Missile Programme: Key Statistics</h4>
+    <ul>
+      <li><span class="highlight-gold">Total Missile Families:</span> 8+ (Agni, Prithvi, BrahMos, Akash, Nag, Barak-8, K-series, Nirbhay)</li>
+      <li><span class="highlight-gold">Maximum Range:</span> 5,000-8,000 km (Agni-V), future 6,000-8,000+ km (Agni-VI)</li>
+      <li><span class="highlight-gold">Fastest Missile:</span> BrahMos at Mach 2.8 (supersonic), BrahMos-II target Mach 7+ (hypersonic)</li>
+      <li><span class="highlight-gold">MIRV Capability:</span> Achieved 2024 (Mission Divyastra on Agni-V)</li>
+      <li><span class="highlight-gold">Export Success:</span> BrahMos (Philippines), Akash (Armenia) — India's first major defence exports</li>
+      <li><span class="highlight-gold">Nuclear Triad:</span> Operational with land, sea (INS Arihant), and air delivery</li>
+    </ul>
+  </div>
+
+  <h3>Future Trajectory</h3>
+
+  <p>India's missile programme will continue to evolve in response to emerging threats and technological opportunities. Key future developments include the Agni-VI ICBM with advanced MIRV capability, BrahMos-II hypersonic cruise missile, next-generation air defence systems, and expanded submarine-launched ballistic missile capability. India's growing defence export potential, particularly in the missile domain, will also contribute to the country's economic and strategic influence.</p>
+
+  <p>The programme's success is built on a foundation of indigenous research and development, robust testing infrastructure, strong industry partnerships, and a culture of scientific excellence. As India faces an increasingly complex security environment with threats from both Pakistan and China, the continued development and modernization of its missile arsenal will remain a national priority.</p>
+
+  <blockquote>
+    "The missile programme has transformed India from a technology-dependent nation to one possessing comprehensive indigenous capabilities across the full spectrum of missile systems. This achievement represents not just a military capability, but a testament to India's scientific and industrial prowess."
+  </blockquote>
+
+  <h3>Challenges and Considerations</h3>
+
+  <p>Despite its remarkable achievements, India's missile programme faces several ongoing challenges. These include the need to further reduce dependence on imported components, accelerate the development of hypersonic technology, expand missile defence capabilities, and ensure adequate funding for future programmes. The programme must also adapt to emerging technologies such as artificial intelligence, directed energy weapons, and advanced materials that could transform missile warfare in the coming decades.</p>
+
+  <p>The strategic importance of India's missile programme cannot be overstated. It is the cornerstone of India's nuclear deterrent, a critical component of its conventional military capability, and a symbol of its technological self-reliance. As India's role on the world stage continues to grow, its missile programme will remain essential to national security and strategic autonomy.</p>
+
+  <div class="summary-box">
+    <h4>Final Summary</h4>
+    <ul>
+      <li>India's missile programme has evolved from basic technology demonstration to world-class strategic capability</li>
+      <li>The programme spans strategic ballistic missiles, tactical systems, cruise missiles, and air defence</li>
+      <li>MIRV technology, canisterization, and rail-mobile launch provide advanced strategic capabilities</li>
+      <li>Future systems include Agni-VI ICBM, BrahMos-II hypersonic missile, and next-generation air defence</li>
+      <li>The missile programme is the cornerstone of India's nuclear deterrent and conventional military power</li>
+      <li>Continued investment and innovation will be essential to maintain technological edge</li>
+    </ul>
+  </div>
+  <div class="page-number">20</div>
+</div>
+
+<!-- ========== BACK COVER ========== -->
+<div class="page cover-page" style="min-height: 297mm;">
+  <div class="cover-emblem">&#128163;</div>
+  <div class="cover-line"></div>
+  <div style="max-width: 450px; text-align: center;">
+    <h3 style="color: var(--accent-gold); font-size: 18px; margin-bottom: 20px;">MISSILE TESTING</h3>
+    <p style="color: var(--text-secondary); font-size: 13px; line-height: 1.8;">
+      India's Strategic Defence Systems<br><br>
+      A comprehensive study covering the history, technology, testing infrastructure,<br>
+      and strategic significance of India's missile programme — from the IGMDP<br>
+      origins in 1983 to the MIRV breakthrough of 2024 and beyond.
+    </p>
+    <div class="cover-line" style="margin: 30px auto;"></div>
+    <p style="color: var(--text-secondary); font-size: 12px;">
+      Published by <span class="highlight-gold">MissileX RocketSpace Research</span><br>
+      September 2026 Edition<br><br>
+      This publication is for educational and research purposes.<br>
+      All data sourced from publicly available government and defence publications.
+    </p>
+  </div>
+  <div class="cover-ascii" style="margin-top: 40px;">
+    ╔═══════════════════════════════════════════════╗
+    ║  "The nation's strength lies in its ability    ║
+    ║   to defend itself with indigenous technology" ║
+    ║                  — Dr. A.P.J. Abdul Kalam      ║
+    ╚═══════════════════════════════════════════════╝
+  </div>
+  <div class="page-number">End</div>
+</div>
+
+<!-- Download Button -->
+<button class="download-btn no-print" onclick="window.print()">Download / Print PDF</button>
+
+</body>
+</html></

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Books — MissileX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#00d4ff;--secondary:#ff6b35;--accent:#00ff88;--dark:#0a0a0f;--gray:#888;--card:#0d0d14;--border:rgba(255,255,255,0.06);}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--dark);color:#fff;font-family:'Inter',sans-serif;min-height:100vh;}
+        a{text-decoration:none;color:inherit;}
+
+        nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;height:60px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,12,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:all 0.5s;}
+        nav.scrolled{background:rgba(6,6,12,0.95);box-shadow:0 1px 0 rgba(0,212,255,0.1),0 8px 32px rgba(0,0,0,0.4);}
+        .nav-logo{display:flex;align-items:center;gap:12px;}
+        .logo-text{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;background:linear-gradient(135deg,var(--primary),#00ff88);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+        .logo-sub{font-size:0.55rem;color:rgba(255,255,255,0.4);letter-spacing:0.18em;font-weight:500;}
+        .nav-links{display:flex;gap:6px;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:6px 8px;}
+        .nav-links a{font-family:'Orbitron',monospace;font-size:0.6rem;color:rgba(255,255,255,0.5);padding:8px 14px;border-radius:8px;transition:all 0.3s;white-space:nowrap;}
+        .nav-links a:hover,.nav-links a.active{color:var(--primary);background:rgba(0,212,255,0.08);}
+        .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+        .nav-hamburger span{width:25px;height:2px;background:#fff;transition:0.3s;}
+
+        .container{max-width:1100px;margin:0 auto;padding:100px 20px 60px;}
+        .page-header{text-align:center;margin-bottom:50px;}
+        .page-header .label{font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--primary);margin-bottom:8px;}
+        .page-header h1{font-family:'Orbitron',monospace;font-size:2.2rem;font-weight:900;margin-bottom:12px;}
+        .page-header h1 span{background:linear-gradient(135deg,var(--primary),#00ff88);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .page-header p{color:var(--gray);font-size:1rem;max-width:700px;margin:0 auto;line-height:1.6;}
+        .page-header .stats{display:flex;justify-content:center;gap:30px;margin-top:20px;}
+        .page-header .stat{text-align:center;}
+        .page-header .stat-num{font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;color:var(--primary);}
+        .page-header .stat-label{font-size:0.7rem;color:var(--gray);letter-spacing:0.1em;}
+
+        .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;}
+        .book-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.4s;position:relative;}
+        .book-card:hover{border-color:rgba(0,212,255,0.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.3);}
+        .book-cover{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+        .book-cover .bg{position:absolute;inset:0;opacity:0.6;}
+        .book-cover .icon{font-size:3rem;position:relative;z-index:1;}
+        .book-cover .pages-badge{position:absolute;top:12px;right:12px;font-family:'Orbitron',monospace;font-size:0.55rem;padding:4px 10px;border-radius:4px;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);color:#fff;z-index:1;}
+        .book-info{padding:24px;}
+        .book-info h3{font-family:'Orbitron',monospace;font-size:1rem;margin-bottom:8px;}
+        .book-info p{color:var(--gray);font-size:0.85rem;line-height:1.5;margin-bottom:16px;}
+        .book-meta{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+        .book-meta span{font-size:0.7rem;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:4px;}
+        .book-actions{display:flex;gap:10px;}
+        .btn{font-family:'Orbitron',monospace;font-size:0.6rem;padding:10px 18px;border:none;border-radius:8px;cursor:pointer;font-weight:700;transition:all 0.3s;flex:1;text-align:center;}
+        .btn-primary{background:linear-gradient(135deg,var(--primary),#00b8d4);color:#000;}
+        .btn-primary:hover{box-shadow:0 4px 20px rgba(0,212,255,0.3);transform:translateY(-1px);}
+        .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--gray);}
+        .btn-outline:hover{border-color:var(--primary);color:var(--primary);}
+
+        .total-section{text-align:center;margin-top:50px;padding:40px;background:var(--card);border:1px solid var(--border);border-radius:16px;}
+        .total-section h3{font-family:'Orbitron',monospace;font-size:1.2rem;margin-bottom:10px;}
+        .total-section p{color:var(--gray);margin-bottom:20px;}
+        .total-badge{display:inline-block;font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+        @media(max-width:768px){.nav-links{display:none;}.nav-hamburger{display:flex;}nav{padding:12px 20px;}.container{padding:80px 16px 40px;}.books-grid{grid-template-columns:1fr;}.page-header h1{font-size:1.5rem;}.page-header .stats{flex-direction:column;gap:10px;}}
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../index.html" class="nav-logo"><span class="logo-text">MISSILEX</span><span class="logo-sub">ROCKET SPACE RESEARCH</span></a>
+        <div class="nav-links">
+            <a href="../index.html">HOME</a>
+            <a href="launch-complex.html">LAUNCH COMPLEX</a>
+            <a href="missile-testing.html">MISSILE TESTING</a>
+            <a href="satellite-array.html">SATELLITE ARRAY</a>
+            <a href="rocket-assembly.html">ROCKET ASSEMBLY</a>
+            <a href="earth-observation.html">EARTH OBSERVATION</a>
+        </div>
+        <div class="nav-hamburger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <div class="label">RESEARCH DOCUMENTATION</div>
+            <h1>MissileX <span>Knowledge Base</span></h1>
+            <p>Comprehensive research books on India's defence and space technology. Download and study at your own pace.</p>
+            <div class="stats">
+                <div class="stat"><div class="stat-num">5</div><div class="stat-label">BOOKS</div></div>
+                <div class="stat"><div class="stat-num">100+</div><div class="stat-label">PAGES</div></div>
+                <div class="stat"><div class="stat-num">20</div><div class="stat-label">CHAPTERS EACH</div></div>
+            </div>
+        </div>
+
+        <div class="books-grid">
+            <div class="book-card">
+                <div class="book-cover" style="background:linear-gradient(135deg,#0a1628,#1a3a5f,#0d2137);">
+                    <div class="pages-badge">22 PAGES</div>
+                    <div class="icon">🚀</div>
+                </div>
+                <div class="book-info">
+                    <h3>Launch Complex</h3>
+                    <p>Satish Dhawan Space Centre — India's premier spaceport. Complete guide to launch pads, VAB, mission control, and launch campaigns.</p>
+                    <div class="book-meta">
+                        <span>📅 20 Chapters</span>
+                        <span>🏗️ Infrastructure</span>
+                        <span>🛰️ Launch Operations</span>
+                    </div>
+                    <div class="book-actions">
+                        <a href="launch-complex.html" class="btn btn-primary">READ NOW</a>
+                        <a href="launch-complex.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div class="book-cover" style="background:linear-gradient(135deg,#1a0a0a,#5f1a1a,#2e0a0a);">
+                    <div class="pages-badge">22 PAGES</div>
+                    <div class="icon">🎯</div>
+                </div>
+                <div class="book-info">
+                    <h3>Missile Testing</h3>
+                    <p>India's Strategic Defence Systems — Agni, Prithvi, BrahMos, Akash. Complete guide to missile technology and testing infrastructure.</p>
+                    <div class="book-meta">
+                        <span>🚀 Missile Systems</span>
+                        <span>🎯 Guidance Tech</span>
+                        <span>🛡️ Defence</span>
+                    </div>
+                    <div class="book-actions">
+                        <a href="missile-testing.html" class="btn btn-primary">READ NOW</a>
+                        <a href="missile-testing.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div class="book-cover" style="background:linear-gradient(135deg,#0a0a2e,#1a1a5f,#0a0a2e);">
+                    <div class="pages-badge">22 PAGES</div>
+                    <div class="icon">📡</div>
+                </div>
+                <div class="book-info">
+                    <h3>Satellite Array</h3>
+                    <p>India's Space Infrastructure — INSAT, IRS, NavIC constellations. Complete guide to satellite design, orbits, and applications.</p>
+                    <div class="book-meta">
+                        <span>🛰️ Satellites</span>
+                        <span>📡 Communications</span>
+                        <span>🗺️ Navigation</span>
+                    </div>
+                    <div class="book-actions">
+                        <a href="satellite-array.html" class="btn btn-primary">READ NOW</a>
+                        <a href="satellite-array.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div class="book-cover" style="background:linear-gradient(135deg,#2e0a1a,#5f1a3a,#2e0a1a);">
+                    <div class="pages-badge">22 PAGES</div>
+                    <div class="icon">🔧</div>
+                </div>
+                <div class="book-info">
+                    <h3>Rocket Assembly</h3>
+                    <p>Launch Vehicle Manufacturing & Integration — PSLV, GSLV, LVM3 assembly process. Engines, propellants, and quality assurance.</p>
+                    <div class="book-meta">
+                        <span>🔧 Manufacturing</span>
+                        <span>⚙️ Engines</span>
+                        <span>🧪 Propellants</span>
+                    </div>
+                    <div class="book-actions">
+                        <a href="rocket-assembly.html" class="btn btn-primary">READ NOW</a>
+                        <a href="rocket-assembly.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div class="book-cover" style="background:linear-gradient(135deg,#0a1a2e,#1a3a5f,#0a2e2e);">
+                    <div class="pages-badge">22 PAGES</div>
+                    <div class="icon">🌍</div>
+                </div>
+                <div class="book-info">
+                    <h3>Earth Observation</h3>
+                    <p>Remote Sensing & Space-Based Applications — Cartosat, RISAT, disaster management, agriculture, defence surveillance.</p>
+                    <div class="book-meta">
+                        <span>🌍 Remote Sensing</span>
+                        <span>🌾 Agriculture</span>
+                        <span>🛡️ Defence</span>
+                    </div>
+                    <div class="book-actions">
+                        <a href="earth-observation.html" class="btn btn-primary">READ NOW</a>
+                        <a href="earth-observation.html" class="btn btn-outline" onclick="window.print()">DOWNLOAD PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="total-section">
+            <h3>TOTAL RESEARCH LIBRARY</h3>
+            <p>5 comprehensive books covering India's complete defence and space technology ecosystem</p>
+            <div class="total-badge">110+ PAGES OF KNOWLEDGE</div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('scroll',()=>{document.querySelector('nav').classList.toggle('scrolled',window.scrollY>50);});
+    </script>
+</body>
+</html>

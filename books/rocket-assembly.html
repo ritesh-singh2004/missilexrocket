@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROCKET ASSEMBLY - Launch Vehicle Manufacturing &amp; Integration</title>
+<style>
+  @page { size: A4; margin: 2cm 2.5cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', 'Times New Roman', serif; background: #0a0a0f; color: #e8e8e8; line-height: 1.7; font-size: 11pt; }
+  .page { width: 210mm; min-height: 297mm; margin: 20px auto; padding: 50px 60px; background: #0d0d14; border: 1px solid #1a1a2e; box-shadow: 0 0 40px rgba(0,0,0,0.5); page-break-after: always; position: relative; }
+  .page::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ff4500, #ff6b35, #ffa500, #ff6b35, #ff4500); }
+  .cover { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 297mm; background: radial-gradient(ellipse at center, #1a0a00 0%, #0a0a0f 70%); }
+  .cover h1 { font-size: 38pt; color: #ff6b35; text-transform: uppercase; letter-spacing: 6px; margin-bottom: 15px; text-shadow: 0 0 30px rgba(255,107,53,0.4); font-weight: 900; }
+  .cover h2 { font-size: 16pt; color: #ffa500; font-weight: 400; letter-spacing: 3px; margin-bottom: 50px; text-transform: uppercase; }
+  .cover .author { font-size: 13pt; color: #cc8855; margin-bottom: 10px; letter-spacing: 2px; }
+  .cover .date { font-size: 11pt; color: #886644; margin-bottom: 60px; }
+  .cover .subtitle { font-size: 10pt; color: #666; max-width: 400px; line-height: 1.6; font-style: italic; }
+  .cover .rocket-ascii { font-family: 'Courier New', monospace; font-size: 9pt; color: #ff6b35; white-space: pre; margin: 40px 0; text-shadow: 0 0 10px rgba(255,107,53,0.3); line-height: 1.2; }
+  .toc-page h2 { font-size: 22pt; color: #ff6b35; text-align: center; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 4px; border-bottom: 2px solid #ff4500; padding-bottom: 15px; }
+  .toc-entry { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px dotted #333; font-size: 11pt; }
+  .toc-entry .chapter-num { color: #ff6b35; font-weight: bold; margin-right: 10px; min-width: 25px; }
+  .toc-entry .chapter-title { flex: 1; color: #ddd; }
+  .toc-entry .chapter-page { color: #888; min-width: 30px; text-align: right; }
+  h2.chapter-title { font-size: 20pt; color: #ff6b35; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 25px; padding-bottom: 12px; border-bottom: 2px solid #ff4500; }
+  h3 { font-size: 14pt; color: #ffa500; margin: 25px 0 12px 0; text-transform: uppercase; letter-spacing: 1px; }
+  h4 { font-size: 12pt; color: #ff8c00; margin: 18px 0 8px 0; }
+  p { margin-bottom: 12px; text-align: justify; color: #ccc; }
+  .key-facts { background: linear-gradient(135deg, #1a1200 0%, #0d0a00 100%); border: 1px solid #ff4500; border-left: 4px solid #ff6b35; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+  .key-facts h4 { color: #ff6b35; margin-top: 0; font-size: 11pt; text-transform: uppercase; letter-spacing: 2px; }
+  .key-facts ul { list-style: none; padding-left: 0; }
+  .key-facts li { padding: 3px 0; color: #ddd; font-size: 10pt; }
+  .key-facts li::before { content: "\25B8 "; color: #ff6b35; }
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 10pt; }
+  th { background: #1a0a00; color: #ff6b35; padding: 10px 12px; text-align: left; border: 1px solid #333; text-transform: uppercase; letter-spacing: 1px; font-size: 9pt; }
+  td { padding: 8px 12px; border: 1px solid #222; color: #ccc; }
+  tr:nth-child(even) { background: #111; }
+  .ascii-diagram { font-family: 'Courier New', monospace; font-size: 8.5pt; color: #ff8c00; background: #0a0a0a; border: 1px solid #333; padding: 15px 20px; margin: 20px 0; white-space: pre; overflow-x: auto; line-height: 1.3; }
+  .summary-box { background: linear-gradient(135deg, #001a00 0%, #000d00 100%); border: 1px solid #00ff00; border-left: 4px solid #00cc00; padding: 15px 20px; margin: 25px 0; border-radius: 4px; }
+  .summary-box h4 { color: #00ff00; margin-top: 0; font-size: 11pt; text-transform: uppercase; letter-spacing: 2px; }
+  .summary-box p { color: #aaffaa; font-size: 10pt; }
+  .page-num { position: absolute; bottom: 30px; right: 60px; color: #555; font-size: 9pt; }
+  .page-header { position: absolute; top: 25px; left: 60px; right: 60px; text-align: center; font-size: 8pt; color: #444; text-transform: uppercase; letter-spacing: 3px; border-bottom: 1px solid #222; padding-bottom: 8px; }
+  ul, ol { margin: 10px 0 15px 25px; color: #ccc; }
+  li { margin-bottom: 6px; }
+  strong { color: #ffa500; }
+  em { color: #cc8855; font-style: italic; }
+  .highlight { color: #ff6b35; font-weight: bold; }
+  .comparison-note { background: #111; border-left: 3px solid #ffa500; padding: 10px 15px; margin: 15px 0; font-size: 10pt; color: #ddd; }
+  .download-btn { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #ff4500, #ff6b35); color: white; border: none; padding: 15px 30px; font-size: 14pt; cursor: pointer; border-radius: 8px; box-shadow: 0 4px 15px rgba(255,69,0,0.4); z-index: 1000; font-family: 'Georgia', serif; letter-spacing: 2px; text-transform: uppercase; }
+  .download-btn:hover { background: linear-gradient(135deg, #ff6b35, #ffa500); box-shadow: 0 4px 20px rgba(255,107,53,0.6); }
+  @media print { body { background: white; color: black; } .page { box-shadow: none; border: none; margin: 0; background: white; page-break-after: always; } .page::before { background: #cc0000; height: 2px; } h2.chapter-title { color: #cc0000; border-bottom-color: #cc0000; } h3 { color: #990000; } h4 { color: #aa3300; } p, li, td { color: #333; } .key-facts { background: #fff8f0; border-color: #cc0000; border-left-color: #cc0000; } .key-facts h4 { color: #cc0000; } .key-facts li { color: #333; } .key-facts li::before { color: #cc0000; } .summary-box { background: #f0fff0; border-color: #00aa00; border-left-color: #00aa00; } .summary-box h4 { color: #006600; } .summary-box p { color: #333; } .ascii-diagram { background: #f5f5f5; color: #333; border-color: #ccc; } th { background: #f0f0f0; color: #cc0000; } td { color: #333; } .cover { background: white; } .cover h1 { color: #cc0000; text-shadow: none; } .cover h2 { color: #990000; } .cover .author { color: #666; } .cover .date { color: #888; } .cover .rocket-ascii { color: #cc0000; text-shadow: none; } .cover .subtitle { color: #666; } .toc-page h2 { color: #cc0000; border-bottom-color: #cc0000; } .toc-entry .chapter-num { color: #cc0000; } .toc-entry .chapter-title { color: #333; } .toc-entry .chapter-page { color: #666; } .page-header { color: #666; border-bottom-color: #ccc; } .page-num { color: #666; } .highlight { color: #cc0000; } strong { color: #990000; } .comparison-note { background: #f5f5f5; border-left-color: #990000; color: #333; } .download-btn { display: none; } }
+</style>
+</head>
+<body>
+<button class="download-btn" onclick="window.print()">&#128190; Download / Print</button>
+
+<div class="page cover">
+  <div class="rocket-ascii">
+        /\
+       /  \
+      / .. \
+     |  __  |
+     | |  | |
+  /| | |  | | |\
+ / | | |  | | | \
+|  | | |__| | |  |
+|  | |______| |  |
+|  |  /\  /\  |  |
+|  | /  \/  \ |  |
+|  |/  LOX   \|  |
+|   |  LH2  |   |
+|   |________|   |
+|    |      |    |
+|    |  PM  |    |
+|    |______|    \
+ \  /|      |\  /
+  \/ |      | \/
+     | NOZZLE|
+     |  ___  |
+     | |   | |
+     |_|   |_|
+  FLAMES ===></div>
+  <h1>ROCKET ASSEMBLY</h1>
+  <h2>Launch Vehicle Manufacturing &amp; Integration</h2>
+  <div class="author">MissileX RocketSpace Research</div>
+  <div class="date">2026 Edition</div>
+  <div class="subtitle">A comprehensive guide to the design, manufacturing, assembly, and integration of Indian launch vehicles — from the foundational SLV-3 to the advanced LVM3 and the next generation of rockets powering India's space ambitions.</div>
+</div>
+
+<div class="page toc-page">
+  <div class="page-header">ROCKET ASSEMBLY — Table of Contents</div>
+  <h2>Table of Contents</h2>
+  <div class="toc-entry"><span class="chapter-num">01</span><span class="chapter-title">History of the Indian Rocket Programme (SLV-3 to LVM3)</span><span class="chapter-page">3</span></div>
+  <div class="toc-entry"><span class="chapter-num">02</span><span class="chapter-title">Vehicle Assembly Building (VAB) at SDSC SHAR</span><span class="chapter-page">5</span></div>
+  <div class="toc-entry"><span class="chapter-num">03</span><span class="chapter-title">Solid Motor Manufacturing — Sriharikota Propellant Complex</span><span class="chapter-page">7</span></div>
+  <div class="toc-entry"><span class="chapter-num">04</span><span class="chapter-title">Liquid Engine Manufacturing (LPSC Valiamart, HAL)</span><span class="chapter-page">9</span></div>
+  <div class="toc-entry"><span class="chapter-num">05</span><span class="chapter-title">Stage-by-Stage Assembly Process</span><span class="chapter-page">11</span></div>
+  <div class="toc-entry"><span class="chapter-num">06</span><span class="chapter-title">PSLV Configuration (4-Stage Solid/Liquid)</span><span class="chapter-page">13</span></div>
+  <div class="toc-entry"><span class="chapter-num">07</span><span class="chapter-title">GSLV Configuration (Liquid Core, Cryogenic Upper Stage)</span><span class="chapter-page">15</span></div>
+  <div class="toc-entry"><span class="chapter-num">08</span><span class="chapter-title">LVM3 / GSLV Mk III (S200, L110, C32)</span><span class="chapter-page">17</span></div>
+  <div class="toc-entry"><span class="chapter-num">09</span><span class="chapter-title">Cryogenic Engine Technology (CE-20, India's Indigenous)</span><span class="chapter-page">19</span></div>
+  <div class="toc-entry"><span class="chapter-num">10</span><span class="chapter-title">Vikas Engine — The Liquid Propulsion Workhorse</span><span class="chapter-page">21</span></div>
+  <div class="toc-entry"><span class="chapter-num">11</span><span class="chapter-title">Solid Propellant Processing (HTPB, Composite Propellant)</span><span class="chapter-page">23</span></div>
+  <div class="toc-entry"><span class="chapter-num">12</span><span class="chapter-title">Nozzle Design &amp; Thrust Vector Control</span><span class="chapter-page">25</span></div>
+  <div class="toc-entry"><span class="chapter-num">13</span><span class="chapter-title">Interstage Structures &amp; Separation Systems</span><span class="chapter-page">27</span></div>
+  <div class="toc-entry"><span class="chapter-num">14</span><span class="chapter-title">Payload Fairing Integration</span><span class="chapter-page">29</span></div>
+  <div class="toc-entry"><span class="chapter-num">15</span><span class="chapter-title">Electrical &amp; Avionics Integration</span><span class="chapter-page">31</span></div>
+  <div class="toc-entry"><span class="chapter-num">16</span><span class="chapter-title">Gimbal Systems &amp; Control</span><span class="chapter-page">33</span></div>
+  <div class="toc-entry"><span class="chapter-num">17</span><span class="chapter-title">Quality Assurance &amp; Testing</span><span class="chapter-page">35</span></div>
+  <div class="toc-entry"><span class="chapter-num">18</span><span class="chapter-title">Rollout to Launch Pad</span><span class="chapter-page">37</span></div>
+  <div class="toc-entry"><span class="chapter-num">19</span><span class="chapter-title">New Generation Vehicles (SSLV, SC120, SCE-200)</span><span class="chapter-page">39</span></div>
+  <div class="toc-entry"><span class="chapter-num">20</span><span class="chapter-title">Summary &amp; Future of Indian Launch Vehicles</span><span class="chapter-page">41</span></div>
+  <div style="margin-top: 40px; text-align: center; color: #555; font-size: 10pt;">
+    <p>Published by MissileX RocketSpace Research | 2026 Edition</p>
+    <p>All data sourced from ISRO official publications and verified sources</p>
+  </div>
+  <div class="page-num">ii</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 1 — History of the Indian Rocket Programme</div>
+  <h2 class="chapter-title">Chapter 01: History of the Indian Rocket Programme</h2>
+  <h3>From Sounding Rockets to Orbital Launchers</h3>
+  <p>India's rocket programme traces its origins to the early 1960s when Dr. Vikram Sarabhai, the father of the Indian space programme, established the Indian National Committee for Space Research (INCOSPAR) in 1962. The first Indian sounding rocket, a Nike-Apache, was launched from Thumba, Kerala on November 21, 1963. This modest beginning marked the dawn of India's journey into space. By 1975, all sounding rocket activities were consolidated under the Rohini Sounding Rocket (RSR) Programme, which produced the first truly indigenous Indian sounding rocket. These early rockets were solid-propellant vehicles used for upper atmospheric research and served as the foundation upon which India's launch vehicle technology was built.</p>
+  <p>The Rohini series progressed through several iterations — RS-75, RS-100, RS-150, and the RH-200, RH-300, and RH-560 series. These sounding rockets demonstrated India's growing competence in solid propulsion, guidance systems, and range operations at the Sriharikota Range (SHAR), which was established in 1971 with the launch of an RH-125 sounding rocket. The experience gained from over 300 sounding rocket flights between 1965 and 1980 provided the critical knowledge base needed for developing orbital launch vehicles.</p>
+  <h3>SLV-3: India's First Satellite Launch Vehicle</h3>
+  <p>The Satellite Launch Vehicle-3 (SLV-3) was India's first experimental satellite launch vehicle, conceived in the early 1970s under the leadership of Dr. A.P.J. Abdul Kalam. It was an all-solid, four-stage vehicle weighing 17 tonnes with a height of 22 metres and a diameter of 1 metre, capable of placing 40 kg class payloads into Low Earth Orbit (LEO). SLV-3 employed an open-loop guidance system with a stored pitch programme to steer the vehicle along a pre-determined trajectory.</p>
+  <div class="ascii-diagram">SLV-3 CONFIGURATION (1979-1983)
+===============================
+      +-------+
+      | PAYLOAD|  &lt;- 40 kg class
+      +-------+
+      |  S-4   |  &lt;- 4th Stage (3 KV-1 engines)
+      +-------+     Solid Propellant: 1.6t
+      |  S-3   |  &lt;- 3rd Stage (single motor)
+      +-------+     Solid Propellant: 6t
+      |  S-2   |  &lt;- 2nd Stage
+      +-------+     Solid Propellant: 7t
+      |  S-1   |  &lt;- 1st Stage (S-139 precursor)
+      +-------+     Solid Propellant: ~14t
+      Height: 22 m  |  Diameter: 1.0 m
+      Liftoff Mass: 17 tonnes
+      Payload to LEO: 40 kg</div>
+  <p>The first experimental flight of SLV-3 (SLV-3 E1) was conducted on August 10, 1979 from Sriharikota. Although the mission was only partially successful due to a failure in the fourth stage, it demonstrated India's capability to build and fly a multi-stage rocket. The second flight, SLV-3 E2, launched on July 18, 1980, successfully placed the Rohini RS-1 satellite into orbit, making India the sixth member of an exclusive club of spacefaring nations. Two additional successful launches followed in May 1981 and April 1983.</p>
+  <div class="key-facts"><h4>Key Facts: SLV-3 Programme</h4><ul><li>Total flights: 4 (1 partial failure, 3 successes)</li><li>First successful orbital launch: July 18, 1980</li><li>Project Director: Dr. A.P.J. Abdul Kalam</li><li>Payload capacity: 40 kg to LEO (400 km)</li><li>All four stages used solid propellant (HTPB-based)</li><li>India became the 6th country with independent orbital launch capability</li></ul></div>
+  <h3>ASLV: The Augmented Satellite Launch Vehicle</h3>
+  <p>Building on the success of SLV-3, ISRO developed the Augmented Satellite Launch Vehicle (ASLV) as a stepping stone to more capable launchers. ASLV was a five-stage, all-solid vehicle that used strap-on boosters for the first time in Indian rocketry. It stood 23.5 metres tall, weighed 40 tonnes, and could carry 150 kg to LEO. The vehicle used the S-138 first stage along with two strap-on motors (S-0) attached to the core first stage. ASLV had a troubled development history, with its first two flights in 1987 and 1988 both failing. However, the fourth flight in 1994 successfully placed the Sross-C satellite into orbit.</p>
+  <h3>The Fleet Takes Shape: PSLV, GSLV, and LVM3</h3>
+  <p>The Polar Satellite Launch Vehicle (PSLV), first launched in 1993, became India's workhorse launch vehicle. It introduced India to liquid propulsion technology and demonstrated the ability to launch satellites into Sun-Synchronous Polar Orbits. Despite an initial failure on its maiden flight, PSLV went on to achieve remarkable reliability with over 50 successful missions, earning the title "the Workhorse of ISRO." It launched India's Chandrayaan-1 lunar mission and the Mars Orbiter Mission.</p>
+  <p>The Geosynchronous Satellite Launch Vehicle (GSLV) represented India's entry into the cryogenic propulsion club. Initially using Russian cryogenic engines, GSLV eventually transitioned to India's indigenous CE-7.5 cryogenic engine. LVM3 (formerly GSLV Mk III), the most powerful Indian launch vehicle, completed the trinity of operational rockets with its two massive S200 solid strap-on boosters, L110 liquid core stage, and C32 cryogenic upper stage.</p>
+  <table><tr><th>Vehicle</th><th>First Flight</th><th>Stages</th><th>Payload to LEO</th><th>Payload to GTO</th><th>Status</th></tr><tr><td>SLV-3</td><td>1979</td><td>4 (all solid)</td><td>40 kg</td><td>—</td><td>Retired</td></tr><tr><td>ASLV</td><td>1987</td><td>5 (all solid)</td><td>150 kg</td><td>—</td><td>Retired</td></tr><tr><td>PSLV</td><td>1993</td><td>4 (solid/liquid)</td><td>3,200 kg</td><td>1,425 kg</td><td>Active</td></tr><tr><td>GSLV</td><td>2001</td><td>3 (liquid/solid/cryo)</td><td>5,000 kg</td><td>2,500 kg</td><td>Active</td></tr><tr><td>LVM3</td><td>2014</td><td>3 (solid/liquid/cryo)</td><td>10,000 kg</td><td>4,000 kg</td><td>Active</td></tr><tr><td>SSLV</td><td>2022</td><td>3+VTM (solid/liquid)</td><td>500 kg</td><td>—</td><td>Active</td></tr></table>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>India's launch vehicle programme evolved from sounding rockets in the 1960s to a full fleet of operational vehicles. Each vehicle built upon its predecessors, progressively increasing payload capacity, orbital reach, and propulsion complexity. The programme achieved complete self-reliance in all three propulsion types — solid, liquid, and cryogenic — making India one of only a handful of nations with indigenous capability across all major rocket technologies.</p></div>
+  <div class="page-num">3</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 2 — Vehicle Assembly Building at SDSC SHAR</div>
+  <h2 class="chapter-title">Chapter 02: Vehicle Assembly Building (VAB) at SDSC SHAR</h2>
+  <h3>Satish Dhawan Space Centre: India's Spaceport</h3>
+  <p>The Satish Dhawan Space Centre (SDSC) SHAR, located on the island of Sriharikota in Andhra Pradesh, is India's primary spaceport and the nerve centre of all launch operations. Spread across 145 square kilometres along the Bay of Bengal, SDSC SHAR provides the launch base infrastructure for the Indian space programme. The centre was originally established as Sriharikota Range (SHAR) in 1971 and renamed in 2002 in honour of Dr. Satish Dhawan, the former ISRO Chairman who played a pivotal role in shaping India's space programme.</p>
+  <p>SDSC SHAR is strategically located at a latitude of 13.72°N, providing an advantage for launches into equatorial and low-inclination orbits. The centre houses solid propellant processing plants, static test stands for solid rocket motors, the Vehicle Assembly Building (VAB), two operational launch pads, a mission control centre, telemetry and tracking stations, and propellant storage and servicing facilities.</p>
+  <h3>The Vehicle Assembly Building</h3>
+  <p>The Vehicle Assembly Building (VAB) at SDSC SHAR is the heart of launch vehicle integration operations. This massive facility is where the individual stages, strap-on motors, and payload modules of launch vehicles are assembled into complete flight-ready configurations. The VAB follows the Integrate-Transfer-Launch (ITL) concept, where the vehicle is assembled vertically on a Mobile Launch Pedestal (MLP) and then transported to the launch pad on rail tracks.</p>
+  <div class="ascii-diagram">VAB AT SDSC SHAR - CROSS SECTION VIEW
+=======================================
+    +----------------------------------------------------------+
+    |                    OVERHEAD CRANE SYSTEM                  |
+    |  (Multiple cranes for lifting stages up to 100 tonnes)   |
+    +----------------------------------------------------------+
+    |                                                          |
+    |   +------------------------------------------+           |
+    |   |          PAYLOAD INTEGRATION LEVEL        |           |
+    |   |    (Clean room environment, Class 100K)   |           |
+    |   +------------------------------------------+           |
+    |   +------------------------------------------+           |
+    |   |        UPPER STAGE ASSEMBLY AREA          |           |
+    |   |    (Cryogenic stage, 3rd stage integration)|          |
+    |   +------------------------------------------+           |
+    |   +------------------------------------------+           |
+    |   |         CORE STAGE ASSEMBLY LEVEL         |           |
+    |   |    (PS2/GS2/L110 liquid stage stacking)   |           |
+    |   +------------------------------------------+           |
+    |   +------------------------------------------+           |
+    |   |       FIRST STAGE & STRAP-ON AREA         |           |
+    |   |    (S139/S200 solid motors, PSOMs)        |           |
+    |   +------------------------------------------+           |
+    |   +------------------------------------------+           |
+    |   |     MOBILE LAUNCH PEDESTAL (MLP)          |           |
+    |   |    (Rail-mounted transfer system)         |           |
+    |   +------------------------------------------+           |
+    +----------------------------------------------------------+
+    |              RAIL TRACKS TO LAUNCH PAD                   |
+    +----------------------------------------------------------+
+    Height: ~70m  |  Width: ~40m  |  Crane capacity: up to 325 tonnes</div>
+  <p>The VAB is equipped with multiple overhead cranes of varying capacities — the largest capable of lifting components weighing up to 325 tonnes. These cranes are used to stack the rocket stages vertically, beginning with the first stage or strap-on boosters at the base and progressing upward through each successive stage. The building contains multiple work cells and high bays that can accommodate different vehicle configurations simultaneously.</p>
+  <h3>Two Launch Pads: FLP and SLP</h3>
+  <p>SDSC SHAR operates two launch pads. The First Launch Pad (FLP), built in the early 1990s, follows the Integrate-on-the-Pad concept where vehicle assembly and launch occur at the same location. A 3,200-tonne Mobile Service Tower (MST) provides environmental protection during integration, then retracts before launch. FLP was primarily designed for PSLV and also supports SSLV launches.</p>
+  <p>The Second Launch Pad (SLP), operational since 2005, implements the Integrate-Transfer-Launch (ITL) concept. Vehicles are assembled in the VAB and transported vertically to the pad. Built by Mecon Limited, SLP primarily supports GSLV and LVM3 missions while serving as a backup for PSLV. SLP successfully supported the Chandrayaan-3 mission and is preparing for Gaganyaan human spaceflight missions.</p>
+  <div class="key-facts"><h4>SDSC SHAR Launch Statistics (as of 2026)</h4><ul><li>Total launch vehicle missions completed: 101+</li><li>Sounding rocket launches: 538+</li><li>PSLV missions: 63</li><li>GSLV missions: 18</li><li>LVM3 missions: 7</li><li>SSLV missions: 3</li><li>ASLV missions: 4</li><li>SLV missions: 4</li></ul></div>
+  <h3>Third Launch Pad (TLP)</h3>
+  <p>The Union Cabinet approved the establishment of a Third Launch Pad (TLP) at SDSC SHAR in January 2025 at a cost of Rs. 3,984.86 crore. The TLP is designed to be universal and adaptable, capable of handling the Next Generation Launch Vehicle (NGLV), LVM3 with semi-cryogenic stages, and scaled-up configurations. It will be realized within 48 months with maximum industry participation and will serve as a standby for SLP while enhancing launch capacity for future human spaceflight missions.</p>
+  <h3>Clean Room and Environmental Controls</h3>
+  <p>The VAB maintains strict environmental conditions for payload integration. The payload integration area is a Class 100,000 clean room where particulate contamination is carefully controlled. Temperature and humidity are maintained within narrow ranges to protect propellant-sensitive components and electronic systems. The propellant storage facilities adjacent to the VAB support loading of both earth-storable propellants (UDMH, N2O4, MMH, MON) and cryogenic propellants (LH2 at -253°C and LOX at -183°C).</p>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>The VAB at SDSC SHAR is the central facility for launch vehicle integration, capable of handling PSLV, GSLV, LVM3, and SSLV configurations. The ITL concept at SLP enables higher launch cadence by separating assembly from launch operations. With over 101 launch vehicle missions completed, SDSC SHAR stands as one of the world's most active spaceports. The upcoming Third Launch Pad will further enhance India's launch capacity.</p></div>
+  <div class="page-num">5</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 3 — Solid Motor Manufacturing</div>
+  <h2 class="chapter-title">Chapter 03: Solid Motor Manufacturing — Sriharikota Propellant Complex</h2>
+  <h3>The Solid Propellant Plant at Sriharikota</h3>
+  <p>The Solid Propellant Plant (SPP) at Sriharikota is one of the most critical facilities in India's launch vehicle programme, responsible for the processing and casting of solid rocket motors used across PSLV, GSLV, LVM3, and SSLV. The facility handles the entire chain of solid motor production, from raw propellant ingredients to fully assembled and tested motors. The plant has undergone significant expansion, with new solid motor production facilities commissioned in July 2025 and an indigenous 10-tonne vertical mixer — the world's largest solid propellant mixing equipment — added the same year.</p>
+  <p>The SPP houses multiple mixing bays where composite solid propellant is prepared, propellant storage bunkers, casting bays where propellant is poured into motor cases, curing ovens where the propellant solidifies, and quality control laboratories for testing propellant samples. The facility operates under stringent safety protocols with blast-proof walls, fire suppression systems, and strict access controls throughout.</p>
+  <h3>Composite Solid Propellant: HTPB-Based Formulation</h3>
+  <p>ISRO uses Hydroxyl-Terminated Polybutadiene (HTPB) as the binder for its composite solid propellant. The formulation consists of ammonium perchlorate (AP) as the oxidiser (68-72%), aluminium powder as metallic fuel (16-20%), HTPB as binder (10-14%), and curing agents/additives (2-4%). The propellant mixing process occurs in vacuum-sealed mixers to eliminate air bubbles that could create dangerous voids. The entire batch is mixed for several hours until a homogeneous, viscous paste is achieved.</p>
+  <div class="ascii-diagram">HTPB SOLID PROPELLANT PROCESSING FLOW
+=======================================
+  RAW MATERIALS STORAGE
+  +--------+ +--------+ +--------+ +--------+
+  |   AP   | |   Al   | |  HTPB  | | Additiv|
+  | (Oxid.)| | (Fuel) | |(Binder)| | (Cure) |
+  +----+---+ +----+---+ +----+---+ +----+---+
+       |         |          |          |
+       v         v          v          v
+  DRY MIXING (VACUUM) -> WET MIXING (VACUUM)
+       |                      |
+       v                      v
+  QUALITY CONTROL -> CASTING INTO MOTOR CASE
+       |                      |
+       v                      v
+  CURING (50-60C for days) -> NON-DESTRUCTIVE TESTING
+       |                              |
+       v                              v
+  QUALIFIED MOTOR (Ready for static test or flight)
+  Typical Properties:
+  - Density: 1.75-1.80 g/cm3
+  - Specific Impulse: 260-275 seconds
+  - Burn Rate: 5-15 mm/sec (depending on formulation)</div>
+  <p>After casting, motors are moved to curing ovens where they are heated to 50-60°C for several days. The curing process causes the HTPB binder to cross-link and solidify. After curing, motors undergo extensive non-destructive testing including X-ray and ultrasonic inspection to detect internal voids or defects.</p>
+  <h3>Motor Case Manufacturing</h3>
+  <p>Motor cases are manufactured at multiple facilities. Steel cases are produced at ISRO-owned facilities, while composite cases — made from carbon fibre reinforced polymer (CFRP) — are manufactured at the Vikram Sarabhai Space Centre (VSSC) Composites Entity. The SSLV's SS3 stage uses a filament-wound carbon-epoxy motor case, significantly reducing inert mass compared to steel cases. This composite case improved SSLV's payload capacity by 90 kg.</p>
+  <h3>Static Testing</h3>
+  <p>Before any solid motor flies, it undergoes static testing at SDSC SHAR's Static Test Complex. The motor is bolted to a massive test stand and fired for its full burn duration while hundreds of sensors record pressure, thrust, temperature, vibration, and strain data. The August 2025 static test of the KALAM 1200 motor for Skyroot Aerospace's Vikram-1 demonstrated ISRO's willingness to provide its testing infrastructure to private sector players.</p>
+  <table><tr><th>Motor</th><th>Vehicle</th><th>Propellant Mass</th><th>Thrust</th><th>Case Material</th></tr><tr><td>S12</td><td>PSLV strap-on</td><td>12 tonnes</td><td>719 kN</td><td>Steel</td></tr><tr><td>S139</td><td>PSLV core</td><td>139 tonnes</td><td>4,800 kN</td><td>Steel</td></tr><tr><td>S200</td><td>LVM3 booster</td><td>205 tonnes</td><td>5,150 kN</td><td>Steel</td></tr><tr><td>SS1</td><td>SSLV 1st stage</td><td>87 tonnes</td><td>2,496 kN</td><td>Steel</td></tr><tr><td>SS3</td><td>SSLV 3rd stage</td><td>4.5 tonnes</td><td>160 kN</td><td>Carbon-epoxy</td></tr></table>
+  <div class="key-facts"><h4>Ammonium Perchlorate Production</h4><ul><li>India's AP plant at Alwaye, Kerala produces the oxidiser for all solid motors</li><li>A second production line was commissioned in September 2025 to double capacity</li><li>Indigenous production eliminates dependence on imports</li><li>World's largest 10-tonne vertical mixer commissioned at SDSC in 2025</li></ul></div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>Solid motor manufacturing at Sriharikota involves propellant processing, motor case fabrication, casting, curing, and static testing. ISRO uses HTPB-based composite propellant with ammonium perchlorate oxidiser and aluminium fuel. The facility has been expanded with the world's largest solid propellant mixer and doubled AP production capacity.</p></div>
+  <div class="page-num">7</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 4 — Liquid Engine Manufacturing</div>
+  <h2 class="chapter-title">Chapter 04: Liquid Engine Manufacturing</h2>
+  <h3>Liquid Propulsion Systems Centre (LPSC)</h3>
+  <p>The Liquid Propulsion Systems Centre (LPSC) is ISRO's lead centre for liquid and cryogenic propulsion systems. LPSC operates from the Valiamart campus in Thiruvananthapuram, Kerala (design and development hub), and the Mahendragiri campus in Tamil Nadu, which houses the ISRO Propulsion Complex (IPRC). LPSC is responsible for the Vikas engine family, the CE-7.5 and CE-20 cryogenic engines, and various spacecraft propulsion systems.</p>
+  <p>The Valiamart campus includes component manufacturing facilities, assembly lines, and test cells. The Mahendragiri campus houses the High Altitude Test (HAT) facility simulating vacuum conditions, the Main Engine and Stage Test (MET) facility, and the Semicryogenic Integrated Engine Test (SIET) facility inaugurated by the Prime Minister in February 2024.</p>
+  <h3>Hindustan Aeronautics Limited (HAL)</h3>
+  <p>HAL's Division 4 in Bengaluru manufactures the Vikas engine, while the Integrated Cryogenic Engine Manufacturing Facility (ICEMF) at New Tippasandra produces the CE-20 cryogenic engine. The ICEMF was established to scale up cryogenic engine production for the growing LVM3 programme, including satellite launch and human spaceflight missions.</p>
+  <div class="ascii-diagram">LIQUID ENGINE MANUFACTURING FACILITIES
+======================================
+  LPSC VALIAMART (Thiruvananthapuram)
+  +------------------------------------------+
+  |  Engine Design & Development             |
+  |  Component Manufacturing                 |
+  |  Turbopump Assembly                      |
+  |  Combustion Chamber Fabrication          |
+  +------------------------------------------+
+  IPRC MAHENDRAGIRI (Tamil Nadu)
+  +------------------------------------------+
+  |  High Altitude Test (HAT) Facility       |
+  |  Main Engine & Stage Test (MET)          |
+  |  Semicryogenic Integrated Engine Test   |
+  +------------------------------------------+
+  HAL BENGALURU (Karnataka)
+  +------------------------------------------+
+  |  Vikas Engine Mass Production            |
+  |  CE-20 Cryogenic Engine Production       |
+  |  Integrated Cryogenic Engine Mfg.        |
+  +------------------------------------------+</div>
+  <p>Liquid engine manufacturing involves precision engineering at the highest level. The combustion chamber must withstand temperatures exceeding 3,000°C and pressures of 60 bar, typically made from copper alloys with internal cooling channels created using advanced techniques such as electroforming, diffusion bonding, or additive manufacturing. The turbopump assembly spins at tens of thousands of RPM, requiring exotic materials capable of withstanding extreme centrifugal forces and cryogenic temperatures.</p>
+  <h3>Propellant Management</h3>
+  <p>ISRO uses earth-storable propellants (UDMH/N2O4 for Vikas engines, MMH/MON-3 for PS4 and spacecraft thrusters) and cryogenic propellants (LH2/LOX for CE-7.5 and CE-20). Hypergolic propellants ignite spontaneously on contact, simplifying engine start but requiring extreme care due to toxicity. Cryogenic propellants require vacuum-insulated tanks and transfer lines, with liquid hydrogen stored at -253°C and liquid oxygen at -183°C.</p>
+  <table><tr><th>Engine</th><th>Type</th><th>Thrust</th><th>Propellants</th><th>Cycle</th><th>Vehicle</th></tr><tr><td>Vikas</td><td>Liquid</td><td>800 kN (SL)</td><td>UH25/N2O4</td><td>Gas Generator</td><td>PSLV, GSLV, LVM3</td></tr><tr><td>CE-7.5</td><td>Cryogenic</td><td>73.5 kN</td><td>LOX/LH2</td><td>Staged Combustion</td><td>GSLV Mk II</td></tr><tr><td>CE-20</td><td>Cryogenic</td><td>200 kN</td><td>LOX/LH2</td><td>Gas Generator</td><td>LVM3</td></tr><tr><td>PS-4</td><td>Liquid</td><td>2 x 7.3 kN</td><td>MMH/MON-3</td><td>Pressure-fed</td><td>PSLV</td></tr><tr><td>SE-2000</td><td>Semi-cryo</td><td>2,000 kN</td><td>LOX/Kerosene</td><td>Staged Combustion</td><td>Future NGLV</td></tr></table>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>Liquid engine manufacturing is distributed across LPSC (design), HAL (production), and IPRC Mahendragiri (testing). India produces Vikas, CE-7.5, and CE-20 engines domestically. The manufacturing process demands extreme precision in combustion chambers, injectors, and turbopumps.</p></div>
+  <div class="page-num">9</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 5 — Stage-by-Stage Assembly Process</div>
+  <h2 class="chapter-title">Chapter 05: Stage-by-Stage Assembly Process</h2>
+  <h3>Overview of Vehicle Integration</h3>
+  <p>The assembly of a launch vehicle is a meticulously choreographed process that transforms individual components — stages, engines, avionics, and payload — into a flight-ready rocket. At SDSC SHAR, this process follows a defined sequence ensuring quality at every step while maintaining strict timelines. Integration begins with the Mobile Launch Pedestal (MLP) preparation, followed by sequential stacking of stages from bottom to top.</p>
+  <p>For vehicles with strap-on boosters (PSLV-XL with 6 PSOMs, GSLV with 4 L40 strap-ons, or LVM3 with 2 S200 boosters), strap-on motors are attached to the core stage first. Each stage arrives pre-assembled and tested, then mated to the vehicle using precision alignment systems and high-strength structural joints.</p>
+  <h3>Step 1: First Stage Integration</h3>
+  <p>The first stage forms the base of the launch vehicle. For PSLV, this consists of the S139 solid rocket motor augmented by 6 PSOM-XL strap-on boosters. The S139 motor, weighing 139 tonnes with HTPB propellant, is positioned vertically on the MLP using the overhead crane. The six PSOM-XL strap-on boosters are then attached using explosive bolts and structural fittings. Four strap-ons are ground-lit at liftoff while two air-lit boosters ignite 25 seconds after liftoff.</p>
+  <div class="ascii-diagram">PSLV-XL STAGE STACKING SEQUENCE
+================================
+  Step 1: First Stage (S139) + 6x PSOM-XL boosters
+        +-----+    +-----+
+        |PSOM |    |PSOM |
+        | 5,6 |    | 1,2 |
+    +---+-----+----+-----+---+
+    |   |     | S139|     |   |
+    |   |PSOM |MOTOR|PSOM |   |
+    |   | 3,4 |     |     |   |
+    +---+-----+----+-----+---+
+  Step 2: Second Stage (PS2/PL40) - Vikas liquid stage
+  Step 3: Third Stage (HPS3) - High Performance Solid
+  Step 4: Fourth Stage (PS4) - 2x liquid engines
+  Step 5: Payload Fairing + Satellite
+       /\
+      /  \  &lt;- Payload fairing
+     / SAT \  &lt;- Satellite inside
+    +------+</div>
+  <h3>Step 2: Second Stage Integration</h3>
+  <p>The second stage is placed atop the first stage and connected using an interstage structure. For PSLV, PS2 uses the Vikas liquid engine fuelled by UH25 and N2O4. The stage is 12 metres tall with 41 tonnes of propellant. Unlike solid stages, liquid stages arrive at the VAB in a "dry" configuration and are loaded with propellant at the launch pad. The mating involves connecting structural interfaces, electrical harnesses, and data buses.</p>
+  <h3>Step 3: Third and Fourth Stage Integration</h3>
+  <p>The HPS3 solid third stage is integrated atop the second stage. The PS4 fourth stage, carrying two small liquid engines, is then stacked on top. PS4 is responsible for precise satellite injection into target orbits. As each stage is stacked, electrical harnesses are connected to route power, data, and command signals throughout the vehicle.</p>
+  <div class="key-facts"><h4>Assembly Timeline (Typical PSLV Mission)</h4><ul><li>Stage stacking in VAB: 7-10 days</li><li>Vehicle transfer to pad (SLP): 1-2 days</li><li>Payload encapsulation and integration: 3-5 days</li><li>Propellant loading: 2-3 days (liquid stages)</li><li>Final countdown and launch: 24-48 hours</li><li>Total campaign duration: 3-4 weeks</li></ul></div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>Launch vehicle assembly follows a bottom-up stacking process: first stage, second stage, third stage, fourth stage, and payload. Strap-on boosters are attached during first-stage integration. Each stage arrives pre-assembled, with electrical and data connections made during mating. The entire integration takes 1-2 weeks followed by propellant loading and final countdown.</p></div>
+  <div class="page-num">11</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 6 — PSLV Configuration</div>
+  <h2 class="chapter-title">Chapter 06: PSLV Configuration (4-Stage Solid/Liquid)</h2>
+  <h3>India's Workhorse Launch Vehicle</h3>
+  <p>The Polar Satellite Launch Vehicle (PSLV) is the third generation launch vehicle of India and the first Indian launcher to incorporate liquid propulsion stages. First launched on September 20, 1993, PSLV has become the backbone of India's launch fleet with over 60 missions, earning the title "the Workhorse of ISRO." Despite an initial failure on its maiden flight, PSLV achieved remarkable reliability with 28 consecutive successes between October 1994 and April 2015.</p>
+  <p>PSLV is a four-stage launch vehicle with a unique hybrid configuration combining solid and liquid propulsion. It stands 44.4 metres tall with a diameter of 2.8 metres and a liftoff mass of 320 tonnes in the XL configuration. The vehicle is offered in four variants: PSLV-Core Alone (CA) with no strap-ons, PSLV-DL with 2 strap-ons, PSLV-QL with 4 strap-ons, and PSLV-XL with 6 strap-ons for maximum performance.</p>
+  <div class="ascii-diagram">PSLV-XL CONFIGURATION
+======================
+         /\
+        /  \        &lt;- Payload Fairing
+       / SAT \
+      +------+
+      | PS4  |  &lt;- Stage 4: 2x liquid engines (MMH+MON-3)
+      +------+     Mass: 2.5t  |  Thrust: 2x7.3kN
+      | HPS3 |  &lt;- Stage 3: Solid motor (HTPB, 7.65t)
+      +------+     Thrust: 240 kN
+      | PS2  |  &lt;- Stage 2: Vikas engine (UH25+N2O4, 41t)
+      +------+     Thrust: 800 kN (SL)
+     /|      |\
+    / |      | \
+   /  |      |  \
+  PSOM PS1  PSOM  &lt;- Stage 1: S139 solid motor + 6x PSOM-XL
+  XL  CORE   XL
+      |S139  |
+      +------+
+  Total Height: 44.4m  |  Liftoff Mass: 320t (XL)
+  Payload to SSO (600km): 1,750 kg</div>
+  <h3>Stage 1: S139 Solid Rocket Motor</h3>
+  <p>The S139 motor contains 139 tonnes of HTPB-based composite propellant and generates 4,800 kN of maximum vacuum thrust. It is 20 metres long with a 2.8 metre diameter and uses a submerged nozzle design. The six PSOM-XL strap-on boosters each contain 12.2 tonnes of propellant and deliver 719 kN of thrust. Four ground-lit strap-ons fire at liftoff, while two air-lit boosters ignite 25 seconds into flight.</p>
+  <h3>Stage 2: PS2 with Vikas Engine</h3>
+  <p>The PS2 stage carries 41 tonnes of UH25/N2O4 propellants and delivers 800 kN at sea level via the Vikas engine. The hypergolic propellants ignite spontaneously on contact. PS2 also carries the SITVC system for pitch and yaw control during first-stage flight, using strontium perchlorate injection.</p>
+  <h3>Stage 3: HPS3 Solid Motor</h3>
+  <p>The HPS3 contains 7.65 tonnes of HTPB propellant and delivers 240 kN of vacuum thrust for approximately 105 seconds. It was specifically developed to enhance PSLV's payload capability through optimised propellant grain design and reduced inert mass.</p>
+  <h3>Stage 4: PS4 Liquid Stage</h3>
+  <p>PS4 carries two small earth-storable liquid engines using MMH/MON-3, each delivering 7.3 kN of thrust. The stage can perform multiple burns to inject satellites into different orbits during a single mission — a capability demonstrated repeatedly with multi-manifest commercial missions.</p>
+  <table><tr><th>Parameter</th><th>Stage 1 (S139)</th><th>Stage 2 (PS2)</th><th>Stage 3 (HPS3)</th><th>Stage 4 (PS4)</th></tr><tr><td>Propulsion</td><td>Solid</td><td>Liquid (Vikas)</td><td>Solid</td><td>Liquid (2 engines)</td></tr><tr><td>Propellant</td><td>HTPB</td><td>UH25/N2O4</td><td>HTPB</td><td>MMH/MON-3</td></tr><tr><td>Propellant Mass</td><td>139 t</td><td>41 t</td><td>7.65 t</td><td>2.5 t</td></tr><tr><td>Thrust (Vac)</td><td>4,800 kN</td><td>~1,000 kN</td><td>240 kN</td><td>2 x 7.3 kN</td></tr><tr><td>Burn Duration</td><td>~111 s</td><td>~150 s</td><td>~105 s</td><td>Variable</td></tr></table>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>PSLV is a four-stage hybrid vehicle combining solid and liquid propulsion to deliver up to 1,750 kg to Sun-Synchronous Orbit. The S139 first stage, Vikas-powered PS2, HPS3 solid third stage, and PS4 liquid fourth stage provide remarkable versatility. PS4's multiple restart capability enables multi-orbit missions.</p></div>
+  <div class="page-num">13</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 7 — GSLV Configuration</div>
+  <h2 class="chapter-title">Chapter 07: GSLV Configuration</h2>
+  <h3>Geosynchronous Satellite Launch Vehicle</h3>
+  <p>The Geosynchronous Satellite Launch Vehicle (GSLV) is India's medium-lift launch vehicle designed to place satellites into Geosynchronous Transfer Orbit (GTO). First launched in 2001, GSLV represented India's entry into the exclusive club of nations capable of using cryogenic propulsion. The vehicle is a three-stage launch vehicle with four liquid strap-on boosters, a liquid core stage, and a cryogenic upper stage. GSLV has completed 18 missions and can place 2,500 kg class satellites into GTO.</p>
+  <div class="ascii-diagram">GSLV Mk II CONFIGURATION
+==========================
+         /\
+        /  \         &lt;- Payload Fairing (3.4m dia)
+       / SAT \
+      +------+
+      |  C15 |  &lt;- Stage 3: Cryogenic Upper Stage
+      +------+     Engine: CE-7.5 (73.5 kN), LOX+LH2 (15t)
+      |  GS2 |  &lt;- Stage 2: Liquid Core Stage
+      +------+     Engine: Vikas (800 kN), UH25+N2O4 (40t)
+     /|      |\
+    / |      | \
+   /  |      |  \
+  L40 | GS1  | L40  &lt;- 4x L40 liquid strap-ons
+      |      |        Each: Vikas engine, 40t prop
+      +------+
+  Total Height: 42.4m  |  Liftoff Mass: 415 tonnes
+  Payload to GTO: 2,500 kg</div>
+  <h3>L40 Liquid Strap-on Boosters</h3>
+  <p>GSLV uses four L40 (Liquid 40-tonne) strap-on boosters, each powered by a Vikas engine. These liquid strap-ons carry 40 tonnes of UH25/N2O4 propellant and deliver approximately 800 kN of thrust. The strap-ons are ignited at liftoff and burn for approximately 160 seconds before being jettisoned. Liquid strap-ons provide higher specific impulse than solid alternatives and allow thrust regulation during flight.</p>
+  <h3>GS2 Core Stage</h3>
+  <p>The GS2 core stage is powered by a Vikas engine with 40 tonnes of propellant. It ignites after the strap-ons and first stage have separated, operating for approximately 140 seconds. The Vikas engine provides reliable performance refined over decades of operation across PSLV, GSLV, and LVM3.</p>
+  <h3>C15 Cryogenic Upper Stage</h3>
+  <p>The C15 cryogenic upper stage is the defining feature of GSLV, powered by the CE-7.5 cryogenic engine using liquid hydrogen at -253°C and liquid oxygen at -183°C. The CE-7.5 delivers 73.5 kN of thrust with a specific impulse of 454 seconds on a staged combustion cycle. The C15 stage carries 15 tonnes of cryogenic propellants and can perform multiple burns for precise satellite injection. India achieved first successful flight of the indigenous cryogenic stage on January 5, 2014, with GSLV D5 carrying GSAT-14.</p>
+  <h3>GSLV Evolution and Challenges</h3>
+  <p>The GSLV programme faced significant challenges in cryogenic technology. India initially negotiated to acquire KVD-1 engines from Russia, but US MTCR pressure prevented technology transfer. This forced ISRO to develop indigenous cryogenic capability from scratch over nearly two decades. The period from 2006 to 2010 saw three consecutive GSLV failures. ISRO systematically addressed these through extensive testing, and the successful GSLV D5 in January 2014 marked a turning point.</p>
+  <div class="comparison-note"><strong>CE-7.5 vs CE-20:</strong> The CE-7.5 (GSLV) uses staged combustion with 73.5 kN thrust and 454s Isp. The CE-20 (LVM3) uses gas generator cycle with 200 kN thrust and 442s Isp, making it easier to build but slightly less efficient.</div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>GSLV Mk II is a three-stage vehicle with four liquid L40 strap-on boosters, a Vikas-powered GS2 core stage, and a C15 cryogenic upper stage with the CE-7.5 engine. India's development of the indigenous CE-7.5 engine, after being denied Russian technology transfer, represents one of the most significant achievements of the Indian space programme.</p></div>
+  <div class="page-num">15</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 8 — LVM3 / GSLV Mk III</div>
+  <h2 class="chapter-title">Chapter 08: LVM3 / GSLV Mk III (S200, L110, C32)</h2>
+  <h3>India's Heavy-Lift Launcher</h3>
+  <p>The Launch Vehicle Mark-3 (LVM3), formerly GSLV Mk III, is India's most powerful operational launch vehicle. Developed to launch heavy communication satellites and support human spaceflight, LVM3 represents the culmination of decades of experience in solid, liquid, and cryogenic propulsion. Renamed in October 2022 to reflect its versatility, LVM3 can deliver payloads to LEO, MEO, GTO, and interplanetary trajectories.</p>
+  <p>LVM3 consists of two massive S200 solid strap-on boosters, a core L110 liquid stage powered by twin Vikas engines, and a C32 cryogenic upper stage powered by the CE-20 engine. The vehicle stands 43.5 metres tall, has a diameter of 4 metres (5.4 metres at strap-ons), and a liftoff mass of 640 tonnes. It can place 4,000 kg class satellites into GTO and 10,000 kg to LEO.</p>
+  <div class="ascii-diagram">LVM3 (GSLV Mk III) CONFIGURATION
+===================================
+           +------+
+           | PAY  |
+           | LOAD |
+           +------+
+           /      \
+          /  C32   \  &lt;- Cryogenic Upper Stage
+         | CE-20    |     Engine: CE-20 (200 kN), LOX+LH2 (28t)
+         +----------+     Isp: 442s (vacuum)
+         |   L110   |  &lt;- Core Liquid Stage
+         |          |     2x Vikas engines (1,600 kN)
+         +----------+     Propellant: UH25+N2O4 (110t)
+        /|          |\
+       / |          | \
+  +-----+|          |+-----+
+  | S200 ||   L110   || S200 |
+  |BOOSTR||   CORE   ||BOOSTR|
+  +------+|          |+------+
+     205t ||          || 205t
+  propellant         propellant
+  Total Height: 43.5m  |  Liftoff Mass: 640t
+  Payload to GTO: 4,000 kg  |  Payload to LEO: 10,000 kg</div>
+  <h3>S200 Solid Strap-on Boosters</h3>
+  <p>The S200 boosters are the largest solid rocket motors built in India, each containing 205 tonnes of HTPB propellant — the third largest solid motors globally. They are 25 metres long, 3.2 metres in diameter, and generate approximately 5,150 kN of vacuum thrust each. The motors burn for approximately 130 seconds with five-segment propellant grains and star-shaped bore pattern. They use submerged flex-seal nozzles for thrust vector control.</p>
+  <h3>L110 Liquid Core Stage</h3>
+  <p>The L110 core stage is powered by two Vikas engines operating in parallel, carrying 110 tonnes of propellant and delivering approximately 1,600 kN of combined thrust. The twin-engine configuration provides engine-out capability — if one engine fails, the vehicle can still complete its mission. The L110 ignites on the ground at liftoff and operates for approximately 200 seconds.</p>
+  <h3>C32 Cryogenic Upper Stage</h3>
+  <p>The C32 stage carries 28 tonnes of LOX/LH2 and is powered by the CE-20 engine delivering 200 kN of thrust with 442 seconds specific impulse. Future C32 stages will use an uprated CE-20 at 22 tonnes thrust, enhancing payload to 5 tonnes class GTO. LVM3 has been human-rated for Gaganyaan, with the CE-20 undergoing 39 hot-fire tests totalling 8,810 seconds against the 6,350 second minimum requirement.</p>
+  <table><tr><th>Parameter</th><th>S200 Booster</th><th>L110 Core</th><th>C32 Upper</th></tr><tr><td>Propulsion</td><td>Solid (HTPB)</td><td>2 x Vikas</td><td>CE-20 (Cryo)</td></tr><tr><td>Propellant Mass</td><td>205 t each</td><td>110 t</td><td>28 t</td></tr><tr><td>Thrust (Vac)</td><td>5,150 kN</td><td>1,600 kN</td><td>200 kN</td></tr><tr><td>Burn Duration</td><td>~130 s</td><td>~200 s</td><td>~580 s</td></tr><tr><td>Isp (Vac)</td><td>274 s</td><td>293 s</td><td>442 s</td></tr></table>
+  <div class="key-facts"><h4>LVM3 Mission Record</h4><ul><li>Total missions: 9 (100% success rate)</li><li>Notable: Chandrayaan-2, Chandrayaan-3, 3 OneWeb commercial missions</li><li>First flight: December 18, 2014 (LVM3-X experimental)</li><li>Designated vehicle for Gaganyaan human spaceflight</li><li>LVM3-M4 carried 36 OneWeb satellites (5.8 tonnes total)</li></ul></div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>LVM3 is India's heavy-lift launcher with a 100% success rate across 9 missions. Its S200 solid boosters, L110 twin-Vikas core, and C32 CE-20 cryogenic upper stage provide 4,000 kg GTO capability. The vehicle is the designated platform for Chandrayaan missions and Gaganyaan human spaceflight.</p></div>
+  <div class="page-num">17</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 9 — Cryogenic Engine Technology</div>
+  <h2 class="chapter-title">Chapter 09: Cryogenic Engine Technology (CE-20)</h2>
+  <h3>India's Indigenous Cryogenic Achievement</h3>
+  <p>The development of indigenous cryogenic engine technology represents one of India's most significant technological achievements. Cryogenic propulsion using liquid hydrogen at -253°C and liquid oxygen at -183°C offers the highest specific impulse of any chemical propulsion system — around 440-460 seconds — making it essential for upper stages reaching high orbits. India's journey from dependence on Russian technology to developing world-class indigenous engines spanned nearly three decades.</p>
+  <p>In the 1990s, ISRO negotiated with Russia's Glavcosmos for KVD-1 cryogenic engines and technology transfer. Under US MTCR pressure, Russia cancelled the technology transfer in 1991, leaving ISRO with a few engines but no manufacturing know-how. This setback galvanised India's determination to develop indigenous capability.</p>
+  <h3>CE-7.5: The First Indigenous Cryogenic Engine</h3>
+  <p>The CE-7.5 uses a staged combustion cycle where a small portion of fuel is burned in a pre-burner to drive the turbopump, with exhaust routed to the main combustion chamber. It delivers 73.5 kN of thrust with 454 seconds specific impulse. After extensive development, the CE-7.5 achieved its first successful flight on January 5, 2014, on GSLV D5 carrying GSAT-14.</p>
+  <div class="ascii-diagram">CE-20 CRYOGENIC ENGINE SCHEMATIC
+=================================
+  LH2 Tank (at -253C)      LOX Tank (at -183C)
+      |                        |
+      v                        v
+  +-----------+           +-----------+
+  | LH2       |           | LOX       |
+  | Turbopump |           | Turbopump |
+  +-----------+           +-----------+
+      |                        |
+      v                        |
+  +-----------+                |
+  |  GAS      |                |
+  | GENERATOR |                |
+  +-----------+                |
+      |                        |
+      v                        v
+  +---------------------------+
+  |    MAIN COMBUSTION        |
+  |    CHAMBER (6 MPa)        |
+  +---------------------------+
+              |
+              v
+  +---------------------------+
+  |  NOZZLE (ratio 100:1)     |
+  +---------------------------+
+              |
+              v
+          Exhaust
+  Specifications:
+  - Cycle: Gas Generator
+  - Thrust: 186-220 kN (adjustable)
+  - Isp: 442 s (vacuum)
+  - Mixture Ratio: 5.05
+  - Weight: ~600 kg
+  - Thrust-to-Weight: 34.7</div>
+  <h3>CE-20: The High-Thrust Cryogenic Engine</h3>
+  <p>The CE-20 produces nominal thrust of 200 kN (adjustable between 180-220 kN) with 442 seconds Isp on a gas generator cycle. Unlike the CE-7.5's staged combustion, the CE-20 discards pre-burner exhaust, reducing efficiency slightly but making the engine easier to build and test. The engine uses a high-expansion-ratio nozzle (100:1) optimised for vacuum operation.</p>
+  <h3>Boot-Strap Mode Achievement</h3>
+  <p>In November 2025, ISRO achieved a world-first by demonstrating boot-strap mode starting for the CE-20 under vacuum conditions at Mahendragiri's HAT facility. The engine builds up to steady operation without external start-up assistance — the gas generator ignites under tank head conditions and turbopumps start without the stored gas system. This enables future multi-restart missions without additional start-up gas bottles.</p>
+  <h3>Human-Rating for Gaganyaan</h3>
+  <p>Four CE-20 engines underwent 39 hot-fire tests totalling 8,810 seconds against the 6,350 second minimum human-rating requirement. Tests included life demonstration, endurance, and off-nominal performance assessments. The CE-20 has successfully flown on 8 LVM3 missions including Chandrayaan-2, Chandrayaan-3, and commercial OneWeb launches.</p>
+  <div class="key-facts"><h4>CE-20 Engine Specifications</h4><ul><li>Manufacturer: HAL (ICEMF, Bengaluru)</li><li>Design authority: LPSC, Valiamart/Mahendragiri</li><li>Cycle: Gas Generator</li><li>Thrust: 186-220 kN (adjustable)</li><li>Specific Impulse: 442 s (vacuum)</li><li>Propellants: LOX + LH2</li><li>Nozzle Expansion Ratio: 100:1</li><li>Chamber Pressure: 6 MPa</li><li>Human-rating: 8,810 seconds qualification</li><li>Flight heritage: 8 successful LVM3 missions</li></ul></div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>India's cryogenic programme evolved from the CE-7.5 to the CE-20, making India one of only six nations with indigenous cryogenic capability. The CE-20 has been human-rated and flown successfully on 8 LVM3 missions. The November 2025 boot-strap mode achievement enables future multi-restart capabilities.</p></div>
+  <div class="page-num">19</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 10 — Vikas Engine</div>
+  <h2 class="chapter-title">Chapter 10: Vikas Engine — The Liquid Propulsion Workhorse</h2>
+  <h3>A Legacy of Reliability</h3>
+  <p>The Vikas engine is the backbone of India's liquid propulsion capability, powering stages across PSLV, GSLV, and LVM3. Named after Dr. Vikram Sarabhai, the Vikas engine family has been in continuous development since the 1970s. Conceived by LPSC and manufactured by HAL, the Vikas engine is a gas-generator cycle liquid engine that has demonstrated remarkable reliability over hundreds of firings. The engine's lineage traces back to the European Viking engine, with ISRO adapting the design to create the Vikas engine.</p>
+  <div class="ascii-diagram">VIKAS ENGINE CROSS-SECTION
+============================
+  UH25 Fuel Tank       N2O4 Oxidiser Tank
+      |                      |
+      v                      v
+  +--------+           +--------+
+  | Fuel   |           | Oxidiser|
+  | Pump   |           | Pump    |
+  +--------+           +--------+
+      |                      |
+      +------+    +----------+
+             |    |
+             v    v
+        +-----------+
+        |  GAS      |
+        | GENERATOR |
+        +-----------+
+             |
+             v
+        +-----------+
+        | TURBINE   | (drives both pumps)
+        +-----------+
+             |
+             v
+        +-----------+     +-----------+
+        |COMBUSTION |&lt;----| INJECTOR  |
+        | CHAMBER   |     | PLATE     |
+        +-----------+     +-----------+
+             |
+             v
+        +-----------+
+        |  NOZZLE   |
+        +-----------+
+  Specifications:
+  - Fuel: UH25 (UDMH + N2H4)
+  - Oxidiser: N2O4
+  - Thrust (SL): 800 kN
+  - Thrust (Vac): ~1,000 kN
+  - Isp (SL): 281 s  |  Isp (Vac): 293 s
+  - Chamber Pressure: 58 bar (std) / 62 bar (HTVE)
+  - Mixture Ratio: 1.71 (O/F)
+  - Dry Mass: ~900 kg</div>
+  <h3>Design and Operation</h3>
+  <p>The Vikas engine operates on a gas-generator cycle where propellant is burned in a gas generator to drive the turbopump. The turbopump delivers UH25 fuel and N2O4 oxidiser to the combustion chamber. The hypergolic propellants ignite spontaneously on contact, eliminating the need for an ignition system. The chamber operates at 58 bar (standard) or 62 bar (HTVE), with regenerative cooling by fuel flowing through chamber wall channels.</p>
+  <h3>Applications Across India's Fleet</h3>
+  <p>A single Vikas powers PSLV's PS2 stage. Four Vikas engines power GSLV's L40 strap-ons and one powers GS2. In LVM3, two Vikas engines operate in parallel in the L110 core stage. This commonality reduces unique engine types and drives down costs through high production volume.</p>
+  <h3>High Thrust Vikas Engine (HTVE)</h3>
+  <p>The HTVE increases chamber pressure from 58 to 62 bar for 6% more thrust, translating to approximately 70 kg additional payload for PSLV and up to 250 kg for LVM3. First flown on Chandrayaan-2, the HTVE maintains full backward compatibility with existing vehicle interfaces.</p>
+  <div class="key-facts"><h4>Vikas Engine Heritage</h4><ul><li>First successful flight: PSLV D2 (1994)</li><li>Total engines produced: 100+</li><li>Applications: PSLV (PS2), GSLV (L40, GS2), LVM3 (L110)</li><li>Manufacturer: HAL Division 4, Bengaluru</li><li>Specific Impulse (Vac): 293 seconds</li><li>Propellants: UH25/N2O4 (hypergolic)</li><li>Chamber Pressure: 58-62 bar</li><li>Operational history: 30+ years, hundreds of firings</li></ul></div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>The Vikas engine is India's liquid propulsion workhorse, powering PSLV, GSLV, and LVM3 for 30+ years. Operating on gas-generator cycle with hypergolic propellants, it delivers 800-1,000 kN thrust at 293 seconds Isp. The HTVE variant improves performance by 6%.</p></div>
+  <div class="page-num">21</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 11 — Solid Propellant Processing</div>
+  <h2 class="chapter-title">Chapter 11: Solid Propellant Processing (HTPB, Composite Propellant)</h2>
+  <h3>The Science of Solid Rocket Propellant</h3>
+  <p>Solid rocket propellant powers the first stages and strap-on boosters of India's launch vehicles. Unlike liquid propellants stored in tanks, solid propellant is pre-loaded into the motor case during manufacturing and cannot be shut down once ignited. This makes propellant quality absolutely critical — any defect could lead to catastrophic failure. ISRO has developed world-class expertise in solid propellant processing over five decades.</p>
+  <p>The propellant used across India's fleet is HTPB-based composite propellant. HTPB (Hydroxyl-Terminated Polybutadiene) was selected for its excellent mechanical properties, low-temperature flexibility, and good bonding characteristics. The composite propellant consists of ammonium perchlorate (AP) oxidiser, aluminium powder fuel, HTPB binder, and various additives controlling ballistic, mechanical, and thermal properties.</p>
+  <h3>Raw Materials and Their Roles</h3>
+  <p>Ammonium Perchlorate (AP) serves as the primary oxidiser at 68-72% by weight. India produces AP domestically at the Ammonium Perchlorate Plant in Alwaye, Kerala. A second production line was commissioned in September 2025 to double capacity. Aluminium powder (16-20% by weight) is the metallic fuel, with particle sizes carefully controlled from 5-30 microns to affect burning rate and combustion efficiency.</p>
+  <h3>The Mixing Process</h3>
+  <p>Propellant mixing occurs in large vacuum-sealed mixers to eliminate air bubbles that could create dangerous voids. The process begins with dry mixing of AP and aluminium powder, then HTPB binder and curing agents (IPDI) are added and blended for 2-4 hours. The 10-tonne vertical mixer at SDSC SHAR, commissioned in 2025, is the world's largest solid propellant mixing equipment, enabling production of massive S200 motors for LVM3.</p>
+  <div class="ascii-diagram">HTPB SOLID PROPELLANT COMPOSITION
+===================================
+  +--------------------------------------------------+
+  |  AMMONIUM PERCHLORATE (AP) - Oxidiser: 68-72%   |
+  |  (NH4ClO4 - crystalline powder)                  |
+  +--------------------------------------------------+
+  |  ALUMINIUM POWDER (Al) - Fuel: 16-20%            |
+  |  (Fine metallic particles, 5-30 microns)         |
+  +--------------------------------------------------+
+  |  HTPB BINDER - Fuel/Binder: 10-14%               |
+  |  (Hydroxyl-Terminated Polybutadiene)             |
+  +--------------------------------------------------+
+  |  CURING AGENTS & ADDITIVES - 2-4%                |
+  |  (IPDI, burning rate modifiers, antioxidants)    |
+  +--------------------------------------------------+
+  Typical Properties:
+  - Density: 1.75-1.80 g/cm3
+  - Specific Impulse: 260-275 seconds
+  - Burn Rate: 5-15 mm/sec
+  - Tensile Strength: 0.5-0.8 MPa
+  - Elongation at Break: 30-50%</div>
+  <h3>Grain Design and Burn Rate Control</h3>
+  <p>Propellant grain geometry determines thrust profile. ISRO uses star, finocyl, cylindrical bore, and multi-segment designs. The S139 motor uses cylindrical bore with inhibit layers for neutral burn profile, while the S200 uses star-shaped bore for progressive-regressive thrust. Burn rate is controlled through AP particle size distribution, burn rate catalysts (iron oxide or copper compounds), and HTPB-to-AP ratio.</p>
+  <h3>Safety and Environmental Considerations</h3>
+  <p>Solid propellant processing requires strict safety protocols. Mixing facilities are housed in blast-proof buildings with reinforced walls, fire suppression systems, and isolated control rooms. Spent propellant is disposed of through controlled burning at designated locations within the facility perimeter.</p>
+  <div class="key-facts"><h4>Solid Propellant Production Facts</h4><ul><li>World's largest mixer: 10-tonne vertical mixer at SDSC (2025)</li><li>AP production: Alwaye, Kerala (second line Sep 2025)</li><li>Propellant density: 1.75-1.80 g/cm3</li><li>Specific Impulse: 260-275 seconds</li><li>Largest motor: S200 (205 tonnes propellant) for LVM3</li></ul></div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>Solid propellant processing uses HTPB-based composite propellant with AP oxidiser and aluminium fuel. The 10-tonne vertical mixer at SDSC is the world's largest. Burn rate and thrust profile are controlled through grain geometry and catalytic additives. All production is supported by indigenous AP manufacturing.</p></div>
+  <div class="page-num">23</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 12 — Nozzle Design &amp; Thrust Vector Control</div>
+  <h2 class="chapter-title">Chapter 12: Nozzle Design &amp; Thrust Vector Control</h2>
+  <h3>The Rocket Nozzle</h3>
+  <p>The rocket nozzle converts high-pressure, high-temperature combustion gases into directed kinetic energy producing thrust. The de Laval nozzle concept — convergent-divergent geometry — accelerates subsonic gases to supersonic velocities. The expansion ratio (exit area to throat area) determines efficiency. In Indian vehicles, nozzles range from simple convergent designs to bell-shaped contoured nozzles with expansion ratios exceeding 100:1 in cryogenic engines.</p>
+  <div class="ascii-diagram">DE LAVAL NOZZLE GEOMETRY
+==========================
+  Combustion Chamber
+  +------------------+
+  |    Hot Gases     |
+  |    (High P, T)   |
+  +--------+---------+
+           |
+    Convergent Section
+           |
+      +----+----+
+     /           \
+    /    THROAT   \  &lt;- Mach 1 (sonic velocity)
+   /               \
+  |    Divergent    |
+   \    Section    /
+    \             /
+     \           /
+      \         /
+  EXIT PLANE
+  +---------+
+  | Supersonic|
+  |  Exhaust  |
+  | (Mach 3-5)|
+  +---------+
+  Key Parameters:
+  - Throat Diameter: 10-40 cm
+  - Exit Diameter: 30-200 cm
+  - Expansion Ratio: 10:1 (SL) to 100:1 (vacuum)
+  - Throat Temperature: 2,500-3,500C
+  - Nozzle Material: Carbon-carbon, graphite, copper alloys</div>
+  <h3>Submerged Nozzles in Solid Motors</h3>
+  <p>Large solid motors like S139 and S200 use submerged nozzle designs where a portion is embedded within the motor case, reducing overall length. The nozzle throat is made from graphite or carbon-carbon composite withstand temperatures above 3,000°C. The divergent section uses phenolic-impregnated carbon fibre that ablates in a controlled manner, carrying heat away from the structure.</p>
+  <h3>Thrust Vector Control (TVC) Systems</h3>
+  <p>ISRO employs several TVC methods. Flex Seal nozzles mount on flexible bearings allowing gimballing up to ±6 degrees — used on S200 boosters in LVM3 with electro-mechanical actuators. The SSLV uses fault-tolerant electro-mechanical actuation with low-power control electronics.</p>
+  <h3>Secondary Injection Thrust Vector Control (SITVC)</h3>
+  <p>PSLV uses SITVC for pitch and yaw control during first-stage flight. Strontium perchlorate is injected into the nozzle exhaust, creating a shock wave that deflects the thrust vector. This provides a simple, lightweight alternative to mechanical gimballing for large solid motors. PSLV also uses an RCS with MMH/MON-3 thrusters for roll control.</p>
+  <h3>Liquid Engine Gimballing</h3>
+  <p>Liquid engines achieve TVC through nozzle gimballing — physically tilting the engine using hydraulic or electro-mechanical actuators. The Vikas engine can be gimbaled ±4 degrees. The CE-20 cryogenic engine also uses nozzle gimballing rather than vernier thrusters, simplifying the design.</p>
+  <h3>Advanced Nozzle Technologies</h3>
+  <p>ISRO developed a Nozzle Protection System (NPS) enabling sea-level testing of the CE-20's full-area-ratio nozzle without damage from flow separation. Successfully validated in 2026, the NPS simplifies the complex High Altitude Test facility requirements.</p>
+  <div class="key-facts"><h4>TVC Methods Used in Indian Vehicles</h4><ul><li>Flex-seal gimballing: S200 boosters (LVM3), SS1 (SSLV)</li><li>SITVC: PSLV first stage (strontium perchlorate injection)</li><li>Nozzle gimballing: Vikas engine, CE-20 cryogenic engine</li><li>RCS thrusters: PSLV coast phases, SSLV VTM</li><li>Deflection angles: ±4° (Vikas) to ±6° (S200 flex-seal)</li></ul></div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>ISRO employs flex-seal gimballing for solid motors, SITVC for PSLV, and nozzle gimballing for liquid engines. The de Laval nozzle converts combustion energy to thrust with expansion ratios from 10:1 to 100:1. The Nozzle Protection System enables cost-effective sea-level testing of cryogenic nozzles.</p></div>
+  <div class="page-num">25</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 13 — Interstage Structures &amp; Separation Systems</div>
+  <h2 class="chapter-title">Chapter 13: Interstage Structures &amp; Separation Systems</h2>
+  <h3>The Critical Connective Tissue</h3>
+  <p>Interstage structures and separation systems must be strong enough to transmit enormous forces between stages during powered flight, yet capable of cleanly separating when commanded. A structural failure could cause vehicle breakup, while a separation failure could prevent stage ignition or cause re-contact. ISRO has developed robust technologies across its vehicle fleet.</p>
+  <div class="ascii-diagram">INTERSTAGE STRUCTURE ANATOMY
+==============================
+  UPPER STAGE
+  +============================+
+  |     Propellant Tanks       |
+  |     Engine Assembly        |
+  +============================+
+            |
+  +============================+
+  |     INTERSTAGE STRUCTURE   |
+  |  +----------------------+  |
+  |  | Separation System    |  |
+  |  | (Pyrotechnic bolts / |  |
+  |  |  Frangible joints)   |  |
+  +--+----------------------+--+
+  |  | Pusher Springs /     |  |
+  |  | Linear Charge /      |  |
+  |  | Pneumatic Pusher     |  |
+  +============================+
+            |
+  +============================+
+  |     Lower Stage            |
+  |     (Engine nozzle visible |
+  |      through opening)      |
+  +============================+
+  Separation Sequence:
+  1. Upper stage command received
+  2. Pyrotechnic bolts fire / Clamp band released
+  3. Pusher mechanism activates
+  4. Stages separate (velocity 0.5-1.5 m/s)
+  5. Upper stage engine ignition</div>
+  <h3>Solid Separation Systems</h3>
+  <p>The most common method is pyrotechnic separation using explosive bolts or frangible joints. An explosive bolt contains a pyrotechnic cartridge that fires a shock wave fracturing the bolt at a pre-scored weak point. Multiple bolts fire simultaneously for clean, symmetrical separation. Frangible joints use linear shaped charges — thin explosive strips in V-shaped sheaths — that cut through structural skin in a precise line. The SSLV uses expandable bellow-based circular separation systems for simpler production.</p>
+  <h3>Pneumatic and Spring Separation Systems</h3>
+  <p>For gentler separation, ISRO uses pneumatic or spring-based systems. Clamp bands hold stages using friction; when released, pre-loaded springs or pneumatic pushers push stages apart. This is preferred for payload separation to protect sensitive satellite components.</p>
+  <h3>Payload Separation</h3>
+  <p>Payload separation is the most critical event. ISRO uses spring-loaded systems for small satellites and clamp band systems with pneumatic pushers for heavier ones. The PSLV Multi-Satellite Adaptor (MSA) deck can accommodate multiple satellites with minimum 50 metres separation between releases. SSLV also features MSA for missions with payloads from 10 kg to 300 kg.</p>
+  <h3>Pyrotechnic Initiator Systems</h3>
+  <p>All pyrotechnic events use redundant electrical circuits with multiple safety interlocks. SSLV simplifies this with direct-initiation circuits and super-capacitors replacing batteries for lighter weight. Each pyrotechnic device has at least two independent initiation paths.</p>
+  <div class="key-facts"><h4>Separation System Types</h4><ul><li>Explosive bolts: High-strength bolts with embedded pyrotechnic charges</li><li>Frangible joints: Linear shaped charges for continuous cuts</li><li>Clamp bands: Friction-held rings with spring/pneumatic pushers</li><li>Bellow separation: Expandable bellows for SSLV (new design)</li><li>Payload adaptors: MSA decks for multi-satellite missions</li><li>Redundant circuits: Minimum two initiation paths per device</li><li>Separation velocity: 0.5-1.5 m/s typical</li></ul></div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>Interstage structures connect stages while housing separation systems. ISRO employs pyrotechnic bolts, frangible joints, clamp bands, and pneumatic/spring systems. Payload separation uses low-shock systems to protect satellites. SSLV introduces bellow-based separation and super-capacitor-powered pyrotechnics.</p></div>
+  <div class="page-num">27</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 14 — Payload Fairing Integration</div>
+  <h2 class="chapter-title">Chapter 14: Payload Fairing Integration</h2>
+  <h3>Protecting the Payload</h3>
+  <p>The payload fairing (heat shield) is the aerodynamic nose cone enclosing the satellite during initial flight. It protects from aerodynamic heating and pressure loads, shields from acoustic vibrations and electromagnetic interference, and provides a clean, controlled environment. Once above 110-120 km altitude, the fairing is jettisoned to reduce mass and expose the satellite.</p>
+  <p>PSLV uses a 2.8-metre diameter fairing, GSLV uses 3.4 metres, and LVM3 features the largest at 4 metres diameter and 5.4 metres tall. The fairing must accommodate the satellite in stowed configuration plus deployment mechanisms, adapter structures, and clearance margins.</p>
+  <h3>Design and Materials</h3>
+  <p>Fairings use sandwich panel construction — two thin face sheets (aluminium or carbon fibre) bonded to a honeycomb core (aluminium or Nomex) — providing high stiffness-to-weight ratio. Internal surfaces are lined with acoustic attenuation material to reduce sound levels up to 140 dB. SSLV uses an ogive composite fairing with co-cured cork thermal protection system, eliminating separate thermal blankets.</p>
+  <div class="ascii-diagram">PAYLOAD FAIRING DESIGN
+========================
+        /\
+       /  \           &lt;- Ogive nose profile
+      /    \             (reduces aerodynamic drag)
+     /      \
+    /--------\
+   |          |
+   |  SATELLITE|
+   |  (stowed) |
+   |----------|  &lt;- Payload Attach Fitting (PAF)
+   |  Adapter  |
+   +----------+
+   |  Stage 4  |
+   Fairing Cross-Section:
+   +------------------+
+   |  Outer Skin     |  &lt;- Aluminium or CFRP
+   |  Honeycomb Core |  &lt;- Aluminium or Nomex
+   |  Inner Skin     |  &lt;- Aluminium
+   |  Acoustic Liner |  &lt;- Sound dampening
+   +------------------+
+   Separation: Vertical split (2 halves)
+   Method: Linear shaped charge cuts skin
+           Pusher springs separate halves</div>
+  <h3>Fairing Integration Process</h3>
+  <p>Payload fairing integration is the final assembly step before rollout. The satellite is prepared in the clean room, mated to the Payload Attach Fitting (PAF), then the fairing halves are positioned on either side and brought together using precision alignment fixtures. All electrical connections between satellite and vehicle are routed through the fairing via dedicated access panels.</p>
+  <h3>Acoustic Protection</h3>
+  <p>Sound pressure levels inside the fairing during launch can exceed 140 dB. Fairings incorporate acoustic attenuation materials — fibreglass or melamine foam layers — bonded to the inner surface, reducing sound transmission by 10-15 dB. The amount of treatment depends on payload sensitivity.</p>
+  <h3>Fairing Separation</h3>
+  <p>Fairing separation uses pyrotechnic linear shaped charges running the length of the fairing at the separation plane. When initiated, the charges cut through the fairing structure, and pusher springs separate the two halves. Separation occurs when dynamic pressure is low enough (above ~110 km) to avoid excessive aerodynamic loads on the exposed payload. The separation must be clean and symmetrical to prevent fairing halves from contacting the satellite.</p>
+  <div class="key-facts"><h4>Payload Fairing Specifications</h4><ul><li>PSLV fairing: 2.8m diameter, ~3.6m long</li><li>GSLV fairing: 3.4m diameter</li><li>LVM3 fairing: 4m diameter, 5.4m tall (largest)</li><li>SSLV fairing: 2m diameter, ogive composite with cork TPS</li><li>Construction: Sandwich panels (aluminium/carbon fibre + honeycomb)</li><li>Acoustic attenuation: 10-15 dB reduction</li><li>Separation altitude: above 110 km</li><li>Separation method: Linear shaped charge + pusher springs</li></ul></div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>Payload fairings protect satellites during atmospheric ascent using sandwich panel construction with acoustic attenuation. ISRO's fairings range from 2.8m (PSLV) to 4m (LVM3) diameter. Integration occurs in clean rooms as the final assembly step. SSLV introduces ogive composite design with co-cured cork thermal protection.</p></div>
+  <div class="page-num">29</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 15 — Electrical &amp; Avionics Integration</div>
+  <h2 class="chapter-title">Chapter 15: Electrical &amp; Avionics Integration</h2>
+  <h3>The Nervous System of the Launch Vehicle</h3>
+  <p>Electrical and avionics integration is the process of connecting all electronic systems that control, monitor, and guide the launch vehicle throughout its flight. This includes the Vehicle Management Computer (VMC), inertial navigation system, telemetry system, power distribution, pyrotechnic initiation circuits, and stage-level control systems. The avionics suite is the brain and nervous system of the rocket, making real-time decisions that determine mission success or failure.</p>
+  <p>ISRO has progressively modernised its avionics from analog systems in the SLV-3 era to fully digital fly-by-wire systems in modern vehicles. The SSLV introduced miniaturised low-cost avionics with industrial COTS (Commercial Off-The-Shelf) components and NavIC-integrated inertial navigation using MEMS sensors, significantly reducing cost while maintaining performance.</p>
+  <h3>Vehicle Management Computer (VMC)</h3>
+  <p>The VMC is the central processing unit of the launch vehicle, executing the flight software that controls guidance, navigation, and control (GNC) algorithms. It receives data from inertial measurement units (IMUs), processes sensor inputs, computes steering commands, and sends signals to engine actuators and stage separation systems. Modern ISRO vehicles use redundant VMC architectures with dual or triple redundancy to ensure mission continuity even if a computer fails.</p>
+  <h3>Power Distribution System</h3>
+  <p>The electrical power system consists of batteries (typically silver-zinc or lithium-ion) distributed across stages, power conditioning units, and distribution networks. Each stage carries its own batteries to power stage-specific systems during its burn phase. The power distribution system must handle significant transient loads during pyrotechnic events, engine ignition, and separation sequences. SSLV uses super-capacitors for pyrotechnic systems, offering faster response times and lighter weight than traditional batteries.</p>
+  <h3>Telemetry System</h3>
+  <p>The telemetry system transmits real-time flight data — vehicle health, trajectory parameters, engine performance, and environmental conditions — to ground stations via S-band and C-band transmitters. This data is essential for mission monitoring, post-flight analysis, and real-time decision-making. ISRO's telemetry network includes ground stations at Sriharikota, Thumba, Bangalore, and mobile tracking ships positioned along the flight path.</p>
+  <div class="ascii-diagram">AVIONICS ARCHITECTURE
+========================
+  +---------------------------+
+  |   VEHICLE MANAGEMENT      |
+  |   COMPUTER (VMC)          |
+  |   (Redundant: Dual/Triple)|
+  +------------+--------------+
+               |
+  +------------+--------------+
+  |                           |
+  v                           v
+  +-----------+       +-----------+
+  | INERTIAL  |       | TELEMETRY |
+  | NAVIGATION|       | SYSTEM    |
+  | (IMU +    |       | (S-band/  |
+  |  NavIC)   |       |  C-band)  |
+  +-----------+       +-----------+
+               |
+  +------------+--------------+
+  |   POWER DISTRIBUTION      |
+  |   (Batteries + Conditioning)|
+  +------------+--------------+
+               |
+  +------------+--------------+
+  |  PYROTECHNIC INITIATION   |
+  |  (Redundant circuits)     |
+  +---------------------------+
+               |
+  +------------+--------------+
+  |  STAGE CONTROL SYSTEMS    |
+  |  (Engines, Valves, TVC)   |
+  +---------------------------+</div>
+  <h3>Guidance, Navigation, and Control (GNC)</h3>
+  <p>GNC systems determine the vehicle's position, velocity, and orientation using IMU data augmented by NavIC (Indian Regional Navigation Satellite System) in modern vehicles. The guidance algorithm computes the optimal steering commands to achieve the target orbit, while the control system actuates engine gimbals and RCS thrusters to execute these commands. PSLV uses closed-loop guidance, while earlier vehicles employed stored pitch programmes.</p>
+  <h3>Electrical Harness Integration</h3>
+  <p>Electrical harnesses — bundles of cables connecting avionics boxes, sensors, actuators, and pyrotechnic initiators — are routed through the vehicle structure. Each harness is carefully designed to avoid electromagnetic interference, maintain signal integrity, and survive the extreme vibration environment of launch. Harness integration is one of the most labour-intensive aspects of vehicle assembly, requiring meticulous attention to routing, connector mating, and continuity verification.</p>
+  <div class="key-facts"><h4>Avionics Specifications</h4><ul><li>VMC: Redundant digital computer with GNC software</li><li>Navigation: IMU + NavIC (SSLV uses MEMS-based INS)</li><li>Telemetry: S-band primary, C-band for tracking</li><li>Power: Silver-zinc/lithium-ion batteries per stage</li><li>SSLV innovation: Super-capacitors for pyrotechnics</li><li>COTS components in SSLV for cost reduction</li><li>Digital control with electro-mechanical actuators</li></ul></div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>Electrical and avionics integration connects the vehicle's brain (VMC), navigation, telemetry, power, and control systems. Modern vehicles use redundant digital architectures with NavIC-augmented navigation. SSLV pioneered cost-reduced avionics with COTS components, MEMS sensors, and super-capacitor-based pyrotechnic systems.</p></div>
+  <div class="page-num">31</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 16 — Gimbal Systems &amp; Control</div>
+  <h2 class="chapter-title">Chapter 16: Gimbal Systems &amp; Control</h2>
+  <h3>Steering the Vehicle</h3>
+  <p>Gimbal systems provide the mechanism by which a launch vehicle steers itself during powered flight by redirecting the thrust vector. Unlike aircraft that use aerodynamic surfaces, rockets must rely on thrust vectoring for control since they operate in environments where aerodynamic surfaces are ineffective. ISRO's gimbal systems have evolved from simple hydraulic actuators to sophisticated electro-mechanical systems with digital control.</p>
+  <h3>Electro-Mechanical Actuators (EMAs)</h3>
+  <p>Modern Indian launch vehicles use electro-mechanical actuators for engine gimballing, replacing older hydraulic systems. EMAs use electric motors driving ball-screw or roller-screw mechanisms to produce linear motion that tilts the engine. Advantages include elimination of hydraulic fluid systems (reducing weight and complexity), faster response times, higher reliability, and easier maintenance. The SSLV features fully indigenous electro-mechanical actuators with digital control systems.</p>
+  <h3>Gimbal Configuration for Different Engines</h3>
+  <p>The Vikas engine gimbal system allows ±4 degrees of deflection in two axes (pitch and yaw), controlled by dual-channel actuators. The CE-20 cryogenic engine similarly uses nozzle gimballing rather than vernier thrusters. For solid motors like the S200, flex-seal nozzles allow the entire nozzle to be gimbaled up to ±6 degrees using electro-mechanical actuators mounted outside the motor case.</p>
+  <div class="ascii-diagram">ENGINE GIMBAL SYSTEM
+======================
+                    NOZZLE
+                       |
+                  +----+----+
+                  | GIMBAL  |
+                  | BEARING |
+                  +----+----+
+                       |
+        +--------------+--------------+
+        |                             |
+   +----+----+                 +----+----+
+   |  PITCH  |                 |   YAW   |
+   | ACTUATOR|                 | ACTUATOR|
+   +----+----+                 +----+----+
+        |                             |
+        +--------- STRUCTURE ---------+
+  
+  Gimbal Angles:
+  - Vikas Engine: ±4 degrees
+  - CE-20 Cryo: ±4 degrees
+  - S200 Flex-seal: ±6 degrees
+  - SS1 Flex-seal: ±5 degrees
+  
+  Actuator Types:
+  - Electro-Mechanical Actuators (EMAs)
+  - Ball-screw / Roller-screw mechanisms
+  - Digital control with feedback loops</div>
+  <h3>SITVC Control Integration</h3>
+  <p>PSLV's first stage uses SITVC for pitch/yaw control alongside the RCS for roll control. The SITVC system integrates with the vehicle management computer to receive steering commands and regulate strontium perchlorate injection rates. This hybrid approach — SITVC for primary steering and RCS for fine control — provides reliable attitude control during the atmospheric phase.</p>
+  <h3>Flight Control Software</h3>
+  <p>The flight control software executes the guidance, navigation, and control algorithms in real-time. It processes IMU data at hundreds of samples per second, computes the current state vector (position and velocity), compares it to the reference trajectory, and generates actuator commands to minimise deviations. The software includes multiple safety features including autonomous shutdown capability, engine-out compensation, and abort modes for crewed missions.</p>
+  <div class="key-facts"><h4>Gimbal System Specifications</h4><ul><li>Vikas gimbal: ±4° (pitch and yaw)</li><li>CE-20 gimbal: ±4° (pitch and yaw)</li><li>S200 flex-seal: ±6° (pitch and yaw)</li><li>SSLV actuators: Indigenous EMAs with digital control</li><li>Control bandwidth: >50 Hz typical</li><li>Actuator response: <100 ms to full deflection</li><li>Redundancy: Dual-channel actuator control</li></ul></div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>Gimbal systems provide thrust vector control for launch vehicle steering. ISRO uses electro-mechanical actuators for engine gimballing (±4° for liquid engines, ±6° for S200 flex-seal nozzles). Modern vehicles feature indigenous EMAs with digital control, replacing older hydraulic systems for improved reliability and reduced mass.</p></div>
+  <div class="page-num">33</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 17 — Quality Assurance &amp; Testing</div>
+  <h2 class="chapter-title">Chapter 17: Quality Assurance &amp; Testing</h2>
+  <h3>Zero-Defect Philosophy</h3>
+  <p>Quality assurance in launch vehicle manufacturing follows a zero-defect philosophy where every component, every process, and every assembly must meet exacting standards. A single defective bolt, a microscopic crack in a weld, or a misaligned sensor can lead to mission failure worth hundreds of crores. ISRO's quality assurance system encompasses every stage from raw material procurement to final vehicle checkout, with multiple verification points and comprehensive documentation.</p>
+  <h3>Material Testing and Certification</h3>
+  <p>All raw materials entering the production chain undergo rigorous testing. Metallic materials are verified for chemical composition, mechanical properties, and metallurgical structure through spectroscopy, tensile testing, and microscopic examination. Composite materials are tested for fibre orientation, resin content, void fraction, and inter-laminar shear strength. Propellant ingredients are verified for purity, particle size distribution, and moisture content. No material enters production without a certificate of conformity from the testing laboratory.</p>
+  <h3>Component-Level Testing</h3>
+  <p>Each component — from turbine blades in turbopumps to valves in propellant feed systems — undergoes individual testing. Turbopump assemblies are subjected to spin tests at operating speeds, leak tests at maximum pressures, and endurance tests exceeding mission duration requirements. Valve assemblies cycle through thousands of open/close operations to verify reliability. Electrical components undergo thermal cycling, vibration testing, and electromagnetic compatibility testing.</p>
+  <h3>Non-Destructive Testing (NDT)</h3>
+  <p>Non-destructive testing methods are used extensively to detect internal defects without damaging the components. Radiographic (X-ray) inspection reveals internal voids, cracks, and dimensional variations in castings and welds. Ultrasonic testing detects subsurface defects in composite structures and bonding anomalies in sandwich panels. Eddy current testing identifies surface and near-surface cracks in metallic components. Dye penetrant inspection reveals surface-breaking cracks in accessible areas.</p>
+  <div class="ascii-diagram">QUALITY ASSURANCE FLOW
+========================
+  RAW MATERIAL TESTING
+  +------------------+
+  | Chemical Analysis|
+  | Mechanical Tests |
+  | Metallurgy       |
+  +--------+---------+
+           |
+  COMPONENT MANUFACTURING
+  +------------------+
+  | Dimensional Check|
+  | NDT (X-ray/UT)   |
+  | Pressure Tests   |
+  +--------+---------+
+           |
+  ASSEMBLY VERIFICATION
+  +------------------+
+  | Visual Inspection|
+  | Functional Tests |
+  | Electrical Tests |
+  +--------+---------+
+           |
+  STAGE-LEVEL TESTING
+  +------------------+
+  | Static Fire Test |
+  | Leak Tests       |
+  | Avionics Tests   |
+  +--------+---------+
+           |
+  VEHICLE INTEGRATION
+  +------------------+
+  | System Checks    |
+  | Fit Verification |
+  | Countdown Rehearsal|
+  +--------+---------+
+           |
+  FLIGHT READINESS
+  +------------------+
+  | Review Board     |
+  | Clearance Cert.  |
+  | Launch Authorisation|
+  +------------------+</div>
+  <h3>Static Testing</h3>
+  <p>Every new motor design undergoes static testing before flight qualification. The motor is bolted to a test stand and fired for its full burn duration while hundreds of sensors record pressure, thrust, temperature, vibration, and strain. Flight acceptance testing involves shorter firings to verify that each production motor meets performance specifications. Stage-level tests verify the complete stage including propellant loading, engine function, and avionics integration.</p>
+  <h3>Environmental Testing</h3>
+  <p>Components and stages undergo environmental testing to simulate the conditions experienced during launch and flight. Vibration testing subjects components to random vibration profiles representing the launch environment. Thermal-vacuum testing exposes satellite systems to the temperature extremes and vacuum of space. Acoustic testing uses large speakers to simulate the 140+ dB sound environment inside the payload fairing. Drop testing verifies separation system reliability.</p>
+  <div class="key-facts"><h4>Quality Assurance Statistics</h4><ul><li>PSLV success rate: 97%+ (60+ missions)</li><li>LVM3 success rate: 100% (9 missions)</li><li>NDT methods: X-ray, ultrasonic, eddy current, dye penetrant</li><li>Environmental tests: Vibration, thermal-vacuum, acoustic</li><li>CE-20 qualification: 39 hot-fire tests, 8,810 seconds</li><li>Review boards: Flight Readiness Review before every launch</li></ul></div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>ISRO's quality assurance follows a zero-defect philosophy with rigorous testing at every stage — from raw material certification through component, stage, and vehicle-level verification. Non-destructive testing, environmental simulation, and static firing ensure flight readiness. Flight Readiness Review boards provide final launch authorisation.</p></div>
+  <div class="page-num">35</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 18 — Rollout to Launch Pad</div>
+  <h2 class="chapter-title">Chapter 18: Rollout to Launch Pad</h2>
+  <h3>The Journey to the Pad</h3>
+  <p>Rollout — the transportation of the fully assembled launch vehicle from the Vehicle Assembly Building to the launch pad — is one of the most visually spectacular and operationally critical phases of a launch campaign. This carefully choreographed operation involves moving a vertical rocket weighing hundreds of tonnes on a Mobile Launch Pedestal along rail tracks to the launch pad, where it will undergo final preparations for launch.</p>
+  <p>At SDSC SHAR, the rollout process differs between the two launch pads. The First Launch Pad (FLP) uses the Integrate-on-Pad concept, so the vehicle is assembled directly at the pad under the Mobile Service Tower. The Second Launch Pad (SLP) uses the ITL concept, where the vehicle is assembled in the VAB and transported vertically to the pad. This transport typically occurs at very slow speeds — 1-5 km/h — with the vehicle保持垂直位置 throughout the journey.</p>
+  <h3>The Mobile Launch Pedestal</h3>
+  <p>The Mobile Launch Pedestal (MLP) is a massive steel structure that supports the vehicle during assembly, transport, and on the pad. The MLP for SLP is mounted on a rail-based transfer system with multiple axles distributing the vehicle's weight. The system includes stabilisation jacks that lock the MLP in position on the pad, propellant loading connections, electrical and data interfaces, and the flame trench alignment system. The MLP weighs several hundred tonnes itself and must be perfectly level to maintain the vehicle's vertical alignment.</p>
+  <h3>Rollout Operations</h3>
+  <p>Rollout typically occurs 2-3 days before the scheduled launch, once all vehicle integration activities are complete and the Flight Readiness Review has been conducted. The operation begins with the retraction of the VAB doors and the connection of the transfer system. The vehicle is moved at a controlled pace with teams monitoring vibration, tilt angle, and environmental conditions throughout the journey. Wind speed limits are strictly enforced — typically below 60 km/h for rollout operations.</p>
+  <div class="ascii-diagram">ROLLOUT SEQUENCE (ITL Concept - SLP)
+========================================
+  Phase 1: VAB Preparation
+  +-------------------+
+  | VAB DOORS OPEN    |
+  | Transfer System   |
+  | Engaged           |
+  +--------+----------+
+           |
+  Phase 2: Vehicle Transport
+  +-------------------+
+  | MLP + Vehicle     |
+  | Move on Rails     |
+  | Speed: 1-5 km/h  |
+  | Duration: 1-2 hrs |
+  +--------+----------+
+           |
+  Phase 3: Pad Arrival
+  +-------------------+
+  | MLP Positioned    |
+  | Stabilisation     |
+  | Jacks Deployed    |
+  +--------+----------+
+           |
+  Phase 4: Pad Preparation
+  +-------------------+
+  | Mobile Service    |
+  | Tower Positioned  |
+  | Propellant Lines  |
+  | Connected         |
+  +--------+----------+
+           |
+  Phase 5: Countdown
+  +-------------------+
+  | Propellant Loading|
+  | Final Checks      |
+  | Launch!           |
+  +-------------------+</div>
+  <h3>Pad Commissioning</h3>
+  <p>Once at the pad, the Mobile Service Tower (MST) is moved into position around the vehicle, providing environmental protection and access platforms for final preparations. Propellant loading lines are connected — cryogenic lines for GSLV/LVM3, earth-storable lines for PSLV stages. The vehicle's electrical systems are powered up and connected to the Launch Control Centre. Range safety systems are armed and verified.</p>
+  <h3>Propellant Loading</h3>
+  <p>Propellant loading is one of the most hazardous phases of the launch campaign. For PSLV's liquid stages, UH25 and N2O4 are loaded under strict safety protocols with fire crews standing by. For GSLV and LVM3 cryogenic stages, liquid hydrogen and liquid oxygen are loaded at extremely low temperatures, requiring specialised vacuum-insulated transfer lines and continuous boil-off management. The loading sequence is carefully timed relative to T-0, with different propellants loaded at different points in the countdown.</p>
+  <h3>Final Countdown</h3>
+  <p>The final countdown typically begins 24-48 hours before launch. Key events include terminal countdown checks, automatic sequence initiation, vehicle health verification, range clearance, and the launch command. The Vehicle Management Computer takes control of the final seconds, executing the automatic launch sequence that includes engine ignition, thrust verification, and liftoff.</p>
+  <div class="key-facts"><h4>Rollout and Pad Operations</h4><ul><li>Transport speed: 1-5 km/h (very slow, controlled)</li><li>Transport duration: 1-2 hours from VAB to pad</li><li>Wind speed limit: below 60 km/h for rollout</li><li>Rollout timing: 2-3 days before launch</li><li>Propellant loading begins: 24-48 hours before launch</li><li>Cryogenic loading: 4-6 hours before launch (temperature critical)</li><li>Final countdown: typically T-24h to T-0</li></ul></div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>Rollout transports the fully assembled vehicle from VAB to launch pad at 1-5 km/h on a Mobile Launch Pedestal. The ITL concept at SLP enables separate assembly and launch operations. Post-rollout, propellant loading, final checks, and countdown proceed over 24-48 hours before launch.</p></div>
+  <div class="page-num">37</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 19 — New Generation Vehicles</div>
+  <h2 class="chapter-title">Chapter 19: New Generation Vehicles (SSLV, SC120, SCE-200)</h2>
+  <h3>Small Satellite Launch Vehicle (SSLV)</h3>
+  <p>The Small Satellite Launch Vehicle (SSLV) represents a new paradigm in Indian launch capability — designed for rapid turnaround, low cost, and minimal infrastructure requirements. SSLV is a three-stage all-solid vehicle with a liquid Velocity Trimming Module (VTM) as the terminal stage. Standing 34 metres tall with a 2-metre diameter and 120-tonne liftoff mass, SSLV can deliver approximately 500 kg to Low Earth Orbit or 300 kg to Sun-Synchronous Orbit.</p>
+  <p>SSLV's design philosophy prioritises production-friendliness and launch-on-demand capability. The vehicle uses modular, unified systems with standard interfaces, enabling end-to-end industrial production. Key innovations include the open-joint configuration of booster motor segments to minimise assembly time, direct-initiation pyrotechnic systems, super-capacitors for pyrotechnic power, and a fully indigenous digital control system with electro-mechanical actuators.</p>
+  <div class="ascii-diagram">SSLV CONFIGURATION
+====================
+         +------+
+         | VTM  |  &lt;- Velocity Trimming Module
+         +------+     (MMH + MON-3, 50N thrusters)
+         /      \
+        /  SS3   \  &lt;- Stage 3: Solid (HTPB, 4.5t)
+       +----------+     Thrust: 160 kN, Isp: 284s
+       |          |
+       |   SS2    |  &lt;- Stage 2: Solid (HTPB, 7.7t)
+       |          |     Thrust: 234 kN, Isp: 276s
+       +----------+
+       |          |
+       |   SS1    |  &lt;- Stage 1: Solid (HTPB, 87t)
+       |          |     Thrust: 2,496 kN, Isp: 270s
+       |          |
+       +----------+
+  Height: 34m  |  Diameter: 2m
+  Liftoff Mass: ~120 tonnes
+  Payload to LEO: ~500 kg  |  Payload to SSO: ~300 kg
+  Turnaround Time: &lt;1 week</div>
+  <h3>SSLV Flight Heritage</h3>
+  <p>SSLV completed its first developmental flight (SSLV-D1) on August 7, 2022, carrying EOS-02. While this mission experienced a performance shortfall in the upper stage, the second flight (SSLV-D2) on February 10, 2023, successfully placed EOS-07 into orbit. In August 2026, ISRO conducted a successful static test of an improved SS1 booster, enhancing payload capacity by approximately 100 kg. Transfer of SSLV technology to Indian industry is underway for large-scale production.</p>
+  <h3>Semi-Cryogenic Engine (SE-2000)</h3>
+  <p>The SE-2000 is a liquid oxygen/kerosene semi-cryogenic engine under development at LPSC, designed to deliver 2,000 kN of thrust. It will power the SC120 semi-cryogenic booster stage intended to replace the L110 core stage in LVM3, increasing GTO payload from 4 tonnes to 5 tonnes. The engine uses an oxidiser-rich staged combustion cycle with 180 bar chamber pressure and 335 seconds specific impulse.</p>
+  <p>The Semicryogenic Integrated Engine Test (SIET) facility at IPRC Mahendragiri was inaugurated by the Prime Minister in February 2024. This facility can test semi-cryogenic engines up to 2,600 kN thrust. In March 2025, ISRO achieved a major breakthrough in SE-2000 development with successful testing of key subsystems. The engine uses non-toxic, non-hazardous propellants (LOX and kerosene) compared to the hypergolic propellants of Vikas.</p>
+  <h3>SCE-200: High-Thrust Cryogenic Engine</h3>
+  <p>The SCE-200 is an advanced high-thrust cryogenic engine under development for future heavy-lift vehicles. With significantly higher thrust than the CE-20, it will power the upper stages of next-generation launch vehicles capable of placing 10+ tonne payloads into GTO. The engine represents the next evolution of India's cryogenic technology, building on the CE-20's gas generator cycle architecture with enhanced performance and reliability.</p>
+  <h3>Next Generation Launch Vehicle (NGLV)</h3>
+  <p>The NGLV is ISRO's next-generation launch vehicle concept designed to replace and超越 the current fleet. Featuring a semi-cryogenic first stage, advanced cryogenic upper stage, and reusable first-stage capability, NGLV aims to reduce launch costs by 50% while increasing payload capacity to 10+ tonnes GTO. The Third Launch Pad at SDSC SHAR is specifically designed to support NGLV operations.</p>
+  <table><tr><th>Vehicle</th><th>Status</th><th>Payload (LEO)</th><th>Payload (GTO)</th><th>Key Feature</th></tr><tr><td>SSLV</td><td>Active</td><td>500 kg</td><td>—</td><td>Launch-on-demand, low cost</td></tr><tr><td>LVM3+C32</td><td>Active</td><td>10,000 kg</td><td>4,000 kg</td><td>Uprated CE-20 at 22t</td></tr><tr><td>LVM3+SC120</td><td>Development</td><td>12,000 kg</td><td>5,000 kg</td><td>Semi-cryo replacement</td></tr><tr><td>NGLV</td><td>Concept</td><td>15,000+ kg</td><td>10,000+ kg</td><td>Reusable first stage</td></tr></table>
+  <div class="key-facts"><h4>New Generation Propulsion</h4><ul><li>SSLV: 3 solid stages + VTM, turnaround under 1 week</li><li>SE-2000: 2,000 kN LOX/Kerosene, staged combustion</li><li>SCE-200: Advanced high-thrust cryogenic engine</li><li>NGLV: Semi-cryo first stage, reusable capability</li><li>SSLV technology transfer to industry: In progress</li><li>Third Launch Pad: Approved Jan 2025, Rs. 3,985 crore</li></ul></div>
+  <div class="summary-box"><h4>Chapter Summary</h4><p>India's next-generation vehicles include SSLV (launch-on-demand small satellite launcher), SC120 semi-cryogenic stage for LVM3 payload enhancement, and the NGLV concept for heavy-lift reusable capability. The SE-2000 engine represents a major technological leap using LOX/kerosene propellants at 180 bar chamber pressure. Technology transfer to industry for SSLV production is underway.</p></div>
+  <div class="page-num">39</div>
+</div>
+
+<div class="page">
+  <div class="page-header">Chapter 20 — Summary &amp; Future</div>
+  <h2 class="chapter-title">Chapter 20: Summary &amp; Future of Indian Launch Vehicles</h2>
+  <h3>India's Launch Vehicle Legacy</h3>
+  <p>India's launch vehicle programme has evolved from humble sounding rockets in the 1960s to a comprehensive fleet capable of addressing virtually any orbital mission requirement. The SLV-3 demonstrated India's ability to build multi-stage rockets, ASLV introduced strap-on technology, PSLV became the world's most reliable medium-lift launcher, GSLV mastered cryogenic propulsion, LVM3 provides heavy-lift capability, and SSLV enables rapid-response small satellite launches.</p>
+  <p>The manufacturing and assembly infrastructure at SDSC SHAR, the propulsion expertise at LPSC and VSSC, the engine production at HAL, and the component manufacturing across Indian industry together form a robust ecosystem that has delivered over 100 launch vehicle missions with impressive reliability. The programme's self-reliance in solid, liquid, and cryogenic propulsion — achieved despite technology denials — stands as a testament to Indian engineering capability.</p>
+  <h3>Key Achievements</h3>
+  <div class="key-facts"><h4>Indian Launch Vehicle Programme: By the Numbers</h4><ul><li>Total missions from Sriharikota: 101+ (launch vehicles)</li><li>PSLV missions: 63 (97%+ success rate)</li><li>GSLV missions: 18</li><li>LVM3 missions: 9 (100% success rate)</li><li>SSLV missions: 3</li><li>Payload capability range: 500 kg (SSLV) to 10,000 kg (LVM3 LEO)</li><li>Propulsion types mastered: Solid, Liquid, Cryogenic, Semi-cryogenic</li><li>Engines in service: Vikas, CE-7.5, CE-20, PS-4</li><li>Countries with similar capability: fewer than 10 worldwide</li></ul></div>
+  <h3>The Road Ahead: 2025-2040</h3>
+  <p>India's space programme has ambitious goals for the coming decades. The Gaganyaan mission will make India the fourth nation to independently send humans to space, using a human-rated LVM3. The Chandrayaan programme continues with sample return missions planned. India aims for a crewed lunar landing by 2040 and the establishment of the Bharatiya Antariksh Station (BAS) by 2035.</p>
+  <p>These goals require new, more capable launch vehicles. The NGLV programme, supported by the SE-2000 semi-cryogenic engine and advanced cryogenic stages, will provide the heavy-lift capability needed for space station assembly and lunar missions. Reusability technologies, demonstrated by ISRO's RLV-TD (Reusable Launch Vehicle Technology Demonstrator), will reduce costs and increase launch frequency.</p>
+  <h3>Private Sector Participation</h3>
+  <p>The Indian space sector is witnessing unprecedented private sector participation. Companies like Skyroot Aerospace (Vikram-1), Agnikul Cosmos (Agnibaan with 3D-printed engine), and others are developing their own launch vehicles using ISRO infrastructure and support. The KALAM 1200 solid motor static test at SDSC SHAR in August 2025 demonstrated the growing private capability in solid propulsion. ISRO's technology transfer of SSLV to Indian industry will enable commercial-scale production of small launch vehicles.</p>
+  <h3>Technology Development Pipeline</h3>
+  <p>Key technologies under development include: the SE-2000 semi-cryogenic engine (2,000 kN, LOX/kerosene), SCE-200 advanced cryogenic engine, methalox (methane/LOX) propulsion for future vehicles, advanced composite structures, autonomous flight termination systems, and reusable first-stage technology. The Third Launch Pad at SDSC SHAR, approved in January 2025, will be designed for NGLV with its semi-cryogenic stages and scaled-up configurations.</p>
+  <table><tr><th>Milestone</th><th>Target Year</th><th>Vehicle/Technology</th></tr><tr><td>Gaganyaan (human spaceflight)</td><td>2025-2026</td><td>Human-rated LVM3</td></tr><tr><td>SSLV industry production</td><td>2026-2027</td><td>SSLV technology transfer</td></tr><tr><td>SE-2000 engine qualification</td><td>2027-2028</td><td>SC120 semi-cryo stage</td></tr><tr><td>LVM3+SC120 operational</td><td>2028-2029</td><td>5-tonne GTO capability</td></tr><tr><td>Third Launch Pad operational</td><td>2029</td><td>NGLV support infrastructure</td></tr><tr><td>Bharatiya Antariksh Station</td><td>2035</td><td>NGLV heavy-lift</td></tr><tr><td>Crewed Lunar Landing</td><td>2040</td><td>Super heavy-lift vehicle</td></tr></table>
+  <h3>Conclusion</h3>
+  <p>The story of Indian rocket assembly is one of persistent innovation, technological self-reliance, and strategic vision. From the first Rohini sounding rocket at Thumba in 1963 to the LVM3 launching Chandrayaan-3 to the lunar south pole, India has demonstrated that with determination and ingenuity, world-class space capability can be achieved through indigenous effort. As the programme moves toward human spaceflight, lunar exploration, and a permanent space station, the manufacturing and assembly expertise documented in this book will continue to evolve, enabling India's journey deeper into the cosmos.</p>
+  <div class="summary-box"><h4>Final Summary</h4><p>India's launch vehicle programme has achieved complete self-reliance across solid, liquid, and cryogenic propulsion, delivering over 100 missions from SDSC SHAR with world-class reliability. The future includes Gaganyaan human spaceflight, the SE-2000 semi-cryogenic engine, NGLV heavy-lift vehicles, and the Bharatiya Antariksh Station by 2035. Private sector participation and technology transfer programmes are expanding India's space ecosystem. The journey from SLV-3's 40 kg payload to LVM3's 10,000 kg and beyond continues to push the boundaries of Indian space capability.</p></div>
+  <div class="page-num">41</div>
+</div>
+
+</body>
+</html>

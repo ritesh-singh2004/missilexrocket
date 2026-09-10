@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAUNCH COMPLEX - Satish Dhawan Space Centre | MissileX RocketSpace Research</title>
+<style>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  @media print {
+    body { margin: 0; }
+    .page { 
+      width: 100%; 
+      min-height: 297mm;
+      padding: 20mm 25mm;
+      box-sizing: border-box;
+      page-break-after: always;
+      background: #0a0a1a !important;
+      color: #e0e0e0 !important;
+    }
+    .page:last-child { page-break-after: auto; }
+    .no-print { display: none !important; }
+    .download-btn { display: none !important; }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: #0a0a1a;
+    color: #e0e0e0;
+    line-height: 1.8;
+  }
+
+  .download-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #ff6b35, #ff8c42);
+    color: white;
+    border: none;
+    padding: 16px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.5);
+    transition: transform 0.3s;
+  }
+  .download-btn:hover { transform: scale(1.08); }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    padding: 30px 35px;
+    background: linear-gradient(180deg, #0d0d2b 0%, #0a0a1a 100%);
+    border: 1px solid #1a1a3a;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b35, #00b4d8, #ff6b35);
+  }
+
+  .page-number {
+    position: absolute;
+    bottom: 20px;
+    right: 35px;
+    font-size: 11px;
+    color: #555;
+    font-family: monospace;
+  }
+
+  .chapter-number {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #ff6b35;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  h1 {
+    font-size: 32px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    border-bottom: 2px solid #1a1a3a;
+    padding-bottom: 12px;
+  }
+
+  h2 {
+    font-size: 22px;
+    color: #00b4d8;
+    margin: 24px 0 12px 0;
+    padding-left: 12px;
+    border-left: 3px solid #ff6b35;
+  }
+
+  h3 {
+    font-size: 18px;
+    color: #ff8c42;
+    margin: 18px 0 10px 0;
+  }
+
+  p { margin-bottom: 14px; text-align: justify; }
+
+  .cover-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 260mm;
+    padding: 40px;
+  }
+
+  .cover-page h1 {
+    font-size: 42px;
+    border: none;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #ff6b35, #ff8c42, #00b4d8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cover-subtitle {
+    font-size: 20px;
+    color: #00b4d8;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+  }
+
+  .cover-info {
+    font-size: 14px;
+    color: #888;
+    line-height: 2.2;
+  }
+
+  .cover-line {
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, #ff6b35, #00b4d8);
+    margin: 25px auto;
+  }
+
+  .toc-page h1 { border-bottom: 2px solid #1a1a3a; }
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dotted #222;
+    font-size: 14px;
+  }
+  .toc-item .chapter { color: #ff6b35; font-weight: bold; margin-right: 12px; }
+  .toc-item .title { color: #ccc; flex: 1; }
+  .toc-item .page-ref { color: #666; font-family: monospace; }
+
+  .key-fact-box {
+    background: rgba(255, 107, 53, 0.08);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    border-left: 4px solid #ff6b35;
+    padding: 16px 20px;
+    margin: 18px 0;
+    border-radius: 4px;
+  }
+
+  .key-fact-box .label {
+    font-size: 11px;
+    color: #ff6b35;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .info-box {
+    background: rgba(0, 180, 216, 0.08);
+    border: 1px solid rgba(0, 180, 216, 0.3);
+    border-left: 4px solid #00b4d8;
+    padding: 16px 20px;
+    margin: 18px 0;
+    border-radius: 4px;
+  }
+
+  .info-box .label {
+    font-size: 11px;
+    color: #00b4d8;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .ascii-diagram {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    line-height: 1.4;
+    background: #050520;
+    border: 1px solid #1a1a3a;
+    padding: 16px;
+    margin: 18px 0;
+    overflow-x: auto;
+    white-space: pre;
+    color: #88ccff;
+    border-radius: 4px;
+  }
+
+  .summary-box {
+    background: rgba(0, 180, 216, 0.05);
+    border: 1px solid rgba(0, 180, 216, 0.2);
+    padding: 18px;
+    margin-top: 20px;
+    border-radius: 6px;
+  }
+
+  .summary-box h3 {
+    color: #00b4d8;
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  ul, ol {
+    margin: 12px 0 14px 28px;
+  }
+
+  li {
+    margin-bottom: 8px;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 16px 0;
+  }
+
+  .stat-card {
+    background: rgba(255, 140, 66, 0.06);
+    border: 1px solid rgba(255, 140, 66, 0.2);
+    padding: 14px;
+    border-radius: 6px;
+    text-align: center;
+  }
+
+  .stat-card .number {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff8c42;
+    display: block;
+  }
+
+  .stat-card .desc {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  .timeline {
+    border-left: 2px solid #ff6b35;
+    padding-left: 20px;
+    margin: 16px 0;
+  }
+
+  .timeline-item {
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #ff6b35;
+    border-radius: 50%;
+    position: absolute;
+    left: -26px;
+    top: 6px;
+  }
+
+  .timeline-year {
+    font-family: monospace;
+    color: #ff6b35;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .timeline-desc {
+    color: #aaa;
+    font-size: 14px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 13px;
+  }
+
+  th {
+    background: rgba(255, 107, 53, 0.15);
+    color: #ff8c42;
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 2px solid #ff6b35;
+  }
+
+  td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #1a1a3a;
+    color: #ccc;
+  }
+
+  tr:hover td { background: rgba(255, 255, 255, 0.02); }
+</style>
+</head>
+<body>
+
+<button class="download-btn no-print" onclick="window.print()">⬇ Download PDF</button>
+
+<!-- PAGE 1: COVER -->
+<div class="page">
+  <div class="cover-page">
+    <div style="font-size: 100px; margin-bottom: 10px;">🚀</div>
+    <h1>LAUNCH COMPLEX</h1>
+    <div class="cover-subtitle">SATISH DHAWAN SPACE CENTRE</div>
+    <div class="cover-line"></div>
+    <p style="font-size: 17px; color: #aaa; max-width: 500px; text-align: center; margin: 15px auto;">
+      A Comprehensive Guide to India's Premier Spaceport — Sriharikota, Andhra Pradesh
+    </p>
+    <div class="cover-line"></div>
+    <div class="cover-info">
+      <strong style="color: #ff8c42;">MissileX RocketSpace Research</strong><br>
+      Published: September 2026<br>
+      Edition: First Edition<br>
+      Classification: Educational Reference
+    </div>
+    <div style="margin-top: 40px; color: #444; font-size: 12px;">
+      "We must be second to none in the application of advanced technologies<br>to the real problems of man and society." — Dr. Vikram Sarabhai
+    </div>
+  </div>
+  <span class="page-number">i</span>
+</div>
+
+<!-- PAGE 2: TABLE OF CONTENTS -->
+<div class="page toc-page">
+  <span class="chapter-number">Front Matter</span>
+  <h1>Table of Contents</h1>
+  <div style="margin-top: 20px;">
+    <div class="toc-item"><span class="chapter">Ch 01</span><span class="title">History & Establishment of SDSC SHAR</span><span class="page-ref">1</span></div>
+    <div class="toc-item"><span class="chapter">Ch 02</span><span class="title">Geographic Advantage of Sriharikota</span><span class="page-ref">2</span></div>
+    <div class="toc-item"><span class="chapter">Ch 03</span><span class="title">Launch Pads: FLP, SLP, and Beyond</span><span class="page-ref">3</span></div>
+    <div class="toc-item"><span class="chapter">Ch 04</span><span class="title">Vehicle Assembly Building (VAB)</span><span class="page-ref">4</span></div>
+    <div class="toc-item"><span class="chapter">Ch 05</span><span class="title">Mobile Service Tower (MST)</span><span class="page-ref">5</span></div>
+    <div class="toc-item"><span class="chapter">Ch 06</span><span class="title">Propellant Storage & Filling Systems</span><span class="page-ref">6</span></div>
+    <div class="toc-item"><span class="chapter">Ch 07</span><span class="title">Mission Control Centre (MCC)</span><span class="page-ref">7</span></div>
+    <div class="toc-item"><span class="chapter">Ch 08</span><span class="title">Tracking & Telemetry — ISTRAC Network</span><span class="page-ref">8</span></div>
+    <div class="toc-item"><span class="chapter">Ch 09</span><span class="title">Range Operations & Downrange Tracking</span><span class="page-ref">9</span></div>
+    <div class="toc-item"><span class="chapter">Ch 10</span><span class="title">Launch Sequence: T-24h to T-0</span><span class="page-ref">10</span></div>
+    <div class="toc-item"><span class="chapter">Ch 11</span><span class="title">PSLV Launch Campaign</span><span class="page-ref">11</span></div>
+    <div class="toc-item"><span class="chapter">Ch 12</span><span class="title">GSLV Launch Campaign</span><span class="page-ref">12</span></div>
+    <div class="toc-item"><span class="chapter">Ch 13</span><span class="title">GSLV Mk III / LVM3 Campaign</span><span class="page-ref">13</span></div>
+    <div class="toc-item"><span class="chapter">Ch 14</span><span class="title">Safety & Security Protocols</span><span class="page-ref">14</span></div>
+    <div class="toc-item"><span class="chapter">Ch 15</span><span class="title">Environmental Impact Assessment</span><span class="page-ref">15</span></div>
+    <div class="toc-item"><span class="chapter">Ch 16</span><span class="title">Future Upgrades: SSLV, Gaganyaan, Semi-Cryogenic</span><span class="page-ref">16</span></div>
+    <div class="toc-item"><span class="chapter">Ch 17</span><span class="title">Commercial Launches & International Collaboration</span><span class="page-ref">17</span></div>
+    <div class="toc-item"><span class="chapter">Ch 18</span><span class="title">Key Missions Launched from SDSC</span><span class="page-ref">18</span></div>
+    <div class="toc-item"><span class="chapter">Ch 19</span><span class="title">Infrastructure Diagram & Layout</span><span class="page-ref">19</span></div>
+    <div class="toc-item"><span class="chapter">Ch 20</span><span class="title">Summary & India's Space Future</span><span class="page-ref">20</span></div>
+  </div>
+  <span class="page-number">ii</span>
+</div>
+
+<!-- PAGE 3: CHAPTER 1 — HISTORY & ESTABLISHMENT -->
+<div class="page">
+  <span class="chapter-number">Chapter 01</span>
+  <h1>History & Establishment</h1>
+
+  <h2>The Genesis of India's Spaceport</h2>
+  <p>The story of India's premier launch complex begins in the early 1960s, when the visionary physicist Dr. Vikram Sarabhai laid the foundation for the Indian space programme. Sarabhai, often called the father of the Indian space programme, envisioned that India must harness advanced space technologies for societal development. He articulated this vision with remarkable clarity: "We must be second to none in the application of advanced technologies to the real problems of man and society." This philosophy became the guiding principle for the establishment of India's first and only orbital launch site.</p>
+
+  <p>In 1969, the Indian Space Research Organisation — then still in its formative stages under the Department of Atomic Energy — identified the need for a dedicated rocket launch station on India's eastern coast. The location had to satisfy several critical criteria: proximity to the equator for maximum rotational benefit, a large uninhabited safety zone for rocket debris, access to the sea for range safety operations, and distance from densely populated areas. After extensive surveys, the spindle-shaped island of Sriharikota in the SPSR Nellore district of Andhra Pradesh was selected. The island sits in the backwaters of Pulicat Lake, sandwiched between the Buckingham Canal to the west and the Bay of Bengal to the east.</p>
+
+  <h2>Early Years and First Launches</h2>
+  <p>The facility was initially known as Sriharikota Range, commonly abbreviated as SHAR. The establishment was gradual, beginning with modest infrastructure for sounding rocket launches. On October 9, 1971, the centre became operational with the successful flight of the Rohini-125 (RH-125), a small sounding rocket. This inaugural launch marked the beginning of a remarkable journey that would see India evolve from launching small sounding rockets to deploying heavy geosynchronous satellites and interplanetary missions.</p>
+
+  <p>The 1970s and 1980s saw the development of the Satellite Launch Vehicle (SLV) programme under the leadership of Dr. A.P.J. Abdul Kalam. The SLV-E-01 made its first launch attempt on August 10, 1979, followed by the SLV-E-02 on July 18, 1980, which successfully placed the RS-1 satellite into orbit, making India the sixth nation to demonstrate independent orbital launch capability. The Augmented Satellite Launch Vehicle (ASLV) programme followed, though with limited success, before ISRO transitioned to the highly successful Polar Satellite Launch Vehicle (PSLV) programme.</p>
+
+  <div class="key-fact-box">
+    <div class="label">Key Milestone</div>
+    On September 5, 2002, the Sriharikota Range was officially renamed Satish Dhawan Space Centre (SDSC SHAR) in honour of Professor Satish Dhawan, the former Chairman of ISRO (1972–1984), who played a pivotal role in strengthening India's launch vehicle and satellite programmes.
+  </div>
+
+  <h2>Growth into a Modern Spaceport</h2>
+  <p>From its humble beginnings with sounding rocket launches, SDSC SHAR has grown into one of the most capable launch complexes in the world. The centre expanded its facilities through the 1990s and 2000s, establishing the First Launch Pad (FLP) in the early 1990s for PSLV operations, followed by the Second Launch Pad (SLP) in 2005 to support GSLV and heavy-lift missions. By 2025, the spaceport had achieved the remarkable milestone of its 100th launch with the GSLV-F15 mission carrying the NVS-02 navigation satellite.</p>
+
+  <p>Today, SDSC SHAR stands as a fully integrated spaceport with capabilities spanning solid propellant processing, motor testing, launch vehicle assembly, mission control, and range operations. It serves both national missions for ISRO and commercial launches for international customers through NewSpace India Limited (NSIL).</p>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>SDSC SHAR was established in 1969 at Sriharikota, Andhra Pradesh, with its first launch on October 9, 1971. Named after Prof. Satish Dhawan in 2002, the centre has evolved from a sounding rocket facility into India's primary orbital spaceport, achieving 100+ launches and supporting PSLV, GSLV, LVM3, and SSLV missions.</p>
+  </div>
+  <span class="page-number">1</span>
+</div>
+
+<!-- PAGE 4: CHAPTER 2 — GEOGRAPHIC ADVANTAGE -->
+<div class="page">
+  <span class="chapter-number">Chapter 02</span>
+  <h1>Geographic Advantage of Sriharikota</h1>
+
+  <h2>Why Sriharikota?</h2>
+  <p>The selection of Sriharikota as India's launch site was driven by a convergence of geographic, demographic, and logistical factors that make it one of the most advantageous orbital launch locations in the world. Situated at latitude 13.7°N and longitude 80.2°E, the island offers several critical benefits for space launch operations that have been validated through over five decades of successful missions.</p>
+
+  <h2>Proximity to the Equator</h2>
+  <p>One of the most significant geographic advantages of Sriharikota is its location near the Earth's equator. At approximately 13.7 degrees north latitude, the launch site benefits from the Earth's rotational velocity. The Earth rotates from west to east, and objects near the equator travel at approximately 1,670 km/h (1,037 mph) due to this rotation. As one moves toward the poles, this rotational speed decreases. Sriharikota's relatively equatorial position provides a significant "free velocity" boost to eastward-launching rockets.</p>
+
+  <p>For a typical eastward launch from Sriharikota, the vehicle receives an initial velocity component of approximately 400-450 m/s from the Earth's rotation. This translates directly into increased payload capacity or reduced fuel requirements, making launches from this latitude more efficient than from sites farther north, such as those in Russia or northern Europe. Compared to launches from Baikonur in Kazakhstan (46°N) or Cape Canaveral in the United States (28.5°N), Sriharikota offers a meaningful advantage for equatorial and low-inclination orbit missions.</p>
+
+  <h2>East Coast Advantage</h2>
+  <p>Sriharikota's position on India's eastern coast, facing the Bay of Bengal, provides a crucial safety advantage. When rockets are launched eastward or southeastward — the most common launch azimuths for polar and sun-synchronous orbits — the flight path takes the vehicle over the open waters of the Bay of Bengal. This ensures that in the event of a launch vehicle malfunction, spent stages and debris fall into the ocean rather than over populated land areas.</p>
+
+  <p>The Indian coastline offers a natural range safety corridor extending hundreds of kilometers into the Bay of Bengal. This is complemented by a network of downrange tracking stations and ships positioned along the flight path to monitor vehicle performance and, if necessary, trigger the range safety destruct system to prevent debris from reaching land.</p>
+
+  <div class="key-fact-box">
+    <div class="label">Geographic Coordinates</div>
+    <strong>First Launch Pad (FLP):</strong> 13.733°N, 80.235°E<br>
+    <strong>Second Launch Pad (SLP):</strong> 13.719°N, 80.230°E<br>
+    <strong>Distance from Chennai:</strong> ~80 km north<br>
+    <strong>Island dimensions:</strong> ~25 km long, ~10 km wide
+  </div>
+
+  <h2>Low Population Density</h2>
+  <p>The island of Sriharikota was chosen partly because it was largely uninhabited at the time of selection. The surrounding Pulicat Lake backwaters and the Buckingham Canal create a natural barrier that has helped maintain low population density in the immediate vicinity of the launch complex. This is critical for both safety during launch operations and for maintaining the security of sensitive launch infrastructure.</p>
+
+  <h2>Climate and Weather Considerations</h2>
+  <p>The tropical climate of Sriharikota presents both advantages and challenges. The region receives rainfall primarily during the northeast monsoon (October-December) and the southwest monsoon (June-September). Launch windows are typically planned during the relatively dry periods between monsoon seasons, though launches can be conducted year-round with appropriate weather monitoring. The Indian Meteorological Department (IMD) and ISRO maintain dedicated weather monitoring stations at the spaceport to provide real-time atmospheric data for launch decisions.</p>
+
+  <h2>Launch Azimuth Corridor</h2>
+  <p>Sriharikota's location provides a wide launch azimuth corridor, enabling missions to a variety of orbital inclinations. For polar sun-synchronous orbits, launches are typically conducted at azimuths between 140° and 195°, directing the vehicle southeast over the Bay of Bengal. For geosynchronous transfer orbits, the vehicle may launch at azimuths closer to east-southeast. The available corridor supports the full range of ISRO's mission profiles without requiring complex trajectory adjustments.</p>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>Sriharikota's geographic advantages include its near-equatorial latitude providing rotational velocity boost, east coast location ensuring debris falls over ocean, low population density, and a wide launch azimuth corridor. These factors collectively make it one of the most efficient and safe orbital launch sites in the world.</p>
+  </div>
+  <span class="page-number">2</span>
+</div>
+
+<!-- PAGE 5: CHAPTER 3 — LAUNCH PADS -->
+<div class="page">
+  <span class="chapter-number">Chapter 03</span>
+  <h1>Launch Pads: FLP, SLP, and Beyond</h1>
+
+  <h2>Overview of Launch Infrastructure</h2>
+  <p>SDSC SHAR operates two primary orbital launch pads — the First Launch Pad (FLP) and the Second Launch Pad (SLP) — each designed with distinct operational philosophies to support India's growing launch demands. A Third Launch Pad (TLP) has been approved by the Union Cabinet in January 2025 at a cost of ₹3,984.86 crore, expected to be operational within 48 months.</p>
+
+  <h2>First Launch Pad (FLP)</h2>
+  <p>The First Launch Pad was constructed in the early 1990s and became operational with the maiden PSLV flight on September 20, 1993. The FLP was designed following the "Integrate on the Pad" concept, wherein the entire launch vehicle is assembled vertically at the launch pad itself. After assembly, the massive 3,200-tonne Mobile Service Tower (MST) rolls back to its parking position, exposing the fully assembled rocket for final preparations and launch.</p>
+
+  <p>The FLP is well equipped to handle storage, transport, and servicing of both earth-storable and cryogenic propellants. The pad infrastructure includes the launch pedestal, umbilical tower, flame trench, water deluge system, and propellant servicing connections. The FLP has supported over 37 launches, primarily PSLV missions, and continues to serve as the primary pad for PSLV and the Small Satellite Launch Vehicle (SSLV).</p>
+
+  <div class="info-box">
+    <div class="label">First Launch Pad Specifications</div>
+    <strong>First Launch:</strong> September 20, 1993 (PSLV-D1/IRS-P1)<br>
+    <strong>Total Launches:</strong> 37+<br>
+    <strong>Primary Vehicles:</strong> PSLV, SSLV<br>
+    <strong>Concept:</strong> Integrate on the Pad<br>
+    <strong>MST Weight:</strong> 3,200 tonnes
+  </div>
+
+  <h2>Second Launch Pad (SLP)</h2>
+  <p>The Second Launch Pad, which became operational on May 5, 2005, with the PSLV/Cartosat-1 mission, was conceived to meet the increasing launch demands of ISRO. Built by Mecon Limited, a Government of India enterprise based in Ranchi, Jharkhand, the SLP introduced a fundamentally different operational concept: "Integrate, Transfer and Launch" (ITL).</p>
+
+  <p>In the ITL concept, the launch vehicle is assembled horizontally or vertically in the Vehicle Assembly Building (VAB), then transferred to the launch pad on a Mobile Launch Pedestal (MLP) running on a rail track. This approach dramatically reduces the pad occupancy time, as the pad is occupied only during the final countdown and launch, while the next vehicle can be assembled simultaneously in the VAB.</p>
+
+  <p>The SLP was designed as a universal launch pad capable of supporting all of ISRO's launch vehicles, including PSLV, GSLV, GSLV Mk II, GSLV Mk III (LVM3), and the upcoming SSLV. The facility supports cryogenic and earth-storable propellant storage, servicing, and transport. The SLP has conducted 24+ launches, including the historic Chandrayaan-3 mission and the 100th launch from Sriharikota.</p>
+
+  <div class="info-box">
+    <div class="label">Second Launch Pad Specifications</div>
+    <strong>First Launch:</strong> May 5, 2005 (PSLV-C6/Cartosat-1)<br>
+    <strong>Total Launches:</strong> 24+<br>
+    <strong>Primary Vehicles:</strong> GSLV, LVM3, PSLV (standby)<br>
+    <strong>Concept:</strong> Integrate, Transfer and Launch (ITL)<br>
+    <strong>Built by:</strong> Mecon Limited, Ranchi
+  </div>
+
+  <h2>Third Launch Pad (TLP) — Approved 2025</h2>
+  <p>On January 16, 2025, the Union Cabinet chaired by Prime Minister Narendra Modi approved the establishment of the Third Launch Pad at SDSC SHAR. The TLP is designed to be as universal and adaptable as possible, supporting not only the Next Generation Launch Vehicle (NGLV) but also LVM3 vehicles with semi-cryogenic stages and scaled-up NGLV configurations.</p>
+
+  <p>The project is of national importance, with a total budget of ₹3,984.86 crore. It will enhance India's launch capacity for future human spaceflight missions, including the Bharatiya Antariksh Station (BAS) by 2035 and the Indian Crewed Lunar Landing by 2040. The TLP will be realized with maximum industry participation, leveraging ISRO's experience from establishing the earlier launch pads.</p>
+
+  <div class="two-col">
+    <div class="stat-card">
+      <span class="number">FLP</span>
+      <span class="desc">Integrate on Pad<br>Est. 1990s</span>
+    </div>
+    <div class="stat-card">
+      <span class="number">SLP</span>
+      <span class="desc">Integrate, Transfer, Launch<br>Est. 2005</span>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>SDSC SHAR operates FLP (1993, Integrate on Pad) and SLP (2005, ITL concept). The Third Launch Pad (approved January 2025, ₹3,985 crore) will support NGLV, semi-cryogenic LVM3, and future human spaceflight missions, targeting operational status by 2029.</p>
+  </div>
+  <span class="page-number">3</span>
+</div>
+
+<!-- PAGE 6: CHAPTER 4 — VEHICLE ASSEMBLY BUILDING -->
+<div class="page">
+  <span class="chapter-number">Chapter 04</span>
+  <h1>Vehicle Assembly Building (VAB)</h1>
+
+  <h2>The Heart of Launch Preparation</h2>
+  <p>The Vehicle Assembly Building (VAB) is one of the most critical infrastructure components at SDSC SHAR, serving as the primary facility where launch vehicles are assembled, integrated, and prepared for transfer to the launch pad. The VAB is a massive, climate-controlled structure designed to accommodate the vertical or horizontal assembly of multi-stage launch vehicles in a clean, controlled environment.</p>
+
+  <p>The VAB at SDSC SHAR is closely associated with the Second Launch Pad, supporting the Integrate, Transfer and Launch (ITL) operational concept. Under this philosophy, the entire launch vehicle — including all stages, strap-on motors, payload adapters, and the payload fairing — is assembled within the VAB on a Mobile Launch Pedestal (MLP). Once assembly and integrated testing are complete, the MLP carries the fully assembled vehicle out of the VAB along a rail track to the launch pad.</p>
+
+  <h2>Assembly Process</h2>
+  <p>The assembly process within the VAB follows a carefully choreographed sequence that spans several weeks. For a typical GSLV or LVM3 mission, the process begins with the placement of the Mobile Launch Pedestal on the assembly platform. The core stages of the rocket are then stacked vertically, starting with the first stage or boosters and progressing upward through each successive stage.</p>
+
+  <p>For solid-propelled vehicles like PSLV, the solid rocket motor segments are transported from the Solid Propellant Processing Facility, where they have been cast and cured, to the VAB. These segments are then lifted by overhead cranes and stacked vertically, with each segment joined to the next using explosive bolts and structural adapters. The process requires extreme precision, as the alignment of motor segments directly affects the vehicle's thrust vector during flight.</p>
+
+  <p>For vehicles with liquid and cryogenic stages, the process is more complex. Liquid stages are transported to the VAB in a separately prepared condition, then hoisted and mated with the solid stages. Cryogenic stages require special handling due to the extreme低温 of their propellants, and are typically integrated in a dedicated preparation area within the VAB complex before being moved to the main assembly area.</p>
+
+  <h2>Clean Room Environment</h2>
+  <p>The VAB maintains strict environmental controls to protect sensitive vehicle and payload components. The upper portions of the VAB, where the payload and payload fairing are integrated, operate as Class 100,000 clean rooms, with filtered air supply and positive pressure to prevent contamination. Temperature and humidity are continuously monitored and controlled to maintain conditions within specified limits.</p>
+
+  <div class="key-fact-box">
+    <div class="label">VAB Key Features</div>
+    <ul>
+      <li>Multi-level working platforms at various heights for stage-by-stage access</li>
+      <li>Overhead cranes rated for heavy-lift operations (up to 200+ tonnes)</li>
+      <li>Environmental controls: temperature 20-25°C, humidity 40-60% RH</li>
+      <li>Clean room certification for payload integration areas</li>
+      <li>Rolling doors large enough to allow MLP with assembled vehicle to exit</li>
+    </ul>
+  </div>
+
+  <h2>Mobile Launch Pedestal (MLP)</h2>
+  <p>The MLP is a custom-engineered rail-mounted platform that serves as both the assembly base and the transport mechanism for the launch vehicle. It is designed to support the full weight of the assembled vehicle, including all stages, propellants (if loaded prior to transfer), and the payload. The MLP runs on a precision rail track that connects the VAB to the launch pad, typically a distance of several hundred meters.</p>
+
+  <p>The MLP incorporates multiple interfaces for vehicle support, including structural hold-down points, electrical connections for power and telemetry, and fluid connections for propellant loading and servicing. During transfer, the MLP moves at a carefully controlled speed to minimize vibrations and loads on the assembled vehicle.</p>
+
+  <h2>Parallel Assembly Capability</h2>
+  <p>One of the key advantages of the ITL concept implemented at the SLP is the ability to conduct parallel assembly operations. While one vehicle is being launched from the pad, a second vehicle can be assembled simultaneously in the VAB. This capability dramatically increases the launch cadence, enabling ISRO to conduct multiple missions per year from the same pad complex. The VAB infrastructure has been designed to accommodate this concurrent workflow, with separate staging areas, work platforms, and support systems.</p>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>The VAB is the primary facility for launch vehicle assembly at SDSC SHAR's SLP. It supports vertical stacking of stages on a Mobile Launch Pedestal under clean room conditions. The ITL concept enables parallel assembly while launches proceed from the pad, significantly enhancing launch throughput.</p>
+  </div>
+  <span class="page-number">4</span>
+</div>
+
+<!-- PAGE 7: CHAPTER 5 — MOBILE SERVICE TOWER -->
+<div class="page">
+  <span class="chapter-number">Chapter 05</span>
+  <h1>Mobile Service Tower (MST)</h1>
+
+  <h2>Engineering Marvel of the Launch Complex</h2>
+  <p>The Mobile Service Tower (MST) is one of the most imposing structures at SDSC SHAR, serving as a critical component of the First Launch Pad's operational infrastructure. Weighing approximately 3,200 tonnes, the MST is a massive steel structure that provides weather protection, work access, and servicing capability for the launch vehicle during the integration and pre-launch phases at the pad.</p>
+
+  <p>The MST operates on the "Integrate on the Pad" concept. Unlike the SLP's VAB-based assembly, the FLP approach brings all vehicle stages to the launch pad and assembles them vertically beneath the MST's protective shell. The tower encloses the entire launch vehicle during assembly, providing multiple levels of working platforms that allow technicians to access every part of the rocket for integration, testing, and servicing.</p>
+
+  <h2>Structure and Design</h2>
+  <p>The MST is a multi-level steel structure standing approximately 75 meters tall, with a footprint that completely encompasses the launch vehicle and its umbilical tower. The structure is mounted on a system of heavy-duty rail wheels that allow it to move along a set of parallel tracks. The tower is divided into multiple working levels, each equipped with telescoping platforms that can be extended to provide close access to the vehicle at that height.</p>
+
+  <p>The exterior of the MST is clad with weather-resistant panels that protect the vehicle and personnel from wind, rain, and solar radiation during the weeks-long assembly process. The interior is equipped with overhead cranes, electrical distribution systems, compressed air and nitrogen supply lines, and environmental monitoring equipment. The working platforms at each level can be retracted and extended as needed to accommodate different vehicle configurations.</p>
+
+  <h2>MST Rollback Operation</h2>
+  <p>The most dramatic operation involving the MST is the rollback, which occurs approximately 24-48 hours before launch. Once the vehicle assembly is complete, all pre-launch checks are satisfactory, and the vehicle is ready for propellant loading, the MST is moved backward along its rail track to a designated parking position approximately 200 meters from the launch pad.</p>
+
+  <p>The rollback operation is a carefully choreographed engineering feat. The 3,200-tonne structure must be moved smoothly and steadily to avoid generating vibrations that could affect the assembled vehicle. The operation is performed using electric motors driving the rail wheels, with the tower moving at a speed of approximately 2-5 meters per minute. The entire rollback typically takes 30-60 minutes to complete.</p>
+
+  <div class="key-fact-box">
+    <div class="label">MST Technical Details</div>
+    <ul>
+      <li><strong>Weight:</strong> ~3,200 tonnes</li>
+      <li><strong>Height:</strong> ~75 meters</li>
+      <li><strong>Movement:</strong> Rail-mounted, electrically driven</li>
+      <li><strong>Rollback distance:</strong> ~200 meters</li>
+      <li><strong>Rollback time:</strong> 30-60 minutes</li>
+      <li><strong>Working platforms:</strong> Multiple telescoping levels</li>
+      <li><strong>First operational:</strong> Early 1990s with PSLV programme</li>
+    </ul>
+  </div>
+
+  <h2>Platform Access System</h2>
+  <p>Each level of the MST is equipped with a sophisticated platform access system. These telescoping platforms can extend inward toward the vehicle to provide working surfaces at various heights, then retract to allow the MST to move clear of the vehicle. The platforms are designed to accommodate different vehicle diameters, from the 2.8-meter PSLV to the 4-meter GSLV Mk III / LVM3. When the platforms are retracted, the MST can be moved away from the vehicle, leaving it standing on the launch pad supported by the umbilical tower and launch pedestal.</p>
+
+  <h2>Role in Operations</h2>
+  <p>The MST plays multiple roles throughout the launch campaign. During the assembly phase, it provides the primary working environment for vehicle integration. During the pre-launch phase, it houses the propellant loading and servicing connections that are disconnected just before MST rollback. After rollback, the MST remains in its parking position, serving as a weather shelter for the pad until the final launch preparations are complete.</p>
+
+  <p>The MST at the First Launch Pad has been the silent witness to every PSLV launch since 1993, standing guard over India's workhorse launch vehicle as it is assembled and prepared for each mission. Its reliable operation has been a constant in the evolving launch complex, providing a proven and dependable platform for India's growing space programme.</p>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>The 3,200-tonne Mobile Service Tower at the FLP provides weather protection and multi-level access during vertical vehicle assembly. It rolls back ~200m to its parking position 24-48 hours before launch, exposing the fully assembled rocket for final preparations. The MST has been operational since the early 1990s.</p>
+  </div>
+  <span class="page-number">5</span>
+</div>
+
+<!-- PAGE 8: CHAPTER 6 — PROPELLANT STORAGE -->
+<div class="page">
+  <span class="chapter-number">Chapter 06</span>
+  <h1>Propellant Storage & Filling Systems</h1>
+
+  <h2>Fueling the Dreams of a Nation</h2>
+  <p>The propellant storage and filling systems at SDSC SHAR represent one of the most critical and hazardous aspects of launch operations. The spaceport maintains an extensive infrastructure for the safe storage, handling, transportation, and loading of a wide variety of propellants, from solid rocket motor propellants to highly toxic and cryogenic liquid fuels. The reliability of these systems directly determines the success and safety of every mission.</p>
+
+  <h2>Solid Propellant Processing</h2>
+  <p>SDSC SHAR houses one of the world's largest solid propellant processing facilities. The centre produces solid propellant boosters for all of ISRO's launch vehicles, including the S200 boosters for LVM3, the PS1 stage for PSLV, and the stages for the GSLV programme. The solid propellant used is HTPB (Hydroxyl-Terminated Polybutadiene) based, a composite propellant consisting of ammonium perchlorate oxidizer suspended in a rubbery HTPB binder with aluminium powder as fuel.</p>
+
+  <p>The processing facility includes propellant mixing plants, casting facilities, curing ovens, and NDT (Non-Destructive Testing) inspection areas. Solid motor segments are cast in a carefully controlled environment, then cured in large ovens at precisely regulated temperatures for several days. After curing, each segment undergoes ultrasonic inspection and other NDT methods to detect any internal defects before being approved for flight.</p>
+
+  <h2>Liquid Propellant Systems</h2>
+  <p>For liquid-propelled stages, SDSC SHAR maintains separate storage and handling infrastructure for different propellant types. The primary liquid propellants used in ISRO's launch vehicles include:</p>
+
+  <table>
+    <tr><th>Propellant</th><th>Used In</th><th>Storage Conditions</th></tr>
+    <tr><td>Unsymmetrical Dimethylhydrazine (UDMH)</td><td>PSLV, GSLV core stage</td><td>Ambient, inerted tanks</td></tr>
+    <tr><td>Nitrogen Tetroxide (N2O4)</td><td>PSLV, GSLV core stage</td><td>Ambient, inerted tanks</td></tr>
+    <tr><td>Liquid Hydrogen (LH2)</td><td>GSLV, LVM3 cryogenic stage</td><td>-253°C, vacuum insulated</td></tr>
+    <tr><td>Liquid Oxygen (LOX)</td><td>GSLV, LVM3 cryogenic stage</td><td>-183°C, vacuum insulated</td></tr>
+    <tr><td>Monomethylhydrazine (MMH)</td><td>SSLV VTM, satellite propulsion</td><td>Ambient, inerted tanks</td></tr>
+  </table>
+
+  <div class="key-fact-box">
+    <div class="label">Propellant Safety</div>
+    All propellant operations at SDSC SHAR follow strict safety protocols. UDMH and MMH are highly toxic and carcinogenic, requiring full protective equipment for personnel. N2O4 is a powerful oxidizer that reacts violently with organic materials. LH2 and LOX are cryogenic fluids that cause severe frostbite and must be handled with specialized equipment and training.
+  </div>
+
+  <h2>Cryogenic Propellant Infrastructure</h2>
+  <p>The cryogenic propellant system is the most complex and demanding of all propellant systems at the spaceport. Liquid hydrogen must be stored at -253°C (20 Kelvin) and liquid oxygen at -183°C (90 Kelvin). The storage tanks are double-walled vacuum-insulated vessels, and all transfer lines are vacuum-jacketed to minimize heat leak.</p>
+
+  <p>The cryogenic propellant filling process is a multi-hour operation that involves gradual cooldown of the transfer lines, slow initial fill to prevent thermal shock, and carefully controlled flow rates to maintain the correct propellant mass flow. The entire process is monitored from the Mission Control Centre with real-time data on tank pressures, temperatures, fill levels, and flow rates.</p>
+
+  <h2>Propellant Transfer Systems</h2>
+  <p>Propellant is transferred from bulk storage tanks to the launch vehicle through a network of insulated transfer lines, flow meters, and control valves. The transfer system is designed with multiple redundancies and automatic shut-off capabilities to prevent overfill, leakage, or contamination. Each propellant circuit includes filtration systems to remove particulate contaminants, quality sampling points to verify propellant purity, and emergency dump systems to safely drain propellants in case of a scrub.</p>
+
+  <div class="info-box">
+    <div class="label">Filling System Features</div>
+    <ul>
+      <li>Automated loading sequences with manual override capability</li>
+      <li>Real-time mass flow monitoring using Coriolis flow meters</li>
+      <li>Emergency propellant drain capability within minutes</li>
+      <li>Continuous gas detection and ventilation systems</li>
+      <li>Dedicated fire suppression systems for each propellant type</li>
+    </ul>
+  </div>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>SDSC SHAR maintains world-class propellant facilities including one of the largest solid propellant plants, cryogenic LH2/LOX storage at -253°C/-183°C, and toxic hypergolic propellant handling systems. All systems feature multiple redundancies, automated loading sequences, and emergency drain capabilities for safe launch operations.</p>
+  </div>
+  <span class="page-number">6</span>
+</div>
+
+<!-- PAGE 9: CHAPTER 7 — MISSION CONTROL CENTRE -->
+<div class="page">
+  <span class="chapter-number">Chapter 07</span>
+  <h1>Mission Control Centre (MCC)</h1>
+
+  <h2>The Brain of Every Mission</h2>
+  <p>The Mission Control Centre (MCC) at SDSC SHAR serves as the nerve centre for all launch operations, providing the command and control infrastructure necessary to monitor, manage, and execute every phase of a launch campaign — from pre-launch vehicle checkouts through post-launch orbital operations. It is from this facility that the Range Operations Director and the Mission Director exercise real-time command authority over the launch vehicle and its systems.</p>
+
+  <p>The MCC is designed to support simultaneous operations for multiple missions, reflecting the spaceport's growing launch cadence. The facility houses multiple control rooms, each equipped with large display screens showing real-time telemetry data, communication links to all ground stations and tracking ships, and decision support systems that assist the launch team in evaluating vehicle health and mission status.</p>
+
+  <h2>Control Room Layout</h2>
+  <p>The primary launch control room is arranged in a tiered configuration, with the Mission Director and Range Operations Director seated at the front, facing the main display wall. Behind them are the vehicle systems engineers, each responsible for monitoring specific subsystems of the launch vehicle. The rear rows are occupied by support engineers, communication specialists, and mission planners.</p>
+
+  <p>The main display wall consists of multiple large-format screens showing:</p>
+  <ul>
+    <li>Real-time vehicle trajectory plots comparing actual performance against the nominal profile</li>
+    <li>Telemetry data displays for all vehicle subsystems, including propulsion, guidance, electrical, and thermal systems</li>
+    <li>Range safety displays showing the vehicle's position relative to designated safety corridors</li>
+    <li>Weather data and forecasts for the launch site and downrange areas</li>
+    <li>Communication status indicators for all ground stations and tracking ships</li>
+  </ul>
+
+  <h2>Launch Countdown Management</h2>
+  <p>The MCC manages the complex launch countdown sequence, which for a typical GSLV or LVM3 mission begins approximately 24-26 hours before the planned liftoff time. The countdown is governed by a detailed timeline document that specifies every action, verification, and decision point from the start of the countdown to T-0 and beyond.</p>
+
+  <div class="key-fact-box">
+    <div class="label">MCC Capabilities</div>
+    <ul>
+      <li>Supports simultaneous operations for PSLV, GSLV, LVM3, and SSLV missions</li>
+      <li>Real-time telemetry processing from vehicle and ground stations</li>
+      <li>Automated range safety computation and display</li>
+      <li>Integrated voice and data communication with all range elements</li>
+      <li>Video distribution from pad cameras and airborne sources</li>
+      <li>Decision support systems for launch commit criteria evaluation</li>
+    </ul>
+  </div>
+
+  <h2>Range Safety Operations</h2>
+  <p>A critical function of the MCC is range safety, which involves monitoring the vehicle's flight path and ensuring it remains within designated safety corridors. If the vehicle deviates from the planned trajectory in a manner that poses a risk to populated areas, the Range Operations Director has the authority to command the Flight Termination System (FTS), which destroys the vehicle in a controlled manner to minimize ground risk.</p>
+
+  <p>The range safety computation is performed by dedicated software systems that process real-time tracking data and compare the vehicle's current state against pre-computed safety boundaries. The system provides both visual and audio alerts to the range safety officer, enabling rapid decision-making during the critical ascent phase.</p>
+
+  <h2>Communication Infrastructure</h2>
+  <p>The MCC maintains a comprehensive communication network that connects it to every element of the launch complex and the global tracking network. This includes:</p>
+  <ul>
+    <li>Hardened fiber-optic links to the launch pads, VAB, propellant storage areas, and other on-site facilities</li>
+    <li>Satellite communication links to ISTRAC ground stations worldwide</li>
+    <li>HF and VHF radio links to downrange tracking ships</li>
+    <li>Dedicated telephone lines for coordination with ISRO headquarters and mission directorates</li>
+    <li>Secure communication channels for classified military and intelligence satellite missions</li>
+  </ul>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>The MCC is the nerve centre for all launch operations at SDSC SHAR. It houses tiered control rooms with real-time telemetry displays, manages the 24-hour launch countdown, coordinates range safety operations including Flight Termination System authority, and maintains global communication links with ISTRAC's ground station network.</p>
+  </div>
+  <span class="page-number">7</span>
+</div>
+
+<!-- PAGE 10: CHAPTER 8 — TRACKING & TELEMETRY -->
+<div class="page">
+  <span class="chapter-number">Chapter 08</span>
+  <h1>Tracking & Telemetry — ISTRAC Network</h1>
+
+  <h2>Keeping Watch Over Every Mission</h2>
+  <p>The ISRO Telemetry, Tracking and Command Network (ISTRAC) is the backbone of mission support for all ISRO satellite and launch vehicle missions. Headquartered in Bengaluru, ISTRAC operates a global network of ground stations that provide continuous telemetry reception, tracking, and command capabilities from launch vehicle lift-off through satellite injection into orbit and beyond.</p>
+
+  <p>For launches from SDSC SHAR, ISTRAC provides the critical data link between the ground control team and the ascending launch vehicle. As the rocket climbs through the atmosphere and into space, telemetry data — including vehicle health parameters, trajectory information, propulsion status, and environmental conditions — is transmitted in real time to ISTRAC's ground stations and relayed to the MCC for analysis.</p>
+
+  <h2>Ground Station Network</h2>
+  <p>ISTRAC has established a network of ground stations strategically located to provide maximum coverage of launch vehicle trajectories and satellite orbits. The network includes stations in:</p>
+
+  <table>
+    <tr><th>Station Location</th><th>Primary Function</th><th>Coverage Area</th></tr>
+    <tr><td>Sriharikota, India</td><td>Launch phase tracking</td><td>Ascent phase (0-10 min)</td></tr>
+    <tr><td>Bengaluru, India</td><td>Mission control, TTC</td><td>Indian subcontinent</td></tr>
+    <tr><td>Port Blair, India</td><td>Downrange tracking</td><td>Bay of Bengal (5-12 min)</td></tr>
+    <tr><td>Thiruvananthapuram, India</td><td>Downrange tracking</td><td>Southern Indian Ocean</td></tr>
+    <tr><td>Lucknow, India</td><td>TTC relay</td><td>Indian landmass</td></tr>
+    <tr><td>Mauritius</td><td>Downrange tracking</td><td>Indian Ocean (10-18 min)</td></tr>
+    <tr><td>Brunei</td><td>Downrange tracking</td><td>Southeast Asia</td></tr>
+    <tr><td>Biak, Indonesia</td><td>Downrange tracking</td><td>Western Pacific</td></tr>
+    <tr><td>Bylalu, India</td><td>Deep Space Network</td><td>Interplanetary missions</td></tr>
+  </table>
+
+  <div class="key-fact-box">
+    <div class="label">ISTRAC Highlights</div>
+    <ul>
+      <li>Global network spanning Indian Ocean, Southeast Asia, and Pacific</li>
+      <li>Real-time S-band telemetry reception from launch vehicles</li>
+      <li>Deep Space Network for Chandrayaan, Mangalyaan, and Gaganyaan missions</li>
+      <li>Indian Space Science Data Centre (ISSDC) for archival and analysis</li>
+      <li>Search and Rescue coordination capabilities</li>
+    </ul>
+  </div>
+
+  <h2>Telemetry Systems</h2>
+  <p>The telemetry system aboard ISRO's launch vehicles transmits hundreds of parameters in real time, including engine chamber pressures, temperatures, tank pressures, structural loads, guidance commands, and electrical bus voltages. The telemetry data is formatted according to IRIG (Inter-Range Instrumentation Group) standards and transmitted on S-band frequencies.</p>
+
+  <p>During the launch phase, ground stations use high-gain directional antennas to track the vehicle as it ascends. The antenna tracking system combines radar tracking data with predictive algorithms to maintain a lock on the vehicle's telemetry signal. As the vehicle passes over the horizon from one ground station's view, the telemetry link is handed off to the next station in the trajectory chain, ensuring continuous coverage.</p>
+
+  <h2>Command and Control Links</h2>
+  <p>In addition to telemetry reception, ISTRAC provides command uplink capability to the launch vehicle during the powered flight phase. These commands include trajectory correction commands, stage separation commands, and, if necessary, flight termination commands. The command link is encrypted and authenticated to prevent unauthorized access.</p>
+
+  <p>For satellite missions, ISTRAC's command capability extends throughout the satellite's operational life, providing the means to configure satellite systems, perform orbit manoeuvres, and respond to any anomalies that may arise during the mission.</p>
+
+  <h2>Deep Space Network</h2>
+  <p>For India's interplanetary missions — including Chandrayaan (Moon), Mangalyaan (Mars), and the upcoming Shukrayaan (Venus) — ISTRAC operates the Indian Deep Space Network (IDSN) at Bylalu, near Bengaluru. The IDSN features 11-meter and 18-meter antennas capable of communicating with spacecraft at distances exceeding 400 million kilometres. The IDSN also supports the Gaganyaan human spaceflight programme with dedicated communication and tracking capabilities.</p>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>ISTRAC operates a global ground station network from Sriharikota to Biak, Indonesia, providing continuous telemetry, tracking, and command support for all ISRO missions. The network includes S-band tracking for launch vehicles, a Deep Space Network for interplanetary missions, and the Indian Space Science Data Centre for mission data management.</p>
+  </div>
+  <span class="page-number">8</span>
+</div>
+
+<!-- PAGE 11: CHAPTER 9 — RANGE OPERATIONS -->
+<div class="page">
+  <span class="chapter-number">Chapter 09</span>
+  <h1>Range Operations & Downrange Tracking</h1>
+
+  <h2>Beyond the Launch Pad</h2>
+  <p>Range operations at SDSC SHAR encompass the full spectrum of activities required to safely launch a vehicle and track it throughout its ascent phase and beyond. While the launch pad provides the physical infrastructure for lift-off, the range extends hundreds to thousands of kilometres along the flight path, including ground stations, tracking ships, aircraft, and the dedicated range safety infrastructure that ensures no populated area is at risk during launch.</p>
+
+  <h2>Range Safety System</h2>
+  <p>The Range Safety System is perhaps the most critical element of range operations. It is responsible for protecting populated areas from the consequences of a launch vehicle malfunction. The system operates on a simple principle: if the vehicle deviates from its planned trajectory such that it could impact a populated area, the Range Operations Director commands the Flight Termination System (FTS) to destroy the vehicle.</p>
+
+  <p>The FTS consists of explosive charges mounted on the vehicle's propellant tanks and structural elements. When commanded, these charges rupture the tanks and disperse the propellants, causing the vehicle to break apart and burn up in the atmosphere, rather than impacting the ground as a single, intact object. The FTS is designed with a reliability of 99.9% or better, as its failure could have catastrophic consequences.</p>
+
+  <p>The range safety corridor for launches from SDSC SHAR extends southeast over the Bay of Bengal. For PSLV polar orbit launches, the vehicle follows a trajectory that takes it over the Indian Ocean, with designated impact zones for each stage spaced hundreds of kilometres apart. The range safety team monitors the vehicle's position in real time using radar and telemetry data, comparing it against pre-computed safety boundaries.</p>
+
+  <div class="key-fact-box">
+    <div class="label">Range Safety Parameters</div>
+    <ul>
+      <li>Flight Termination System reliability: 99.9%+</li>
+      <li>Multiple independent tracking sources for redundancy</li>
+      <li>Pre-computed safety boundaries for each launch azimuth</li>
+      <li>Real-time trajectory comparison against nominal profile</li>
+      <li>Automatic destruct capability if vehicle leaves safety corridor</li>
+    </ul>
+  </div>
+
+  <h2>Downrange Tracking Ships</h2>
+  <p>For missions that require continuous tracking beyond the range of ground-based stations, ISRO deploys dedicated tracking ships in the Indian Ocean. These vessels are equipped with S-band and C-band tracking radars, telemetry接收 systems, and communication links to the MCC at SDSC SHAR. The ships are positioned at strategic points along the flight path to fill coverage gaps between ground stations.</p>
+
+  <p>The tracking ships play a particularly important role during the critical upper-stage burn and satellite injection phases, when the vehicle is far from the Indian coast and beyond the range of shore-based tracking systems. The ships receive real-time telemetry from the vehicle and relay it to the MCC via satellite communication links, enabling the mission control team to monitor the vehicle's performance and make any necessary adjustments.</p>
+
+  <h2>Airborne Tracking</h2>
+  <p>In addition to ship-based tracking, SDSC SHAR occasionally deploys airborne tracking assets for specific missions. These may include specially equipped aircraft carrying tracking radars and telemetry receivers, positioned along the flight path to provide additional coverage. Airborne tracking is particularly valuable for missions with unusual trajectories or for providing backup tracking in case of ground or ship station failures.</p>
+
+  <h2>Debris Recovery Operations</h2>
+  <p>After each launch, range operations include debris recovery and maritime safety coordination. Spent rocket stages that impact the Bay of Bengal are tracked and, where possible, recovered by the Indian Navy and Coast Guard. The debris impact zones are marked on maritime navigation charts, and NOTAMs (Notices to Airmen) and NOTMARs (Notices to Mariners) are issued in advance of each launch to warn aircraft and ships to avoid the impact areas during the launch window.</p>
+
+  <div class="info-box">
+    <div class="label">Range Operations Timeline</div>
+    <ul>
+      <li>T-7 days: NOTAMs and NOTMARs issued for impact zones</li>
+      <li>T-3 days: Tracking ships deployed to station positions</li>
+      <li>T-1 day: Final range clearance verification</li>
+      <li>T-0: Vehicle lift-off and real-time tracking commences</li>
+      <li>T+2 to T+20 min: Sequential stage tracking and separation monitoring</li>
+      <li>T+24 hours: Post-launch debris clearance and recovery operations</li>
+    </ul>
+  </div>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>Range operations encompass the full safety and tracking infrastructure from pad to ocean. The Range Safety System with 99.9% reliable FTS protects populated areas, while tracking ships in the Indian Ocean provide continuous telemetry coverage during the upper-stage burn phase. NOTAMs/NOTMARs are issued weekly before launches for maritime and aviation safety.</p>
+  </div>
+  <span class="page-number">9</span>
+</div>
+
+<!-- PAGE 12: CHAPTER 10 — LAUNCH SEQUENCE -->
+<div class="page">
+  <span class="chapter-number">Chapter 10</span>
+  <h1>Launch Sequence: T-24h to T-0</h1>
+
+  <h2>The Final Countdown</h2>
+  <p>The launch countdown is the culmination of months of preparation, representing the final sequence of events that leads to the moment of liftoff. At SDSC SHAR, the countdown for a major launch vehicle mission typically begins approximately 24-26 hours before the planned T-0 time, though some vehicles may use shorter or longer countdown durations depending on their specific requirements.</p>
+
+  <p>The countdown is governed by a precise timeline document that specifies every action, verification, and decision point. The sequence includes built-in holds — planned pauses in the countdown — that provide schedule flexibility to accommodate technical issues without impacting the launch window.</p>
+
+  <h2>T-24 Hours: Countdown Begins</h2>
+  <p>The formal countdown commences with the vehicle in a "ready" state on the launch pad (for FLP operations) or in the VAB (for SLP operations). The sequence of events includes:</p>
+
+  <table>
+    <tr><th>Time</th><th>Event</th></tr>
+    <tr><td>T-24:00</td><td>Countdown begins; vehicle power-up initiated</td></tr>
+    <tr><td>T-22:00</td><td>Vehicle systems checkouts commence; GN2 purging of propellant lines</td></tr>
+    <tr><td>T-18:00</td><td>Flight computer loaded with mission parameters</td></tr>
+    <tr><td>T-14:00</td><td>Payload electrical checks completed; satellite on internal power</td></tr>
+    <tr><td>T-12:00</td><td>Range safety systems armed and verified</td></tr>
+    <tr><td>T-10:00</td><td>Weather briefing and launch commit criteria review</td></tr>
+  </table>
+
+  <div class="key-fact-box">
+    <div class="label">Built-in Holds</div>
+    Major countdowns typically include 2-4 built-in holds of 1-2 hours each. These provides schedule margin for resolving technical issues. If a hold extends beyond its planned duration, the countdown may be recycled to a predetermined point, or the launch may be scrubbed entirely.
+  </div>
+
+  <h2>T-6 Hours: Propellant Loading</h2>
+  <p>The propellant loading phase is one of the most critical and hazardous portions of the countdown. For vehicles with liquid and cryogenic stages, the sequence typically proceeds as follows:</p>
+
+  <ul>
+    <li><strong>T-6:00:</strong> Begin loading of earth-storable liquid propellants (UDMH/N2O4) into core stage tanks</li>
+    <li><strong>T-5:00:</strong> Initiate cryogenic propellant loading — liquid oxygen and liquid hydrogen</li>
+    <li><strong>T-4:30:</strong> Cryogenic propellant settling thrusters activated to maintain tank pressure</li>
+    <li><strong>T-4:00:</strong> First stage solid motor igniter circuits verified</li>
+    <li><strong>T-3:30:</td><td>Cryogenic propellant loading complete; replenish mode initiated</td></tr>
+  </ul>
+
+  <h2>T-2 Hours: Final Preparations</h2>
+  <p>As the countdown enters its final two hours, the launch team conducts a series of critical go/no-go polls and system verifications:</p>
+
+  <ul>
+    <li><strong>T-2:00:</strong> Final weather assessment; launch commit criteria re-evaluated</li>
+    <li><strong>T-1:30:</strong> Vehicle configuration final verification; all interfaces confirmed</li>
+    <li><strong>T-1:00:</strong> Propellant tank topping and replenish completed; tank pressures stabilized</li>
+    <li><strong>T-0:45:</strong> Launch Director conducts final go/no-go poll with all discipline leads</li>
+    <li><strong>T-0:30:</strong> Ground Launch Sequencer (GLS) activated — automatic countdown takes over</li>
+  </ul>
+
+  <h2>T-10 Minutes: Terminal Countdown</h2>
+  <p>The final ten minutes represent the most intense phase of the countdown. The Ground Launch Sequencer assumes control of the countdown, and the events proceed automatically unless a hold or abort is commanded:</p>
+
+  <ul>
+    <li><strong>T-10:00:</strong> Vehicle switches to internal battery power</li>
+    <li><strong>T-0:05:</strong> Flight termination system final arm command</li>
+    <li><strong>T-0:02:</strong> Propellant tank pressurization to flight levels</li>
+    <li><strong>T-0:01:</strong> umbilical connections released; vehicle on internal power</li>
+    <li><strong>T-0:00:</strong> Ignition and liftoff!</li>
+  </ul>
+
+  <div class="info-box">
+    <div class="label">Abort Capability</div>
+    The countdown can be halted at any point before T-0 if a critical anomaly is detected. After the GLS takes over at T-30 minutes, any abort automatically scrubs the launch. Before that point, the Mission Director can hold or recycle the countdown to address issues.
+  </div>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>The 24-hour countdown includes vehicle checkouts (T-24h), propellant loading (T-6h), final verifications (T-2h), and terminal countdown (T-10min). The Ground Launch Sequencer takes over at T-30min for automated execution. Built-in holds provide schedule margin, and the Range Operations Director can abort at any time before T-0.</p>
+  </div>
+  <span class="page-number">10</span>
+</div>
+
+<!-- PAGE 13: CHAPTER 11 — PSLV CAMPAIGN -->
+<div class="page">
+  <span class="chapter-number">Chapter 11</span>
+  <h1>PSLV Launch Campaign</h1>
+
+  <h2>India's Workhorse Rocket</h2>
+  <p>The Polar Satellite Launch Vehicle (PSLV) is India's most prolific and reliable launch vehicle, with a success rate exceeding 95% across more than 50 missions. The PSLV has been the backbone of India's launch capability since its first successful flight in 1994, deploying satellites into polar sun-synchronous orbits, low Earth orbits, and even deep space trajectories (Chandrayaan-1, Mars Orbiter Mission). A typical PSLV launch campaign at SDSC SHAR spans approximately 30-45 days from vehicle component arrival to launch.</p>
+
+  <h2>Vehicle Configuration</h2>
+  <p>The PSLV is a four-stage vehicle with alternating solid and liquid propulsion stages. The standard configuration includes:</p>
+
+  <table>
+    <tr><th>Stage</th><th>Propulsion</th><th>Propellant</th><th>Thrust</th></tr>
+    <tr><td>Stage 1 (PS1)</td><td>Solid</td><td>HTPB-based</td><td>4,800 kN</td></tr>
+    <tr><td>Stage 2 (PS2)</td><td>Liquid</td><td>UDMH/N2O4</td><td>799 kN</td></tr>
+    <tr><td>Stage 3 (PS3)</td><td>Solid</td><td>HTPB-based</td><td>350 kN</td></tr>
+    <tr><td>Stage 4 (PS4)</td><td>Liquid</td><td>UDMH/N2O4</td><td>73.5 kN</td></tr>
+  </table>
+
+  <p>The PSLV is also available in extended versions: PSLV-XL with additional strap-on motors for higher payload capacity, and PSLV-CA (Core Alone) without strap-on motors for lighter payloads. The vehicle stands approximately 44 meters tall and has a lift-off mass of approximately 320 tonnes in its XL configuration.</p>
+
+  <h2>Campaign Phase 1: Component Arrival (T-30 to T-25 days)</h2>
+  <p>The launch campaign begins with the arrival of vehicle components at SDSC SHAR from various ISRO manufacturing facilities across India. Solid motor segments arrive from the Sriharikota Solid Propellant Plant, liquid stages from the Liquid Propulsion Systems Centre (LPSC) in Mahendragiri, and the payload from the satellite centre. Each component undergoes rigorous incoming inspection and acceptance testing before being cleared for assembly.</p>
+
+  <h2>Campaign Phase 2: Stage Preparation (T-25 to T-15 days)</h2>
+  <p>During this phase, individual stages undergo final preparation and checkout. Solid motor segments are inspected using ultrasonic and X-ray methods, then stacked and bolted together. Liquid stages are leak-checked, pressurized, and their propulsion systems calibrated. The payload undergoes final functional testing and fueling before being encapsulated in the payload fairing.</p>
+
+  <div class="key-fact-box">
+    <div class="label">PSLV Campaign Timeline</div>
+    <ul>
+      <li><strong>T-30 days:</strong> Component arrival and inspection</li>
+      <li><strong>T-25 days:</strong> Stage preparation and checkout</li>
+      <li><strong>T-15 days:</strong> Vehicle assembly at pad (FLP) or VAB (SLP)</li>
+      <li><strong>T-5 days:</strong> Integrated vehicle testing</li>
+      <li><strong>T-3 days:</td><td>MST rollback (FLP) or MLP transfer (SLP)</td></tr>
+      <li><strong>T-1 day:</strong> Propellant loading and final countdown</li>
+      <li><strong>T-0:</strong> Launch</li>
+    </ul>
+  </div>
+
+  <h2>Campaign Phase 3: Vehicle Assembly (T-15 to T-5 days)</h2>
+  <p>At the First Launch Pad, the PSLV is assembled vertically beneath the Mobile Service Tower. The process begins with the PS1 first stage being placed on the launch pedestal, followed by the PS2 liquid stage, PS3 solid stage, and finally the PS4 stage with payload adapter and encapsulated payload. Each stage is connected to the umbilical tower for electrical and fluid interfaces. At the Second Launch Pad, assembly takes place in the VAB on the Mobile Launch Pedestal.</p>
+
+  <h2>Campaign Phase 4: Integrated Testing (T-5 to T-3 days)</h2>
+  <p>Once assembly is complete, the integrated vehicle undergoes comprehensive testing. This includes electrical continuity checks, communication system verification, guidance system alignment, propulsion system leak checks, and end-to-end telemetry tests. The payload is given final checkout commands and confirmed ready for launch.</p>
+
+  <h2>Campaign Phase 5: Launch (T-3 to T-0 days)</h2>
+  <p>At the FLP, the MST is rolled back 24-48 hours before launch, exposing the vehicle. At the SLP, the assembled vehicle is transferred from the VAB to the launch pad on the MLP. Propellant loading begins approximately 6-12 hours before launch, starting with the liquid stages and followed by cryogenic propellants if applicable. The final countdown proceeds through the terminal sequence described in Chapter 10, culminating in ignition and liftoff.</p>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>The PSLV campaign spans 30-45 days, progressing through component arrival, stage preparation, vehicle assembly, integrated testing, and launch. The four-stage vehicle (solid-liquid-solid-liquid) has a 95%+ success rate and is available in XL, CA, and standard configurations. Assembly occurs at FLP (under MST) or SLP (in VAB).</p>
+  </div>
+  <span class="page-number">11</span>
+</div>
+
+<!-- PAGE 14: CHAPTER 12 — GSLV CAMPAIGN -->
+<div class="page">
+  <span class="chapter-number">Chapter 12</span>
+  <h1>GSLV Launch Campaign</h1>
+
+  <h2>Geosynchronous Launch Capability</h2>
+  <p>The Geosynchronous Satellite Launch Vehicle (GSLV) represents ISRO's capability to deliver payloads to geosynchronous transfer orbit (GTO), enabling the deployment of communication, navigation, and meteorological satellites to their operational orbits at 35,786 km altitude. The GSLV programme, which saw its first successful flight in 2004, marked India's entry into the exclusive club of nations capable of launching heavy satellites to geosynchronous orbits.</p>
+
+  <h2>Vehicle Configuration</h2>
+  <p>The GSLV is a three-stage vehicle with a distinctive configuration combining solid, liquid, and cryogenic propulsion:</p>
+
+  <table>
+    <tr><th>Stage</th><th>Propulsion</th><th>Details</th></tr>
+    <tr><td>First Stage</td><td>Solid + Liquid</td><td>S139 solid motor core + 4× L40 liquid strap-ons</td></tr>
+    <tr><td>Second Stage</td><td>Liquid</td><td>GS2 stage with Vikas engine (N2O4/UDMH)</td></tr>
+    <tr><td>Third Stage</td><td>Cryogenic</td><td>GS3 stage with CE-7.5 cryogenic engine (LH2/LOX)</td></tr>
+  </table>
+
+  <p>The GSLV stands approximately 49 meters tall and has a lift-off mass of approximately 415 tonnes. It can deliver payloads of up to 2,500 kg to GTO. The indigenous cryogenic upper stage, using the CE-7.5 engine developed by ISRO, represents a major technological achievement, as only a handful of nations possess cryogenic rocket engine technology.</p>
+
+  <h2>Campaign Overview</h2>
+  <p>The GSLV launch campaign is more complex than the PSLV campaign due to the additional cryogenic stage and the need for specialized cryogenic propellant handling. A typical GSLV campaign spans approximately 45-60 days, with the following key phases:</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">T-60 to T-45 days</div>
+      <div class="timeline-desc">Component arrival: S139 solid motor, L40 liquid strap-ons, GS2 stage, cryogenic GS3 stage. Each undergoes incoming inspection and acceptance testing.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">T-45 to T-25 days</div>
+      <div class="timeline-desc">Stage preparation: S139 segment stacking, L40 and GS2 leak checks, cryogenic stage conditioning. Strap-on motors prepared for horizontal or vertical integration.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">T-25 to T-10 days</div>
+      <div class="timeline-desc">Vehicle assembly in VAB: S139 core stage placed on MLP, L40 strap-ons attached, GS2 mounted, cryogenic stage integrated last. Payload fairing encapsulation.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">T-10 to T-5 days</div>
+      <div class="timeline-desc">Integrated vehicle testing: electrical, communication, guidance, and propulsion system checks. Vehicle transferred from VAB to SLP on MLP.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">T-5 to T-0 days</div>
+      <div class="timeline-desc">Final countdown: propellant loading (L40, GS2, cryogenic), terminal countdown, launch. Cryogenic propellant loading requires special attention to boil-off management.</div>
+    </div>
+  </div>
+
+  <div class="key-fact-box">
+    <div class="label">GSLV Technical Highlights</div>
+    <ul>
+      <li><strong>Lift-off mass:</strong> ~415 tonnes</li>
+      <li><strong>Height:</strong> ~49 meters</li>
+      <li><strong>GTO payload:</strong> Up to 2,500 kg</li>
+      <li><strong>Cryogenic engine:</strong> CE-7.5 (staged combustion cycle)</li>
+      <li><strong>Specific impulse (cryo):</strong> 454 seconds</li>
+      <li><strong>Strap-on count:</strong> 4 × L40 liquid strap-ons</li>
+    </ul>
+  </div>
+
+  <h2>Cryogenic Stage Challenges</h2>
+  <p>The cryogenic third stage presents unique challenges during the launch campaign. The CE-7.5 engine uses liquid hydrogen at -253°C and liquid oxygen at -183°C. The cryogenic propellants must be loaded within a narrow time window before launch to minimize boil-off losses. The loading process requires specialized ground support equipment, including vacuum-jacketed transfer lines, reciprocating pumps for LH2, and precision flow measurement systems.</p>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>The GSLV campaign spans 45-60 days and involves a three-stage vehicle (S139 solid core + 4 L40 liquid strap-ons + cryogenic GS3). The indigenous CE-7.5 cryogenic engine enables 2,500 kg GTO payload capability. Cryogenic propellant loading at -253°C/-183°C is the most technically demanding phase of the campaign.</p>
+  </div>
+  <span class="page-number">12</span>
+</div>
+
+<!-- PAGE 15: CHAPTER 13 — GSLV MK III / LVM3 -->
+<div class="page">
+  <span class="chapter-number">Chapter 13</span>
+  <h1>GSLV Mk III / LVM3 Campaign</h1>
+
+  <h2>India's Heavy-Lift Champion</h2>
+  <p>The GSLV Mk III, now officially designated as Launch Vehicle Mark-3 (LVM3), represents the pinnacle of ISRO's launch vehicle development. Designed to deliver 4,000 kg class satellites to geosynchronous transfer orbit and 10,000 kg to low Earth orbit, the LVM3 is India's most powerful launch vehicle and the chosen rocket for the Gaganyaan human spaceflight programme.</p>
+
+  <h2>Vehicle Architecture</h2>
+  <p>The LVM3 features a two-stage configuration with solid strap-ons, a liquid core stage, and a cryogenic upper stage:</p>
+
+  <table>
+    <tr><th>Stage</th><th>Designation</th><th>Propulsion</th><th>Thrust</th></tr>
+    <tr><td>Strap-ons (×2)</td><td>S200</td><td>Solid (HTPB)</td><td>5,150 kN each</td></tr>
+    <tr><td>Core Stage</td><td>L110</td><td>Liquid (N2O4/UDMH)</td><td>800 kN (2× Vikas)</td></tr>
+    <tr><td>Upper Stage</td><td>C25</td><td>Cryogenic (LH2/LOX)</td><td>200 kN (CE-20)</td></tr>
+  </table>
+
+  <p>The LVM3 stands approximately 43.5 meters tall and has a lift-off mass of approximately 640 tonnes, making it the heaviest Indian launch vehicle. The two massive S200 solid strap-on motors, each carrying 205 tonnes of HTPB propellant, provide the majority of the lift-off thrust. The CE-20 cryogenic engine in the C25 upper stage uses a gas-generator cycle, which is simpler and more reliable than the staged-combustion cycle used in the CE-7.5.</p>
+
+  <h2>Launch Campaign Process</h2>
+  <p>The LVM3 launch campaign is the most complex of all ISRO's vehicle campaigns, typically spanning 60-90 days. The campaign begins with the arrival of the massive S200 motor segments, which are the largest solid rocket motor segments ever produced in India. These segments are transported to SDSC SHAR on specialized rail cars and undergo extensive inspection before stacking.</p>
+
+  <div class="key-fact-box">
+    <div class="label">LVM3 Mission Highlights</div>
+    <ul>
+      <li><strong>Chandrayaan-3:</strong> Successful lunar landing mission (August 2023)</li>
+      <li><strong>GSLV-Mk III-D1:</strong> Developmental flight placing GSAT-19 (June 2017)</li>
+      <li><strong>LVM3-M4:</strong> Commercial launch of OneWeb satellites</li>
+      <li><strong>100th launch from Sriharikota:</strong> GSLV-F15/NVS-02 (January 2025)</li>
+      <li><strong>Gaganyaan:</strong> Human-rated LVM3 (HLVM3) under development</li>
+    </ul>
+  </div>
+
+  <h2>Human-Rating for Gaganyaan</h2>
+  <p>The most significant evolution of the LVM3 is its human-rating for the Gaganyaan programme. Human-rating requires that the vehicle achieve a failure probability of 1 in 2,000 or better, with redundant systems for all critical functions. The human-rated LVM3 (HLVM3) incorporates several key modifications:</p>
+
+  <ul>
+    <li><strong>Crew Escape System (CES):</strong> A set of quick-acting, high-burn-rate solid motors that can pull the crew module to safety in case of any emergency during launch pad operations or ascent phase</li>
+    <li><strong>Reinforced structures:</strong> Additional structural margins to account for crew safety requirements</li>
+    <li><strong>Redundant avionics:</strong> Triple-redundant flight computers and guidance systems</li>
+    <li><strong>Vibration isolation:</strong> Crew module vibration attenuation systems to protect astronauts</li>
+    <li><strong>CE-20 engine human-rating:</strong> The CE-20 has undergone 39 hot-firing tests for a cumulative 8,810 seconds, exceeding the human-rating requirement of 6,350 seconds</li>
+  </ul>
+
+  <h2>Campaign at the SLP</h2>
+  <p>LVM3 missions are exclusively conducted from the Second Launch Pad, utilizing the Integrate, Transfer and Launch concept. The massive vehicle is assembled in the VAB, with the S200 strap-ons stacked horizontally or vertically (depending on the assembly sequence), followed by the L110 core stage and the C25 cryogenic upper stage. The payload is integrated last, encapsulated in the 5-meter diameter payload fairing.</p>
+
+  <p>After assembly and integrated testing, the vehicle is transferred from the VAB to the SLP on the MLP, covering a distance of several hundred meters on the rail track. The transfer is a slow, carefully controlled operation, taking approximately 30-45 minutes to complete. Once at the pad, the vehicle undergoes final propellant loading and the countdown proceeds to T-0.</p>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>The LVM3 is India's heaviest vehicle (640 tonnes, 43.5m) with two S200 solid strap-ons, L110 liquid core, and C25 cryogenic upper stage (CE-20 engine). It delivers 4,000 kg to GTO and is the chosen vehicle for Gaganyaan human spaceflight. The CE-20 has been human-rated with 8,810 seconds of testing. Campaigns span 60-90 days at the SLP.</p>
+  </div>
+  <span class="page-number">13</span>
+</div>
+
+<!-- PAGE 16: CHAPTER 14 — SAFETY & SECURITY -->
+<div class="page">
+  <span class="chapter-number">Chapter 14</span>
+  <h1>Safety & Security Protocols</h1>
+
+  <h2>Safety First, Always</h2>
+  <p>Safety at SDSC SHAR is not merely a regulatory requirement — it is a deeply ingrained cultural value that permeates every aspect of operations. The nature of launch operations, involving massive quantities of explosive propellants, high-pressure systems, and enormous kinetic energies, demands the highest standards of safety engineering and operational discipline. The centre maintains multiple layers of safety systems, protocols, and training programmes to protect personnel, the public, and the environment.</p>
+
+  <h2>Personnel Safety</h2>
+  <p>All personnel working at SDSC SHAR undergo rigorous safety training specific to their work areas and responsibilities. This includes:</p>
+
+  <ul>
+    <li><strong>Safety induction training:</strong> All new employees receive comprehensive orientation on safety rules, emergency procedures, and hazard awareness</li>
+    <li><strong>Hazard-specific training:</strong> Personnel working with propellants, high-pressure systems, or electrical systems receive specialized training and certification</li>
+    <li><strong>Emergency response drills:</strong> Regular drills simulate various emergency scenarios including propellant leaks, fires, structural failures, and medical emergencies</li>
+    <li><strong>Personal protective equipment (PPE):</strong> Mandatory use of appropriate PPE in all work areas, including hard hats, safety shoes, fire-resistant clothing, and respiratory protection as required</li>
+  </ul>
+
+  <div class="key-fact-box">
+    <div class="label">Safety Statistics</div>
+    SDSC SHAR has maintained an exemplary safety record throughout its operational history. The combination of rigorous training, redundant safety systems, and a culture of questioning attitude has resulted in zero fatalities from launch operations and minimal environmental incidents.
+  </div>
+
+  <h2>Propellant Safety</h2>
+  <p>Given the toxic and hazardous nature of many launch vehicle propellants, SDSC SHAR maintains extensive propellant safety systems. Hypergolic propellants (UDMH, N2O4, MMH) are classified as extremely hazardous, with UDMH being a known carcinogen. All propellant handling areas are equipped with:</p>
+
+  <ul>
+    <li>Continuous gas detection systems monitoring for propellant vapor leaks</li>
+    <li>Forced ventilation systems maintaining negative pressure in enclosed spaces</li>
+    <li>Emergency shower and eyewash stations within 10 seconds of any propellant work area</li>
+    <li>Dedicated fire suppression systems using appropriate agents for each propellant type</li>
+    <li>Personal gas monitors worn by all personnel in propellant areas</li>
+    <li>Mandatory buddy system — no lone working in hazardous areas</li>
+  </ul>
+
+  <h2>Flight Safety Systems</h2>
+  <p>Flight safety encompasses the systems and procedures designed to protect the public from the consequences of a launch vehicle malfunction. The primary flight safety system is the Flight Termination System (FTS), which is designed to destroy the vehicle if it deviates from the planned trajectory in a manner that poses a risk to populated areas.</p>
+
+  <p>The FTS is designed with full redundancy — two independent command receivers, two separate battery systems, and dual redundant explosive charges on each propellant tank. The system is tested extensively before each flight to verify its readiness. The Range Operations Director has the authority and responsibility to command vehicle destruction if safety criteria are violated.</p>
+
+  <h2>Launch Area Security</h2>
+  <p>The launch complex and surrounding areas are secured through multiple layers of physical security:</p>
+
+  <ul>
+    <li><strong>Perimeter security:</strong> Fenced and patrolled perimeter around the entire spaceport</li>
+    <li><strong>Access control:</strong> Multi-level access control with biometric verification for sensitive areas</li>
+    <li><strong>Maritime security:</strong> Coast Guard patrols enforce exclusion zones in the Bay of Bengal during launch operations</li>
+    <li><strong>Airspace restrictions:</strong> Temporary Flight Restrictions (TFRs) enforced by Indian Air Force during launch windows</li>
+    <li><strong>Counter-drone systems:</strong> Detection and neutralization systems to protect against unauthorized aerial surveillance</li>
+  </ul>
+
+  <h2>Emergency Response</h2>
+  <p>SDSC SHAR maintains a dedicated emergency response organization that includes fire services, medical services, hazmat teams, and structural rescue teams. These units are equipped with specialized vehicles and equipment, and personnel train regularly for various emergency scenarios. The centre also maintains mutual aid agreements with local civil authorities for larger-scale emergencies.</p>
+
+  <div class="info-box">
+    <div class="label">Emergency Response Time Targets</div>
+    <ul>
+      <li>Fire response: < 3 minutes to any facility on the spaceport</li>
+      <li>Medical response: < 5 minutes to any facility (Advanced Life Support ambulance)</li>
+      <li>Hazmat response: < 10 minutes with full protective equipment</li>
+      <li>Evacuation: Complete within 15 minutes of emergency declaration</li>
+    </ul>
+  </div>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>Safety at SDSC SHAR encompasses personnel protection (training, PPE, drills), propellant safety (gas detection, ventilation, fire suppression), flight safety (redundant FTS with 99.9% reliability), physical security (perimeter, access control, maritime/airspace restrictions), and emergency response (fire, medical, hazmat teams with <3 min response).</p>
+  </div>
+  <span class="page-number">14</span>
+</div>
+
+<!-- PAGE 17: CHAPTER 15 — ENVIRONMENTAL IMPACT -->
+<div class="page">
+  <span class="chapter-number">Chapter 15</span>
+  <h1>Environmental Impact Assessment</h1>
+
+  <h2>Coexisting with Nature</h2>
+  <p>One of the most remarkable aspects of SDSC SHAR is its location within an ecologically sensitive area. The spaceport is situated on Sriharikota island, which lies within the Pulicat Lake backwaters — the second-largest brackish water lagoon in India. The island and surrounding waters support diverse ecosystems including mangrove forests, mudflats, salt marshes, and marine habitats that serve as breeding grounds for fish, crustaceans, and migratory birds.</p>
+
+  <p>The coexistence of a high-technology launch facility with sensitive natural ecosystems has required ISRO to implement comprehensive environmental management programmes. These programmes aim to minimize the environmental footprint of launch operations while preserving the ecological integrity of the surrounding area.</p>
+
+  <h2>Air Quality Management</h2>
+  <p>Launch vehicle exhaust products include particulate matter, hydrogen chloride (from solid propellant combustion), nitrogen oxides, and various trace gases. The environmental impact of these emissions is managed through several strategies:</p>
+
+  <ul>
+    <li><strong>Launch frequency management:</strong> Limiting the number of launches per year to prevent cumulative degradation of air quality</li>
+    <li><strong>Propellant optimization:</strong> ISRO continually works to develop cleaner-burning propellant formulations with reduced toxic emissions</li>
+    <li><strong>Monitoring programmes:</strong> Continuous air quality monitoring stations at multiple locations around the spaceport measure particulate matter, SO2, NOx, and HCl concentrations</li>
+    <li><strong>Post-launch assessments:</strong> Air quality is monitored for 24-48 hours after each launch to assess the impact and validate dispersion models</li>
+  </ul>
+
+  <div class="key-fact-box">
+    <div class="label">Environmental Monitoring</div>
+    <ul>
+      <li>12+ air quality monitoring stations around the spaceport</li>
+      <li>Water quality sampling in Pulicat Lake and Bay of Bengal</li>
+      <li>Noise monitoring during solid motor static tests and launches</li>
+      <li>Ecological surveys of flora and fauna on an annual basis</li>
+      <li>Marine debris tracking and recovery programmes</li>
+    </ul>
+  </div>
+
+  <h2>Noise Impact</h2>
+  <p>Launch vehicles generate extreme sound levels at liftoff, with the acoustic energy from solid rocket motors exceeding 180 decibels at the launch pad. This acoustic energy propagates through the atmosphere and can cause vibrations in structures and disturbances to wildlife over a wide area. ISRO manages noise impact through:</p>
+
+  <ul>
+    <li>Water deluge systems at the launch pad that suppress acoustic energy during liftoff</li>
+    <li>Monitoring of noise levels at various distances from the pad</li>
+    <li>Coordination with local authorities to manage public exposure during launches</li>
+    <li>Scheduling of launches to minimize disturbance to sensitive wildlife areas</li>
+  </ul>
+
+  <h2>Marine Environment</h2>
+  <p>Spent rocket stages that impact the Bay of Bengal represent a potential source of marine pollution. Solid rocket motor casings are made of steel and aluminium, while liquid stages contain residual propellants. ISRO manages marine environmental impact through:</p>
+
+  <ul>
+    <li>Precise trajectory planning to ensure stage impact in designated ocean zones</li>
+    <li>Coordination with the Indian Navy and Coast Guard for post-launch debris recovery</li>
+    <li>Marine environmental monitoring in the impact zones</li>
+    <li>Proactive recovery of large debris items that could pose navigation hazards</li>
+  </ul>
+
+  <h2>Flora and Fauna Protection</h2>
+  <p>Sriharikota island supports a surprising diversity of wildlife despite the industrial activities of the spaceport. The island is home to spotted deer, wild boar, several species of reptiles, and over 200 species of birds, including migratory species that visit during the winter months. ISRO has implemented several measures to protect this biodiversity:</p>
+
+  <ul>
+    <li>Green belt development programmes planting native tree species around the spaceport</li>
+    <li>Wildlife corridors maintained between different parts of the island</li>
+    <li>Seasonal restrictions on activities during bird nesting periods</li>
+    <li>Annual biodiversity surveys conducted in collaboration with environmental agencies</li>
+  </ul>
+
+  <div class="info-box">
+    <div class="label">Sustainable Practices</div>
+    ISRO has committed to achieving carbon neutrality for SDSC SHAR operations by 2030. Initiatives include solar panel installations on unused land, rainwater harvesting systems, wastewater treatment and recycling, and procurement of electric vehicles for on-site transportation.
+  </div>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>SDSC SHAR operates within the ecologically sensitive Pulicat Lake ecosystem. Environmental management includes air quality monitoring (12+ stations), noise suppression via water deluge systems, marine debris recovery, and biodiversity protection through green belts and wildlife corridors. ISRO targets carbon neutrality by 2030.</p>
+  </div>
+  <span class="page-number">15</span>
+</div>
+
+<!-- PAGE 18: CHAPTER 16 — FUTURE UPGRADES -->
+<div class="page">
+  <span class="chapter-number">Chapter 16</span>
+  <h1>Future Upgrades: SSLV, Gaganyaan, Semi-Cryogenic</h1>
+
+  <h2>India's Evolving Launch Landscape</h2>
+  <p>The Indian space programme stands at a pivotal juncture, with multiple new launch vehicles, missions, and infrastructure projects poised to transform SDSC SHAR into one of the world's most capable and versatile spaceports. The coming decade will see the operationalization of the Small Satellite Launch Vehicle (SSLV), the first crewed Gaganyaan missions, the development of semi-cryogenic propulsion, and the establishment of the Third Launch Pad.</p>
+
+  <h2>Small Satellite Launch Vehicle (SSLV)</h2>
+  <p>The SSLV is ISRO's answer to the growing demand for rapid, low-cost access to space for small satellites. Standing just 2 meters in diameter and 34 meters tall, with a lift-off mass of approximately 120 tonnes, the SSLV is designed to be assembled and launched with minimal infrastructure and a fast turnaround time.</p>
+
+  <table>
+    <tr><th>Parameter</th><th>Specification</th></tr>
+    <tr><td>Configuration</td><td>3 solid stages + liquid VTM terminal stage</td></tr>
+    <tr><td>Payload to 500 km LEO</td><td>Up to 500 kg</td></tr>
+    <tr><td>Turnaround time</td><td>As low as 72 hours</td></tr>
+    <tr><td>Assembly</td><td>Minimal infrastructure; can use FLP</td></tr>
+    <tr><td>Current status</td><td>3 developmental flights completed (2022-2024)</td></tr>
+  </table>
+
+  <p>The SSLV's first developmental flight (SSLV-D1/EOS-02) took place on August 7, 2022, followed by SSLV-D2/EOS-07 on February 10, 2023, and SSLV-D3/EOS-08 on August 16, 2024. The third flight was fully successful, demonstrating the vehicle's readiness for operational missions. ISRO is now working on an improved SSLV version with enhanced performance and reliability.</p>
+
+  <h2>Gaganyaan — India's Human Spaceflight Programme</h2>
+  <p>The Gaganyaan programme represents India's most ambitious space mission, aiming to demonstrate human spaceflight capability by launching a crew of three astronauts to a 400 km orbit for a three-day mission. The programme involves the Human-Rated LVM3 (HLVM3), a crew module with environmental control and life support systems, and a Crew Escape System (CES) for emergency situations.</p>
+
+  <div class="key-fact-box">
+    <div class="label">Gaganyaan Programme Milestones</div>
+    <ul>
+      <li><strong>TV-D1:</strong> Test Vehicle flight completed (October 2023) — crew escape system demonstration</li>
+      <li><strong>TV-D2:</strong> Second test vehicle flight (ongoing/planned)</li>
+      <li><strong>G1:</strong> First uncrewed Gaganyaan mission (planned)</li>
+      <li><strong>G2:</strong> Second uncrewed mission with female robotic astronaut "Vyommitra"</li>
+      <li><strong>G3:</strong> First crewed flight (target: 2025-2026)</li>
+    </ul>
+  </div>
+
+  <p>The human rating of the CE-20 cryogenic engine was completed in February 2024, with four engines undergoing 39 hot-firing tests for a cumulative 8,810 seconds — significantly exceeding the minimum requirement of 6,350 seconds. The HLVM3 incorporates triple-redundant avionics, vibration isolation for crew comfort, and the powerful Crew Escape System capable of pulling the crew module to safety from any point during the launch sequence.</p>
+
+  <h2>Semi-Cryogenic Engine Development</h2>
+  <p>ISRO is developing a semi-cryogenic engine (SC120) that uses liquid oxygen and kerosene (RP-1) as propellants. This engine will power the core stage of future heavy-lift vehicles, offering higher performance than the current Vikas engine while being easier to handle than full cryogenic systems. The semi-cryogenic engine is expected to increase the LVM3's GTO payload capacity from 4,000 kg to approximately 6,000 kg when paired with the existing cryogenic upper stage.</p>
+
+  <h2>Next Generation Launch Vehicle (NGLV)</h2>
+  <p>The NGLV is ISRO's long-term vision for a fully reusable, heavy-lift launch vehicle. The Third Launch Pad (TLP) approved in January 2025 is being designed to support the NGLV, which aims to significantly reduce the cost of access to space while increasing payload capacity. The NGLV programme aligns with India's ambitious goals of establishing the Bharatiya Antariksh Station (BAS) by 2035 and achieving a crewed lunar landing by 2040.</p>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>ISRO's future plans include operational SSLV (500 kg to LEO), Gaganyaan human spaceflight (HLVM3, CE-20 human-rated), semi-cryogenic SC120 engine (LOX/kerosene), and the Next Generation Launch Vehicle (NGLV) supported by the Third Launch Pad. India's goals include BAS by 2035 and crewed lunar landing by 2040.</p>
+  </div>
+  <span class="page-number">16</span>
+</div>
+
+<!-- PAGE 19: CHAPTER 17 — COMMERCIAL LAUNCHES -->
+<div class="page">
+  <span class="chapter-number">Chapter 17</span>
+  <h1>Commercial Launches & International Collaboration</h1>
+
+  <h2>India as a Global Launch Provider</h2>
+  <p>Over the past two decades, India has established itself as one of the world's most reliable and cost-effective commercial launch providers. Through NewSpace India Limited (NSIL), the commercial arm of ISRO, and formerly through Antrix Corporation, India has launched satellites for numerous international customers, earning a reputation for mission reliability and value for money.</p>
+
+  <p>The PSLV, in particular, has become a favorite among commercial customers due to its high success rate, flexible launch scheduling, and competitive pricing. The vehicle's ability to perform multiple orbit changes in a single mission makes it ideal for rideshare missions carrying satellites to different orbital planes.</p>
+
+  <h2>Notable Commercial Missions</h2>
+  <p>SDSC SHAR has hosted a remarkable array of commercial missions for international customers. Some of the most significant include:</p>
+
+  <table>
+    <tr><th>Mission</th><th>Customer</th><th>Vehicle</th><th>Year</th></tr>
+    <tr><td>PSLV-C9 / COSMO-SkyMed</td><td>Italy (ASI)</td><td>PSLV-XL</td><td>2008</td></tr>
+    <tr><td>PSLV-C20 / SPOT-6 & Proba-2</td><td>France (CNES/Airbus)</td><td>PSLV-XL</td><td>2012</td></tr>
+    <tr><td>PSLV-C36 / ResourceSat-2A</td><td>Multi-manifest</td><td>PSLV-XL</td><td>2016</td></tr>
+    <tr><td>PSLV-C43 / HysIS</td><td>Multi-manifest (30 sats)</td><td>PSLV</td><td>2018</td></tr>
+    <tr><td>PSLV-C48 / RISAT-2BR1</td><td>Multi-manifest (28 sats)</td><td>PSLV</td><td>2019</td></tr>
+    <tr><td>SSLV-D3 / EOS-08</td><td>ISRO commercial</td><td>SSLV</td><td>2024</td></tr>
+    <tr><td>LVM3-M5 / OneWeb</td><td>OneWeb (UK)</td><td>LVM3</td><td>2025</td></tr>
+  </table>
+
+  <div class="key-fact-box">
+    <div class="label">Commercial Achievements</div>
+    <ul>
+      <li>PSLV has launched over 400 foreign satellites from 34+ countries</li>
+      <li>India's launch services are priced 30-50% below Western competitors</li>
+      <li>LVM3 entered the commercial market with OneWeb constellation launches</li>
+      <li>NSIL offers end-to-end launch services including integration, launch, and tracking</li>
+      <li>Single PSLV mission can carry 20-30+ co-passenger satellites</li>
+    </ul>
+  </div>
+
+  <h2>Rideshare Missions</h2>
+  <p>One of ISRO's most successful commercial strategies has been the development of rideshare mission capabilities. In a rideshare mission, the primary satellite pays for the full launch cost, while secondary payloads — typically smaller satellites — are accommodated at significantly reduced prices. This model has made PSLV launches extremely popular among small satellite operators, university teams, and startup companies worldwide.</p>
+
+  <p>The PSLV's Multi-Payload Adapter (MPA) can accommodate dozens of small satellites of various sizes, from 1 kg CubeSats to 300+ kg microsatellites. This flexibility has enabled missions like PSLV-C43, which launched 30 satellites in a single mission, and PSLV-C48, which carried 28 co-passenger satellites along with the primary RISAT-2BR1 radar imaging satellite.</p>
+
+  <h2>International Partnerships</h2>
+  <p>Beyond commercial launches, SDSC SHAR has been the launch site for several international scientific and exploratory missions. The Chandrayaan-1 lunar mission carried scientific instruments from NASA (USA), ESA (Europe), and other international agencies. The Mangalyaan (Mars Orbiter Mission) included instruments developed in collaboration with European partners. These partnerships have strengthened India's position in the global space community and opened doors for future collaborations.</p>
+
+  <h2>Gaganyaan International Cooperation</h2>
+  <p>The Gaganyaan programme has also attracted significant international interest. ISRO has collaborated with the French space agency CNES for training of Indian astronauts at facilities in France, and with the Russian space agency Roscosmos for astronaut training at the Gagarin Cosmonaut Training Center. These collaborations have built valuable expertise and strengthened diplomatic ties in the space domain.</p>
+
+  <div class="info-box">
+    <div class="label">Future Commercial Strategy</div>
+    With the SSLV providing rapid, low-cost launch capability for small satellites, and the LVM3 serving the medium-to-heavy commercial market, India aims to capture a significant share of the growing global commercial launch market. The upcoming Third Launch Pad will further enhance launch capacity to meet increasing demand.
+  </div>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>SDSC SHAR has launched 400+ foreign satellites from 34+ countries, establishing India as a leading commercial launch provider. PSLV rideshare missions carry 20-30+ satellites per flight at competitive prices. International partnerships span Chandrayaan, Mangalyaan, and Gaganyaan. NSIL provides end-to-end commercial launch services.</p>
+  </div>
+  <span class="page-number">17</span>
+</div>
+
+<!-- PAGE 20: CHAPTER 18 — KEY MISSIONS -->
+<div class="page">
+  <span class="chapter-number">Chapter 18</span>
+  <h1>Key Missions Launched from SDSC</h1>
+
+  <h2>A Legacy of Achievements</h2>
+  <p>Since the first sounding rocket flight in 1971, SDSC SHAR has been the launch site for India's most significant space missions, spanning satellite deployment, planetary exploration, navigation constellation construction, and technology demonstration. Each mission has contributed to building India's space capabilities and advancing the nation's scientific and strategic interests.</p>
+
+  <h2>Milestone Missions Timeline</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1971 — RH-125</div>
+      <div class="timeline-desc">First launch from Sriharikota. A small sounding rocket that inaugurated India's launch capability.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1980 — SLV-E-02 / RS-1</div>
+      <div class="timeline-desc">India's first successful orbital launch. Made India the sixth nation to independently place a satellite in orbit.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1994 — PSLV-D2 / IRS-P2</div>
+      <div class="timeline-desc">First successful PSLV flight, establishing India's reliable polar launch capability.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2004 — GSLV-F01 / EDUSAT</div>
+      <div class="timeline-desc">First successful GSLV flight with indigenous cryogenic upper stage.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2008 — Chandrayaan-1</div>
+      <div class="timeline-desc">India's first lunar mission. Discovered water molecules on the Moon's surface, revolutionizing lunar science.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2013 — PSLV-C25 / Mangalyaan</div>
+      <div class="timeline-desc">Mars Orbiter Mission. India became the first nation to reach Mars orbit on its first attempt, at a cost of just $74 million.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2014 — GSLV-Mk III-X / CARE</div>
+      <div class="timeline-desc">Crew Module Atmospheric Reentry Experiment. Demonstrated the re-entry capabilities for the Gaganyaan programme.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2017 — GSLV-Mk III-D1 / GSAT-19</div>
+      <div class="timeline-desc">First developmental flight of GSLV Mk III, placing 3,200 kg GSAT-19 into GTO.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2023 — Chandrayaan-3 / LVM3-M4</div>
+      <div class="timeline-desc">Successful lunar landing near the south pole. India became the fourth nation to soft-land on the Moon.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2025 — GSLV-F15 / NVS-02</div>
+      <div class="timeline-desc">100th launch from Sriharikota. Deployed NVS-02 navigation satellite for the NavIC constellation.</div>
+    </div>
+  </div>
+
+  <div class="key-fact-box">
+    <div class="label">Mission Statistics (as of 2025)</div>
+    <div class="two-col">
+      <div>
+        <strong>Total orbital launches:</strong> 100+<br>
+        <strong>PSLV missions:</strong> 55+<br>
+        <strong>GSLV missions:</strong> 17+
+      </div>
+      <div>
+        <strong>LVM3 missions:</strong> 6+<br>
+        <strong>SSLV missions:</strong> 3<br>
+        <strong>Success rate:</strong> >95%
+      </div>
+    </div>
+  </div>
+
+  <h2>Navigation Constellation — NavIC</h2>
+  <p>SDSC SHAR has been the launch site for all seven satellites of the Indian Regional Navigation Satellite System (IRNSS), now branded as NavIC (Navigation with Indian Constellation). The constellation, comprising satellites in geosynchronous and geostationary orbits, provides Standard Positioning Service (SPS) with accuracy better than 20 meters and Restricted Service (RS) for authorized users. The NVS series of satellites, with the NVS-02 launched on the 100th mission, is replacing the original IRNSS constellation with improved capabilities.</p>
+
+  <h2>Earth Observation Excellence</h2>
+  <p>India's fleet of remote sensing satellites, including the Resourcesat, Cartosat, Oceansat, and RISAT series, have all been launched from SDSC SHAR. These satellites provide critical data for agriculture, urban planning, disaster management, ocean monitoring, and defence applications. India's Earth observation capability is recognized as one of the most comprehensive in the world, with PSLV serving as the reliable workhorse for deploying these assets.</p>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>SDSC SHAR has been the launch site for India's most significant missions including Chandrayaan-1 & 3 (Moon), Mangalyaan (Mars), NavIC navigation constellation, and 100+ orbital launches. Key milestones include India's first orbital launch (1980), first GSLV (2004), Mars orbit on first attempt (2013), and lunar south pole landing (2023).</p>
+  </div>
+  <span class="page-number">18</span>
+</div>
+
+<!-- PAGE 21: CHAPTER 19 — INFRASTRUCTURE DIAGRAM -->
+<div class="page">
+  <span class="chapter-number">Chapter 19</span>
+  <h1>Infrastructure Diagram & Layout</h1>
+
+  <h2>SDSC SHAR — Spatial Overview</h2>
+  <p>The Satish Dhawan Space Centre occupies a large area on Sriharikota island, with various facilities distributed across the site to optimize safety, logistics, and operational efficiency. The following ASCII diagram provides a schematic overview of the major infrastructure elements and their spatial relationships.</p>
+
+  <div class="ascii-diagram">
+═══════════════════════════════════════════════════════════════════════════════
+                    SATISH DHAWAN SPACE CENTRE (SDSC SHAR)
+                         SCHEMATIC LAYOUT — NOT TO SCALE
+═══════════════════════════════════════════════════════════════════════════════
+
+                              BAY OF BENGAL
+                            ~~~~~~~~~~~~~~~
+                                   ↑
+                                   |  Launch Trajectory
+                                   |  (Southeast)
+                                   |
+    ┌──────────────────────────────────────────────────────────────────┐
+    │                         LAUNCH COMPLEX                          │
+    │                                                                  │
+    │   ┌─────────┐     Rail Track     ┌─────────┐                   │
+    │   │   VAB   │◄══════════════════►│   SLP   │──→ [Launch Pad 2] │
+    │   │ (Vehicle│                     │ (Mobile │    ↑ 13.72°N     │
+    │   │ Assembly│                     │ Launch  │    | 80.23°E     │
+    │   │ Building│                     │Pedestal)│                   │
+    │   └─────────┘                     └─────────┘                   │
+    │        ↑                              ↑                          │
+    │   Stages from              Propellant Transfer                   │
+    │   Preparation              Lines & Servicing                     │
+    │                                                                  │
+    │   ┌──────────────────────────┐                                  │
+    │   │     FLP (Launch Pad 1)   │    MST Parking Position          │
+    │   │  ┌─────┐  ←→  ┌─────┐   │    ┌─────────┐                   │
+    │   │  │ MST │  200m │Pad  │   │    │  MST    │                   │
+    │   │  └─────┘       └─────┘   │    │(parked) │                   │
+    │   │   13.73°N                │    └─────────┘                   │
+    │   │   80.23°E                │                                  │
+    │   └──────────────────────────┘                                  │
+    │                                                                  │
+    └──────────────────────────────────────────────────────────────────┘
+
+    ┌──────────────────────────────────────────────────────────────────┐
+    │                    SUPPORT FACILITIES                           │
+    │                                                                  │
+    │  ┌─────────────────┐  ┌─────────────────┐  ┌────────────────┐  │
+    │  │  Mission Control │  │  Solid Propellant│  │   Liquid       │  │
+    │  │  Centre (MCC)    │  │  Processing      │  │   Propellant   │  │
+    │  │                   │  │  Facility        │  │   Storage      │  │
+    │  └─────────────────┘  └─────────────────┘  └────────────────┘  │
+    │                                                                  │
+    │  ┌─────────────────┐  ┌─────────────────┐  ┌────────────────┐  │
+    │  │  Cryogenic       │  │  Static Test     │  │  Payload       │  │
+    │  │  Propellant       │  │  Facility        │  │  Processing    │  │
+    │  │  Storage          │  │  (Solid Motors)  │  │  Facility      │  │
+    │  └─────────────────┘  └─────────────────┘  └────────────────┘  │
+    │                                                                  │
+    │  ┌─────────────────┐  ┌─────────────────┐  ┌────────────────┐  │
+    │  │  Sounding Rocket │  │  ISTRAC Ground   │  │  Space Theme   │  │
+    │  │  Launch Pad       │  │  Station         │  │  Park          │  │
+    │  └─────────────────┘  └─────────────────┘  └────────────────┘  │
+    │                                                                  │
+    │  ┌─────────────────┐  ┌─────────────────┐  ┌────────────────┐  │
+    │  │  Emergency        │  │  Fire Station    │  │  Medical       │  │
+    │  │  Response Centre  │  │                   │  │  Centre        │  │
+    │  └─────────────────┘  └─────────────────┘  └────────────────┘  │
+    └──────────────────────────────────────────────────────────────────┘
+
+    ┌──────────────────────────────────────────────────────────────────┐
+    │                        ACCESS ROAD                              │
+    │              ↑ To Chennai (80 km)                               │
+    └──────────────────────────────────────────────────────────────────┘
+
+    BUCKINGHAM CANAL ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← PULICAT LAKE →→→→→→→→→→
+  </div>
+
+  <h2>Facility Descriptions</h2>
+
+  <table>
+    <tr><th>Facility</th><th>Function</th><th>Key Details</th></tr>
+    <tr><td>VAB</td><td>Vehicle Assembly</td><td>Multi-level assembly for SLP vehicles on MLP</td></tr>
+    <tr><td>FLP</td><td>First Launch Pad</td><td>Integrate-on-Pad concept; PSLV/SSLV primary</td></tr>
+    <tr><td>SLP</td><td>Second Launch Pad</td><td>ITL concept; GSLV/LVM3 primary</td></tr>
+    <tr><td>MCC</td><td>Mission Control</td><td>Launch countdown and flight monitoring</td></tr>
+    <tr><td>Solid Prop. Plant</td><td>Motor Production</td><td>HTPB mixing, casting, curing, NDT</td></tr>
+    <tr><td>Liquid Storage</td><td>Propellant Depot</td><td>UDMH, N2O4, LH2, LOX storage tanks</td></tr>
+    <tr><td>Static Test</td><td>Motor Testing</td><td>Full-scale solid motor static firings</td></tr>
+    <tr><td>Payload Facility</td><td>Satellite Prep</td><td>Clean rooms for satellite integration</td></tr>
+    <tr><td>ISTRAC</td><td>Tracking Network</td><td>Global ground station coordination</td></tr>
+    <tr><td>Sounding Rocket</td><td>Research Launches</td><td>Separate pad for suborbital rockets</td></tr>
+  </table>
+
+  <div class="summary-box">
+    <h3>Chapter Summary</h3>
+    <p>SDSC SHAR's layout positions the two launch complexes (FLP and SLP) on the eastern side facing the Bay of Bengal, with the VAB serving the SLP via a rail-connected MLP. Support facilities including the MCC, propellant storage, solid motor processing, and payload integration are distributed to optimize logistics flow and safety distances. The Third Launch Pad will expand the launch complex further.</p>
+  </div>
+  <span class="page-number">19</span>
+</div>
+
+<!-- PAGE 22: CHAPTER 20 — SUMMARY & FUTURE -->
+<div class="page">
+  <span class="chapter-number">Chapter 20</span>
+  <h1>Summary & India's Space Future</h1>
+
+  <h2>The Spaceport of India — A Living Legacy</h2>
+  <p>Satish Dhawan Space Centre SHAR stands as a testament to India's technological ambition and scientific capability. From the first tentative flight of a small sounding rocket in 1971 to the triumphant 100th launch in January 2025, the spaceport has evolved into one of the most capable and versatile launch facilities in the world. It has been the launch site for missions that have rewritten history — from placing India's first satellite in orbit, to discovering water on the Moon, to reaching Mars on the first attempt, to landing near the lunar south pole.</p>
+
+  <p>The story of SDSC SHAR is, in many ways, the story of India's space programme itself — one of resourcefulness, determination, and the relentless pursuit of excellence against formidable odds. When the centre was established, India was a developing nation with limited technological infrastructure. Today, it operates a world-class spaceport that serves national security, scientific exploration, and commercial customers from around the globe.</p>
+
+  <h2>Key Achievements Summary</h2>
+
+  <div class="two-col">
+    <div class="stat-card">
+      <span class="number">100+</span>
+      <span class="desc">Orbital Launches<br>from Sriharikota</span>
+    </div>
+    <div class="stat-card">
+      <span class="number">95%+</span>
+      <span class="desc">Mission Success Rate<br>PSLV & GSLV</span>
+    </div>
+    <div class="stat-card">
+      <span class="number">400+</span>
+      <span class="desc">Foreign Satellites<br>launched for 34+ countries</span>
+    </div>
+    <div class="stat-card">
+      <span class="number">₹3,985 Cr</span>
+      <span class="desc">Third Launch Pad<br>approved Jan 2025</span>
+    </div>
+  </div>
+
+  <h2>The Road Ahead</h2>
+  <p>India's space ambitions for the coming decades are nothing short of transformative. The Indian Space Policy 2023 has opened the doors for private sector participation, and ISRO's technology transfer initiatives are enabling Indian industry to build launch vehicles and satellites. The spaceport at Sriharikota will continue to be the heart of these activities.</p>
+
+  <p>The key milestones on India's space roadmap include:</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">2025-2026</div>
+      <div class="timeline-desc">Gaganyaan first crewed mission; SSLV operational flights; 3rd Launch Pad construction begins</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2027-2028</div>
+      <div class="timeline-desc">Semi-cryogenic engine qualification; NGLV development flights; Shukrayaan (Venus) mission</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2029-2030</div>
+      <div class="timeline-desc">Third Launch Pad operational; increased launch cadence (20+ missions/year); commercial market expansion</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2035</div>
+      <div class="timeline-desc">Bharatiya Antariksh Station (BAS) — India's first space station assembly in orbit</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2040</div>
+      <div class="timeline-desc">Indian Crewed Lunar Landing — ISRO's most ambitious mission to date</div>
+    </div>
+  </div>
+
+  <div class="key-fact-box">
+    <div class="label">India's Space Vision 2040</div>
+    <ul>
+      <li><strong>BAS (2035):</strong> Multi-module space station in LEO for microgravity research</li>
+      <li><strong>Crewed Lunar Landing (2040):</strong> Indian astronauts on the Moon</li>
+      <li><strong>NGLV:</strong> Fully reusable heavy-lift vehicle for deep space missions</li>
+      <li><strong>Venus Mission (Shukrayaan):</strong> Orbiter study of Venusian atmosphere</li>
+      <li><strong>Gaganyaan Follow-on:</strong> Regular crew rotation to BAS</li>
+      <li><strong>Mars Sample Return:</strong> Long-term aspiration for Mars exploration</li>
+    </ul>
+  </div>
+
+  <h2>The Human Element</h2>
+  <p>Behind every launch from SDSC SHAR stands a team of thousands — engineers, scientists, technicians, safety personnel, and support staff — who work tirelessly to make each mission a success. From the solid propellant plant workers who cast the rocket motors, to the mission controllers who guide vehicles into orbit, to the range safety officers who protect the public, each individual contributes to India's spacefaring destiny.</p>
+
+  <p>As India prepares for its most ambitious missions — Gaganyaan, BAS, and a crewed lunar landing — the importance of SDSC SHAR will only grow. The spaceport will need to evolve, with new launch pads, enhanced infrastructure, and increased operational tempo to support India's expanding space programme.</p>
+
+  <h2>Conclusion</h2>
+  <p>Satish Dhawan Space Centre SHAR is more than a collection of launch pads and assembly buildings. It is the physical embodiment of India's dream to reach for the stars — a dream that began with Dr. Vikram Sarabhai's vision in the 1960s and continues to inspire new generations of Indian scientists and engineers. As the spaceport celebrates over 50 years of launches and looks forward to the challenges of the 21st century, it carries with it the hopes and aspirations of 1.4 billion Indians who look up at the sky and see not just stars, but destinations.</p>
+
+  <p>The next chapter of India's space story will be written at Sriharikota. And if history is any guide, it will be a story of achievement that exceeds all expectations.</p>
+
+  <div style="text-align: center; margin-top: 30px; padding: 20px; border-top: 2px solid #1a1a3a;">
+    <p style="font-size: 14px; color: #888; font-style: italic;">
+      "The sky is not the limit — it is just the beginning."
+    </p>
+    <p style="font-size: 12px; color: #555; margin-top: 10px;">
+      — MissileX RocketSpace Research, September 2026
+    </p>
+  </div>
+
+  <div class="summary-box">
+    <h3>Final Summary</h3>
+    <p>SDSC SHAR has been India's sole orbital launch site since 1971, achieving 100+ launches with >95% success rate. The spaceport supports PSLV, GSLV, LVM3, and SSLV vehicles from two operational pads, with a Third Launch Pad approved for 2029. India's future includes Gaganyaan human spaceflight (2025-26), the Bharatiya Antariksh Station (2035), and a crewed lunar landing (2040), all originating from Sriharikota.</p>
+  </div>
+  <span class="page-number">20</span>
+</div>
+
+</body>
+</html>
