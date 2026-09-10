@@ -909,7 +909,7 @@ async function downloadPitchCertificate() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    initNavigation(); initAnimations(); initEventListeners(); initOrgSections(); initInitiativeFilters();
+    initNavigation(); initScrollProgress(); initAnimations(); initEventListeners(); initOrgSections(); initInitiativeFilters();
     loadInitiatives();
     document.querySelectorAll('.org-img img').forEach(img => {
         img.onerror = function() { this.classList.add('broken'); };
