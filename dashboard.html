@@ -25,7 +25,7 @@
 
         .dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;padding:28px;background:var(--card);border:1px solid var(--border);border-radius:14px;}
         .dash-user{display:flex;align-items:center;gap:16px;}
-        .avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#00ff88);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;color:#000;}
+        .avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#00ff88);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;color:#000;overflow:hidden;flex-shrink:0;}
         .avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;}
         .user-info h2{font-family:'Orbitron',monospace;font-size:1.1rem;margin-bottom:2px;}
         .user-info p{font-size:0.85rem;color:var(--gray);}
@@ -136,7 +136,11 @@
                 const data=await apiFetch('/dashboard');
                 document.getElementById('userName').textContent=data.user.name;
                 document.getElementById('userEmail').textContent=data.user.email;
-                document.getElementById('avatarEl').textContent=data.user.name.charAt(0).toUpperCase();
+                if(data.user.avatarImage){
+                    document.getElementById('avatarEl').innerHTML='<img src="'+data.user.avatarImage+'" alt="Profile">';
+                }else{
+                    document.getElementById('avatarEl').textContent=data.user.name.charAt(0).toUpperCase();
+                }
                 document.getElementById('statProjects').textContent=data.stats.programsEnrolled;
                 document.getElementById('statCompleted').textContent=data.stats.projectsCompleted;
                 document.getElementById('statCerts').textContent=data.stats.certificatesEarned;

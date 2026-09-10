@@ -583,10 +583,12 @@ function handleLogout() {
 function updateUserUI() {
     const na = document.querySelector('.nav-actions');
     if (currentUser) {
-        const avatarLetter = currentUser.name.charAt(0).toUpperCase();
+        const avatarContent = currentUser.avatarImage
+            ? `<img src="${currentUser.avatarImage}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`
+            : currentUser.name.charAt(0).toUpperCase();
         na.innerHTML = `
             <a href="profile.html" class="nav-user-menu active" style="text-decoration:none;">
-                <div class="user-avatar-nav">${avatarLetter}</div>
+                <div class="user-avatar-nav">${avatarContent}</div>
                 <span class="user-name-nav">${currentUser.name.split(' ')[0]}</span>
             </a>`;
     } else {

@@ -1446,6 +1446,7 @@ nav.scrolled {
     font-size: 0.7rem;
     color: #000;
     flex-shrink: 0;
+    overflow: hidden;
 }
 
 .user-name-nav {

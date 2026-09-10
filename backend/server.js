@@ -212,7 +212,7 @@ app.get('/api/dashboard', auth, async (req, res) => {
     const certificatesEarned = userCerts.length;
 
     res.json({
-      user: { name: user.name, email: user.email, avatar: user.avatar, role: user.role, joinedAt: user.joinedAt },
+      user: { name: user.name, email: user.email, avatar: user.avatar, avatarImage: user.avatarImage, role: user.role, joinedAt: user.joinedAt },
       stats: { programsEnrolled, projectsCompleted, certificatesEarned, hoursLogged: projectsCompleted * 12 + certificatesEarned * 8 },
       recentActivity: userProgress.slice(-5).reverse()
     });
