@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects — MissileX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#00d4ff;--secondary:#ff6b35;--accent:#00ff88;--dark:#0a0a0f;--gray:#888;--card:#0d0d14;--border:rgba(255,255,255,0.06);}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--dark);color:#fff;font-family:'Inter',sans-serif;min-height:100vh;}
+        a{text-decoration:none;color:inherit;}
+
+        nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;height:60px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,12,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:all 0.5s;}
+        nav.scrolled{background:rgba(6,6,12,0.95);box-shadow:0 1px 0 rgba(0,212,255,0.1),0 8px 32px rgba(0,0,0,0.4);}
+        .nav-logo{display:flex;align-items:center;gap:12px;}
+        .logo-text{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;background:linear-gradient(135deg,var(--primary),#00ff88);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+        .logo-sub{font-size:0.55rem;color:rgba(255,255,255,0.4);letter-spacing:0.18em;font-weight:500;}
+        .nav-links{display:flex;gap:6px;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:6px 8px;}
+        .nav-links a{font-family:'Orbitron',monospace;font-size:0.6rem;color:rgba(255,255,255,0.5);padding:8px 14px;border-radius:8px;transition:all 0.3s;white-space:nowrap;}
+        .nav-links a:hover,.nav-links a.active{color:var(--primary);background:rgba(0,212,255,0.08);}
+        .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+        .nav-hamburger span{width:25px;height:2px;background:#fff;transition:0.3s;}
+
+        .container{max-width:1100px;margin:0 auto;padding:100px 20px 60px;}
+        .page-header{margin-bottom:30px;}
+        .page-header .label{font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--primary);margin-bottom:8px;}
+        .page-header h1{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;margin-bottom:12px;}
+        .page-header h1 span{color:var(--primary);}
+        .page-header p{color:var(--gray);font-size:1rem;max-width:700px;line-height:1.6;}
+
+        .filters{display:flex;gap:8px;margin-bottom:30px;flex-wrap:wrap;}
+        .filter-btn{font-family:'Orbitron',monospace;font-size:0.6rem;padding:8px 16px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:var(--gray);border-radius:8px;cursor:pointer;transition:all 0.3s;}
+        .filter-btn:hover,.filter-btn.active{border-color:var(--primary);color:var(--primary);background:rgba(0,212,255,0.08);}
+
+        .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;}
+        .project-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all 0.3s;position:relative;overflow:hidden;}
+        .project-card:hover{border-color:rgba(0,212,255,0.2);transform:translateY(-3px);}
+        .project-badge{display:inline-block;font-family:'Orbitron',monospace;font-size:0.55rem;padding:4px 10px;border-radius:4px;letter-spacing:0.08em;margin-bottom:12px;}
+        .project-badge.isro{background:rgba(0,212,255,0.15);color:var(--primary);}
+        .project-badge.ai{background:rgba(0,255,136,0.15);color:var(--accent);}
+        .project-badge.missile{background:rgba(255,107,53,0.15);color:var(--secondary);}
+        .project-badge.iaf{background:rgba(255,215,0,0.15);color:#ffd700;}
+        .project-badge.navy{background:rgba(0,150,255,0.15);color:#0096ff;}
+        .project-badge.army{background:rgba(255,50,50,0.15);color:#ff5050;}
+        .project-badge{background:rgba(255,255,255,0.08);color:var(--gray);}
+        .project-card h3{font-family:'Orbitron',monospace;font-size:0.9rem;margin-bottom:8px;color:#fff;}
+        .project-card p{color:var(--gray);font-size:0.85rem;line-height:1.5;margin-bottom:14px;}
+        .project-meta{display:flex;gap:12px;margin-bottom:16px;}
+        .project-meta span{font-family:'Orbitron',monospace;font-size:0.55rem;color:rgba(255,255,255,0.4);}
+        .project-btn{width:100%;font-family:'Orbitron',monospace;font-size:0.65rem;padding:10px;border:1px solid rgba(0,212,255,0.3);background:rgba(0,212,255,0.08);color:var(--primary);border-radius:8px;cursor:pointer;transition:all 0.3s;font-weight:700;}
+        .project-btn:hover{background:var(--primary);color:#000;}
+
+        @media(max-width:768px){.nav-links{display:none;}.nav-hamburger{display:flex;}nav{padding:12px 20px;}.container{padding:80px 16px 40px;}.projects-grid{grid-template-columns:1fr;}.page-header h1{font-size:1.4rem;}}
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="nav-logo"><span class="logo-text">MISSILEX</span><span class="logo-sub">ROCKET SPACE RESEARCH</span></a>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="initiatives.html">INITIATIVES</a>
+            <a href="programs.html">PROGRAMS</a>
+            <a href="projects.html" class="active">PROJECTS</a>
+            <a href="contact.html">CONTACT</a>
+        </div>
+        <div class="nav-hamburger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <div class="label">RESEARCH PROJECTS</div>
+            <h1>Build India's <span>Future</span> Technology</h1>
+            <p>Work on real defence, space, and AI projects. Choose a project, build your solution, and contribute to national security.</p>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">ALL</button>
+            <button class="filter-btn" data-filter="isro">ISRO</button>
+            <button class="filter-btn" data-filter="drdo">DRDO</button>
+            <button class="filter-btn" data-filter="ai">AI</button>
+            <button class="filter-btn" data-filter="missile">MISSILE</button>
+            <button class="filter-btn" data-filter="iaf">AIR FORCE</button>
+            <button class="filter-btn" data-filter="navy">NAVY</button>
+            <button class="filter-btn" data-filter="army">ARMY</button>
+            <button class="filter-btn" data-filter="nasa">NASA</button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+
+    <script>
+        const projects=[
+            {id:'p1',cat:'isro',title:'Orbital Mechanics Simulator',desc:'Build a real-time orbital mechanics simulator for satellite trajectory computation using Keplerian elements.',diff:'Intermediate',dur:'6 weeks'},
+            {id:'p2',cat:'drdo',title:'Hypersonic Glide Vehicle',desc:'Model aerothermodynamic profiles for hypersonic re-entry vehicles at Mach 8+ velocities.',diff:'Advanced',dur:'10 weeks'},
+            {id:'p3',cat:'ai',title:'Missile Trajectory AI',desc:'Develop ML models to predict and optimize missile trajectories in contested electromagnetic environments.',diff:'Advanced',dur:'8 weeks'},
+            {id:'p4',cat:'isro',title:'GSLV Telemetry Decoder',desc:'Create a real-time telemetry decoder for ISRO GSLV Mk III launch vehicle data streams.',diff:'Intermediate',dur:'5 weeks'},
+            {id:'p5',cat:'drdo',title:'Tank Target Tracking AI',desc:'Develop real-time target acquisition and tracking algorithms for Arjun MK1A armored systems.',diff:'Intermediate',dur:'6 weeks'},
+            {id:'p6',cat:'ai',title:'Satellite Image Classification',desc:'Train deep learning models to classify satellite imagery for terrain analysis and disaster response.',diff:'Intermediate',dur:'6 weeks'},
+            {id:'p7',cat:'missile',title:'Guidance System Prototype',desc:'Design and simulate inertial guidance systems for precision missile trajectory computation.',diff:'Advanced',dur:'10 weeks'},
+            {id:'p8',cat:'nasa',title:'Exoplanet Habitability Analysis',desc:'Analyze telescope data to identify potentially habitable exoplanets using spectroscopic analysis.',diff:'Beginner',dur:'4 weeks'},
+            {id:'p9',cat:'isro',title:'PSLV Launch Data Analytics',desc:'Analyze historical launch data to optimize future mission parameters and fuel efficiency.',diff:'Beginner',dur:'4 weeks'},
+            {id:'p10',cat:'iaf',title:'AEW&C Radar Processing',desc:'Process and analyze radar data from AWACS aircraft for threat detection and tracking systems.',diff:'Advanced',dur:'12 weeks'},
+            {id:'p11',cat:'navy',title:'INS Vikrant Deck Ops',desc:'Simulate aircraft carrier deck operations including launch, recovery, and maintenance scheduling.',diff:'Advanced',dur:'10 weeks'},
+            {id:'p12',cat:'army',title:'Battlefield Drone Swarm',desc:'Design autonomous drone swarm coordination for battlefield reconnaissance and surveillance.',diff:'Advanced',dur:'12 weeks'},
+            {id:'p13',cat:'nasa',title:'ISS Experiment Designer',desc:'Design microgravity experiments for the International Space Station using physics simulation tools.',diff:'Beginner',dur:'5 weeks'},
+            {id:'p14',cat:'ai',title:'Autonomous Drone Navigation',desc:'Build GPS-denied navigation for drones using visual SLAM and reinforcement learning.',diff:'Advanced',dur:'10 weeks'},
+            {id:'p15',cat:'missile',title:'Missile Trajectory Optimizer',desc:'Optimize multi-stage rocket trajectories using genetic algorithms and numerical methods.',diff:'Advanced',dur:'8 weeks'}
+        ];
+
+        function renderProjects(filter='all'){
+            const grid=document.getElementById('projectsGrid');
+            const filtered=filter==='all'?projects:projects.filter(p=>p.cat===filter);
+            grid.innerHTML=filtered.map(p=>`
+                <div class="project-card" data-cat="${p.cat}">
+                    <div class="project-badge ${p.cat}">${p.cat.toUpperCase()}</div>
+                    <h3>${p.title}</h3>
+                    <p>${p.desc}</p>
+                    <div class="project-meta">
+                        <span>${p.diff}</span>
+                        <span>${p.dur}</span>
+                    </div>
+                    <button class="project-btn" onclick="window.location.href='index.html#projects'">VIEW PROJECT</button>
+                </div>`).join('');
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(btn=>{
+            btn.addEventListener('click',()=>{
+                document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+                btn.classList.add('active');
+                renderProjects(btn.dataset.filter);
+            });
+        });
+
+        renderProjects();
+        window.addEventListener('scroll',()=>{document.querySelector('nav').classList.toggle('scrolled',window.scrollY>50);});
+    </script>
+</body>
+</html>

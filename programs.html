@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Programs — MissileX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#00d4ff;--secondary:#ff6b35;--accent:#00ff88;--dark:#0a0a0f;--gray:#888;--card:#0d0d14;--border:rgba(255,255,255,0.06);}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--dark);color:#fff;font-family:'Inter',sans-serif;min-height:100vh;}
+        a{text-decoration:none;color:inherit;}
+
+        nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;height:60px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,12,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:all 0.5s;}
+        nav.scrolled{background:rgba(6,6,12,0.95);box-shadow:0 1px 0 rgba(0,212,255,0.1),0 8px 32px rgba(0,0,0,0.4);}
+        .nav-logo{display:flex;align-items:center;gap:12px;}
+        .logo-text{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;background:linear-gradient(135deg,var(--primary),#00ff88);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+        .logo-sub{font-size:0.55rem;color:rgba(255,255,255,0.4);letter-spacing:0.18em;font-weight:500;}
+        .nav-links{display:flex;gap:6px;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:6px 8px;}
+        .nav-links a{font-family:'Orbitron',monospace;font-size:0.6rem;color:rgba(255,255,255,0.5);padding:8px 14px;border-radius:8px;transition:all 0.3s;white-space:nowrap;}
+        .nav-links a:hover,.nav-links a.active{color:var(--primary);background:rgba(0,212,255,0.08);}
+        .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+        .nav-hamburger span{width:25px;height:2px;background:#fff;transition:0.3s;}
+
+        .container{max-width:1000px;margin:0 auto;padding:100px 20px 60px;}
+        .page-header{margin-bottom:40px;}
+        .page-header .label{font-family:'Orbitron',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--primary);margin-bottom:8px;}
+        .page-header h1{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;margin-bottom:12px;}
+        .page-header h1 span{color:var(--primary);}
+        .page-header p{color:var(--gray);font-size:1rem;max-width:700px;line-height:1.6;}
+
+        .programs-grid{display:grid;gap:16px;}
+        .program-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;transition:all 0.3s;position:relative;overflow:hidden;}
+        .program-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));opacity:0;transition:opacity 0.3s;}
+        .program-card:hover{border-color:rgba(0,212,255,0.2);transform:translateY(-2px);}
+        .program-card:hover::before{opacity:1;}
+        .program-card h3{font-family:'Orbitron',monospace;font-size:1rem;margin-bottom:10px;color:#fff;}
+        .program-card p{color:var(--gray);font-size:0.9rem;line-height:1.6;}
+        .program-card .tag{display:inline-block;font-family:'Orbitron',monospace;font-size:0.55rem;padding:4px 10px;border-radius:4px;margin-top:12px;letter-spacing:0.08em;}
+        .tag.active{background:rgba(0,255,136,0.15);color:var(--accent);}
+        .tag.upcoming{background:rgba(255,215,0,0.15);color:#ffd700;}
+        .tag.open{background:rgba(0,212,255,0.15);color:var(--primary);}
+
+        .cta-section{text-align:center;margin-top:50px;padding:40px;background:var(--card);border:1px solid var(--border);border-radius:14px;}
+        .cta-section h3{font-family:'Orbitron',monospace;font-size:1.1rem;margin-bottom:10px;}
+        .cta-section p{color:var(--gray);margin-bottom:20px;}
+        .cta-btn{font-family:'Orbitron',monospace;font-size:0.7rem;padding:12px 28px;border:none;border-radius:8px;cursor:pointer;font-weight:700;background:linear-gradient(135deg,var(--primary),#00b8d4);color:#000;transition:all 0.3s;}
+        .cta-btn:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(0,212,255,0.3);}
+
+        @media(max-width:768px){.nav-links{display:none;}.nav-hamburger{display:flex;}nav{padding:12px 20px;}.container{padding:80px 16px 40px;}.page-header h1{font-size:1.4rem;}}
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="nav-logo"><span class="logo-text">MISSILEX</span><span class="logo-sub">ROCKET SPACE RESEARCH</span></a>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="initiatives.html">INITIATIVES</a>
+            <a href="programs.html" class="active">PROGRAMS</a>
+            <a href="projects.html">PROJECTS</a>
+            <a href="contact.html">CONTACT</a>
+        </div>
+        <div class="nav-hamburger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <div class="label">RESEARCH PROGRAMS</div>
+            <h1>Structured Pathways for <span>Researchers</span></h1>
+            <p>Join our world-class research programs in defence technology, aerospace engineering, and AI-driven systems. Build expertise that matters.</p>
+        </div>
+
+        <div class="programs-grid">
+            <div class="program-card">
+                <h3>Research Fellowship</h3>
+                <p>A year-round program for advanced studies in guidance systems, satellite analytics, and mission architecture. Work alongside senior scientists and contribute to real defence projects.</p>
+                <span class="tag active">ACCEPTING APPLICATIONS</span>
+            </div>
+            <div class="program-card">
+                <h3>Student Internship</h3>
+                <p>Hands-on internship tracks for undergraduate and postgraduate students in aerospace technology and AI research. Gain practical experience with cutting-edge systems.</p>
+                <span class="tag open">OPEN NOW</span>
+            </div>
+            <div class="program-card">
+                <h3>Innovation Challenge</h3>
+                <p>A national research challenge focused on rapid prototyping of intelligent navigation and sensor fusion systems. Compete with the best minds across India.</p>
+                <span class="tag upcoming">STARTS AUG 2026</span>
+            </div>
+            <div class="program-card">
+                <h3>Space Research Program</h3>
+                <p>An immersive program for payload design, orbital data analysis, and launch vehicle interface studies. Collaborate with ISRO and DRDO scientists.</p>
+                <span class="tag active">ACCEPTING APPLICATIONS</span>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h3>Ready to Start Your Research Journey?</h3>
+            <p>Join hundreds of students and researchers working on India's most advanced defence and space projects.</p>
+            <a href="register.html" class="cta-btn">APPLY NOW</a>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('scroll',()=>{document.querySelector('nav').classList.toggle('scrolled',window.scrollY>50);});
+    </script>
+</body>
+</html>
